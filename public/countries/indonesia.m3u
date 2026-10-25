@@ -1,0 +1,422 @@
+#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
+
+#EXTINF:-1 tvg-id="AhsanTV.id@SD" tvg-name="Ahsan TV" tvg-logo="https://i.imgur.com/dZdUbYd.png" group-title="Devotional" tvg-country="Indonesia" tvg-language="Indonesian",Ahsan TV
+https://5bf7b725107e5.streamlock.net/ahsantv/ahsantv/playlist.m3u8
+#EXTINF:-1 tvg-id="AlWafaTarim.id@SD" tvg-name="Al Wafa Tarim (720p)" tvg-logo="https://i.ibb.co/3yfMjmf/logo-3.png" group-title="Devotional" tvg-country="Indonesia" tvg-language="Malay",Al Wafa Tarim (720p)
+https://ammedia.siar.us/ammedia/live/playlist.m3u8
+#EXTINF:-1 tvg-id="AlBahjahTV.id@SD" tvg-name="Al-Bahjah TV (1080p)" tvg-logo="https://i.imgur.com/52dlDZk.png" group-title="Devotional" tvg-country="Indonesia" tvg-language="Indonesian",Al-Bahjah TV (1080p)
+http://202.150.161.117:8000/play/AlBahjahTV
+#EXTINF:-1 tvg-id="AlImanTV.id@SD" tvg-name="Al-Iman TV (Indonesia) (720p)" tvg-logo="https://i.imgur.com/Qj1EFf1.png" group-title="Devotional" tvg-country="Indonesia" tvg-language="Indonesian",Al-Iman TV (Indonesia) (720p)
+https://tv.aliman.id/aliman/live.m3u8
+#EXTINF:-1 tvg-id="AngelTV.in@Indonesia" tvg-name="Angel TV Indonesia (720p)" tvg-logo="https://i.imgur.com/qKLEGU7.png" group-title="Devotional" tvg-country="Indonesia" tvg-language="Tamil",Angel TV Indonesia (720p)
+https://janya-digimix.akamaized.net/vglive-sk-234616/indonesia/ngrp:angelindonesia_all/playlist.m3u8
+#EXTINF:-1 tvg-id="AshiilTV.id@SD" tvg-name="Ashiil TV (480p)" tvg-logo="https://i.imgur.com/bTktkcr.png" group-title="Devotional" tvg-country="Indonesia" tvg-language="Indonesian",Ashiil TV (480p)
+https://wahyu1ptv.pages.dev/AshiilTV-HD.m3u8
+#EXTINF:-1 tvg-id="DAAITV.id@SD" tvg-name="DAAI TV" tvg-logo="https://i.imgur.com/YC7JCHo.png" group-title="Devotional" tvg-country="Indonesia" tvg-language="Chinese",DAAI TV
+https://pull.daaiplus.com/live-DAAIPLUS/live-DAAIPLUS_HD.m3u8
+#EXTINF:-1 tvg-id="DhammaTV.id@SD" tvg-name="Dhamma TV (720p) [Not 24/7]" tvg-logo="https://dhammaweb.tv/wp-content/uploads/2018/08/cropped-dhammatv-3.png" group-title="Devotional" tvg-country="Indonesia" tvg-language="Indonesian",Dhamma TV (720p) [Not 24/7]
+https://b.webcache.maxindo.net.id/dhamma/dhamma.m3u8
+#EXTINF:-1 tvg-id="DMITV.id@SD" tvg-name="DMI TV (576i)" tvg-logo="https://static.promediateknologi.id/promedia/network/1167/desktop/images/logo.png" group-title="Devotional" tvg-country="Indonesia" tvg-language="Indonesian",DMI TV (576i)
+https://tvstreamcast.com/tawaftv.m3u8
+#EXTINF:-1 tvg-id="FajarTV.id@SD" tvg-name="Fajar TV (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/mkuXxRK.png" group-title="Devotional" tvg-country="Indonesia" tvg-language="Indonesian",Fajar TV (720p) [Not 24/7]
+http://122.248.43.242:1935/FAJARTV/_definst_/myStream/playlist.m3u8
+#EXTINF:-1 tvg-id="IAmChannel.id@SD" tvg-name="I Am Channel (576p)" tvg-logo="https://i.imgur.com/Gg6OcGT.png" group-title="Devotional" tvg-country="Indonesia" tvg-language="Indonesian",I Am Channel (576p)
+#EXTVLCOPT:http-referrer=https://iamchannel.org/
+https://61146e7ab7a66.streamlock.net:8089/tes/1/chunklist.m3u8
+#EXTINF:-1 tvg-id="LingkarTV.id@SD" tvg-name="Lingkar TV" tvg-logo="https://lingkartv.com/assets/img/logo-square.png" group-title="Devotional" tvg-country="Indonesia" tvg-language="Javanese",Lingkar TV
+https://lingkartv.my.id/hls/lingkartv.m3u8
+#EXTINF:-1 tvg-id="MadaniTV.id@SD" tvg-name="Madani TV (720p)" tvg-logo="https://i.imgur.com/8aonQ0v.png" group-title="Devotional" tvg-country="Indonesia" tvg-language="Indonesian",Madani TV (720p)
+https://stream.asianastream.com/madani/madanitv.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="MGITV.id@SD" tvg-name="MGI TV (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/xrNtabe.png" group-title="Devotional" tvg-country="Indonesia" tvg-language="Indonesian",MGI TV (720p) [Geo-blocked]
+https://tv.rodja.live/tasik/ngrp:mgitv_all/playlist.m3u8
+#EXTINF:-1 tvg-id="MQTV.id@SD" tvg-name="MQTV (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/d8dQo6E.png" group-title="Devotional" tvg-country="Indonesia" tvg-language="Indonesian",MQTV (720p) [Not 24/7]
+https://5bf7b725107e5.streamlock.net/mqtv/mqtv/playlist.m3u8
+#EXTINF:-1 tvg-id="NaajiyaTV.id@SD" tvg-name="Naajiya TV (720p)" tvg-logo="https://i.postimg.cc/Z5YTHPV8/KUbqm-Lq-Rx-Y-70-Ilj-LU4uyerh-Qz-PZ66-DVYoqm-BNDAT7-TSfk-G3-Fu015-Lxv-Ss-Esma6-VD3r-NYu0-Yw-s900-c-k-c0x00ffffff-no-r.png" group-title="Devotional" tvg-country="Indonesia" tvg-language="Indonesian",Naajiya TV (720p)
+#EXTVLCOPT:http-referrer=https://www.naajiyatv.com/tonton
+https://www.naajiyatv.com/live/livestream.m3u8
+#EXTINF:-1 tvg-id="NabawiTV.id@SD" tvg-name="Nabawi TV (720p)" tvg-logo="https://i.imgur.com/O8WONFB.png" group-title="Devotional" tvg-country="Indonesia" tvg-language="Indonesian",Nabawi TV (720p)
+http://202.150.161.117:8000/play/NabawiTV
+#EXTINF:-1 tvg-id="DensKnowledge.id@SD" tvg-name="like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="Education",Dens Knowledge [Geo-blocked]" tvg-logo="https://picture.dens.tv/wp/img/tvchannels_v1/340x160/1701335417_tvchannels_v1.jpg" group-title="Documentary" tvg-country="Indonesia" tvg-language="Indonesian",like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="Education",Dens Knowledge [Geo-blocked]
+#EXTVLCOPT:http-referrer=https://www.dens.tv/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 Windows NT 10.0; Win64; x64 AppleWebKit/537.36 KHTML, like Gecko Chrome/144.0.0.0 Safari/537.36
+https://op-group1-swiftservehd-1.dens.tv/h/h236/index.m3u8
+#EXTINF:-1 tvg-id="RinjaniTV.id@SD" tvg-name="Rinjani TV" tvg-logo="https://lombokindustries.com/assunnah/zone/img/rinjanitv.png" group-title="Documentary" tvg-country="Indonesia" tvg-language="Indonesian",Rinjani TV
+https://rinjanitv.cloud/hls/tvkabel.m3u8
+#EXTINF:-1 tvg-id="TheIndonesiaChannel.id@SD" tvg-name="The Indonesia Channel (1080p)" tvg-logo="https://i.imgur.com/jAAPgpV.png" group-title="Documentary" tvg-country="Indonesia" tvg-language="English",The Indonesia Channel (1080p)
+https://restreamer.indonusa.id:8443/d5f4ad43-1b5a-4b0f-8bef-5b37224ed221.m3u8
+#EXTINF:-1 tvg-id="AjwaTV.id@SD" tvg-name="Ajwa TV (1080p)" tvg-logo="https://i.imgur.com/JXjbUhB.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Ajwa TV (1080p)
+http://ikitv.sqn.at:8000/play/a00j/index.m3u8
+#EXTINF:-1 tvg-id="AsthaTV.id@HD" tvg-name="Astha TV (1080p)" tvg-logo="https://asthatv.com/wp-content/uploads/2026/02/Logo-Astha.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Astha TV (1080p)
+#EXTVLCOPT:http-referrer=https://asthatv.com/
+https://hgmtv.com:2020/hls/asthalive/asthalive.m3u8
+#EXTINF:-1 tvg-id="AsthaTV.id@HD" tvg-name="Astha TV (1080p) [Not 24/7]" tvg-logo="https://asthatv.com/wp-content/uploads/2026/02/Logo-Astha.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Astha TV (1080p) [Not 24/7]
+https://hgmtv.com:19360/asthatv/asthatv.m3u8
+#EXTINF:-1 tvg-id="AstroBlitarTV.id@SD" tvg-name="Astro Blitar TV (720p)" tvg-logo="https://i.imgur.com/rORKbGw.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Astro Blitar TV (720p)
+#EXTVLCOPT:http-referrer=https://abtelevisi.com/
+https://5bf7b725107e5.streamlock.net/abtv/abtv/playlist.m3u8
+#EXTINF:-1 tvg-id="AtambuaTV.id@HD" tvg-name="Atambua TV (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/7/72/Atambua_TV.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Atambua TV (720p)
+http://122.248.43.242:1935/ATAMBUATV/_definst_/myStream/playlist.m3u8
+#EXTINF:-1 tvg-id="BalikpapanTV.id@SD" tvg-name="Balikpapan TV (720p)" tvg-logo="https://i.imgur.com/P3whqna.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Balikpapan TV (720p)
+http://122.248.43.242:1935/BALIKPAPANTV/_definst_/myStream/playlist.m3u8
+#EXTINF:-1 tvg-id="BandungTV.id@SD" tvg-name="Bandung TV (360p)" tvg-logo="https://i.postimg.cc/JzqSzcj9/200px-Logo-bdg-tv-2016.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Bandung TV (360p)
+http://202.150.153.254:65500/bandungtvWEBSITE.m3u8
+#EXTINF:-1 tvg-id="BanjarTV.id@SD" tvg-name="Banjar TV (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/TA76a10.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Banjar TV (720p) [Not 24/7]
+https://banjartv.siar.us/banjartv/live/playlist.m3u8
+#EXTINF:-1 tvg-id="BantenTV.id@SD" tvg-name="Banten TV (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/tbtF40p.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Banten TV (720p) [Not 24/7]
+https://5bf7b725107e5.streamlock.net/bantentv/bantentv/playlist.m3u8
+#EXTINF:-1 tvg-id="BatamTV.id@SD" tvg-name="Batam TV (480p) [Not 24/7]" tvg-logo="https://i.imgur.com/lo7YXnW.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Batam TV (480p) [Not 24/7]
+http://122.248.43.242:1935/BATAMTV/_definst_/myStream/playlist.m3u8
+#EXTINF:-1 tvg-id="BMSTV.id@SD" tvg-name="BMS TV (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/snMxng5.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",BMS TV (720p) [Not 24/7]
+https://5bf7b725107e5.streamlock.net/bmstv/bmstv/playlist.m3u8
+#EXTINF:-1 tvg-id="BungoTV.id@SD" tvg-name="Bungo TV (480p) [Not 24/7]" tvg-logo="https://i.imgur.com/OrCrtDA.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Bungo TV (480p) [Not 24/7]
+https://5bf7b725107e5.streamlock.net/bungotv/bungotv/playlist.m3u8
+#EXTINF:-1 tvg-id="CarubanTV.id@HD" tvg-name="Caruban TV (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/3/3a/CarubanTV%28Low-res%29.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Caruban TV (1080p)
+#EXTVLCOPT:http-referrer=https://stream.carubantv.id
+https://stream.carubantv.id/hls/0/stream.m3u8
+#EXTINF:-1 tvg-id="CelebesTV.id@SD" tvg-name="Celebes TV [Not 24/7]" tvg-logo="https://upload.wikimedia.org/wikipedia/id/8/81/Logo_Celebes_TV_2020.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Celebes TV [Not 24/7]
+https://ams.juraganstreaming.com:5443/LiveApp/streams/celebesmedia.m3u8
+#EXTINF:-1 tvg-id="DavikaTV.id@SD" tvg-name="Davika TV (480p)" tvg-logo="https://upload.wikimedia.org/wikipedia/id/6/60/Logo_Davika_TV.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Davika TV (480p)
+#EXTVLCOPT:http-referrer=https://davikatv.co/livestreaming/
+https://5bf7b725107e5.streamlock.net/davika/davika/playlist.m3u8
+#EXTINF:-1 tvg-id="DhohoTV.id@SD" tvg-name="Dhoho TV (720p)" tvg-logo="https://i.imgur.com/4Khyyfh.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Dhoho TV (720p)
+https://dhohotv.siar.us/dhohotv/live/playlist.m3u8
+#EXTINF:-1 tvg-id="DutaTV.id@SD" tvg-name="Duta TV (360p) [Not 24/7]" tvg-logo="https://i.imgur.com/B4JW54M.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Duta TV (360p) [Not 24/7]
+https://dutatv.siar.us/dutatv/live/playlist.m3u8
+#EXTINF:-1 tvg-id="EfarinaTV.id@SD" tvg-name="Efarina TV (720p)" tvg-logo="https://i.imgur.com/iYTimXh.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Efarina TV (720p)
+#EXTVLCOPT:http-referrer=https://live.efarinatv.net/
+https://live.efarinatv.com/hls/bgtaufikganteng.m3u8
+#EXTINF:-1 tvg-id="FicomChannel.id@SD" tvg-name="Ficom Channel (720p)" tvg-logo="https://i.imgur.com/KMEf0Cc.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Ficom Channel (720p)
+https://v3.siar.us/ficomchannel/live/playlist.m3u8
+#EXTINF:-1 tvg-id="GarudaTV.id@SD" tvg-name="Garuda TV (1080p)" tvg-logo="https://i.imgur.com/sXsAcZ3.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Garuda TV (1080p)
+https://hgmtv.com:19360/garudatvlivestreaming/garudatvlivestreaming.m3u8
+#EXTINF:-1 tvg-id="IndonesianaTV.id@SD" tvg-name="Indonesiana.TV (720p)" tvg-logo="https://i.imgur.com/192wiS1.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Indonesiana.TV (720p)
+#EXTVLCOPT:http-referrer=https://indonesiana.tv/
+https://tvstreamcast.com/indonesiana.m3u8
+#EXTINF:-1 tvg-id="JambiTV.id@SD" tvg-name="Jambi TV" tvg-logo="https://static.wikia.nocookie.net/logopedia/images/1/15/Jambi_TV.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Jambi TV
+https://jambitv.globaldigitalcore.com/hls/sah5tu7Eiveepohyieyie3OoteL2anga.m3u8
+#EXTINF:-1 tvg-id="JawaPosTV.id@Jakarta" tvg-name="Jawa Pos TV Jakarta (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Jawa_Pos_TV_2024.svg/960px-Jawa_Pos_TV_2024.svg.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Jawa Pos TV Jakarta (720p)
+http://122.248.43.242:1935/JAWAPOSTVJKT/_definst_/myStream/playlist.m3u8
+#EXTINF:-1 tvg-id="JekTV.id@SD" tvg-name="Jek TV (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/wh75d1f.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Jek TV (720p) [Not 24/7]
+#EXTVLCOPT:http-referrer=http://jektv.co.id/livestreaming/
+http://27.124.81.245:1935/jektv/myStream/playlist.m3u8
+#EXTINF:-1 tvg-id="JogjaIstimewaTV.id@SD" tvg-name="Jogja Istimewa TV (720p)" tvg-logo="https://i.imgur.com/VEqQfTu.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Jogja Istimewa TV (720p)
+http://103.255.15.222:1935/tv/jitv_720p/playlist.m3u8
+#EXTINF:-1 tvg-id="JogjaTV.id@SD" tvg-name="Jogja TV (720p) [Not 24/7]" tvg-logo="https://static.wikia.nocookie.net/logopedia/images/4/40/Jogjatvnew.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Jogja TV (720p) [Not 24/7]
+https://stream.jogjatv.co.id/jtvlive/stream/index.m3u8
+#EXTINF:-1 tvg-id="KawanuaTV.id@SD" tvg-name="Kawanua TV (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/5/5f/Logo_kawanua_tv.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Kawanua TV (720p)
+http://122.248.43.242:1935/KAWANUATV/_definst_/myStream/playlist.m3u8
+#EXTINF:-1 tvg-id="KilisuciTV.id@SD" tvg-name="Kilisuci TV" tvg-logo="https://upload.wikimedia.org/wikipedia/id/e/e4/Kilisuci_TV_NEW_LOGO_2016.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Kilisuci TV
+https://5bf7b725107e5.streamlock.net/kstv/kstv/playlist.m3u8
+#EXTINF:-1 tvg-id="DensShowBiz.id@SD" tvg-name="like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="Entertainment",Dens ShowBiz [Geo-blocked]" tvg-logo="https://picture.dens.tv/wp/img/tvchannels_v1/340x160/1687501370_tvchannels_v1.jpg" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="Entertainment",Dens ShowBiz [Geo-blocked]
+#EXTVLCOPT:http-referrer=https://www.dens.tv/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 Windows NT 10.0; Win64; x64 AppleWebKit/537.36 KHTML, like Gecko Chrome/144.0.0.0 Safari/537.36
+https://op-group1-swiftservehd-1.dens.tv/h/h203/index.m3u8
+#EXTINF:-1 tvg-id="MyFamily.id@SD" tvg-name="like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="Family",My Family [Geo-blocked]" tvg-logo="https://i.imgur.com/IaCmCt9.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="English",like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="Family",My Family [Geo-blocked]
+#EXTVLCOPT:http-referrer=https://www.dens.tv/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 Windows NT 10.0; Win64; x64 AppleWebKit/537.36 KHTML, like Gecko Chrome/144.0.0.0 Safari/537.36
+https://op-group1-swiftservehd-1.dens.tv/h/h194/index.m3u8
+#EXTINF:-1 tvg-id="JakTV.id@SD" tvg-name="like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="Undefined",Jak TV [Geo-blocked]" tvg-logo="https://i.imgur.com/xyLLLOi.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="Undefined",Jak TV [Geo-blocked]
+#EXTVLCOPT:http-referrer=https://www.dens.tv/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 Windows NT 10.0; Win64; x64 AppleWebKit/537.36 KHTML, like Gecko Chrome/144.0.0.0 Safari/537.36
+https://op-group1-swiftservesd-1.dens.tv/s/s123/index2.m3u8
+#EXTINF:-1 tvg-id="MaduTV.id@SD" tvg-name="Madu TV (1080p) [Not 24/7]" tvg-logo="https://i.imgur.com/cKpgbgW.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Madu TV (1080p) [Not 24/7]
+#EXTVLCOPT:http-referrer=https://madu.tv/live-streaming/
+https://re1.siar.us/madutv/hd720/playlist.m3u8
+#EXTINF:-1 tvg-id="MatrixTVYogyakarta.id@HD" tvg-name="Matrix TV Yogyakarta (720p)" tvg-logo="https://stream.matrixtv.id/logo" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Javanese",Matrix TV Yogyakarta (720p)
+#EXTVLCOPT:http-referrer=https://stream.matrixtv.id/
+https://stream.matrixtv.id/hls/0/stream.m3u8
+#EXTINF:-1 tvg-id="NusantaraTV.id@SD" tvg-name="Nusantara TV (1080p)" tvg-logo="https://i.imgur.com/viun5hj.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Nusantara TV (1080p)
+https://nusantaratv.siar.us/nusantaratv/live/playlist.m3u8
+#EXTINF:-1 tvg-id="PadangTV.id@SD" tvg-name="Padang TV (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/EL2BfxY.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Padang TV (720p) [Not 24/7]
+http://122.248.43.242:1935/PADANGTV/_definst_/myStream/playlist.m3u8
+#EXTINF:-1 tvg-id="PujaTVAceh.id@SD" tvg-name="Puja TV Aceh (1080p) [Not 24/7]" tvg-logo="https://i.imgur.com/0TqABCL.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Puja TV Aceh (1080p) [Not 24/7]
+#EXTVLCOPT:http-referrer=https://www.pujatvaceh.com/
+https://pujatv.siar.us/live/pujatv.m3u8
+#EXTINF:-1 tvg-id="RadarLampungTV.id@SD" tvg-name="Radar Lampung TV (480p)" tvg-logo="https://upload.wikimedia.org/wikipedia/id/4/42/Logo_RadarTV_Lampung.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Radar Lampung TV (480p)
+#EXTVLCOPT:http-referrer=https://radartvnews.com/live-streaming/
+https://www.streaming.radartv.co.id/hls/test.m3u8
+#EXTINF:-1 tvg-id="RadarTasikmalayaTV.id@SD" tvg-name="Radar Tasikmalaya TV (720p) [Not 24/7]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/1/1a/Logo_Radar_Tasikmalaya_TV.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Radar Tasikmalaya TV (720p) [Not 24/7]
+https://v2.siar.us/radartasikmalaya/live/playlist.m3u8
+#EXTINF:-1 tvg-id="RiauTV.id@SD" tvg-name="Riau TV (1080p) [Not 24/7]" tvg-logo="https://i.imgur.com/1g8FtJi.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Riau TV (1080p) [Not 24/7]
+http://122.248.43.242:1935/RIAUTV/_definst_/myStream/playlist.m3u8
+#EXTINF:-1 tvg-id="RodjaTV.id@SD" tvg-name="Rodja TV (720p)" tvg-logo="https://i.imgur.com/XwCeHlC.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Rodja TV (720p)
+https://rodjatv.com/rodjatv/live.m3u8
+#EXTINF:-1 tvg-id="SalamTV.id@SD" tvg-name="Salam TV (720p)" tvg-logo="https://i.imgur.com/00Ifzgo.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Salam TV (720p)
+#EXTVLCOPT:http-referrer=salamtelevisi.com
+https://live.salamtelevisi.com/hls/0/stream.m3u8
+#EXTINF:-1 tvg-id="SampitTV.id@SD" tvg-name="Sampit TV (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/8cFJa8G.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Sampit TV (720p) [Not 24/7]
+https://sampit-tv.siar.us/live/sampit-tv.m3u8
+#EXTINF:-1 tvg-id="SangajiTV.id@SD" tvg-name="Sangaji TV (720p)" tvg-logo="https://i.imgur.com/4rTNT8F.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Sangaji TV (720p)
+#EXTVLCOPT:http-referrer=https://sangajitv.co.id/
+https://cdn.adyadigitalteknologi.com:8090/vod/relay.m3u8
+#EXTINF:-1 tvg-id="SelaparangTV.id@SD" tvg-name="Selaparang TV (720p) [Not 24/7]" tvg-logo="https://upload.wikimedia.org/wikipedia/id/c/ce/Logo_Selaparang_TV.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Selaparang TV (720p) [Not 24/7]
+#EXTVLCOPT:http-referrer=selaparangtv.net
+https://selaparangtv.siar.us/live/selaparangtv.m3u8
+#EXTINF:-1 tvg-id="SemarangTV.id@SD" tvg-name="Semarang TV (720p)" tvg-logo="https://i.imgur.com/KFC2WSB.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Semarang TV (720p)
+http://116.254.112.74/hls/cakralive.m3u8
+#EXTINF:-1 tvg-id="Simpang5TV.id@SD" tvg-name="Simpang5 TV (360p) [Not 24/7]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/d/dc/Simpang5_TV.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Simpang5 TV (360p) [Not 24/7]
+http://122.248.43.242:1935/SIMPANG5TV/_definst_/myStream/playlist.m3u8
+#EXTINF:-1 tvg-id="SriwijayaTV.id@SD" tvg-name="Sriwijaya TV (720p) [Not 24/7]" tvg-logo="https://upload.wikimedia.org/wikipedia/id/7/75/SriwijayaTV_2014.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Sriwijaya TV (720p) [Not 24/7]
+#EXTVLCOPT:http-referrer=sriwijayatv.tv
+https://sriwijayatv.siar.us/live/sriwijayatv.m3u8
+#EXTINF:-1 tvg-id="StaraTV.id@SumedangMajalengka" tvg-name="Stara TV (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/9/91/Stara_TV_Sumedang_fix.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Sundanese",Stara TV (720p)
+#EXTVLCOPT:http-referrer=https://stream.staratv.id/
+https://stream.staratv.id/hls/0/stream.m3u8
+#EXTINF:-1 tvg-id="StaraTV.id@Bandung" tvg-name="Stara TV Bandung (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/9/91/Stara_TV_Sumedang_fix.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Sundanese",Stara TV Bandung (1080p)
+#EXTVLCOPT:http-referrer=https://bandung.staratv.id/
+https://bandung.staratv.id/hls/0/stream.m3u8
+#EXTINF:-1 tvg-id="StaraTV.id@Bojonegoro" tvg-name="Stara TV Bojonegoro (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/9/91/Stara_TV_Sumedang_fix.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Javanese",Stara TV Bojonegoro (720p)
+#EXTVLCOPT:http-referrer=https://bojonegoro.staratv.id/
+https://bojonegoro.staratv.id/hls/stream.m3u8
+#EXTINF:-1 tvg-id="StaraTV.id@Cianjur" tvg-name="Stara TV Cianjur (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/9/91/Stara_TV_Sumedang_fix.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Sundanese",Stara TV Cianjur (720p)
+#EXTVLCOPT:http-referrer=https://cianjur.staratv.id/
+https://cianjur.staratv.id/hls/0/stream.m3u8
+#EXTINF:-1 tvg-id="StaraTV.id@Jakarta" tvg-name="Stara TV Jakarta (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/9/91/Stara_TV_Sumedang_fix.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Stara TV Jakarta (1080p)
+#EXTVLCOPT:http-referrer=https://jakarta.staratv.id/
+https://jakarta.staratv.id/hls/0/stream.m3u8
+#EXTINF:-1 tvg-id="StaraTV.id@Malang" tvg-name="Stara TV Malang (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/9/91/Stara_TV_Sumedang_fix.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Javanese",Stara TV Malang (1080p)
+#EXTVLCOPT:http-referrer=https://malang.staratv.id/
+https://malang.staratv.id/hls/0/stream.m3u8
+#EXTINF:-1 tvg-id="StaraTV.id@Parahyangan" tvg-name="Stara TV Parahyangan (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/9/91/Stara_TV_Sumedang_fix.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Sundanese",Stara TV Parahyangan (720p)
+#EXTVLCOPT:http-referrer=https://parahyangan.staratv.id/
+https://parahyangan.staratv.id/hls/0/stream.m3u8
+#EXTINF:-1 tvg-id="SultraTV.id@SD" tvg-name="Sultra TV (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/cmpbNJz.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Sultra TV (720p) [Not 24/7]
+http://122.248.43.242:1935/SULTRATV/_definst_/myStream/playlist.m3u8
+#EXTINF:-1 tvg-id="SurauTV.id@SD" tvg-name="Surau TV (720p)" tvg-logo="https://i.imgur.com/CKoxcWL.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Surau TV (720p)
+http://ikitv.sqn.at:8000/play/a00l/index.m3u8
+#EXTINF:-1 tvg-id="TegarTVLampung.id@SD" tvg-name="Tegar TV Lampung (480p)" tvg-logo="https://i.imgur.com/0Vp3f2J.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",Tegar TV Lampung (480p)
+http://wms.klikhost.com:1935/tegartv/tegartv/playlist.m3u8
+#EXTINF:-1 tvg-id="TV9Nusantara.id@SD" tvg-name="TV 9 Nusantara (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/id/e/ed/TV9_Nusantara.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",TV 9 Nusantara (720p)
+https://5bf7b725107e5.streamlock.net/tv9/tv9/playlist.m3u8
+#EXTINF:-1 tvg-id="TVMu.id@SD" tvg-name="TV Mu (720p) [Not 24/7]" tvg-logo="https://upload.wikimedia.org/wikipedia/id/d/d0/TvMu.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",TV Mu (720p) [Not 24/7]
+https://e.siar.us/live/tvmu.m3u8
+#EXTINF:-1 tvg-id="TVTabalong.id@SD" tvg-name="TV Tabalong (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/2YhDH98.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",TV Tabalong (720p) [Not 24/7]
+https://5bf7b725107e5.streamlock.net/tvtabalong/tvtabalong/playlist.m3u8
+#EXTINF:-1 tvg-id="USMTV.id@SD" tvg-name="USM TV (1080p)" tvg-logo="https://usmtv.id/wp-content/uploads/2024/01/logo-large-1.png" group-title="Entertainment" tvg-country="Indonesia" tvg-language="Indonesian",USM TV (1080p)
+#EXTVLCOPT:http-referrer=https://usmtv.id/live-tv/
+https://play.fsa-stream.my.id/hls/siaran.m3u8
+#EXTINF:-1 tvg-id="AFBTVKupang.id@SD" tvg-name="AFBTV Kupang (1080p) [Not 24/7]" tvg-logo="https://i.postimg.cc/bJpyzPbB/afbtv.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",AFBTV Kupang (1080p) [Not 24/7]
+#EXTVLCOPT:http-referrer=https://afbtvkupang.com/
+https://afbtv.siar.us/live/afbtv.m3u8
+#EXTINF:-1 tvg-id="AKTV.id@SD" tvg-name="AKTV (1080p) [Not 24/7]" tvg-logo="https://i.imgur.com/DUY5WXf.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",AKTV (1080p) [Not 24/7]
+#EXTVLCOPT:http-referrer=https://aktvuhfdigital.tv/Livestream/aktv
+https://akativi.siar.us/live/akativi.m3u8
+#EXTINF:-1 tvg-id="BiznetAdventure.id@SD" tvg-name="Biznet Adventure (1080p)" tvg-logo="https://i.imgur.com/ZREy4zM.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",Biznet Adventure (1080p)
+http://livestream.biznetvideo.net/biznet_adventure/smil:adventure.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="BRTV.id@SD" tvg-name="BRTV (Indonesia) (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/id/1/1f/Logo_BRTV.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",BRTV (Indonesia) (720p)
+https://5bf7b725107e5.streamlock.net/brtv/brtv/playlist.m3u8
+#EXTINF:-1 tvg-id="dTVi.id@SD" tvg-name="dTVi" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/9/90/Logo_DTVI.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",dTVi
+https://e.siar.us/live/dtvi.m3u8
+#EXTINF:-1 tvg-id="GrooviaKanal.id@HD" tvg-name="Groovia Kanal (576p)" tvg-logo="https://hosting.renderforestsites.com/35126779/1657983/media/e1b4737ec68d96b27f713c034543d472.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",Groovia Kanal (576p)
+https://gist.githubusercontent.com/iptvonlinetv/02d209207082846012c15305f7471c55/raw/4439b54b986e696e6fcfba7a53380d85b27bbbc1/udp450.500.723:6050.m3u8
+#EXTINF:-1 tvg-id="GTV.id@HD" tvg-name="GTV (Indonesia) HD (1080p)" tvg-logo="https://i.imgur.com/jjuKnYs.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",GTV (Indonesia) HD (1080p)
+http://202.150.172.59/GTVHD/index.m3u8
+#EXTINF:-1 tvg-id="Indosiar.id@HD" tvg-name="Indosiar HD (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Indosiar_2015.svg/960px-Indosiar_2015.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",Indosiar HD (1080p)
+http://202.150.172.59/Indosiar/index.m3u8
+#EXTINF:-1 tvg-id="JTV.id@SD" tvg-name="JTV (720p)" tvg-logo="https://i.imgur.com/mIDWIQk.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",JTV (720p)
+http://122.248.43.242:1935/JTVSURABAYA/_definst_/myStream/playlist.m3u8
+#EXTINF:-1 tvg-id="JTV.id@Kediri" tvg-name="JTV Kediri (1080p) [Not 24/7]" tvg-logo="https://i.imgur.com/mIDWIQk.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",JTV Kediri (1080p) [Not 24/7]
+http://122.248.43.242:1935/JTVKEDIRI/_definst_/myStream/playlist.m3u8
+#EXTINF:-1 tvg-id="JTV.id@Madiun" tvg-name="JTV Madiun" tvg-logo="https://i.imgur.com/mIDWIQk.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",JTV Madiun
+http://122.248.43.242:1935/JTVMADIUN/_definst_/myStream/playlist.m3u8
+#EXTINF:-1 tvg-id="JTV.id@Madura" tvg-name="JTV Madura (480p) [Not 24/7]" tvg-logo="https://i.imgur.com/mIDWIQk.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",JTV Madura (480p) [Not 24/7]
+http://122.248.43.242:1935/JTVMADURA/_definst_/myStream/playlist.m3u8
+#EXTINF:-1 tvg-id="JTV.id@Malang" tvg-name="JTV Malang" tvg-logo="https://i.imgur.com/mIDWIQk.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",JTV Malang
+http://122.248.43.242:1935/JTVMALANG/_definst_/myStream/playlist.m3u8
+#EXTINF:-1 tvg-id="Moji.id@SD" tvg-name="like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="General",Moji [Geo-blocked]" tvg-logo="https://i.imgur.com/mM9zapJ.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="General",Moji [Geo-blocked]
+#EXTVLCOPT:http-referrer=https://www.dens.tv/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 Windows NT 10.0; Win64; x64 AppleWebKit/537.36 KHTML, like Gecko Chrome/144.0.0.0 Safari/537.36
+https://op-group1-swiftservehd-1.dens.tv/h/h207/index.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@SD" tvg-name="like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="General",TVRI (480p) [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="General",TVRI (480p) [Geo-blocked]
+#EXTVLCOPT:http-referrer=https://www.dens.tv/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 Windows NT 10.0; Win64; x64 AppleWebKit/537.36 KHTML, like Gecko Chrome/144.0.0.0 Safari/537.36
+https://op-group1-swiftservesd-1.dens.tv/s/s11/index.m3u8
+#EXTINF:-1 tvg-id="ChannelJowo.id@SD" tvg-name="like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="Undefined",Channel Jowo [Geo-blocked]" tvg-logo="https://i.imgur.com/fksxiaS.png" group-title="General" tvg-country="Indonesia" tvg-language="Javanese",like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="Undefined",Channel Jowo [Geo-blocked]
+#EXTVLCOPT:http-referrer=https://www.dens.tv/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 Windows NT 10.0; Win64; x64 AppleWebKit/537.36 KHTML, like Gecko Chrome/144.0.0.0 Safari/537.36
+https://op-group1-swiftservehd-1.dens.tv/h/h77/index.m3u8
+#EXTINF:-1 tvg-id="tvOne.id@SD" tvg-name="like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="Undefined",tvOne [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/TvOne_2023.svg/960px-TvOne_2023.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="Undefined",tvOne [Geo-blocked]
+#EXTVLCOPT:http-referrer=https://www.dens.tv/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 Windows NT 10.0; Win64; x64 AppleWebKit/537.36 KHTML, like Gecko Chrome/144.0.0.0 Safari/537.36
+https://op-group1-swiftservehd-1.dens.tv/h/h40/index.m3u8
+#EXTINF:-1 tvg-id="ANTV.id@SD" tvg-name="like Gecko) Chrome/65.0.3325.181 Safari/537.36" group-title="General",ANTV (Indonesia) (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Antv_logo.svg/960px-Antv_logo.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",like Gecko) Chrome/65.0.3325.181 Safari/537.36" group-title="General",ANTV (Indonesia) (720p)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36
+http://103.58.160.157:8278/720-ANTV/playlist.m3u8
+#EXTINF:-1 tvg-id="MagnaChannel.id@SD" tvg-name="Magna Channel (1080p)" tvg-logo="https://i.imgur.com/tfJo0SO.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",Magna Channel (1080p)
+http://202.150.172.59/MagnaChannel/index.m3u8
+#EXTINF:-1 tvg-id="MDTV.id@HD" tvg-name="MDTV (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/MDTV_logo.svg/960px-MDTV_logo.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",MDTV (1080p)
+https://wahyu1ptv.pages.dev/MDTV-HD.m3u8
+#EXTINF:-1 tvg-id="MGSTV.id@SD" tvg-name="MGSTV (360p) [Not 24/7]" tvg-logo="https://i.imgur.com/MYU7dsZ.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",MGSTV (360p) [Not 24/7]
+#EXTVLCOPT:http-referrer=https://mgstv.co.id/live-streaming/
+https://mgstv.siar.us/live/mgstv.m3u8
+#EXTINF:-1 tvg-id="MNCTV.id@HD" tvg-name="MNCTV HD" tvg-logo="https://i.imgur.com/SK8pjQy.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",MNCTV HD
+http://202.150.172.59/MNCTV/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-id="PKTV.id@SD" tvg-name="PKTV (480p)" tvg-logo="https://i.imgur.com/mldv8Sf.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",PKTV (480p)
+#EXTVLCOPT:http-referrer=https://pktvkaltim.com/acara/live-content/?noamp=mobile
+https://streaming.id18.tunnel.my.id/hls/stream.m3u8
+#EXTINF:-1 tvg-id="PONTV.id@SD" tvg-name="PONTV (720p)" tvg-logo="https://i.imgur.com/P5erWzm.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",PONTV (720p)
+http://122.248.43.242:1935/PONTV/_definst_/myStream/playlist.m3u8
+#EXTINF:-1 tvg-id="RBTVJogja.id@SD" tvg-name="RBTV Jogja (1080p) [Not 24/7]" tvg-logo="https://upload.wikimedia.org/wikipedia/id/3/31/RBTV_Jogjakarta.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",RBTV Jogja (1080p) [Not 24/7]
+#EXTVLCOPT:http-referrer=https://official.rbtvjogja.tv/live.php
+https://official.rbtvjogja.tv/live/mychannel.m3u8
+#EXTINF:-1 tvg-id="RCTI.id@HD" tvg-name="RCTI HD (1080p)" tvg-logo="https://i.imgur.com/iLFx8ia.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",RCTI HD (1080p)
+http://202.150.172.59/RCTIHD/index.m3u8
+#EXTINF:-1 tvg-id="RCTV.id@SD" tvg-name="RCTV (Indonesia) (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/CyIlt0y.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",RCTV (Indonesia) (720p) [Not 24/7]
+#EXTVLCOPT:http-referrer=https://www.radarcirebon.tv/livestreaming/
+https://v10.siar.us/rctv/live/playlist.m3u8
+#EXTINF:-1 tvg-id="RRINet.id@SD" tvg-name="RRI Net (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/RRI_NET_2023.svg/960px-RRI_NET_2023.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",RRI Net (1080p)
+https://private-streaming.rri.go.id/memfs/6f77c7b5-feb2-4935-9f89-e7e9fca0a54a_output_0.m3u8
+#EXTINF:-1 tvg-id="SCTV.id@SD" tvg-name="SCTV" tvg-logo="https://i.imgur.com/EMmOvnQ.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",SCTV
+http://202.150.172.59/SCTV/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-id="SMTV.id@SD" tvg-name="SMTV (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/id/6/6e/Logo_SMTV_Sumedang.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",SMTV (720p)
+#EXTVLCOPT:http-referrer=https://smtv.digital/
+https://e.siar.us/live/smtv.m3u8
+#EXTINF:-1 tvg-id="STV.id@SD" tvg-name="STV (Indonesia) (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/EIrXgT8.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",STV (Indonesia) (720p) [Not 24/7]
+http://122.248.43.242:1935/SAMARINDATV/_definst_/myStream/playlist.m3u8
+#EXTINF:-1 tvg-id="TATV.id@SD" tvg-name="TATV (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/1f0EC7t.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TATV (720p) [Not 24/7]
+https://v2.siar.us/tatv/live.sdp/playlist.m3u8
+#EXTINF:-1 tvg-id="TVKU.id@SD" tvg-name="TVKU (720p)" tvg-logo="https://i.imgur.com/BAklJGy.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVKU (720p)
+https://tvku.tv/hlsstream/hls/live.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@Aceh" tvg-name="TVRI Aceh (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI Aceh (720p)
+https://ott-balancer.tvri.go.id/live/eds/Aceh/hls/Aceh.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@Bali" tvg-name="TVRI Bali (480p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI Bali (480p)
+https://ott-balancer.tvri.go.id/live/eds/Bali/hls/Bali.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@BangkaBelitung" tvg-name="TVRI Bangka Belitung (480p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI Bangka Belitung (480p)
+https://ott-balancer.tvri.go.id/live/eds/Babel/hls/Babel.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@Bengkulu" tvg-name="TVRI Bengkulu (480p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI Bengkulu (480p)
+https://ott-balancer.tvri.go.id/live/eds/Bengkulu/hls/Bengkulu.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@CentralJava" tvg-name="TVRI Central Java (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI Central Java (720p)
+https://ott-balancer.tvri.go.id/live/eds/Jateng/hls/Jateng.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@CentralKalimantan" tvg-name="TVRI Central Kalimantan (480p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI Central Kalimantan (480p)
+https://ott-balancer.tvri.go.id/live/eds/Kalteng/hls/Kalteng.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@CentralSulawesi" tvg-name="TVRI Central Sulawesi (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI Central Sulawesi (720p)
+https://ott-balancer.tvri.go.id/live/eds/Sulteng/hls/Sulteng.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@EastJava" tvg-name="TVRI East Java (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Javanese",TVRI East Java (720p)
+https://ott-balancer.tvri.go.id/live/eds/Jatim/hls/Jatim.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@EastKalimantan" tvg-name="TVRI East Kalimantan (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI East Kalimantan (720p)
+https://ott-balancer.tvri.go.id/live/eds/Kaltim/hls/Kaltim.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@EastNusaTenggara" tvg-name="TVRI East Nusa Tenggara (480p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI East Nusa Tenggara (480p)
+https://ott-balancer.tvri.go.id/live/eds/NTT/hls/NTT.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@Gorontalo" tvg-name="TVRI Gorontalo (480p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI Gorontalo (480p)
+https://ott-balancer.tvri.go.id/live/eds/Gorontalo/hls/Gorontalo.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@HD" tvg-name="TVRI HD (1080i)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI HD (1080i)
+https://ott-balancer.tvri.go.id/live/eds/Nasional/hls/Nasional.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@Jakarta" tvg-name="TVRI Jakarta (576i) [Not 24/7]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI Jakarta (576i) [Not 24/7]
+https://ott-balancer.tvri.go.id/live/eds/DKI/hls/DKI.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@Jambi" tvg-name="TVRI Jambi (720p) [Not 24/7]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI Jambi (720p) [Not 24/7]
+https://ott-balancer.tvri.go.id/live/eds/Jambi/hls/Jambi.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@Lampung" tvg-name="TVRI Lampung (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI Lampung (720p)
+https://ott-balancer.tvri.go.id/live/eds/Lampung/hls/Lampung.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@Maluku" tvg-name="TVRI Maluku (480p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI Maluku (480p)
+https://ott-balancer.tvri.go.id/live/eds/Ambon/hls/Ambon.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@NorthSulawesi" tvg-name="TVRI North Sulawesi (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI North Sulawesi (1080p)
+https://ott-balancer.tvri.go.id/live/eds/Sulut/hls/Sulut.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@NorthSumatra" tvg-name="TVRI North Sumatra (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI North Sumatra (1080p)
+https://ott-balancer.tvri.go.id/live/eds/Sumut/hls/Sumut.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@Papua" tvg-name="TVRI Papua (480p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI Papua (480p)
+https://ott-balancer.tvri.go.id/live/eds/Papua/hls/Papua.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@Riau" tvg-name="TVRI Riau (720p) [Not 24/7]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI Riau (720p) [Not 24/7]
+https://ott-balancer.tvri.go.id/live/eds/Riau/hls/Riau.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@SouthKalimantan" tvg-name="TVRI South Kalimantan (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI South Kalimantan (720p)
+https://ott-balancer.tvri.go.id/live/eds/Kalsel/hls/Kalsel.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@SouthSulawesi" tvg-name="TVRI South Sulawesi (480p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI South Sulawesi (480p)
+https://ott-balancer.tvri.go.id/live/eds/Sulsel/hls/Sulsel.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@SouthSumatra" tvg-name="TVRI South Sumatra (480p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI South Sumatra (480p)
+https://ott-balancer.tvri.go.id/live/eds/Sumsel/hls/Sumsel.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@SoutheastSulawesi" tvg-name="TVRI Southeast Sulawesi (480p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI Southeast Sulawesi (480p)
+https://ott-balancer.tvri.go.id/live/eds/Sultra/hls/Sultra.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@WestJava" tvg-name="TVRI West Java (480p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI West Java (480p)
+https://ott-balancer.tvri.go.id/live/eds/Jabar/hls/Jabar.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@WestKalimantan" tvg-name="TVRI West Kalimantan (480p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI West Kalimantan (480p)
+https://ott-balancer.tvri.go.id/live/eds/Kalbar/hls/Kalbar.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@WestNusaTenggara" tvg-name="TVRI West Nusa Tenggara (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI West Nusa Tenggara (720p)
+https://ott-balancer.tvri.go.id/live/eds/NTB/hls/NTB.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@WestPapua" tvg-name="TVRI West Papua (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI West Papua (1080p)
+https://ott-balancer.tvri.go.id/live/eds/Pabar/hls/Pabar.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@WestSulawesi" tvg-name="TVRI West Sulawesi (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI West Sulawesi (720p)
+https://ott-balancer.tvri.go.id/live/eds/Sulbar/hls/Sulbar.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@WestSumatra" tvg-name="TVRI West Sumatra (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI West Sumatra (720p)
+https://ott-balancer.tvri.go.id/live/eds/Sumbar/hls/Sumbar.m3u8
+#EXTINF:-1 tvg-id="TVRIWorld.id@SD" tvg-name="TVRI World (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/TVRIWorld.png/960px-TVRIWorld.png" group-title="General" tvg-country="Indonesia" tvg-language="English",TVRI World (1080p)
+https://ott-balancer.tvri.go.id/live/eds/TVRIWorld/hls/TVRIWorld.m3u8
+#EXTINF:-1 tvg-id="TVRI.id@Yogyakarta" tvg-name="TVRI Yogyakarta (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/TVRILogo2019.svg/960px-TVRILogo2019.svg.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",TVRI Yogyakarta (720p)
+https://ott-balancer.tvri.go.id/live/eds/Jogjakarta/hls/Jogjakarta.m3u8
+#EXTINF:-1 tvg-id="UChannel.id@SD" tvg-name="U Channel" tvg-logo="https://i.imgur.com/qxkb0cy.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",U Channel
+#EXTVLCOPT:http-referrer=https://www.u-channel.tv
+https://srs.u-channel.tv/live/uchannel-tv.m3u8
+#EXTINF:-1 tvg-id="UGTV.id@SD" tvg-name="UGTV (720p)" tvg-logo="https://i.imgur.com/iEKDH26.png" group-title="General" tvg-country="Indonesia" tvg-language="Indonesian",UGTV (720p)
+https://cdn.gunadarma.ac.id/streams/ugtv/ingestugtv.m3u8
+#EXTINF:-1 tvg-id="BiznetKids.id@SD" tvg-name="Biznet Kids (1080p)" tvg-logo="https://i.imgur.com/J5QNqJ0.png" group-title="Kids" tvg-country="Indonesia" tvg-language="Indonesian",Biznet Kids (1080p)
+http://livestream.biznetvideo.net/biznet_kids/smil:kids.smil/index.m3u8
+#EXTINF:-1 tvg-id="GrooviaKids.id@HD" tvg-name="Groovia Kids (576p)" tvg-logo="https://hosting.renderforestsites.com/35126779/1657983/media/37034d6b30d2c092aa6827a34fa145ab.png" group-title="Kids" tvg-country="Indonesia" tvg-language="Indonesian",Groovia Kids (576p)
+https://gist.githubusercontent.com/iptvonlinetv/244b66c61f162a7c0c2b4fa59b528139/raw/2376b7ba1989ebbd383301ec7d645e222a6c9338/udp780.510.345:4545.m3u8
+#EXTINF:-1 tvg-id="KidsTV.id@SD" tvg-name="Kids TV" tvg-logo="https://i.imgur.com/B5YiUIP.png" group-title="Kids" tvg-country="Indonesia" tvg-language="Indonesian",Kids TV
+http://origin5.mediacdn.ru/live/kidstv/index.m3u8
+#EXTINF:-1 tvg-id="MyKidz.id@SD" tvg-name="My Kidz (720p)" tvg-logo="https://i.imgur.com/qzZFU6d.png" group-title="Kids" tvg-country="Indonesia" tvg-language="Indonesian",My Kidz (720p)
+https://cdn10jtedge.indihometv.com/atm/DASH/mykids/manifest.mpd
+#EXTINF:-1 tvg-id="VTV.id@SD" tvg-name="VTV (Indonesia) (720p)" tvg-logo="https://i.postimg.cc/cJRJr3BR/2560px-VTV-Indonesia-White-2023-svg.png" group-title="Kids" tvg-country="Indonesia" tvg-language="Indonesian",VTV (Indonesia) (720p)
+#EXTVLCOPT:http-referrer=https://youtv.live/
+https://flv.intechmedia.net/live/ch107.m3u8
+#EXTINF:-1 tvg-id="VTV.id@HD" tvg-name="VTV (Indonesia) HD (1080p)" tvg-logo="https://i.postimg.cc/cJRJr3BR/2560px-VTV-Indonesia-White-2023-svg.png" group-title="Kids" tvg-country="Indonesia" tvg-language="Indonesian",VTV (Indonesia) HD (1080p)
+http://ikitv.sqn.at:8000/play/a023/index.m3u8
+#EXTINF:-1 tvg-id="BiznetLifestyle.id@SD" tvg-name="Biznet Lifestyle (1080p)" tvg-logo="https://i.imgur.com/XqUfQKA.png" group-title="Lifestyle" tvg-country="Indonesia" tvg-language="Indonesian",Biznet Lifestyle (1080p)
+http://livestream.biznetvideo.net/biznet_lifestyle/smil:lifestyle.smil/index.m3u8
+#EXTINF:-1 tvg-id="DensFoodChannel.id@SD" tvg-name="Dens Food Channel [Not 24/7]" tvg-logo="https://picture.dens.tv/wp/img/tvchannels_v1/340x160/1687501416_tvchannels_v1.jpg" group-title="Lifestyle" tvg-country="Indonesia" tvg-language="Indonesian",Dens Food Channel [Not 24/7]
+https://op-flashcon-digdayahd-1.dens.tv/h/h221/02.m3u8
+#EXTINF:-1 tvg-id="DensLifeStyle.id@SD" tvg-name="like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="Lifestyle",Dens Life & Style [Geo-blocked]" tvg-logo="https://picture.dens.tv/wp/img/tvchannels_v1/340x160/1687501284_tvchannels_v1.jpg" group-title="Lifestyle" tvg-country="Indonesia" tvg-language="Indonesian",like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="Lifestyle",Dens Life & Style [Geo-blocked]
+#EXTVLCOPT:http-referrer=https://www.dens.tv/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 Windows NT 10.0; Win64; x64 AppleWebKit/537.36 KHTML, like Gecko Chrome/144.0.0.0 Safari/537.36
+https://op-group1-swiftservehd-1.dens.tv/h/h222/index.m3u8
+#EXTINF:-1 tvg-id="DensPlay.id@SD" tvg-name="like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="Lifestyle",Dens Play [Geo-blocked]" tvg-logo="https://picture.dens.tv/wp/img/tvchannels_v1/340x160/1687501248_tvchannels_v1.jpg" group-title="Lifestyle" tvg-country="Indonesia" tvg-language="Indonesian",like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="Lifestyle",Dens Play [Geo-blocked]
+#EXTVLCOPT:http-referrer=https://www.dens.tv/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 Windows NT 10.0; Win64; x64 AppleWebKit/537.36 KHTML, like Gecko Chrome/144.0.0.0 Safari/537.36
+https://op-group1-swiftservehd-1.dens.tv/h/h225/index.m3u8
+#EXTINF:-1 tvg-id="SaliraTV.id@SD" tvg-name="Salira TV (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/6/6b/Logo_Salira_TV.png" group-title="Lifestyle" tvg-country="Indonesia" tvg-language="Indonesian",Salira TV (720p)
+https://live.salira.tv/p/3870/hybrid/play.m3u8
+#EXTINF:-1 tvg-id="KTV.id@SD" tvg-name="KTV (Indonesia) (720p)" tvg-logo="https://i.imgur.com/j3wtaDc.png" group-title="Movies" tvg-country="Indonesia" tvg-language="Indonesian",KTV (Indonesia) (720p)
+#EXTVLCOPT:http-referrer=https://youtv.live/
+https://flv.intechmedia.net/live/ch118.m3u8
+#EXTINF:-1 tvg-id="MyCinema.id@SD" tvg-name="like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="Movies",My Cinema [Geo-blocked]" tvg-logo="https://i.imgur.com/BTmcTQO.png" group-title="Movies" tvg-country="Indonesia" tvg-language="English",like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="Movies",My Cinema [Geo-blocked]
+#EXTVLCOPT:http-referrer=https://www.dens.tv/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 Windows NT 10.0; Win64; x64 AppleWebKit/537.36 KHTML, like Gecko Chrome/144.0.0.0 Safari/537.36
+https://op-group1-swiftservehd-1.dens.tv/h/h192/index.m3u8
+#EXTINF:-1 tvg-id="MusicInformationChannel.id@SD" tvg-name="Music Information Channel (720p)" tvg-logo="https://i.imgur.com/OUPGCWG.png" group-title="Music" tvg-country="Indonesia" tvg-language="Indonesian",Music Information Channel (720p)
+#EXTVLCOPT:http-referrer=https://mic-indo.com/live
+https://mic.siar.us/mic/live/mic.m3u8
+#EXTINF:-1 tvg-id="BeritaSatu.id@SD" tvg-name="BeritaSatu (1080p)" tvg-logo="https://i.postimg.cc/6pycF7Vx/300px-IDTV.png" group-title="News" tvg-country="Indonesia" tvg-language="Indonesian",BeritaSatu (1080p)
+#EXTVLCOPT:http-referrer=https://www.beritasatu.com/beritasatu-live-streaming
+https://xtdslboppkkv-pull.bpmedialive.com/live/beritasatu/abr.m3u8
+#EXTINF:-1 tvg-id="BNChannel.id@SD" tvg-name="BN Channel (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/BN_Channel.png/960px-BN_Channel.png" group-title="News" tvg-country="Indonesia" tvg-language="Indonesian",BN Channel (1080p)
+http://ikitv.sqn.at:8000/play/a01l/index.m3u8
+#EXTINF:-1 tvg-id="BTV.id@SD" tvg-name="BTV (Indonesia) (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/BTV_%28Indonesia%29_logo_%282025%29.svg/960px-BTV_%28Indonesia%29_logo_%282025%29.svg.png" group-title="News" tvg-country="Indonesia" tvg-language="Indonesian",BTV (Indonesia) (1080p)
+https://lnd0t3b922.tenbytecdn.com/ta-sg1/90369cf5-6ac2-411d-b3d0-15fae10a2e2c/master.m3u8
+#EXTINF:-1 tvg-id="HumaBetangTV.id@SD" tvg-name="Huma Betang TV (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/xBTqOEu.png" group-title="News" tvg-country="Indonesia" tvg-language="Indonesian",Huma Betang TV (720p) [Not 24/7]
+https://v3.siar.us/humabetangtv/live/playlist.m3u8
+#EXTINF:-1 tvg-id="iNews.id@HD" tvg-name="iNews HD (1080p)" tvg-logo="https://i.imgur.com/M2R3lfg.png" group-title="News" tvg-country="Indonesia" tvg-language="Indonesian",iNews HD (1080p)
+http://202.150.172.59/iNews/index.m3u8
+#EXTINF:-1 tvg-id="BTV.id@SD" tvg-name="like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="News",BTV (Indonesia) [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/BTV_%28Indonesia%29_logo_%282025%29.svg/960px-BTV_%28Indonesia%29_logo_%282025%29.svg.png" group-title="News" tvg-country="Indonesia" tvg-language="Indonesian",like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="News",BTV (Indonesia) [Geo-blocked]
+https://op-group1-swiftservehd-1.dens.tv/h/h129/S4/mnf.m3u8
+#EXTINF:-1 tvg-id="KompasTV.id@SD" tvg-name="like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="News",Kompas TV [Geo-blocked]" tvg-logo="https://i.imgur.com/bD6UHeZ.png" group-title="News" tvg-country="Indonesia" tvg-language="Indonesian",like Gecko Chrome/144.0.0.0 Safari/537.36" group-title="News",Kompas TV [Geo-blocked]
+#EXTVLCOPT:http-referrer=https://www.dens.tv/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 Windows NT 10.0; Win64; x64 AppleWebKit/537.36 KHTML, like Gecko Chrome/144.0.0.0 Safari/537.36
+https://op-group1-swiftservehd-1.dens.tv/h/h234/index.m3u8
+#EXTINF:-1 tvg-id="CNBCIndonesia.id@SD" tvg-name="like Gecko) Chrome/156.0.0.0 Safari/537.36" group-title="Business",CNBC Indonesia" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/CNBC_Indonesia_2025.svg/960px-CNBC_Indonesia_2025.svg.png" group-title="News" tvg-country="Indonesia" tvg-language="Indonesian",like Gecko) Chrome/156.0.0.0 Safari/537.36" group-title="Business",CNBC Indonesia
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36
+https://video.detik.com/livecnbc/smil:cnbctv/chunklist_w1279679883_b384000_sleng.m3u8
+#EXTINF:-1 tvg-id="CNNIndonesia.id@SD" tvg-name="like Gecko) Chrome/156.0.0.0 Safari/537.36" group-title="News",CNN Indonesia" tvg-logo="https://i.imgur.com/l0JyOrm.png" group-title="News" tvg-country="Indonesia" tvg-language="Indonesian",like Gecko) Chrome/156.0.0.0 Safari/537.36" group-title="News",CNN Indonesia
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36
+https://video.detik.com/livecnn/smil:cnntv/chunklist_w268557525_b384000_sleng.m3u8
+#EXTINF:-1 tvg-id="MBGTV.id@FHD" tvg-name="MBG TV (1080p)" tvg-logo="https://i.imgur.com/t7GsFJN.jpeg" group-title="News" tvg-country="Indonesia" tvg-language="Indonesian",MBG TV (1080p)
+https://stream.convergen.co/mbg_stream/smil:mbStream.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="MetroTV.id@SD" tvg-name="Metro TV (Indonesia)" tvg-logo="https://i.imgur.com/QnU70NI.png" group-title="News" tvg-country="Indonesia" tvg-language="Indonesian",Metro TV (Indonesia)
+https://edge.medcom.id/live-edge/smil:metro.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="OnlineTVNusantara.id@SD" tvg-name="Online TV Nusantara (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/E9CCIpP.jpg" group-title="News" tvg-country="Indonesia" tvg-language="Indonesian",Online TV Nusantara (720p) [Not 24/7]
+https://5bf7b725107e5.streamlock.net/onlinetvnusantara/onlinetvnusantara/playlist.m3u8
+#EXTINF:-1 tvg-id="TVRParlemen.id@SD" tvg-name="TVR Parlemen (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/2XYpmHL.png" group-title="News" tvg-country="Indonesia" tvg-language="Indonesian",TVR Parlemen (720p) [Not 24/7]
+http://103.18.181.69:1935/golive/livestream/playlist.m3u8
+#EXTINF:-1 tvg-id="SPOTV.id@SD" tvg-name="SPOTV (720p)" tvg-logo="https://i.imgur.com/HaoVsm5.png" group-title="Sports" tvg-country="Indonesia" tvg-language="English",SPOTV (720p)
+http://58.8.186.128:10006/bysid/2614
+#EXTINF:-1 tvg-id="SPOTV2.id@SD" tvg-name="SPOTV 2 (720p)" tvg-logo="https://i.imgur.com/YD8fbTH.png" group-title="Sports" tvg-country="Indonesia" tvg-language="English",SPOTV 2 (720p)
+http://58.8.186.128:10006/bysid/2630
+#EXTINF:-1 tvg-id="TVRISport.id@SD" tvg-name="TVRI Sport (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/TVRI_Sport_2022.svg/960px-TVRI_Sport_2022.svg.png" group-title="Sports" tvg-country="Indonesia" tvg-language="Indonesian",TVRI Sport (1080p)
+http://202.150.172.59/TVRISport/index.m3u8

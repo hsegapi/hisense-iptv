@@ -1,0 +1,472 @@
+#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
+
+#EXTINF:-1 tvg-id="AhlulbaytTV.uk@SD" tvg-name="Ahlulbayt TV (1080p)" tvg-logo="https://i.imgur.com/lNGJGjy.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="English",Ahlulbayt TV (1080p)
+https://cd198.anystream.uk:8082/hls/abtv3ng/index.m3u8
+#EXTINF:-1 tvg-id="AkaalChannel.uk@SD" tvg-name="Akaal Channel (396p) [Geo-blocked]" tvg-logo="https://i.imgur.com/K81vNbk.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="Panjabi",Akaal Channel (396p) [Geo-blocked]
+https://cdn-globecast.akamaized.net/live/eds/akaal_tv/hls1_smart_akaal/akaal_tv.m3u8
+#EXTINF:-1 tvg-id="EmanChannel.uk@SD" tvg-name="Eman Channel (576p)" tvg-logo="https://i.imgur.com/ugn0DWe.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="English",Eman Channel (576p)
+https://ap02.iqplay.tv:8082/iqb8002/3m9n/playlist.m3u8
+#EXTINF:-1 tvg-id="FaithUK.uk@SD" tvg-name="Faith UK (1080p)" tvg-logo="https://i.imgur.com/mn8I2wt.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="English",Faith UK (1080p)
+https://faithnow-hls.secdn.net/faithnow-c-channel/play/FaithUK.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="FaithWorldTV.uk@SD" tvg-name="Faith World TV (1080p)" tvg-logo="https://i.imgur.com/RLHRjQ3.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="English",Faith World TV (1080p)
+https://faithworldtv.abs.tv/1826926230/index.m3u8
+#EXTINF:-1 tvg-id="GODTV.uk@SD" tvg-name="GOD TV (576p)" tvg-logo="https://i.imgur.com/hW4g2oe.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="English",GOD TV (576p)
+https://fl-dvr.iptvcdn.tv/chid_1/playlist.m3u8
+#EXTINF:-1 tvg-id="IBCBakthi.uk@SD" tvg-name="IBC Bakthi (1080p)" tvg-logo="https://i.imgur.com/ZNEz5Wx.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="Tamil",IBC Bakthi (1080p)
+https://ibc.massstream.net/IBC2/index.m3u8
+#EXTINF:-1 tvg-id="IqraBangla.uk@SD" tvg-name="Iqra Bangla (576p)" tvg-logo="https://i.imgur.com/BZBZAeC.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="Bengali",Iqra Bangla (576p)
+https://tvsen3.aynaott.com/EuEy5mBW/index.m3u8
+#EXTINF:-1 tvg-id="IqraTV.uk@SD" tvg-name="Iqra TV" tvg-logo="https://iqra.tv/wp-content/uploads/2019/12/IQ-logo-light-120px.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="Urdu",Iqra TV
+https://cdn149.anystream.uk:8082/app/iq53la/playlist.m3u8
+#EXTINF:-1 tvg-id="IslamChannel.uk@SD" tvg-name="Islam Channel (576p) [Not 24/7]" tvg-logo="https://i.imgur.com/bJdFH7x.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="English",Islam Channel (576p) [Not 24/7]
+https://live.islamchannel.tv/live11/islamtv_english/bitrate1.isml/live.m3u8
+#EXTINF:-1 tvg-id="KanshiTV.uk@SD" tvg-name="Kanshi TV (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/w6uXMrK.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="Hindi",Kanshi TV (720p) [Not 24/7]
+https://live.kanshitv.co.uk/mobile/kanshitvkey.m3u8
+#EXTINF:-1 tvg-id="MiracleTV.uk@SD" tvg-name="Miracle TV (480p)" tvg-logo="https://i.imgur.com/pTn8Vc3.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="English",Miracle TV (480p)
+https://viewmedia7219.bozztv.com/wmedia/viewmedia100/web_030/Stream/playlist.m3u8
+#EXTINF:-1 tvg-id="MTA1World.uk@SD" tvg-name="MTA1 World (720p)" tvg-logo="https://i.imgur.com/bYiRfAg.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="Urdu",MTA1 World (720p)
+https://chlivemta1.akamaized.net/hls/live/2008145/mta1/playlist.m3u8
+#EXTINF:-1 tvg-id="MTA2Europe.uk@SD" tvg-name="MTA2 Europe (720p)" tvg-logo="https://i.imgur.com/aVts0sz.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="Urdu",MTA2 Europe (720p)
+https://chlivemta1.akamaized.net/hls/live/2008145/mta2/playlist.m3u8
+#EXTINF:-1 tvg-id="MTA3AlArabia.uk@SD" tvg-name="MTA3 Al-Arabia (1080p)" tvg-logo="https://i.imgur.com/m3PEldJ.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="Arabic",MTA3 Al-Arabia (1080p)
+https://chlivemta1.akamaized.net/hls/live/2010556/mta3alarabia/playlist.m3u8
+#EXTINF:-1 tvg-id="MTA4Africa.uk@SD" tvg-name="MTA4 Africa (1080p)" tvg-logo="https://i.imgur.com/lmVeQQX.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="Urdu",MTA4 Africa (1080p)
+https://chlivemta.akamaized.net/hls/live/2010555/mtaafrica1/playlist.m3u8
+#EXTINF:-1 tvg-id="MTA5Africa.uk@SD" tvg-name="MTA5 Africa (1080p)" tvg-logo="https://i.imgur.com/9Cobb2i.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="Urdu",MTA5 Africa (1080p)
+https://chlivemta.akamaized.net/hls/live/2010555/mtaafrica2/playlist.m3u8
+#EXTINF:-1 tvg-id="MTA6Asia.uk@SD" tvg-name="MTA6 Asia (1080p)" tvg-logo="https://i.imgur.com/nhCNPJI.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="Urdu",MTA6 Asia (1080p)
+https://livemtaasia.akamaized.net/hls/live/2039224/mta6asia/playlist.m3u8
+#EXTINF:-1 tvg-id="MTA7Asia.uk@SD" tvg-name="MTA7 Asia (1080p)" tvg-logo="https://i.imgur.com/3Nl8Tpu.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="Urdu",MTA7 Asia (1080p)
+https://livemtaasia.akamaized.net/hls/live/2039224/mtaasia2/playlist.m3u8
+#EXTINF:-1 tvg-id="MTA8America.uk@SD" tvg-name="MTA8 America (1080p)" tvg-logo="https://i.imgur.com/CF6X9wB.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="English",MTA8 America (1080p)
+https://chlivemta.akamaized.net/hls/live/2016718/mta8/playlist.m3u8
+#EXTINF:-1 tvg-id="NoorTV.uk@SD" tvg-name="Noor TV (United Kingdom) (720p)" tvg-logo="https://i.imgur.com/DlKgIuQ.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="Urdu",Noor TV (United Kingdom) (720p)
+https://sscsott.com/srt/noortvuk/index.m3u8
+#EXTINF:-1 tvg-id="PanjabTV.uk@SD" tvg-name="Panjab TV (576p)" tvg-logo="https://d2n0069hmnqmmx.cloudfront.net/epgdata/1.0/newchanlogos/10000/10000/skychb1041.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="English",Panjab TV (576p)
+https://panjabtv.akamaized.net/panjabtv/panjabtvhlsout/playlist.m3u8
+#EXTINF:-1 tvg-id="SafeerTV.uk@SD" tvg-name="Safeer TV (1080p)" tvg-logo="https://image.roku.com/developer_channels/prod/8389e15af8fe49ac7c36d201c24ebf62fbe5b22897c2879ca26ae936e0ed308d.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="English",Safeer TV (1080p)
+https://cdn3.wowza.com/1/YStGZlJRdktzZkdK/VXROZWNW/hls/live/playlist.m3u8
+#EXTINF:-1 tvg-id="SanskarUK.in@SD" tvg-name="Sanskar UK (1080p)" tvg-logo="https://i.imgur.com/AU5vSPF.png" group-title="Devotional" tvg-country="United Kingdom" tvg-language="Hindi",Sanskar UK (1080p)
+https://d34z4embz0hjf6.cloudfront.net/out/v1/7ac2789ff9a544a49337d1ffc54ce61c/index.m3u8
+#EXTINF:-1 tvg-id="AlHiwarTV.uk@SD" tvg-name="Al Hiwar TV (1080p) [Not 24/7]" tvg-logo="https://i.imgur.com/UjOxwdd.png" group-title="Documentary" tvg-country="United Kingdom" tvg-language="Arabic",Al Hiwar TV (1080p) [Not 24/7]
+https://mn-nl.mncdn.com/alhiwar_live/smil:alhiwar.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="BBCFour.uk@UK" tvg-name="BBC Four" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/BBC_Four_logo_2021.svg/960px-BBC_Four_logo_2021.svg.png" group-title="Documentary" tvg-country="United Kingdom" tvg-language="English",BBC Four
+https://cdn.stmify.com/bbc/stream/BBC_FOUR/hevc_iptv_mse_v0.mpd
+#EXTINF:-1 tvg-id="DeadlyWomen.us@UK" tvg-name="Deadly Women (1080p)" tvg-logo="https://i.imgur.com/dDVZ5Vd.png" group-title="Documentary" tvg-country="United Kingdom" tvg-language="English",Deadly Women (1080p)
+https://d1mgh147xpmgs8.cloudfront.net/DeadlyWomen_GB.m3u8
+#EXTINF:-1 tvg-id="EnglishClubTV.uk@SD" tvg-name="English Club TV (576i)" tvg-logo="https://i.imgur.com/9FMvaRK.png" group-title="Documentary" tvg-country="United Kingdom" tvg-language="English",English Club TV (576i)
+https://stream8.cinerama.uz/1442/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-id="FBIFiles.us@UK" tvg-name="FBI Files" tvg-logo="https://i.imgur.com/vzYDSLo.png" group-title="Documentary" tvg-country="United Kingdom" tvg-language="English",FBI Files
+https://jmp2.uk/plu-62bdaa32a1b2fd00076693e8.m3u8
+#EXTINF:-1 tvg-id="GarshomTV.uk@SD" tvg-name="Garshom TV (360p) [Not 24/7]" tvg-logo="https://i.imgur.com/KnbwUyb.png" group-title="Documentary" tvg-country="United Kingdom" tvg-language="Malayalam",Garshom TV (360p) [Not 24/7]
+https://og2qd3aal7an-hls-live.5centscdn.com/garshomtv/d0dbe915091d400bd8ee7f27f0791303.sdp/playlist.m3u8
+#EXTINF:-1 tvg-id="Getfactual.us@UK" tvg-name="Get.factual (720p)" tvg-logo="https://i.imgur.com/4oVcjLd.png" group-title="Documentary" tvg-country="United Kingdom" tvg-language="English",Get.factual (720p)
+https://d1nhni5l2n8hjt.cloudfront.net/gf.m3u8
+#EXTINF:-1 tvg-id="KalsanTV.uk@SD" tvg-name="Kalsan TV (576p)" tvg-logo="https://i.imgur.com/AqyY1bR.png" group-title="Documentary" tvg-country="United Kingdom" tvg-language="Somali",Kalsan TV (576p)
+https://ap02.iqplay.tv:8082/iqb8002/ka1s0n/playlist.m3u8
+#EXTINF:-1 tvg-id="NatureTime.ca@UK" tvg-name="NatureTime UK (1080p)" tvg-logo="https://i.imgur.com/72JmyjM.png" group-title="Documentary" tvg-country="United Kingdom" tvg-language="English",NatureTime UK (1080p)
+https://amg01515-amg01515c43-samsung-gb-9038.playouts.now.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="OnTheCase.us@UK" tvg-name="On The Case" tvg-logo="https://i.imgur.com/TAmVjUL.png" group-title="Documentary" tvg-country="United Kingdom" tvg-language="English",On The Case
+https://jmp2.uk/plu-62cd971cec90c20007081050.m3u8
+#EXTINF:-1 tvg-id="SensingMurder.us@UK" tvg-name="Sensing Murder" tvg-logo="https://i.imgur.com/HYEABSt.png" group-title="Documentary" tvg-country="United Kingdom" tvg-language="English",Sensing Murder
+https://jmp2.uk/plu-5e9ed47c26ebb000074af566.m3u8
+#EXTINF:-1 tvg-id="Wonder.uk@SD" tvg-name="Wonder (1080p)" tvg-logo="https://i.imgur.com/LquGNbh.png" group-title="Documentary" tvg-country="United Kingdom" tvg-language="English",Wonder (1080p)
+https://lds-wonder-rakuten.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="5Cops.us@UK" tvg-name="5 Cops" tvg-logo="https://i.imgur.com/QFPRaXK.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",5 Cops
+https://jmp2.uk/plu-5d2c571faeb3e2738ae27933.m3u8
+#EXTINF:-1 tvg-id="5USA.uk@SD" tvg-name="5USA (360p)" tvg-logo="https://i.imgur.com/Pi7so2l.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",5USA (360p)
+https://lb.iptvnetwork.net/ls28/10115/playlist.m3u8
+#EXTINF:-1 tvg-id="AathavanTV.uk@SD" tvg-name="Aathavan TV (720p)" tvg-logo="https://i.imgur.com/LEVEhTH.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="Tamil",Aathavan TV (720p)
+https://yuppmumfta1.vgcdn.net/211125/athvantv/manifest.mpd
+#EXTINF:-1 tvg-id="AathavanTV.uk@SD" tvg-name="Aathavan TV (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/LEVEhTH.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="Tamil",Aathavan TV (720p) [Not 24/7]
+http://45.77.66.224:1935/athavantv/live/playlist.m3u8
+#EXTINF:-1 tvg-id="AlbUKTV.uk@SD" tvg-name="Alb UK TV (1080p) [Not 24/7]" tvg-logo="https://i.imgur.com/TMg4Kxi.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Alb UK TV (1080p) [Not 24/7]
+http://albuk.dyndns.tv:1935/albuk/albuk.stream/playlist.m3u8
+#EXTINF:-1 tvg-id="AnandTV.uk@SD" tvg-name="Anand TV (United Kingdom) (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/5VOPFzs.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="Malayalam",Anand TV (United Kingdom) (720p) [Not 24/7]
+https://live-anandtv.anandmedia.net/anandtvapp/anandtv/index.m3u8
+#EXTINF:-1 tvg-id="Andromeda.us@UK" tvg-name="Andromeda UK" tvg-logo="https://i.imgur.com/6ot2lmd.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Andromeda UK
+https://jmp2.uk/plu-5e8db96bccae160007c71eec.m3u8
+#EXTINF:-1 tvg-id="AnthonyBourdainPartsUnknown.us@UK" tvg-name="Anthony Bourdain: Parts Unknown" tvg-logo="https://i.imgur.com/dAO9llk.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Anthony Bourdain: Parts Unknown
+https://jmp2.uk/plu-69173ce8abd4703b27f71d44.m3u8
+#EXTINF:-1 tvg-id="Blaze.uk@SD" tvg-name="Blaze (576p) [Geo-blocked]" tvg-logo="https://i.imgur.com/6UcPWP9.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Blaze (576p) [Geo-blocked]
+https://live-blaze-ssai.simplestreamcdn.com/v1/master/774d979dd66704abea7c5b62cb34c6815fda0d35/blaze-live-broadcast-scte/index.m3u8
+#EXTINF:-1 tvg-id="BritAsiaTV.uk@HD" tvg-name="Brit Asia TV (1080p)" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Brit_Asia.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Brit Asia TV (1080p)
+https://hls.autopo.st/hls/britasiatv/index.m3u8
+#EXTINF:-1 tvg-id="DeenTV.uk@SD" tvg-name="Deen TV (576p)" tvg-logo="https://i.imgur.com/Zp62Nbd.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="Bengali",Deen TV (576p)
+https://cd198.anystream.uk:9092/iqapp/d33ntv/playlist.m3u8
+#EXTINF:-1 tvg-id="DerTV.uk@SD" tvg-name="Der TV" tvg-logo="https://raw.githubusercontent.com/songwenhui239/Songwenhui239/refs/heads/main/Der%20TV.jpeg" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Der TV
+https://stream.berosat.live/hls/der-tv/der-tv.m3u8
+#EXTINF:-1 tvg-id="DogtheBountyHunter.us@UK" tvg-name="Dog the Bounty Hunter UK (1080p)" tvg-logo="https://i.imgur.com/lMICupK.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Dog the Bounty Hunter UK (1080p)
+https://amg00276-amg00276c11-rakuten-uk-3446.playouts.now.amagi.tv/playlist/amg00276-aetelevisionnetworksfast-dogthebountyhunterall-rakutenuk/playlist.m3u8
+#EXTINF:-1 tvg-id="DogWhisperer.us@UK" tvg-name="Dog Whisperer (1080p) [Geo-blocked]" tvg-logo="https://i.imgur.com/tgWypVJ.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Dog Whisperer (1080p) [Geo-blocked]
+https://pb-ffpxvjshv4rxx.akamaized.net/Dog_Whisperer_with_Cesar_Millan.m3u8
+#EXTINF:-1 tvg-id="DuckDynasty.us@UK" tvg-name="Duck Dynasty (1080p)" tvg-logo="https://i.imgur.com/vMcSlwm.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Duck Dynasty (1080p)
+https://amg00276-amg00276c2-rakuten-uk-3449.playouts.now.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="E4.uk@SD" tvg-name="E4 (360p)" tvg-logo="https://i.imgur.com/22MfjF4.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",E4 (360p)
+https://lb.iptvnetwork.net/ls28/10113/playlist.m3u8
+#EXTINF:-1 tvg-id="ENTChannel.uk@HD" tvg-name="ENT Channel (720p)" tvg-logo="https://static.elektamedia.com/ch/entch.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="Spanish",ENT Channel (720p)
+https://cdn.global.elektamedia.com/live/c7eds/ENT_Channel/SA_LIVE_hls_enc/master.m3u8
+#EXTINF:-1 tvg-id="ENTFamily.uk@HD" tvg-name="ENT Family (720p)" tvg-logo="https://static.elektamedia.com/ch/entf.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="Spanish",ENT Family (720p)
+https://cdn.global.elektamedia.com/live/c7eds/ENT_Family/SA_LIVE_hls_enc/master.m3u8
+#EXTINF:-1 tvg-id="FailArmy.us@UK" tvg-name="FailArmy UK (720p)" tvg-logo="https://i.imgur.com/VIpQJxL.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",FailArmy UK (720p)
+https://failarmy-international-gb.samsung.wurl.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="GhostDimension.us@UK" tvg-name="Ghost Dimension" tvg-logo="https://i.imgur.com/a0jOxez.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Ghost Dimension
+https://jmp2.uk/plu-619e1bb3e9af5a0007f235ad.m3u8
+#EXTINF:-1 tvg-id="GhostHunters.us@UK" tvg-name="Ghost Hunters (1080p)" tvg-logo="https://i.imgur.com/KdBr6rG.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Ghost Hunters (1080p)
+https://amg00353-amg00353c30-samsung-au-3440.playouts.now.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="HellsKitchen.us@UK" tvg-name="Hell's Kitchen (1080p)" tvg-logo="https://i.imgur.com/P9eT0O9.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Hell's Kitchen (1080p)
+https://amg00654-itv-amg00654c1-samsung-au-1072.playouts.now.amagi.tv/itv-hellskitchen-samsung/playlist.m3u8
+#EXTINF:-1 tvg-id="HighwaytoHeaven.us@UK" tvg-name="Highway to Heaven" tvg-logo="https://i.imgur.com/e6pvibn.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Highway to Heaven
+https://jmp2.uk/plu-68bff9a63efb41cd97562e46.m3u8
+#EXTINF:-1 tvg-id="HomesUnderHammer.us@UK" tvg-name="Homes Under Hammer (720p)" tvg-logo="https://i.imgur.com/P5Haaln.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Homes Under Hammer (720p)
+https://all3media-homes-under-the-hammer-1-au.samsung.wurl.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="HomicideHunter.us@UK" tvg-name="Homicide Hunter" tvg-logo="https://i.imgur.com/ZSnATs0.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Homicide Hunter
+https://jmp2.uk/plu-619e21b213ef6b0007d8c17a.m3u8
+#EXTINF:-1 tvg-id="InsideCrime.us@UK" tvg-name="Inside Crime (1080p)" tvg-logo="https://i.imgur.com/wvQYWsj.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Inside Crime (1080p)
+https://aenetworks-insidecrime-rakuten.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="IonTV.uk@SD" tvg-name="Ion TV (576p)" tvg-logo="https://i.imgur.com/E8VwnK7.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="Bengali",Ion TV (576p)
+https://ap02.iqplay.tv:8082/iqb8002/i09/playlist.m3u8
+#EXTINF:-1 tvg-id="ITV3.uk@SD" tvg-name="ITV3 (360p)" tvg-logo="https://i.imgur.com/JuyM2z5.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",ITV3 (360p)
+https://lb.iptvnetwork.net/ls28/10107/playlist.m3u8
+#EXTINF:-1 tvg-id="LatestTV.uk@SD" tvg-name="Latest TV (480p)" tvg-logo="https://i.imgur.com/Cl1iGEb.jpeg" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Latest TV (480p)
+https://5a0e89631aa14.streamlock.net/live/LatestTelevision/playlist.m3u8
+#EXTINF:-1 tvg-id="MagnavisionTV.uk@SD" tvg-name="Magnavision TV (720p)" tvg-logo="https://i.imgur.com/mUHixbi.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="Malayalam",Magnavision TV (720p)
+https://manatv.akamaized.net/120723/smil:magnavision.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="MarriedwithChildren.us@UK" tvg-name="Married with Children" tvg-logo="https://i.imgur.com/L9Epmtf.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Married with Children
+https://jmp2.uk/plu-66bb3212fe11e5000883ea6b.m3u8
+#EXTINF:-1 tvg-id="McLeodsDaughters.us@UK" tvg-name="McLeod's Daughters (1080p)" tvg-logo="https://i.imgur.com/q4BBDzw.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",McLeod's Daughters (1080p)
+https://amg00627-amg00627c5-samsung-nz-2807.playouts.now.amagi.tv/playlist/amg00627-banijayfast-mcleodsdaughters-samsungnz/playlist.m3u8
+#EXTINF:-1 tvg-id="More4.uk@SD" tvg-name="More4 (360p)" tvg-logo="https://i.imgur.com/cx5YcAU.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",More4 (360p)
+https://lb.iptvnetwork.net/ls28/10114/playlist.m3u8
+#EXTINF:-1 tvg-id="MostHaunted.uk@UK" tvg-name="Most Haunted (1080p)" tvg-logo="https://images.pluto.tv/channels/66d722d31878f200081c2c64/colorLogoPNG.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Most Haunted (1080p)
+https://amg00426-lds-amg00426c17-samsung-gb-10157.playouts.now.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="MysteryTV.us@UK" tvg-name="Mystery TV (1080p)" tvg-logo="https://i.imgur.com/K4gwstM.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Mystery TV (1080p)
+https://aenetworks-mysterytv-rakuten.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="Mythbusters.us@UK" tvg-name="Mythbusters (1080p)" tvg-logo="https://i.imgur.com/wzzjvcH.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Mythbusters (1080p)
+https://d2bog959vw5xq.cloudfront.net/playlist/amg00627-banijayfast-mythbusters-samsungau/playlist.m3u8
+#EXTINF:-1 tvg-id="Nosey.us@UK" tvg-name="Nosey UK" tvg-logo="https://i.imgur.com/i5doCQK.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Nosey UK
+https://jmp2.uk/plu-5dc2ba1a9c91420009db4858.m3u8
+#EXTINF:-1 tvg-id="ParanormalState.us@UK" tvg-name="Paranormal State" tvg-logo="https://i.imgur.com/NmxhvAE.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Paranormal State
+https://jmp2.uk/plu-60804d85858bd00007c5d591.m3u8
+#EXTINF:-1 tvg-id="PlanetFun.uk@SD" tvg-name="Planet Fun (1080p)" tvg-logo="https://i.imgur.com/5U1iKUq.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Planet Fun (1080p)
+http://66.102.126.10:8000/play/a02k/index.m3u8
+#EXTINF:-1 tvg-id="RugbyPassTV.uk@SD" tvg-name="RugbyPass TV (720p)" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",RugbyPass TV (720p)
+https://jmp2.uk/plu-66f137cb483d460008ece053.m3u8
+#EXTINF:-1 tvg-id="SangatTV.uk@SD" tvg-name="Sangat TV (576p)" tvg-logo="https://upload.wikimedia.org/wikipedia/en/c/c3/Sangat_TV_logo.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Sangat TV (576p)
+https://mumt06.tangotv.in/qYyB8fXVSANGATTV/index.m3u8
+#EXTINF:-1 tvg-id="SheffieldLiveTV.uk@SD" tvg-name="Sheffield Live TV (360p) [Not 24/7]" tvg-logo="https://i.imgur.com/p0QzCFs.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Sheffield Live TV (360p) [Not 24/7]
+http://tv.sheffieldlive.org/hls/main.m3u8
+#EXTINF:-1 tvg-id="SparkTV.uk@SD" tvg-name="Spark TV (1080p)" tvg-logo="https://i.imgur.com/svc98Kg.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Spark TV (1080p)
+https://candlelightmedia-sparklightlove-4-us.roku.wurl.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="StarBharat.uk@SD" tvg-name="Star Bharat (576p)" tvg-logo="https://i.imgur.com/Q8ajPij.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="Hindi",Star Bharat (576p)
+https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/gb/YuppTV/UtsavBharat.m3u8
+#EXTINF:-1 tvg-id="StarVijay.in@UK" tvg-name="Star Vijay UK (396p)" tvg-logo="https://i.imgur.com/dZtJHAe.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="Tamil",Star Vijay UK (396p)
+https://da86m1sqpm3o0.cloudfront.net/28072023/smil:starvijayuk.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="StarPlus.uk@SD" tvg-name="StarPlus (United Kingdom) (576p)" tvg-logo="https://i.imgur.com/xWxNy3L.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="Hindi",StarPlus (United Kingdom) (576p)
+https://d1rc86nwwc9fag.cloudfront.net/260723/starplusuk_2500/chunks.m3u8
+#EXTINF:-1 tvg-id="TakbeerTV.uk@SD" tvg-name="Takbeer TV (720p)" tvg-logo="https://i.imgur.com/Cvnps2J.jpg" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="Arabic",Takbeer TV (720p)
+https://cd198.anystream.uk:9092/iqapp/t5kb86tv/playlist.m3u8
+#EXTINF:-1 tvg-id="TalkingPicturesTV.uk@SD" tvg-name="Talking Pictures TV (576p)" tvg-logo="https://i.imgur.com/S1zoIp7.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Talking Pictures TV (576p)
+http://92.114.85.72:8000/play/a0la
+#EXTINF:-1 tvg-id="ThatsTV.uk@SD" tvg-name="That's TV (576p)" tvg-logo="https://i.imgur.com/rmdfcyG.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",That's TV (576p)
+http://92.114.85.72:8000/play/a0lb
+#EXTINF:-1 tvg-id="ThePetCollective.us@UK" tvg-name="The Pet Collective UK (720p)" tvg-logo="https://i.imgur.com/yH7n2dF.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",The Pet Collective UK (720p)
+https://the-pet-collective-international-gb.samsung.wurl.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="TogetherTV.uk@SD" tvg-name="Together TV (576p)" tvg-logo="https://i.imgur.com/wf62HhM.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Together TV (576p)
+http://92.114.85.72:8000/play/a0j8
+#EXTINF:-1 tvg-id="TopGear.uk@SD" tvg-name="Top Gear (720p)" tvg-logo="https://i.imgur.com/S6Su6QH.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Top Gear (720p)
+https://jmp2.uk/plu-636adc255bcf470007d6e0e2.m3u8
+#EXTINF:-1 tvg-id="TVOne.uk@SD" tvg-name="TV One (576p)" tvg-logo="https://i.imgur.com/qkbRslf.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",TV One (576p)
+http://92.114.85.72:8000/play/a070
+#EXTINF:-1 tvg-id="TVWarehouse.uk@SD" tvg-name="TV Warehouse (720p)" tvg-logo="https://i.imgur.com/CMuczfY.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",TV Warehouse (720p)
+https://tvwarehouse.r.worldssl.net/mystream.m3u8
+#EXTINF:-1 tvg-id="UndercoverBossGlobal.us@UK" tvg-name="Undercover Boss Global (720p)" tvg-logo="https://i.imgur.com/O9lwu23.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Undercover Boss Global (720p)
+https://all3media-international-undercoverboss-1-au.samsung.wurl.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="UnsolvedMysteries.us@UK" tvg-name="Unsolved Mysteries UK" tvg-logo="https://i.imgur.com/De3khrX.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Unsolved Mysteries UK
+https://jmp2.uk/plu-5bd05b4694d45d266bc951f2.m3u8
+#EXTINF:-1 tvg-id="WildatHeart.us@UK" tvg-name="Wild at Heart" tvg-logo="https://i.imgur.com/kyVB8Ik.png" group-title="Entertainment" tvg-country="United Kingdom" tvg-language="English",Wild at Heart
+https://jmp2.uk/plu-60817936fd2d70000763d2b2.m3u8
+#EXTINF:-1 tvg-id="ATNBanglaUK.uk@SD" tvg-name="ATN Bangla UK (576p)" tvg-logo="https://i.imgur.com/vFpjggf.png" group-title="General" tvg-country="United Kingdom" tvg-language="Bengali",ATN Bangla UK (576p)
+https://app.ncare.live/c3VydmVyX8RpbEU9Mi8xNy8yMDE0GIDU6RgzQ6NTAgdEoaeFzbF92YWxIZTO0U0ezN1IzMyfvcGVMZEJCTEFWeVN3PTOmdFsaWRtaW51aiPhnPTI2/atnbanglauk-off.stream/playlist.m3u8
+#EXTINF:-1 tvg-id="BeyondBeliefFactorFiction.us@UK" tvg-name="Beyond Belief: Fact or Fiction" tvg-logo="https://i.imgur.com/3uXQg7Y.png" group-title="General" tvg-country="United Kingdom" tvg-language="English",Beyond Belief: Fact or Fiction
+https://jmp2.uk/plu-611f85396abc84000738417b.m3u8
+#EXTINF:-1 tvg-id="Channel4.uk@UK" tvg-name="Channel 4 (360p)" tvg-logo="https://d2n0069hmnqmmx.cloudfront.net/epgdata/1.0/newchanlogos/512/512/skychb1621.png" group-title="General" tvg-country="United Kingdom" tvg-language="English",Channel 4 (360p)
+https://lb.iptvnetwork.net/ls28/10104/playlist.m3u8
+#EXTINF:-1 tvg-id="Channel5.uk@SD" tvg-name="Channel 5 (United Kingdom) (360p)" tvg-logo="https://d2n0069hmnqmmx.cloudfront.net/epgdata/1.0/newchanlogos/512/512/skychb1800.png" group-title="General" tvg-country="United Kingdom" tvg-language="English",Channel 5 (United Kingdom) (360p)
+https://lb.iptvnetwork.net/ls28/10105/playlist.m3u8
+#EXTINF:-1 tvg-id="GemsTV.uk@SD" tvg-name="Gems TV (720p)" tvg-logo="https://i.imgur.com/WgaJufI.png" group-title="General" tvg-country="United Kingdom" tvg-language="English",Gems TV (720p)
+https://lo3.gemporia.com/abrgemporiaukgfx/smil:livestream.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="HalaLondon.uk@SD" tvg-name="Hala London (1080p)" tvg-logo="https://i.imgur.com/bM4VZDH.png" group-title="General" tvg-country="United Kingdom" tvg-language="English",Hala London (1080p)
+https://halalondon-live.ercdn.net/halalondon/halalondon.m3u8
+#EXTINF:-1 tvg-id="IBCTamil.uk@SD" tvg-name="IBC Tamil (1080p)" tvg-logo="https://i.imgur.com/uVt9vBa.png" group-title="General" tvg-country="United Kingdom" tvg-language="Tamil",IBC Tamil (1080p)
+https://ibc.massstream.net/IBC/index.m3u8
+#EXTINF:-1 tvg-id="ITV2.uk@SD" tvg-name="ITV2 (360p)" tvg-logo="https://i.imgur.com/2BpUK0W.png" group-title="General" tvg-country="United Kingdom" tvg-language="English",ITV2 (360p)
+https://lb.iptvnetwork.net/ls28/10106/playlist.m3u8
+#EXTINF:-1 tvg-id="ITV2.uk@HD" tvg-name="ITV2 HD (1080p)" tvg-logo="https://i.imgur.com/2BpUK0W.png" group-title="General" tvg-country="United Kingdom" tvg-language="English",ITV2 HD (1080p)
+https://xemzi.short.gy/1000012
+#EXTINF:-1 tvg-id="ITV4.uk@SD" tvg-name="ITV4 (360p)" tvg-logo="https://i.imgur.com/DYI4IA2.png" group-title="General" tvg-country="United Kingdom" tvg-language="English",ITV4 (360p)
+https://lb.iptvnetwork.net/ls28/10108/playlist.m3u8
+#EXTINF:-1 tvg-id="MBC.uk@HD" tvg-name="MBC (1080p)" tvg-logo="https://mybingechannel.co.uk/wp-content/uploads/2023/02/mbc-logo-for-website.png" group-title="General" tvg-country="United Kingdom" tvg-language="English",MBC (1080p)
+https://cdn8.fntvchannel.com/v1/master/02eeb1726c343dc9c30c32e93dee82013e157021/FNTV-CHANNEL_CDN77/index.m3u8
+#EXTINF:-1 tvg-id="Pop.uk@SD" tvg-name="Pop (1080p)" tvg-logo="https://i.imgur.com/fGUlCY3.png" group-title="General" tvg-country="United Kingdom" tvg-language="English",Pop (1080p)
+https://amg01753-narrativeentert-popkids-lggb-xyy5k.amagi.tv/ts-eu-w1-n2/playlist/amg01753-narrativeentert-popkids-lggb/playlist.m3u8
+#EXTINF:-1 tvg-id="QVC.uk@SD" tvg-name="QVC (United Kingdom) (540p)" tvg-logo="https://i.imgur.com/6TWUVrh.png" group-title="General" tvg-country="United Kingdom" tvg-language="English",QVC (United Kingdom) (540p)
+https://qvcuk-live.akamaized.net/hls/live/2097112/qvc/master.m3u8
+#EXTINF:-1 tvg-id="QVCBeauty.uk@SD" tvg-name="QVC Beauty (540p)" tvg-logo="https://i.imgur.com/ZBHtqk1.png" group-title="General" tvg-country="United Kingdom" tvg-language="English",QVC Beauty (540p)
+https://qvcuk-live.akamaized.net/hls/live/2097112/qby/master.m3u8
+#EXTINF:-1 tvg-id="QVCExtra.uk@SD" tvg-name="QVC Extra (540p)" tvg-logo="https://i.imgur.com/TIe5T9Z.png" group-title="General" tvg-country="United Kingdom" tvg-language="English",QVC Extra (540p)
+https://qvcuk-live.akamaized.net/hls/live/2097112/qex/master.m3u8
+#EXTINF:-1 tvg-id="QVCStyle.uk@SD" tvg-name="QVC Style (United Kingdom) (540p)" tvg-logo="https://i.imgur.com/6HZlLL3.png" group-title="General" tvg-country="United Kingdom" tvg-language="English",QVC Style (United Kingdom) (540p)
+https://qvcuk-live.akamaized.net/hls/live/2097112/qst/master.m3u8
+#EXTINF:-1 tvg-id="S4C.uk@SD" tvg-name="S4C (1080p) [Geo-blocked]" tvg-logo="https://i.imgur.com/vrcbnBv.png" group-title="General" tvg-country="United Kingdom" tvg-language="Welsh",S4C (1080p) [Geo-blocked]
+https://v2.uk.live.s4c-cdn.co.uk/out/v1/S4C/UK_TX/uk_live/uk-tx-dvb.mpd
+#EXTINF:-1 tvg-id="TalkTV.uk@SD" tvg-name="TalkTV (1080p)" tvg-logo="https://i.imgur.com/KxHWpQB.png" group-title="General" tvg-country="United Kingdom" tvg-language="English",TalkTV (1080p)
+https://488f4ce4.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/TEctZ2JfVGFsa19ITFM/playlist.m3u8
+#EXTINF:-1 tvg-id="TBNUK.uk@SD" tvg-name="TBN UK (1080p)" tvg-logo="https://i.imgur.com/vFllwLd.png" group-title="General" tvg-country="United Kingdom" tvg-language="English",TBN UK (1080p)
+https://live-tbn-ssai.simplestreamcdn.com/v1/master/774d979dd66704abea7c5b62cb34c6815fda0d35/tbn-live/manifest.m3u8
+#EXTINF:-1 tvg-id="TheNanny.us@UK" tvg-name="The Nanny" tvg-logo="https://i.imgur.com/1caOriu.png" group-title="General" tvg-country="United Kingdom" tvg-language="English",The Nanny
+https://jmp2.uk/plu-6391cef9edb23c0008598cee.m3u8
+#EXTINF:-1 tvg-id="TJC.uk@SD" tvg-name="TJC (1080p)" tvg-logo="https://i.imgur.com/fk5rEje.png" group-title="General" tvg-country="United Kingdom" tvg-language="English",TJC (1080p)
+https://cdn-shop-lc-01.akamaized.net/Content/HLS_HLS/Live/channel(TJCOTT)/index.m3u8
+#EXTINF:-1 tvg-id="UW.uk@SD" tvg-name="U&W" tvg-logo="https://i.imgur.com/puBkpGj.png" group-title="General" tvg-country="United Kingdom" tvg-language="English",U&W
+http://92.114.85.72:8000/play/a0bj
+#EXTINF:-1 tvg-id="UtsavBharat.uk@SD" tvg-name="Utsav Bharat (720p)" tvg-logo="https://i.imgur.com/IQ2n0WY.png" group-title="General" tvg-country="United Kingdom" tvg-language="Hindi",Utsav Bharat (720p)
+https://d1taaads3ztvmu.cloudfront.net/120723/smil:lifeokuk.smil/playlist.m3u8?hdnts=st=1735898689~exp=1835898688~acl=*~hmac=f5fe24724fe05481e3841f9eb5ab8efdee0a3dd83645ae9dcf45703f525bab7b
+#EXTINF:-1 tvg-id="UtsavPlus.uk@SD" tvg-name="Utsav Plus (720p)" tvg-logo="https://i.imgur.com/TERVtWT.png" group-title="General" tvg-country="United Kingdom" tvg-language="Hindi",Utsav Plus (720p)
+https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/gb/YuppTV/UtsavPlus.m3u8
+#EXTINF:-1 tvg-id="CBBC.uk@SD" tvg-name="CBBC (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/tk8G4CU.png" group-title="Kids" tvg-country="United Kingdom" tvg-language="English",CBBC (720p) [Geo-blocked]
+https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:cbbc_hd/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="CBBC.uk@HD" tvg-name="CBBC HD" tvg-logo="https://i.imgur.com/tk8G4CU.png" group-title="Kids" tvg-country="United Kingdom" tvg-language="English",CBBC HD
+https://cdn.stmify.com/bbc/stream/CBBC/hevc_iptv_mse_v0.mpd
+#EXTINF:-1 tvg-id="CBeebies.uk@SD" tvg-name="CBeebies (United Kingdom) (720p) [Geo-blocked]" tvg-logo="https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_CBEEBIES/images/LOGO_HD/image.png" group-title="Kids" tvg-country="United Kingdom" tvg-language="English",CBeebies (United Kingdom) (720p) [Geo-blocked]
+https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:cbeebies_hd/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="CBeebies.uk@HD" tvg-name="CBeebies (United Kingdom) HD" tvg-logo="https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_CBEEBIES/images/LOGO_HD/image.png" group-title="Kids" tvg-country="United Kingdom" tvg-language="English",CBeebies (United Kingdom) HD
+https://cdn.stmify.com/bbc/stream/CBEEBIES/hevc_iptv_mse_v0.mpd
+#EXTINF:-1 tvg-id="MoonbugKids.uk@SD" tvg-name="Moonbug Kids (1080p)" tvg-logo="https://i.imgur.com/vZHtxQb.png" group-title="Kids" tvg-country="United Kingdom" tvg-language="English",Moonbug Kids (1080p)
+https://moonbug-rokuus.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="MrBeanLiveAction.uk@SD" tvg-name="Mr Bean Live Action (1080p)" tvg-logo="https://d2yv6y0n3qsl5c.cloudfront.net/MBEANP/MrBeanLiveAction-LG_LOGO_800x200.png" group-title="Kids" tvg-country="United Kingdom" tvg-language="English",Mr Bean Live Action (1080p)
+https://amg00627-amg00627c39-samsung-gb-5569.playouts.now.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="PopUp.uk@SD" tvg-name="Pop Up (1080p) [Geo-blocked]" tvg-logo="https://i.imgur.com/GdSotmS.png" group-title="Kids" tvg-country="United Kingdom" tvg-language="English",Pop Up (1080p) [Geo-blocked]
+https://amg01753-amg01753c9-samsung-gb-8005.playouts.now.amagi.tv/ts-eu-w1-n2/playlist/amg01753-narrativeuk-popup-samsunggb/playlist.m3u8
+#EXTINF:-1 tvg-id="Teletubbies.uk@SD" tvg-name="Teletubbies (720p)" tvg-logo="https://i.imgur.com/J9iWjWL.png" group-title="Kids" tvg-country="United Kingdom" tvg-language="English",Teletubbies (720p)
+https://dv8lsrd8fecw9.cloudfront.net/master.m3u8
+#EXTINF:-1 tvg-id="TinyPop.uk@SD" tvg-name="Tiny Pop (1080p)" tvg-logo="https://i.imgur.com/zCTf71x.png" group-title="Kids" tvg-country="United Kingdom" tvg-language="English",Tiny Pop (1080p)
+https://amg01753-narrativeuk-amg01753c1-lg-gb-1830.playouts.now.amagi.tv/playlist/amg01753-narrativeuk-tinypop-lggb/playlist.m3u8
+#EXTINF:-1 tvg-id="TinyPop.uk@Plus1" tvg-name="Tiny Pop +1 (576p)" tvg-logo="https://i.imgur.com/zCTf71x.png" group-title="Kids" tvg-country="United Kingdom" tvg-language="English",Tiny Pop +1 (576p)
+http://92.114.85.72:8000/play/a08p
+#EXTINF:-1 tvg-id="YAAAS.uk@HD" tvg-name="YAAAS! (720p) [Geo-blocked]" tvg-logo="https://www.freeview.co.uk/sites/default/files/styles/255_wide/public/2019-12/yaas-logo250x144.png" group-title="Kids" tvg-country="United Kingdom" tvg-language="English",YAAAS! (720p) [Geo-blocked]
+https://d3knqoaufvjug3.cloudfront.net/yas.m3u8
+#EXTINF:-1 tvg-id="BBCLifestyle.uk@Asia" tvg-name="BBC Lifestyle Asia (720p)" tvg-logo="https://i.imgur.com/9mzJJ3y.png" group-title="Lifestyle" tvg-country="United Kingdom" tvg-language="Thai",BBC Lifestyle Asia (720p)
+http://58.8.186.128:10003/bysid/2333
+#EXTINF:-1 tvg-id="Foodxp.uk@SD" tvg-name="Foodxp (1080p)" tvg-logo="https://i.imgur.com/zOWog5j.png" group-title="Lifestyle" tvg-country="United Kingdom" tvg-language="Hindi",Foodxp (1080p)
+#EXTVLCOPT:http-referrer=https://bhoomtv.org/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0 Win64 x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/154.0.0.0 Safari/537.36
+https://techtraveleat.in/stream.m3u8?id=foodxp
+#EXTINF:-1 tvg-id="HobbyMaker.uk@SD" tvg-name="Hobby Maker (720p)" tvg-logo="https://i.imgur.com/VWHp5Tl.png" group-title="Lifestyle" tvg-country="United Kingdom" tvg-language="English",Hobby Maker (720p)
+https://lo3.gemporia.com/abrhobbymakerukgfx/smil:livestreamFullHD.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="SoReal.us@UK" tvg-name="So... Real UK (720p)" tvg-logo="https://i.imgur.com/wZ2uj9d.png" group-title="Lifestyle" tvg-country="United Kingdom" tvg-language="English",So... Real UK (720p)
+https://all3media-soreal-1-gb.samsung.wurl.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="Tastemade.us@UK" tvg-name="Tastemade UK (1080p)" tvg-logo="https://i.imgur.com/xP7Ehn8.png" group-title="Lifestyle" tvg-country="United Kingdom" tvg-language="English",Tastemade UK (1080p)
+https://tastemade-tdint-rakuten.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="GREATmovies.uk@UK" tvg-name="GREAT! movies (1080p)" tvg-logo="https://d2n0069hmnqmmx.cloudfront.net/epgdata/1.0/newchanlogos/512/512/skychb3709.png" group-title="Movies" tvg-country="United Kingdom" tvg-language="English",GREAT! movies (1080p)
+https://amg01753-narrativeuk-amg01753c3-lg-gb-1833.playouts.now.amagi.tv/playlist/amg01753-narrativeuk-greatmovies-lggb/playlist.m3u8
+#EXTINF:-1 tvg-id="GREATromance.uk@UK" tvg-name="GREAT! romance (1080p)" tvg-logo="https://d2n0069hmnqmmx.cloudfront.net/epgdata/1.0/newchanlogos/512/512/skychb3643.png" group-title="Movies" tvg-country="United Kingdom" tvg-language="English",GREAT! romance (1080p)
+https://amg01753-narrativeuk-amg01753c2-lg-gb-1832.playouts.now.amagi.tv/playlist/amg01753-narrativeuk-greatchristmas-lggb/playlist.m3u8
+#EXTINF:-1 tvg-id="MovieSphere.us@UK" tvg-name="MovieSphere UK (1080p)" tvg-logo="https://i.imgur.com/h1ejU90.png" group-title="Movies" tvg-country="United Kingdom" tvg-language="English",MovieSphere UK (1080p)
+https://moviesphereuk-samsunguk.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="MyTimeMovieNetwork.uk@SD" tvg-name="MyTime Movie Network (United Kingdom) (1080p)" tvg-logo="https://i.imgur.com/pw4NZK1.png" group-title="Movies" tvg-country="United Kingdom" tvg-language="English",MyTime Movie Network (United Kingdom) (1080p)
+https://appletree-mytimeuk-rakuten.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="NollyAfrica.uk@SD" tvg-name="Nolly Africa (1080p)" tvg-logo="https://i.imgur.com/IxtGpti.png" group-title="Movies" tvg-country="United Kingdom" tvg-language="English",Nolly Africa (1080p)
+https://amg02784-amg02784c2-amgplt0002.playout.now3.amagi.tv/ts-eu-w1-n2/playlist/amg02784-amg02784c2-amgplt0002/playlist.m3u8
+#EXTINF:-1 tvg-id="RakutenTVActionMovies.es@UK" tvg-name="Rakuten TV Action Movies UK (1080p)" tvg-logo="https://i.imgur.com/Meew6eX.png" group-title="Movies" tvg-country="United Kingdom" tvg-language="English",Rakuten TV Action Movies UK (1080p)
+https://54045f0c40fd442c8b06df076aaf1e85.mediatailor.eu-west-1.amazonaws.com/v1/master/0547f18649bd788bec7b67b746e47670f558b6b2/production-LiveChannel-6065/master.m3u8
+#EXTINF:-1 tvg-id="RakutenTVComedyMovies.es@UK" tvg-name="Rakuten TV Comedy Movies UK (1080p)" tvg-logo="https://i.imgur.com/Meew6eX.png" group-title="Movies" tvg-country="United Kingdom" tvg-language="English",Rakuten TV Comedy Movies UK (1080p)
+https://9be783d652cd4b099cf63e1dc134c4a3.mediatailor.eu-west-1.amazonaws.com/v1/master/0547f18649bd788bec7b67b746e47670f558b6b2/production-LiveChannel-6181/master.m3u8
+#EXTINF:-1 tvg-id="RakutenTVDramaMovies.es@UK" tvg-name="Rakuten TV Drama Movies UK (1080p)" tvg-logo="https://i.imgur.com/Meew6eX.png" group-title="Movies" tvg-country="United Kingdom" tvg-language="English",Rakuten TV Drama Movies UK (1080p)
+https://fee09fd665814f51b939b6d106cf5f66.mediatailor.eu-west-1.amazonaws.com/v1/master/0547f18649bd788bec7b67b746e47670f558b6b2/production-LiveChannel-6093/master.m3u8
+#EXTINF:-1 tvg-id="RakutenTVFamilyMovies.es@UK" tvg-name="Rakuten TV Family Movies UK (1080p)" tvg-logo="https://i.imgur.com/Meew6eX.png" group-title="Movies" tvg-country="United Kingdom" tvg-language="English",Rakuten TV Family Movies UK (1080p)
+https://e3207568b726401995c25670faaf32e4.mediatailor.eu-west-1.amazonaws.com/v1/master/0547f18649bd788bec7b67b746e47670f558b6b2/production-LiveChannel-6203/master.m3u8
+#EXTINF:-1 tvg-id="RakutenTVTopMovies.es@UK" tvg-name="Rakuten TV Top Movies UK (1080p)" tvg-logo="https://i.imgur.com/Meew6eX.png" group-title="Movies" tvg-country="United Kingdom" tvg-language="English",Rakuten TV Top Movies UK (1080p)
+https://0145451975a64b35866170fd2e8fa486.mediatailor.eu-west-1.amazonaws.com/v1/master/0547f18649bd788bec7b67b746e47670f558b6b2/production-LiveChannel-5987/master.m3u8
+#EXTINF:-1 tvg-id="AfrobeatTVEntertainment.uk@SD" tvg-name="Afrobeat TV Entertainment (1080p)" tvg-logo="https://i.imgur.com/232ndRK.png" group-title="Music" tvg-country="United Kingdom" tvg-language="English",Afrobeat TV Entertainment (1080p)
+https://stream.ecable.tv/afrobeats/index.m3u8
+#EXTINF:-1 tvg-id="ClubbingTV.us@UK" tvg-name="Clubbing TV UK (720p)" tvg-logo="https://i.imgur.com/MyiA92q.png" group-title="Music" tvg-country="United Kingdom" tvg-language="English",Clubbing TV UK (720p)
+https://a-cdn.klowdtv.com/live3/clubbingtv_720p/playlist.m3u8
+#EXTINF:-1 tvg-id="Now70s.uk@SD" tvg-name="Now 70s (720p)" tvg-logo="https://i.imgur.com/qiCCX5X.png" group-title="Music" tvg-country="United Kingdom" tvg-language="English",Now 70s (720p)
+https://lightningnow70-samsungau.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="Now80s.uk@SD" tvg-name="Now 80s (1080p)" tvg-logo="https://i.imgur.com/YyPnMeB.png" group-title="Music" tvg-country="United Kingdom" tvg-language="English",Now 80s (1080p)
+https://lightningnow80-samsungau.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="NOWRock.uk@SD" tvg-name="NOW Rock (1080p)" tvg-logo="https://i.imgur.com/GuM4GnX.png" group-title="Music" tvg-country="United Kingdom" tvg-language="English",NOW Rock (1080p)
+https://lightning-now90s-samsungnz.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="Thats70s.uk@HD" tvg-name="That's 70s (720p)" tvg-logo="https://i.imgur.com/j2q53JQ.png" group-title="Music" tvg-country="United Kingdom" tvg-language="English",That's 70s (720p)
+https://jmp2.uk/plu-69ef53e12f4d2b4f9c582e76.m3u8
+#EXTINF:-1 tvg-id="Thats70s.uk@SD" tvg-name="That's 70s SD (576p)" tvg-logo="https://i.imgur.com/j2q53JQ.png" group-title="Music" tvg-country="United Kingdom" tvg-language="English",That's 70s SD (576p)
+http://92.114.85.72:8000/play/a0lc
+#EXTINF:-1 tvg-id="Thats80s.uk@SD" tvg-name="That's 80s (720p)" group-title="Music" tvg-country="United Kingdom" tvg-language="English",That's 80s (720p)
+https://jmp2.uk/plu-69ef54f3c700cf0140272def.m3u8
+#EXTINF:-1 tvg-id="Totalmusic.uk@HD" tvg-name="Totalmusic (1080p)" tvg-logo="https://static.elektamedia.com/ch/tmc_main.png" group-title="Music" tvg-country="United Kingdom" tvg-language="Spanish",Totalmusic (1080p)
+https://cdn.global.elektamedia.com/live/c7eds/Totalmusic/SA_LIVE_hls_enc/master.m3u8
+#EXTINF:-1 tvg-id="Totalmusic2000s.uk@HD" tvg-name="Totalmusic 2000s (720p)" group-title="Music" tvg-country="United Kingdom" tvg-language="Spanish",Totalmusic 2000s (720p)
+https://cdn.global.elektamedia.com/live/c7eds/Totalmusic_00s/SA_LIVE_hls_enc/master.m3u8
+#EXTINF:-1 tvg-id="Totalmusic80s.uk@HD" tvg-name="Totalmusic 80s (720p)" tvg-logo="https://static.elektamedia.com/ch/tmc_80s.png" group-title="Music" tvg-country="United Kingdom" tvg-language="Spanish",Totalmusic 80s (720p)
+https://cdn.global.elektamedia.com/live/c7eds/Totalmusic_80s/SA_LIVE_hls_enc/master.m3u8
+#EXTINF:-1 tvg-id="TotalmusicConcerts.uk@HD" tvg-name="Totalmusic Concerts (720p)" tvg-logo="https://static.elektamedia.com/ch/tmc_concerts.png" group-title="Music" tvg-country="United Kingdom" tvg-language="Spanish",Totalmusic Concerts (720p)
+https://cdn.global.elektamedia.com/live/c7eds/Totalmusic_Concerts/SA_LIVE_hls_enc/master.m3u8
+#EXTINF:-1 tvg-id="TotalmusicDance.uk@HD" tvg-name="Totalmusic Dance (720p)" tvg-logo="https://static.elektamedia.com/ch/tmc_dance.png" group-title="Music" tvg-country="United Kingdom" tvg-language="Spanish",Totalmusic Dance (720p)
+https://cdn.global.elektamedia.com/live/c7eds/Totalmusic_Dance/SA_LIVE_hls_enc/master.m3u8
+#EXTINF:-1 tvg-id="TraceUK.uk@HD" tvg-name="Trace UK (1080p)" tvg-logo="https://a.jsrdn.com/hls/23073/trace-uk/logo_20240627_183320_70.png" group-title="Music" tvg-country="United Kingdom" tvg-language="English",Trace UK (1080p)
+https://channels.trace.plus/Traceprod/UK_FAST_hd/index.m3u8
+#EXTINF:-1 tvg-id="V2BEATTV.uk@SD" tvg-name="V2BEAT TV (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/PXGqyLn.png" group-title="Music" tvg-country="United Kingdom" tvg-language="English",V2BEAT TV (720p) [Not 24/7]
+https://abr.de1se01.v2beat.live/playlist.m3u8
+#EXTINF:-1 tvg-id="VantageMusic.ee@UK" tvg-name="Vantage Music UK (1080p) [Geo-blocked]" tvg-logo="https://vantagetv.ee/vantage_music.png" group-title="Music" tvg-country="United Kingdom" tvg-language="English",Vantage Music UK (1080p) [Geo-blocked]
+https://hls.vantagetv.co.uk/vmusicuk_stream/index.m3u8
+#EXTINF:-1 tvg-id="XITEHits.nl@UK" tvg-name="XITE Hits UK (1080p)" tvg-logo="https://i.imgur.com/N51Rp7E.png" group-title="Music" tvg-country="United Kingdom" tvg-language="English",XITE Hits UK (1080p)
+https://amg01243-xitenetworksint-hitsuk-samsunguk-mvovq.amagi.tv/playlist/amg01243-xitenetworksint-hitsuk-samsunguk/playlist.m3u8
+#EXTINF:-1 tvg-id="BBCAlba.uk@SD" tvg-name="BBC Alba" tvg-logo="https://i.imgur.com/36KDxLg.png" group-title="News" tvg-country="United Kingdom" tvg-language="Gaelic",BBC Alba
+https://cdn.stmify.com/bbc/stream/BBC_ALBA/hevc_iptv_mse_v0.mpd
+#EXTINF:-1 tvg-id="BBCNews.uk@UK" tvg-name="BBC News (1080p)" tvg-logo="https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_BBC_NEWS/images/LOGO_HD/image.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC News (1080p)
+https://xemzi.short.gy/1000015
+#EXTINF:-1 tvg-id="BBCNewsPashto.uk@HD" tvg-name="BBC News Pashto (720p)" tvg-logo="https://static.files.bbci.co.uk/ws/simorgh-assets/public/pashto/images/metadata/poster-1024x576.png" group-title="News" tvg-country="United Kingdom" tvg-language="Turkmen",BBC News Pashto (720p)
+https://vs-cmaf-pushb-ww.live.cf.md.bbci.co.uk/x=4/i=urn:bbc:pips:service:bbc_afghan_tv/pc_hd_abr_v2.mpd
+#EXTINF:-1 tvg-id="BBCNews.uk@UKHD" tvg-name="BBC News UK HD (1080p)" tvg-logo="https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_BBC_NEWS/images/LOGO_HD/image.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC News UK HD (1080p)
+http://45.153.96.44:8001
+#EXTINF:-1 tvg-id="BBCOne.uk@London" tvg-name="BBC One" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBC_One_logo_2021.svg/960px-BBC_One_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC One
+https://cdn.stmify.com/bbc/stream/BBC_ONE_LONDON/hevc_iptv_mse_v0.mpd
+#EXTINF:-1 tvg-id="BBCOne.uk@East" tvg-name="BBC One East (720p) [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBC_One_logo_2021.svg/960px-BBC_One_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC One East (720p) [Geo-blocked]
+https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_one_east/pc_hd_abr_v2.mpd
+#EXTINF:-1 tvg-id="BBCOne.uk@EastMidlands" tvg-name="BBC One East Midlands (720p) [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBC_One_logo_2021.svg/960px-BBC_One_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC One East Midlands (720p) [Geo-blocked]
+https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_one_east_midlands/pc_hd_abr_v2.mpd
+#EXTINF:-1 tvg-id="BBCOne.uk@EastMidlandsHD" tvg-name="BBC One East Midlands HD [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBC_One_logo_2021.svg/960px-BBC_One_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC One East Midlands HD [Geo-blocked]
+https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_one_east_midlands/hevc_iptv_mse_v0.mpd
+#EXTINF:-1 tvg-id="BBCOne.uk@LondonHD" tvg-name="BBC One London HD (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBC_One_logo_2021.svg/960px-BBC_One_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC One London HD (720p)
+http://193.46.58.239:8080/BBCOneHD/index.m3u8
+#EXTINF:-1 tvg-id="BBCOne.uk@NorthEastCumbria" tvg-name="BBC One North East & Cumbria (720p) [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBC_One_logo_2021.svg/960px-BBC_One_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC One North East & Cumbria (720p) [Geo-blocked]
+https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_one_north_east/pc_hd_abr_v2.mpd
+#EXTINF:-1 tvg-id="BBCOne.uk@NorthEastCumbriaHD" tvg-name="BBC One North East & Cumbria HD [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBC_One_logo_2021.svg/960px-BBC_One_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC One North East & Cumbria HD [Geo-blocked]
+https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_one_north_east/hevc_iptv_mse_v0.mpd
+#EXTINF:-1 tvg-id="BBCOne.uk@NorthWest" tvg-name="BBC One North West (720p) [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBC_One_logo_2021.svg/960px-BBC_One_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC One North West (720p) [Geo-blocked]
+https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_one_north_west/pc_hd_abr_v2.mpd
+#EXTINF:-1 tvg-id="BBCOne.uk@NorthWestHD" tvg-name="BBC One North West HD [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBC_One_logo_2021.svg/960px-BBC_One_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC One North West HD [Geo-blocked]
+https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_one_north_west/hevc_iptv_mse_v0.mpd
+#EXTINF:-1 tvg-id="BBCOne.uk@NorthernIreland" tvg-name="BBC One Northern Ireland (720p) [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBC_One_logo_2021.svg/960px-BBC_One_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC One Northern Ireland (720p) [Geo-blocked]
+https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_one_northern_ireland_hd/pc_hd_abr_v2.mpd
+#EXTINF:-1 tvg-id="BBCOne.uk@NorthernIrelandHD" tvg-name="BBC One Northern Ireland HD [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBC_One_logo_2021.svg/960px-BBC_One_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC One Northern Ireland HD [Geo-blocked]
+https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_one_northern_ireland_hd/hevc_iptv_mse_v0.mpd
+#EXTINF:-1 tvg-id="BBCOne.uk@Scotland" tvg-name="BBC One Scotland (540p) [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBC_One_logo_2021.svg/960px-BBC_One_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC One Scotland (540p) [Geo-blocked]
+https://vs-hls-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_one_scotland_hd/pc_hd_abr_v2.m3u8
+#EXTINF:-1 tvg-id="BBCOne.uk@ScotlandHD" tvg-name="BBC One Scotland HD (720p) [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBC_One_logo_2021.svg/960px-BBC_One_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC One Scotland HD (720p) [Geo-blocked]
+https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_one_scotland_hd/pc_hd_abr_v2.mpd
+#EXTINF:-1 tvg-id="BBCOne.uk@South" tvg-name="BBC One South (720p) [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBC_One_logo_2021.svg/960px-BBC_One_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC One South (720p) [Geo-blocked]
+https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_one_south/pc_hd_abr_v2.mpd
+#EXTINF:-1 tvg-id="BBCOne.uk@SouthEast" tvg-name="BBC One South East (720p) [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBC_One_logo_2021.svg/960px-BBC_One_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC One South East (720p) [Geo-blocked]
+https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_one_south_east/pc_hd_abr_v2.mpd
+#EXTINF:-1 tvg-id="BBCOne.uk@SouthWest" tvg-name="BBC One South West (720p) [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBC_One_logo_2021.svg/960px-BBC_One_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC One South West (720p) [Geo-blocked]
+https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_one_south_west/pc_hd_abr_v2.mpd
+#EXTINF:-1 tvg-id="BBCOne.uk@Wales" tvg-name="BBC One Wales (720p) [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBC_One_logo_2021.svg/960px-BBC_One_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC One Wales (720p) [Geo-blocked]
+https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_one_wales_hd/pc_hd_abr_v2.mpd
+#EXTINF:-1 tvg-id="BBCOne.uk@West" tvg-name="BBC One West (720p) [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBC_One_logo_2021.svg/960px-BBC_One_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC One West (720p) [Geo-blocked]
+https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_one_west/pc_hd_abr_v2.mpd
+#EXTINF:-1 tvg-id="BBCOne.uk@WestMidlands" tvg-name="BBC One West Midlands (720p) [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBC_One_logo_2021.svg/960px-BBC_One_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC One West Midlands (720p) [Geo-blocked]
+https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_one_west_midlands/pc_hd_abr_v2.mpd
+#EXTINF:-1 tvg-id="BBCOne.uk@Yorkshire" tvg-name="BBC One Yorkshire (720p) [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBC_One_logo_2021.svg/960px-BBC_One_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC One Yorkshire (720p) [Geo-blocked]
+https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_one_yorks/pc_hd_abr_v2.mpd
+#EXTINF:-1 tvg-id="BBCOne.uk@YorkshireHD" tvg-name="BBC One Yorkshire HD (720p) [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBC_One_logo_2021.svg/960px-BBC_One_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC One Yorkshire HD (720p) [Geo-blocked]
+https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_one_east_yorkshire/pc_hd_abr_v2.mpd
+#EXTINF:-1 tvg-id="BBCParliament.uk@SD" tvg-name="BBC Parliament" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/BBC_Parliament_Logo.svg/960px-BBC_Parliament_Logo.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Parliament
+https://cdn.stmify.com/bbc/stream/BBC_PARLIAMENT/hevc_iptv_mse_v0.mpd
+#EXTINF:-1 tvg-id="BBCPersian.uk@SD" tvg-name="BBC Persian (1080p)" tvg-logo="https://i.imgur.com/4uTMnPb.png" group-title="News" tvg-country="United Kingdom" tvg-language="Persian",BBC Persian (1080p)
+https://vs-cmaf-pushb-ww-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_persian_tv/hevc_iptv_mse_v0.mpd
+#EXTINF:-1 tvg-id="BBCRedButton1.uk@SD" tvg-name="BBC Red Button 1 (720p) [Geo-blocked]" tvg-logo="https://d2n0069hmnqmmx.cloudfront.net/epgdata/1.0/newchanlogos/512/512/skychb2051.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 1 (720p) [Geo-blocked]
+https://vs-cmaf-pushb-uk.live.cf.md.bbci.co.uk/x=4/i=urn:bbc:pips:service:red_button_one/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton10.uk@SD" tvg-name="BBC Red Button 10 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 10 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_010/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton11.uk@SD" tvg-name="BBC Red Button 11 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 11 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_011/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton12.uk@SD" tvg-name="BBC Red Button 12 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 12 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_012/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton13.uk@SD" tvg-name="BBC Red Button 13 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 13 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_013/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton14.uk@SD" tvg-name="BBC Red Button 14 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 14 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_014/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton15.uk@SD" tvg-name="BBC Red Button 15 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 15 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_015/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton16.uk@SD" tvg-name="BBC Red Button 16 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 16 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_016/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton17.uk@SD" tvg-name="BBC Red Button 17 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 17 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_017/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton18.uk@SD" tvg-name="BBC Red Button 18 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 18 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_018/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton19.uk@SD" tvg-name="BBC Red Button 19 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 19 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_019/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton2.uk@SD" tvg-name="BBC Red Button 2 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 2 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_002/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton20.uk@SD" tvg-name="BBC Red Button 20 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 20 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_020/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton21.uk@SD" tvg-name="BBC Red Button 21 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 21 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_021/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton22.uk@SD" tvg-name="BBC Red Button 22 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 22 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_022/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton23.uk@SD" tvg-name="BBC Red Button 23 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 23 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_023/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton24.uk@SD" tvg-name="BBC Red Button 24 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 24 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_024/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton3.uk@SD" tvg-name="BBC Red Button 3 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 3 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_003/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton4.uk@SD" tvg-name="BBC Red Button 4 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 4 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_004/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton5.uk@SD" tvg-name="BBC Red Button 5 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 5 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_005/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton6.uk@SD" tvg-name="BBC Red Button 6 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 6 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_006/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton7.uk@SD" tvg-name="BBC Red Button 7 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 7 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_007/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton8.uk@SD" tvg-name="BBC Red Button 8 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 8 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_008/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCRedButton9.uk@SD" tvg-name="BBC Red Button 9 (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/g2Aga13.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Red Button 9 (720p) [Geo-blocked]
+https://ve-cmaf-push-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:uk_bbc_stream_009/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCScotland.uk@SD" tvg-name="BBC Scotland" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/BBC_Scotland_2021_%28channel%29.svg/960px-BBC_Scotland_2021_%28channel%29.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="Gaelic",BBC Scotland
+https://cdn.stmify.com/bbc/stream/BBC_SCOTLAND/hevc_iptv_mse_v0.mpd
+#EXTINF:-1 tvg-id="BBCThree.uk@SD" tvg-name="BBC Three (720p) [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/BBC_Three_2022.svg/960px-BBC_Three_2022.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Three (720p) [Geo-blocked]
+https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_three_hd/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCThree.uk@HD" tvg-name="BBC Three HD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/BBC_Three_2022.svg/960px-BBC_Three_2022.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Three HD
+https://cdn.stmify.com/bbc/stream/BBC_THREE/hevc_iptv_mse_v0.mpd
+#EXTINF:-1 tvg-id="BBCTwo.uk@HD" tvg-name="BBC Two HD (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/BBC_Two_logo_2021.svg/960px-BBC_Two_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Two HD (720p)
+http://193.46.58.239:8080/BBCTwoHD/index.m3u8
+#EXTINF:-1 tvg-id="BBCTwo.uk@NorthernIreland" tvg-name="BBC Two Northern Ireland" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/BBC_Two_logo_2021.svg/960px-BBC_Two_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Two Northern Ireland
+https://cdn.stmify.com/bbc/stream/BBC_TWO_NORTHERN_IRELAND/hevc_iptv_mse_v0.mpd
+#EXTINF:-1 tvg-id="BBCTwo.uk@NorthernIrelandHD" tvg-name="BBC Two Northern Ireland HD (720p) [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/BBC_Two_logo_2021.svg/960px-BBC_Two_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Two Northern Ireland HD (720p) [Geo-blocked]
+https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_two_northern_ireland_hd/iptv_hd_abr_v1.mpd
+#EXTINF:-1 tvg-id="BBCTwo.uk@Wales" tvg-name="BBC Two Wales" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/BBC_Two_logo_2021.svg/960px-BBC_Two_logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC Two Wales
+https://cdn.stmify.com/bbc/stream/BBC_TWO_WALES/hevc_iptv_mse_v0.mpd
+#EXTINF:-1 tvg-id="BBCUHD1.uk@SD" tvg-name="BBC UHD 1 (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/BBC_Logo_2021.svg/960px-BBC_Logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC UHD 1 (1080p)
+https://xemzi.short.gy/1000001
+#EXTINF:-1 tvg-id="BBCUHD2.uk@SD" tvg-name="BBC UHD 2 (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/BBC_Logo_2021.svg/960px-BBC_Logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC UHD 2 (1080p)
+https://xemzi.short.gy/1000002
+#EXTINF:-1 tvg-id="BBCUHD3.uk@SD" tvg-name="BBC UHD 3 (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/BBC_Logo_2021.svg/960px-BBC_Logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC UHD 3 (720p)
+http://45.14.84.37/bbc3/index.m3u8
+#EXTINF:-1 tvg-id="BBCUHD4.uk@SD" tvg-name="BBC UHD 4 (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/BBC_Logo_2021.svg/960px-BBC_Logo_2021.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",BBC UHD 4 (720p)
+http://45.14.84.37/bbc4/index.m3u8
+#EXTINF:-1 tvg-id="CNBCUK.uk@SD" tvg-name="CNBC UK (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/CNBC_2025.svg/960px-CNBC_2025.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",CNBC UK (1080p)
+https://amg01079-nbcuuk-amg01079c2-samsung-gb-1258.playouts.now.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="DunyaNewsUK.uk@SD" tvg-name="Dunya News UK (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/dtrTfZC.png" group-title="News" tvg-country="United Kingdom" tvg-language="Urdu",Dunya News UK (720p) [Not 24/7]
+https://ukintl.dunyanews.tv/liveuk/ngrp:dunyalive_all/playlist.m3u8
+#EXTINF:-1 tvg-id="GBNews.uk@SD" tvg-name="GB News (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/3/35/GB_News_Logo.svg/960px-GB_News_Logo.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",GB News (1080p)
+https://amg01076-lightningintern-gbnewsau-samsungau-et7fz.amagi.tv/playlist/amg01076-lightningintern-gbnewsau-samsungau/playlist.m3u8
+#EXTINF:-1 tvg-id="GBNews.uk@HD" tvg-name="GB News HD (2160p)" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/3/35/GB_News_Logo.svg/960px-GB_News_Logo.svg.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",GB News HD (2160p)
+https://xemzi.short.gy/1000017
+#EXTINF:-1 tvg-id="NTDTVEnglish.us@UK" tvg-name="NTD TV English UK (1080p)" tvg-logo="https://i.imgur.com/26uv1ww.png" group-title="News" tvg-country="United Kingdom" tvg-language="English",NTD TV English UK (1080p)
+https://ntd02.akamaized.net/NTD-UK/index.m3u8
+#EXTINF:-1 tvg-id="SkyNewsWeather.uk@SD" tvg-name="Sky News Weather (720p)" tvg-logo="https://pbs.twimg.com/profile_images/1604994875459518464/lGt2wEqM_400x400.jpg" group-title="News" tvg-country="United Kingdom" tvg-language="English",Sky News Weather (720p)
+https://distro001-gb-hls1-prd.delivery.skycdp.com/easel_cdn/ngrp:weather_loop.stream_all/playlist.m3u8
+#EXTINF:-1 tvg-id="DAZNCombat.uk@SD" tvg-name="DAZN Combat (684p)" tvg-logo="https://i.postimg.cc/VsW3Jsrz/logo-DAZN-Combat.png" group-title="Sports" tvg-country="United Kingdom" tvg-language="English",DAZN Combat (684p)
+https://jmp2.uk/plu-64d626ac9b414d000820e2fc.m3u8
+#EXTINF:-1 tvg-id="MUTV.uk@SD" tvg-name="MUTV (720p)" tvg-logo="https://d2n0069hmnqmmx.cloudfront.net/epgdata/1.0/newchanlogos/512/512/skychb1834.png" group-title="Sports" tvg-country="United Kingdom" tvg-language="English",MUTV (720p)
+https://fastly.live.brightcove.com/6374054671112/eu-west-1/6058004203001/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJob3N0IjoiYXplMnp5LmVncmVzcy55ODN1ZWIiLCJhY2NvdW50X2lkIjoiNjA1ODAwNDIwMzAwMSIsImVobiI6ImZhc3RseS5saXZlLmJyaWdodGNvdmUuY29tIiwiaXNzIjoiYmxpdmUtcGxheWJhY2stc291cmNlLWFwaSIsInN1YiI6InBhdGhtYXB0b2tlbiIsImF1ZCI6WyI2MDU4MDA0MjAzMDAxIl0sImp0aSI6IjYzNzQwNTQ2NzExMTIifQ.3FmuTna3DAmY7xlhK5fk6LMrosrtrR5VsU2QOgYO5y4/playlist-hls.m3u8
+#EXTINF:-1 tvg-id="RedBullTV.at@UK" tvg-name="Red Bull TV UK (1080p)" tvg-logo="https://images.pluto.tv/channels/5e7cb84a172a0f0007da69e4/colorLogoPNG.png" group-title="Sports" tvg-country="United Kingdom" tvg-language="English",Red Bull TV UK (1080p)
+https://1a3566cb46914c5499fbc86fbc4ac87e.mediatailor.us-west-2.amazonaws.com/v1/master/ba62fe743df0fe93366eba3a257d792884136c7f/LINEAR-932-WORBUKENFAST-WHALETVPLUS/932/whaletvplus/hls/master/playlist.m3u8
+#EXTINF:-1 tvg-id="Strongman.us@UK" tvg-name="Strongman UK (720p)" tvg-logo="https://i.imgur.com/bVQBF6R.png" group-title="Sports" tvg-country="United Kingdom" tvg-language="English",Strongman UK (720p)
+https://rightsboosterltd-scl-1-eu.rakuten.wurl.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="talkSPORT.uk@SD" tvg-name="talkSPORT (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/en/9/9d/Talksport_logo.png" group-title="Sports" tvg-country="United Kingdom" tvg-language="English",talkSPORT (1080p)
+https://af7a8b4e.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/TEctZ2JfdGFsa1NQT1JUX0hMUw/playlist.m3u8
+#EXTINF:-1 tvg-id="WorldPokerTour.us@UK" tvg-name="World Poker Tour UK (1080p)" tvg-logo="https://i.imgur.com/98kLMjj.png" group-title="Sports" tvg-country="United Kingdom" tvg-language="English",World Poker Tour UK (1080p)
+https://amg00477-samsungelectron-worldpokertour-samsunguk-81igb.amagi.tv/playlist/amg00477-samsungelectron-worldpokertour-samsunguk/playlist.m3u8

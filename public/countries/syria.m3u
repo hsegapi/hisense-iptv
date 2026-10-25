@@ -1,0 +1,24 @@
+#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
+
+#EXTINF:-1 tvg-id="AlSouriyaTV.sy@HD" tvg-name="Al-Souriya TV (1080p)" tvg-logo="https://i.imgur.com/8FILgXT.jpeg" group-title="Entertainment" tvg-country="Syria" tvg-language="Arabic",Al-Souriya TV (1080p)
+https://shd-gcp-live.edgenextcdn.net/live/bitmovin-al-souriya-tv/e3150760fa5fd62776225433b8c3d406/index.m3u8
+#EXTINF:-1 tvg-id="RojavaTV.sy@SD" tvg-name="Rojava TV (1080p)" tvg-logo="https://i.imgur.com/42noysO.png" group-title="Entertainment" tvg-country="Syria" tvg-language="Kurdish",Rojava TV (1080p)
+https://hlspackager.akamaized.net/live/DB/ROJAVA_HD/HLS/ROJAVA_HD.m3u8
+#EXTINF:-1 tvg-id="RonahiTV.sy@SD" tvg-name="Ronahi TV (1080p)" tvg-logo="https://i.imgur.com/JSvJpD8.png" group-title="Entertainment" tvg-country="Syria" tvg-language="Kurdish",Ronahi TV (1080p)
+https://hlspackager.akamaized.net/live/DB/RONAHI_TV/HLS/RONAHI_TV.m3u8
+#EXTINF:-1 tvg-id="Althania.sy@SD" tvg-name="Althania (1080p)" tvg-logo="https://www.althania.tv/themes/custom/althania/assets/images/stv-logo.svg" group-title="General" tvg-country="Syria" tvg-language="Arabic",Althania (1080p)
+https://live.kwikmotion.com/syriatv02live/syriatv02.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="AlalamNewsChannelSyria.sy@SD" tvg-name="Alalam News Channel Syria (1080p)" tvg-logo="https://i.imgur.com/WQKYPKD.png" group-title="News" tvg-country="Syria" tvg-language="Arabic",Alalam News Channel Syria (1080p)
+http://live2.alalam.ir/alalam.m3u8
+#EXTINF:-1 tvg-id="AlalamNewsChannelSyria.sy@SD" tvg-name="Alalam News Channel Syria (1080p)" tvg-logo="https://i.imgur.com/WQKYPKD.png" group-title="News" tvg-country="Syria" tvg-language="Arabic",Alalam News Channel Syria (1080p)
+http://live2.alalam.ir/live/Alalam/index.m3u8
+#EXTINF:-1 tvg-id="AlikhbariaSyria.sy@SD" tvg-name="Alikhbaria Syria (1080p)" tvg-logo="https://alikhbariah.com/wp-content/themes/alekhbariah-custom-theme/img/logo.webp" group-title="News" tvg-country="Syria" tvg-language="Arabic",Alikhbaria Syria (1080p)
+http://185.9.2.18/chid_423/index.m3u8
+#EXTINF:-1 tvg-id="HalabTodayTV.sy@SD" tvg-name="Halab Today TV (1080p)" tvg-logo="https://pbs.twimg.com/profile_images/1779495135841075200/aPINrLwe_400x400.png" group-title="News" tvg-country="Syria" tvg-language="Arabic",Halab Today TV (1080p)
+https://halabtoday-live.lg.mncdn.com/halabtoday/livestream/playlist.m3u8
+#EXTINF:-1 tvg-id="SyriaTV.sy@SD" tvg-name="Syria TV (1080p)" tvg-logo="https://i.imgur.com/FjuVuXF.jpeg" group-title="News" tvg-country="Syria" tvg-language="Arabic",Syria TV (1080p)
+https://live.kwikmotion.com/syriatvlive/syriatv.smil/playlist_dvr.m3u8
+#EXTINF:-1 tvg-id="WelatTV.sy@HD" tvg-name="Welat TV (1080i)" tvg-logo="https://avatars.githubusercontent.com/u/213803648?s=400&u=e27c09d39f813b9698de9c6559cbf7f196bf6fce&v=4" group-title="News" tvg-country="Syria" tvg-language="Arabic",Welat TV (1080i)
+https://stream.badinan.xyz/welat/tv/playlist.m3u8
+#EXTINF:-1 tvg-id="Prime.sy@HD" tvg-name="Prime (Syria) (1080p)" tvg-logo="https://prime1tv.com/wp-content/uploads/2025/12/7-1.png" group-title="Sports" tvg-country="Syria" tvg-language="Arabic",Prime (Syria) (1080p)
+https://cdn.bestream.io/prime/prime.m3u8

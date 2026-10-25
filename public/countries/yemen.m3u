@@ -1,0 +1,10 @@
+#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
+
+#EXTINF:-1 tvg-id="AlSahatTV.ye@SD" tvg-name="Al-Sahat TV (720p)" tvg-logo="https://i.imgur.com/UVndAta.png" group-title="Devotional" tvg-country="Yemen" tvg-language="Arabic",Al-Sahat TV (720p)
+https://assahat.b-cdn.net/Assahat/assahatobs/index.m3u8
+#EXTINF:-1 tvg-id="YemenTodayTV.ye@SD" tvg-name="Yemen Today TV (480p)" tvg-logo="https://i.imgur.com/8TzcJu5.png" group-title="Entertainment" tvg-country="Yemen" tvg-language="Arabic",Yemen Today TV (480p)
+https://video.yementdy.tv/hls/yementoday.m3u8
+#EXTINF:-1 tvg-id="AlMasirah.ye@SD" tvg-name="Al Masirah (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/V055t5e.png" group-title="News" tvg-country="Yemen" tvg-language="Arabic",Al Masirah (720p) [Not 24/7]
+https://live.cdnbridge.tv/Almasirah/Almasirah_all/playlist.m3u8
+#EXTINF:-1 tvg-id="AlMasirahMubacher.ye@SD" tvg-name="Al Masirah Mubacher (642p) [Not 24/7]" tvg-logo="https://i.imgur.com/0xHb3XM.jpg" group-title="News" tvg-country="Yemen" tvg-language="Arabic",Al Masirah Mubacher (642p) [Not 24/7]
+https://live2.cdnbridge.tv/AlmasirahMubasher/Mubasher_All/playlist.m3u8

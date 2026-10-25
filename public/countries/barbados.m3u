@@ -1,0 +1,4 @@
+#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
+
+#EXTINF:-1 tvg-id="CBCTV8.bb@SD" tvg-name="CBC TV8 (1080p) [Not 24/7]" tvg-logo="https://i.imgur.com/WsD83lq.png" group-title="General" tvg-country="Barbados" tvg-language="English",CBC TV8 (1080p) [Not 24/7]
+https://1740288887.rsc.cdn77.org/1740288887/index.m3u8

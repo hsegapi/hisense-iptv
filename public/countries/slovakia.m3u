@@ -1,0 +1,140 @@
+#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
+
+#EXTINF:-1 tvg-id="LifeTv.sk@SD" tvg-name="LifeTv (1080p)" tvg-logo="https://i.imgur.com/jO8kAY2.png" group-title="Devotional" tvg-country="Slovakia" tvg-language="Slovak",LifeTv (1080p)
+https://lifetv.mpks.sk/s.m3u8
+#EXTINF:-1 tvg-id="Dvojka.sk@SD" tvg-name="like Gecko) Chrome/124.0.0.0 Safari/537.36" group-title="Documentary",Dvojka" tvg-logo="https://i.imgur.com/ft10wQn.png" group-title="Documentary" tvg-country="Slovakia" tvg-language="Slovak",like Gecko) Chrome/124.0.0.0 Safari/537.36" group-title="Documentary",Dvojka
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
+http://88.212.15.17/live/test_dvojka_25p/playlist.m3u8
+#EXTINF:-1 tvg-id="Dvojka.sk@SD" tvg-name="like Gecko) Chrome/124.0.0.0 Safari/537.36" group-title="Documentary",Dvojka" tvg-logo="https://i.imgur.com/ft10wQn.png" group-title="Documentary" tvg-country="Slovakia" tvg-language="Slovak",like Gecko) Chrome/124.0.0.0 Safari/537.36" group-title="Documentary",Dvojka
+http://88.212.15.19/live/test_dvojka_25p/playlist.m3u8
+#EXTINF:-1 tvg-id="TVVita.sk@SD" tvg-name="TV Vita" tvg-logo="https://i.imgur.com/Cx1GLbo.png" group-title="Documentary" tvg-country="Slovakia" tvg-language="Slovak",TV Vita
+https://dash3.antik.sk/live/test_vita/playlist.m3u8
+#EXTINF:-1 tvg-id="TurboTV.sk@SD" tvg-name="Turbo TV (1080p)" tvg-logo="https://i.imgur.com/HI7bCHq.png" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",Turbo TV (1080p)
+https://dash3.antik.sk/live/turbo_tv_avc_25p/playlist.m3u8
+#EXTINF:-1 tvg-id="TVBrezova.sk@SD" tvg-name="TV Brezova (540p)" tvg-logo="https://i.imgur.com/59LpYoF.png" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",TV Brezova (540p)
+http://95.105.193.219:88/hls/tvb.m3u8
+#EXTINF:-1 tvg-id="TVCentral.sk@SD" tvg-name="TV Central (540p)" tvg-logo="https://i.imgur.com/LqGT8o9.png" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",TV Central (540p)
+https://arenasportslovakia.ddns.net/hls/cetv2.m3u8
+#EXTINF:-1 tvg-id="TVDK.sk@SD" tvg-name="TV DK (486p) [Not 24/7]" tvg-logo="https://i.imgur.com/qTOnPXe.png" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",TV DK (486p) [Not 24/7]
+http://80.94.54.11:1935/live/dolnykubin1/playlist.m3u8
+#EXTINF:-1 tvg-id="TVLiptov.sk@SD" tvg-name="TV Liptov (1080p)" tvg-logo="https://i.imgur.com/CkvB3af.png" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",TV Liptov (1080p)
+http://95.105.255.137:1935/tvturiec/tvliptov.stream/playlist.m3u8
+#EXTINF:-1 tvg-id="TVLocAll.sk@SD" tvg-name="TV LocAll (406p)" tvg-logo="https://i.imgur.com/xN1CJol.png" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",TV LocAll (406p)
+http://tv.geniusnet.sk:8081/localltv/pl.m3u8
+#EXTINF:-1 tvg-id="TVLux.sk@SD" tvg-name="TV Lux (Slovakia) (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/mAMyTkq.png" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",TV Lux (Slovakia) (720p) [Not 24/7]
+https://stream.tvlux.sk/lux/ngrp:lux.stream_all/playlist.m3u8
+#EXTINF:-1 tvg-id="TVMistral.sk@SD" tvg-name="TV Mistral" tvg-logo="https://i.imgur.com/IOJ6rcb.jpeg" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",TV Mistral
+https://dash3.antik.sk/live/test_mistral_atktv/playlist.m3u8
+#EXTINF:-1 tvg-id="TVMyjava.sk@SD" tvg-name="TV Myjava (540p)" tvg-logo="https://i.imgur.com/9f9VmvF.png" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",TV Myjava (540p)
+http://95.105.193.219:88/hls/tvm.m3u8
+#EXTINF:-1 tvg-id="TVNitricka.sk@SD" tvg-name="TV Nitricka" tvg-logo="https://i.imgur.com/iwWyG1A.png" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",TV Nitricka
+https://dash4.antik.sk/live/test_nitricka/playlist.m3u8
+#EXTINF:-1 tvg-id="TVPanorama.sk@SD" tvg-name="TV Panorama" tvg-logo="https://i.imgur.com/0YtCG4Y.png" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",TV Panorama
+https://public.live.rebit.tv/live/20750f0b-e12d-4915-a4c3-47c5db9ccbf6/main.m3u8
+#EXTINF:-1 tvg-id="TVPoprad.sk@SD" tvg-name="TV Poprad (1080p) [Not 24/7]" tvg-logo="https://i.imgur.com/x6ZvOp6.png" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",TV Poprad (1080p) [Not 24/7]
+http://213.81.153.221:8080/poprad
+#EXTINF:-1 tvg-id="TVPovazie.sk@SD" tvg-name="TV Povazie (1080p)" tvg-logo="https://i.imgur.com/JRD9YIY.png" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",TV Povazie (1080p)
+https://dash3.antik.sk/live/test_povazie/playlist.m3u8
+#EXTINF:-1 tvg-id="TVRaj.sk@SD" tvg-name="TV Raj (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/CGckMyx.png" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",TV Raj (720p) [Not 24/7]
+https://ottst05.flexitv.sk/2827-tv-pc.m3u8
+#EXTINF:-1 tvg-id="TVRomana.sk@SD" tvg-name="TV Romana (720p)" tvg-logo="https://i.imgur.com/r7avFBX.png" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",TV Romana (720p)
+http://88.212.7.11/live/test_tv_romana_web_player/playlist.m3u8
+#EXTINF:-1 tvg-id="TVRuzinov.sk@SD" tvg-name="TV Ruzinov (1080p) [Not 24/7]" tvg-logo="https://i.imgur.com/bUGuntH.png" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",TV Ruzinov (1080p) [Not 24/7]
+http://lb.streaming.sk/tvruzinov/stream/playlist.m3u8
+#EXTINF:-1 tvg-id="TVSen.sk@SD" tvg-name="TV Sen (540p)" tvg-logo="https://i.imgur.com/ckm2oLD.png" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",TV Sen (540p)
+http://95.105.193.219:88/hls/tvsen.m3u8
+#EXTINF:-1 tvg-id="TVSeverka.sk@SD" tvg-name="TV Severka (576p) [Not 24/7]" tvg-logo="https://i.imgur.com/oQSee9S.png" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",TV Severka (576p) [Not 24/7]
+http://88.212.7.11/live/test_severka_web_player/playlist.m3u8
+#EXTINF:-1 tvg-id="TVSkalica.sk@SD" tvg-name="TV Skalica (540p)" tvg-logo="https://i.imgur.com/GB8fMoJ.png" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",TV Skalica (540p)
+http://95.105.193.219:88/hls/tvs.m3u8
+#EXTINF:-1 tvg-id="TVStaraTura.sk@SD" tvg-name="TV Stara Tura (540p)" tvg-logo="https://i.imgur.com/kerkvRX.png" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",TV Stara Tura (540p)
+http://95.105.193.219:88/hls/tvst.m3u8
+#EXTINF:-1 tvg-id="TVVega.sk@SD" tvg-name="TV Vega (576p) [Not 24/7]" tvg-logo="https://i.imgur.com/Qw3NeLA.png" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",TV Vega (576p) [Not 24/7]
+http://88.212.7.11/live/test_tv_vega_web_player/playlist.m3u8
+#EXTINF:-1 tvg-id="VIATV.sk@SD" tvg-name="VIA TV" tvg-logo="https://web02.antik.sk/assets/img/channels/247e7974b5eeaeda06744f312d2bbc51.svg" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",VIA TV
+http://88.212.15.17/live/via_tv/index.m3u8
+#EXTINF:-1 tvg-id="VIATV.sk@SD" tvg-name="VIA TV" tvg-logo="https://web02.antik.sk/assets/img/channels/247e7974b5eeaeda06744f312d2bbc51.svg" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",VIA TV
+http://88.212.15.19/live/via_tv/index.m3u8
+#EXTINF:-1 tvg-id="VIOTV.sk@SD" tvg-name="VIO TV (480p)" tvg-logo="https://i.imgur.com/7EL3VZ5.png" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",VIO TV (480p)
+http://slovanet-livestream.ceelabs.com:1935/live/VioTV.stream_transcoded/playlist.m3u8
+#EXTINF:-1 tvg-id="ZapadoslovenskaTV.sk@SD" tvg-name="Zapadoslovenska TV" tvg-logo="https://i.imgur.com/D72Y1IB.png" group-title="Entertainment" tvg-country="Slovakia" tvg-language="Slovak",Zapadoslovenska TV
+https://dash2.antik.sk/live/test_zapadoslovenska/playlist.m3u8
+#EXTINF:-1 tvg-id="Jednotka.sk@SD" tvg-name="Jednotka" tvg-logo="https://i.imgur.com/aqVki9i.png" group-title="General" tvg-country="Slovakia" tvg-language="Slovak",Jednotka
+http://88.212.15.17/live/test_jednotka_25p/playlist.m3u8
+#EXTINF:-1 tvg-id="Jednotka.sk@SD" tvg-name="Jednotka" tvg-logo="https://i.imgur.com/aqVki9i.png" group-title="General" tvg-country="Slovakia" tvg-language="Slovak",Jednotka
+http://88.212.15.19/live/test_jednotka_25p/playlist.m3u8
+#EXTINF:-1 tvg-id="PrimaSK.sk@HD" tvg-name="like Gecko) Chrome/120.0.0.0 Safari/537.36" group-title="Undefined",Prima SK" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/f/fc/PRIMA_SK_logo_RGB.png" group-title="General" tvg-country="Slovakia" tvg-language="Slovak",like Gecko) Chrome/120.0.0.0 Safari/537.36" group-title="Undefined",Prima SK
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+http://88.212.15.17/live/test_prima_plus_25p/playlist.m3u8
+#EXTINF:-1 tvg-id="PrimaSK.sk@HD" tvg-name="like Gecko) Chrome/120.0.0.0 Safari/537.36" group-title="Undefined",Prima SK" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/f/fc/PRIMA_SK_logo_RGB.png" group-title="General" tvg-country="Slovakia" tvg-language="Slovak",like Gecko) Chrome/120.0.0.0 Safari/537.36" group-title="Undefined",Prima SK
+http://88.212.15.19/live/test_prima_plus_25p/playlist.m3u8
+#EXTINF:-1 tvg-id="PrimaKrimiSK.sk@HD" tvg-name="like Gecko) Chrome/130.0.0.0 Safari/537.36" group-title="Undefined",Prima Krimi SK" tvg-logo="https://www.jojgroup.sk/wp-content/uploads/PRIMA-KRIMI-SK-2-scaled.png" group-title="General" tvg-country="Slovakia" tvg-language="Slovak",like Gecko) Chrome/130.0.0.0 Safari/537.36" group-title="Undefined",Prima Krimi SK
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36
+http://88.212.15.17/live/prima_krimi_avc_25p/playlist.m3u8
+#EXTINF:-1 tvg-id="PrimaKrimiSK.sk@HD" tvg-name="like Gecko) Chrome/130.0.0.0 Safari/537.36" group-title="Undefined",Prima Krimi SK" tvg-logo="https://www.jojgroup.sk/wp-content/uploads/PRIMA-KRIMI-SK-2-scaled.png" group-title="General" tvg-country="Slovakia" tvg-language="Slovak",like Gecko) Chrome/130.0.0.0 Safari/537.36" group-title="Undefined",Prima Krimi SK
+http://88.212.15.19/live/prima_krimi_avc_25p/playlist.m3u8
+#EXTINF:-1 tvg-id="PrimaloveSK.sk@SD" tvg-name="like Gecko) Chrome/130.0.0.0 Safari/537.36" group-title="Undefined",Prima love SK (1080p)" tvg-logo="https://www.jojgroup.sk/wp-content/uploads/PRIMA-LOVE-1.png" group-title="General" tvg-country="Slovakia" tvg-language="Slovak",like Gecko) Chrome/130.0.0.0 Safari/537.36" group-title="Undefined",Prima love SK (1080p)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36
+http://88.212.15.17/live/prima_love_avc_25p/playlist.m3u8
+#EXTINF:-1 tvg-id="PrimaloveSK.sk@SD" tvg-name="like Gecko) Chrome/130.0.0.0 Safari/537.36" group-title="Undefined",Prima love SK (1080p)" tvg-logo="https://www.jojgroup.sk/wp-content/uploads/PRIMA-LOVE-1.png" group-title="General" tvg-country="Slovakia" tvg-language="Slovak",like Gecko) Chrome/130.0.0.0 Safari/537.36" group-title="Undefined",Prima love SK (1080p)
+http://88.212.15.19/live/prima_love_avc_25p/playlist.m3u8
+#EXTINF:-1 tvg-id="MTR.sk@SD" tvg-name="MTR (1080p)" tvg-logo="https://www.mtr.sk/img/logo-mtr-0.png" group-title="General" tvg-country="Slovakia" tvg-language="Slovak",MTR (1080p)
+https://cdnsk003.panaccess.com/local/Ruzomberok/index.m3u8
+#EXTINF:-1 tvg-id="NZTV.sk@SD" tvg-name="NZTV" tvg-logo="https://i.imgur.com/jGZlnzT.png" group-title="General" tvg-country="Slovakia" tvg-language="Slovak",NZTV
+https://dash2.antik.sk/live/test_nove_zamky/playlist.m3u8
+#EXTINF:-1 tvg-id="PrimaCoolSK.sk@SD" tvg-name="Prima Cool SK (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/0/06/Prima_COOL_SK_logo.png" group-title="General" tvg-country="Slovakia" tvg-language="Slovak",Prima Cool SK (1080p)
+http://88.212.15.17/live/prima_cool_avc_25p/playlist.m3u8
+#EXTINF:-1 tvg-id="PrimaCoolSK.sk@SD" tvg-name="Prima Cool SK (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/0/06/Prima_COOL_SK_logo.png" group-title="General" tvg-country="Slovakia" tvg-language="Slovak",Prima Cool SK (1080p)
+http://88.212.15.19/live/prima_cool_avc_25p/playlist.m3u8
+#EXTINF:-1 tvg-id="Senzi.sk@SD" tvg-name="Senzi (720p)" tvg-logo="https://i.imgur.com/1qJMmBu.png" group-title="General" tvg-country="Slovakia" tvg-language="Slovak",Senzi (720p)
+http://lb.streaming.sk/senzi/stream/playlist.m3u8
+#EXTINF:-1 tvg-id="TeleviziaMocenok.sk@SD" tvg-name="Televizia Mocenok (720p)" tvg-logo="https://i.imgur.com/psb8GxZ.png" group-title="General" tvg-country="Slovakia" tvg-language="Slovak",Televizia Mocenok (720p)
+https://5ca49f2417d90.streamlock.net/mocenok/livestream/playlist.m3u8
+#EXTINF:-1 tvg-id="TV8.sk@SD" tvg-name="TV8 (Slovakia) (576p)" tvg-logo="https://i.imgur.com/Z7URrp1.png" group-title="General" tvg-country="Slovakia" tvg-language="Slovak",TV8 (Slovakia) (576p)
+http://109.74.145.11:1935/tv8/ngrp:tv8.stream_all/playlist.m3u8
+#EXTINF:-1 tvg-id="TVT.sk@SD" tvg-name="TVT (Slovakia) (486p)" tvg-logo="https://i.imgur.com/QG0iZlG.png" group-title="General" tvg-country="Slovakia" tvg-language="Slovak",TVT (Slovakia) (486p)
+https://5ca49f2417d90.streamlock.net/live/turzovka/playlist.m3u8
+#EXTINF:-1 tvg-id="ducktvPLUS.sk@SD" tvg-name="ducktv PLUS" tvg-logo="https://i.imgur.com/RFhxfOx.png" group-title="Kids" tvg-country="Slovakia" tvg-language="Slovak",ducktv PLUS
+https://dash3.antik.sk/live/test_duck_plus/playlist.m3u8
+#EXTINF:-1 tvg-id="CanalPlusActionEurope.nl@Slovakia" tvg-name="Canal+ Action Europe Slovakia (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Canal%2B_Action_2024.svg/1920px-Canal%2B_Action_2024.svg.png" group-title="Movies" tvg-country="Slovakia" tvg-language="Slovak",Canal+ Action Europe Slovakia (720p)
+http://151.80.18.177:86/Canal+_Family_HD/index.m3u8
+#EXTINF:-1 tvg-id="24.sk@SD" tvg-name=":24 (1080p)" tvg-logo="https://i.imgur.com/tTCuczU.png" group-title="News" tvg-country="Slovakia" tvg-language="Slovak",:24 (1080p)
+http://88.212.15.17/live/test_trojka_25p/playlist.m3u8
+#EXTINF:-1 tvg-id="24.sk@SD" tvg-name=":24 (1080p)" tvg-logo="https://i.imgur.com/tTCuczU.png" group-title="News" tvg-country="Slovakia" tvg-language="Slovak",:24 (1080p)
+http://88.212.15.27/live/test_trojka_25p/playlist.m3u8
+#EXTINF:-1 tvg-id="AntikInfoTV.sk@HD" tvg-name="Antik Info TV (1080p)" tvg-logo="https://i.imgur.com/Q0qL60o.png" group-title="News" tvg-country="Slovakia" tvg-language="Slovak",Antik Info TV (1080p)
+https://dash4.antik.sk/live/test_infokanal_tizen/playlist.m3u8
+#EXTINF:-1 tvg-id="TVNRSR.sk@SD" tvg-name="TV NRSR (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/hsJsu3I.png" group-title="News" tvg-country="Slovakia" tvg-language="Slovak",TV NRSR (720p) [Not 24/7]
+https://n11.stv.livebox.sk/stv-tv/stv4.stream/playlist.m3u8
+#EXTINF:-1 tvg-id="TV9.sk@SD" tvg-name="TV9 (Slovakia)" tvg-logo="https://i.imgur.com/Sco4x8t.png" group-title="News" tvg-country="Slovakia" tvg-language="Slovak",TV9 (Slovakia)
+https://dash4.antik.sk/live/test_tv9/playlist.m3u8
+#EXTINF:-1 tvg-id="CanalPlusSport2SK.sk@SD" tvg-name="Canal+ Sport 2 SK" tvg-logo="https://static.wikia.nocookie.net/logopedia/images/a/ab/CANAL%2B_SPORT_2.svg/revision/latest?cb=20241028202739" group-title="Sports" tvg-country="Slovakia" tvg-language="Slovak",Canal+ Sport 2 SK
+http://rpprod.hbbtv.cdn.cra.cz:8080/hbbTV/cme-sk-canal-plus-sport2/live_fullhd?offsetSeconds=0
+#EXTINF:-1 tvg-id="CanalPlusSport3SK.sk@SD" tvg-name="Canal+ Sport 3 SK" tvg-logo="https://static.wikia.nocookie.net/logopedia/images/4/4c/CANAL%2B_SPORT_3.svg/revision/latest?cb=20241028202810" group-title="Sports" tvg-country="Slovakia" tvg-language="Slovak",Canal+ Sport 3 SK
+http://rpprod.hbbtv.cdn.cra.cz:8080/hbbTV/cme-sk-canal-plus-sport3/live_fullhd?offsetSeconds=0
+#EXTINF:-1 tvg-id="CanalPlusSport4SK.sk@SD" tvg-name="Canal+ Sport 4 SK" tvg-logo="https://static.wikia.nocookie.net/logopedia/images/8/82/CANAL%2B_SPORT_4.svg/revision/latest?cb=20241028202820" group-title="Sports" tvg-country="Slovakia" tvg-language="Slovak",Canal+ Sport 4 SK
+http://rpprod.hbbtv.cdn.cra.cz:8080/hbbTV/cme-sk-canal-plus-sport4/live_fullhd?offsetSeconds=0
+#EXTINF:-1 tvg-id="CanalPlusSport5SK.sk@SD" tvg-name="Canal+ Sport 5 SK" tvg-logo="https://static.wikia.nocookie.net/logopedia/images/3/39/CANAL%2B_SPORT_5.svg/revision/latest?cb=20241028202829" group-title="Sports" tvg-country="Slovakia" tvg-language="Slovak",Canal+ Sport 5 SK
+http://rpprod.hbbtv.cdn.cra.cz:8080/hbbTV/cme-sk-canal-plus-sport5/live_fullhd?offsetSeconds=0
+#EXTINF:-1 tvg-id="CanalPlusSport6SK.sk@SD" tvg-name="Canal+ Sport 6 SK" tvg-logo="https://static.wikia.nocookie.net/logopedia/images/3/3b/Canal%2B_Sport_6.svg/revision/latest?cb=20251106141229" group-title="Sports" tvg-country="Slovakia" tvg-language="Slovak",Canal+ Sport 6 SK
+http://rpprod.hbbtv.cdn.cra.cz:8080/hbbTV/cme-sk-canal-plus-sport6/live_fullhd?offsetSeconds=0
+#EXTINF:-1 tvg-id="CanalPlusSport7SK.sk@SD" tvg-name="Canal+ Sport 7 SK" tvg-logo="https://static.wikia.nocookie.net/logopedia/images/0/03/Canal%2B_Sport_7.svg/revision/latest?cb=20251106141245" group-title="Sports" tvg-country="Slovakia" tvg-language="Slovak",Canal+ Sport 7 SK
+http://rpprod.hbbtv.cdn.cra.cz:8080/hbbTV/cme-sk-canal-plus-sport7/live_fullhd?offsetSeconds=0
+#EXTINF:-1 tvg-id="CanalPlusSport8SK.sk@SD" tvg-name="Canal+ Sport 8 SK" tvg-logo="https://static.wikia.nocookie.net/logopedia/images/6/64/Canal%2B_Sport_8.svg/revision/latest?cb=20251106141257" group-title="Sports" tvg-country="Slovakia" tvg-language="Slovak",Canal+ Sport 8 SK
+http://rpprod.hbbtv.cdn.cra.cz:8080/hbbTV/cme-sk-canal-plus-sport8/live_fullhd?offsetSeconds=0
+#EXTINF:-1 tvg-id="CanalPlusSportSK.sk@SD" tvg-name="Canal+ Sport SK" tvg-logo="https://static.wikia.nocookie.net/logopedia/images/2/25/Canal%2B_Sport_2023.svg/revision/latest?cb=20230901182304" group-title="Sports" tvg-country="Slovakia" tvg-language="Slovak",Canal+ Sport SK
+http://rpprod.hbbtv.cdn.cra.cz:8080/hbbTV/cme-sk-canal-plus-sport/live_fullhd?offsetSeconds=0
+#EXTINF:-1 tvg-id="ArenaSport1.sk@SD" tvg-name="like Gecko) Chrome/149.0.0.0 Safari/537.3" group-title="Sports",Arena Sport 1" tvg-logo="https://i.imgur.com/2qf67zW.png" group-title="Sports" tvg-country="Slovakia" tvg-language="Slovak",like Gecko) Chrome/149.0.0.0 Safari/537.3" group-title="Sports",Arena Sport 1
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.3
+http://88.212.15.17/live/test_arenasport/playlist.m3u8
+#EXTINF:-1 tvg-id="ArenaSport1.sk@SD" tvg-name="like Gecko) Chrome/149.0.0.0 Safari/537.3" group-title="Sports",Arena Sport 1" tvg-logo="https://i.imgur.com/2qf67zW.png" group-title="Sports" tvg-country="Slovakia" tvg-language="Slovak",like Gecko) Chrome/149.0.0.0 Safari/537.3" group-title="Sports",Arena Sport 1
+http://88.212.15.19/live/test_arenasport/playlist.m3u8
+#EXTINF:-1 tvg-id="ArenaSport2.sk@SD" tvg-name="like Gecko) Chrome/149.0.0.0 Safari/537.3" group-title="Sports",Arena Sport 2" tvg-logo="https://i.imgur.com/Yq3Jf19.png" group-title="Sports" tvg-country="Slovakia" tvg-language="Slovak",like Gecko) Chrome/149.0.0.0 Safari/537.3" group-title="Sports",Arena Sport 2
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.3
+http://88.212.15.17/live/test_arenasport_dva/playlist.m3u8
+#EXTINF:-1 tvg-id="ArenaSport2.sk@SD" tvg-name="like Gecko) Chrome/149.0.0.0 Safari/537.3" group-title="Sports",Arena Sport 2" tvg-logo="https://i.imgur.com/Yq3Jf19.png" group-title="Sports" tvg-country="Slovakia" tvg-language="Slovak",like Gecko) Chrome/149.0.0.0 Safari/537.3" group-title="Sports",Arena Sport 2
+http://88.212.15.19/live/test_arenasport_dva/playlist.m3u8
+#EXTINF:-1 tvg-id="Sport.sk@SD" tvg-name="Sport (Slovakia) (1080p)" tvg-logo="https://i.imgur.com/oAtcxNZ.png" group-title="Sports" tvg-country="Slovakia" tvg-language="Slovak",Sport (Slovakia) (1080p)
+http://88.212.15.17/live/test_rtvs_sport_hevc/playlist.m3u8
+#EXTINF:-1 tvg-id="Sport.sk@SD" tvg-name="Sport (Slovakia) (1080p)" tvg-logo="https://i.imgur.com/oAtcxNZ.png" group-title="Sports" tvg-country="Slovakia" tvg-language="Slovak",Sport (Slovakia) (1080p)
+http://88.212.15.27/live/test_rtvs_sport_hevc/playlist.m3u8

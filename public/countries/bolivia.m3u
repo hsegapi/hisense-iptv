@@ -1,0 +1,151 @@
+#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
+
+#EXTINF:-1 tvg-id="CVC.bo@SD" tvg-name="CVC (1080p)" tvg-logo="https://i.imgur.com/taGdzLe.png" group-title="Devotional" tvg-country="Bolivia" tvg-language="Spanish",CVC (1080p)
+http://15.204.246.24:8080/CVCHD/index.m3u8
+#EXTINF:-1 tvg-id="PoderdeDiosTV.bo@SD" tvg-name="Poder de Dios TV (1080p)" tvg-logo="https://i.imgur.com/jUfRz3L.png" group-title="Devotional" tvg-country="Bolivia" tvg-language="Spanish",Poder de Dios TV (1080p)
+http://15.204.246.24:8080/PoderdeDiosHD/index.m3u8
+#EXTINF:-1 tvg-id="VTVCanal17.bo@SD" tvg-name="VTV Canal 17 (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/TUhFzql.png" group-title="Devotional" tvg-country="Bolivia" tvg-language="Spanish",VTV Canal 17 (720p) [Not 24/7]
+https://solo.disfrutaenlared.com:1936/vtvcanal/vtvcanal/playlist.m3u8
+#EXTINF:-1 tvg-id="TVOFF.bo@SD" tvg-name="TV OFF (1080p)" tvg-logo="https://i.imgur.com/vBe1GgI.png" group-title="Documentary" tvg-country="Bolivia" tvg-language="Spanish",TV OFF (1080p)
+https://edge.enhdtv.com/tvoff/index.m3u8
+#EXTINF:-1 tvg-id="AbyaYalaTV.bo@SD" tvg-name="Abya Yala TV (720p)" tvg-logo="https://abyayala.tv.bo/wp-content/uploads/2024/04/MOSCA-BLANCA-OK-308x189.png" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",Abya Yala TV (720p)
+http://15.204.246.24:8080/AbyaYalaTvHD/index.m3u8
+#EXTINF:-1 tvg-id="AmitelTV.bo@SD" tvg-name="Amitel TV (720p)" tvg-logo="https://amiteltv.com/wp-content/uploads/2026/01/LOGO-SIN-FONDO-WEB.png" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",Amitel TV (720p)
+https://stv2.boliviaplay.com.bo/hls/stream.m3u8
+#EXTINF:-1 tvg-id="AYNITV.bo@SD" tvg-name="AYNI TV (1080p)" tvg-logo="https://i.ibb.co/SPCkBR8/ayni-tv-bo.png" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",AYNI TV (1080p)
+http://15.204.246.24:8080/AyniTVHD/index.m3u8
+#EXTINF:-1 tvg-id="BoliviaTV.bo@SD" tvg-name="Bolivia TV (1080p)" tvg-logo="https://i.imgur.com/tKLYYys.png" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",Bolivia TV (1080p)
+http://190.181.61.93:8000/play/a001/index.m3u8
+#EXTINF:-1 tvg-id="Canal56QuieroTV.bo@SD" tvg-name="Canal 56 Quiero TV (720p)" tvg-logo="https://i.imgur.com/l9kDNld.jpeg" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",Canal 56 Quiero TV (720p)
+http://45.5.118.152:8000/play/a08z/index.m3u8
+#EXTINF:-1 tvg-id="CineramaTelevision.bo@SD" tvg-name="Cinerama Television (720p)" tvg-logo="https://play-lh.googleusercontent.com/RJ49IeJve4VPALBXqrqJGeAYOEoLQIZZ4zWwtJhofisng6ZYwGemZ-VXCx9ZQ-u7fw" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",Cinerama Television (720p)
+https://live.cineramatvbo.com/hls/stream.m3u8
+#EXTINF:-1 tvg-id="CoralTV.bo@SD" tvg-name="Coral TV (720p)" tvg-logo="https://i.ibb.co/xDrc5MD/CORALTv.png" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",Coral TV (720p)
+https://tv.mediacp.eu:8081/coraltv/index.m3u8
+#EXTINF:-1 tvg-id="DeltaTV.bo@SD" tvg-name="Delta TV" tvg-logo="https://i.imgur.com/FcciYMD.png" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",Delta TV
+https://st.deltaboliviainstitucion.org:3778/hybrid/play.m3u8
+#EXTINF:-1 tvg-id="FAPTV.bo@SD" tvg-name="FAP TV (720p)" tvg-logo="https://i.imgur.com/jZ7g58e.png" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",FAP TV (720p)
+https://edge.enhdtv.com/faptv/index.m3u8
+#EXTINF:-1 tvg-id="FidesTV.bo@SD" tvg-name="Fides TV (720p)" tvg-logo="https://i.imgur.com/fsDdvXx.png" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",Fides TV (720p)
+https://twitch-m3u8.bastypro112.workers.dev/radiofidesbolivia/index.m3u8
+#EXTINF:-1 tvg-id="FortalezaTVCueto.bo@SD" tvg-name="Fortaleza TV Cueto (720p)" tvg-logo="https://i.imgur.com/z4TfuxB.jpg" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",Fortaleza TV Cueto (720p)
+https://twitch-m3u8.bastypro112.workers.dev/tvfortalezacueto/index.m3u8
+#EXTINF:-1 tvg-id="ImperialTV.bo@SD" tvg-name="Imperial TV (720p)" tvg-logo="https://i.ibb.co/8XHSVWY/IMG-20210613-153444.png" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",Imperial TV (720p)
+https://tv.centaurychile.com/imperial/streams/EnCyCiwNLsqEQ2kv2852222720686498.m3u8
+#EXTINF:-1 tvg-id="PalenqueTV.bo@SD" tvg-name="Palenque TV (576p)" tvg-logo="https://i.imgur.com/wAIBvaO.png" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",Palenque TV (576p)
+http://15.204.246.24:8080/PalenqueTVSD/index.m3u8
+#EXTINF:-1 tvg-id="RadioMegaTVAmazonia.bo@SD" tvg-name="Radio Mega TV Amazonia (720p)" tvg-logo="https://i.imgur.com/yzSNWZ3.png" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",Radio Mega TV Amazonia (720p)
+https://ares.disfrutaenlared.com:1936/megatv/megatv/playlist.m3u8
+#EXTINF:-1 tvg-id="RadioUniversitariaSanAndres.bo@SD" tvg-name="Radio Universitaria San Andres (720p)" tvg-logo="https://tvu.umsa.bo/documents/780216/0/LogoRUSA+%283%29.jpg" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",Radio Universitaria San Andres (720p)
+https://edge.enhdtv.com/8054/index.m3u8
+#EXTINF:-1 tvg-id="RedAmericaTV.bo@SD" tvg-name="Red America TV (1080p)" tvg-logo="https://i.imgur.com/qYNmeDe.png" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",Red America TV (1080p)
+https://edge.enhdtv.com/redamerica/index.m3u8
+#EXTINF:-1 tvg-id="RedADvenirTV.bo@SD" tvg-name="RedADvenir TV (360p) [Not 24/7]" tvg-logo="https://i.imgur.com/WGkMt2j.png" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",RedADvenir TV (360p) [Not 24/7]
+http://streamer1.streamhost.org:1935/salive/GMIredadvenirm/playlist.m3u8
+#EXTINF:-1 tvg-id="SolTV.bo@SD" tvg-name="Sol TV (Bolivia) (720p)" tvg-logo="https://i.imgur.com/2m8PVpA.png" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",Sol TV (Bolivia) (720p)
+http://190.211.140.91:8081/SVTranscoder/SOLTVabr.stream/playlist.m3u8
+#EXTINF:-1 tvg-id="SucremantaTV.bo@SD" tvg-name="Sucremanta TV (720p)" tvg-logo="https://i.imgur.com/noN0Yhe.png" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",Sucremanta TV (720p)
+https://lbgo.bozztv.com/ssh101/ssh101/ok2026/playlist.m3u8
+#EXTINF:-1 tvg-id="TVCulturas.bo@SD" tvg-name="TV Culturas (576p)" tvg-logo="https://comteco.com.bo/img/upload/canales/lBVfEh.png" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",TV Culturas (576p)
+http://15.204.246.24:8080/TVCulturasSD/index.m3u8
+#EXTINF:-1 tvg-id="TVLatina.bo@SD" tvg-name="TV Latina (1080p)" tvg-logo="https://i.imgur.com/V6wxEdh.png" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",TV Latina (1080p)
+https://castv10.plugstreaming.com:19360/redtv/redtv.m3u8
+#EXTINF:-1 tvg-id="UPEATV.bo@SD" tvg-name="UPEA TV (720p)" tvg-logo="https://tvadmin.upea.bo/storage/imagenes_institucion/imagen_institucion_66cd025754fcb.png" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",UPEA TV (720p)
+#EXTVLCOPT:http-referrer=https://tv.upea.bo/live
+https://tvstream.upea.bo/hls/oSs0jSWumTFIIVY97559.m3u8
+#EXTINF:-1 tvg-id="VosTV.bo@SD" tvg-name="Vos TV (Bolivia) (720p)" tvg-logo="https://i.imgur.com/Cm1Xjeq.png" group-title="Entertainment" tvg-country="Bolivia" tvg-language="Spanish",Vos TV (Bolivia) (720p)
+http://15.204.246.24:8080/VOSTVHD/index.m3u8
+#EXTINF:-1 tvg-id="AsContenidos.bo@SD" tvg-name="As Contenidos (720p)" tvg-logo="https://ascontenidos.com.bo/wp-content/uploads/2023/07/cropped-logo512.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",As Contenidos (720p)
+https://master.tucableip.com/ascontenido/index.m3u8
+#EXTINF:-1 tvg-id="Bolivision.bo@SD" tvg-name="Bolivision (1080p)" tvg-logo="https://i.imgur.com/U98Z5zn.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",Bolivision (1080p)
+http://15.204.246.24:8080/BolivisionHD/index.m3u8
+#EXTINF:-1 tvg-id="BolivisionSantaCruz.bo@SD" tvg-name="Bolivision Santa Cruz (720p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/7/75/Bolivisi%C3%B3n2025.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",Bolivision Santa Cruz (720p)
+https://d1mws3umreue1g.cloudfront.net/index.m3u8
+#EXTINF:-1 tvg-id="Canal15Teleor.bo@SD" tvg-name="Canal 15 Teleor (720p)" tvg-logo="https://i.imgur.com/w8CB2On.jpeg" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",Canal 15 Teleor (720p)
+https://ares.disfrutaenlared.com:1936/activatv/activatv/playlist.m3u8
+#EXTINF:-1 tvg-id="CTV.bo@SD" tvg-name="CTV (Bolivia) (1080p)" tvg-logo="https://i.imgur.com/ljKb0UX.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",CTV (Bolivia) (1080p)
+http://15.204.246.24:8080/CTVHD/index.m3u8
+#EXTINF:-1 tvg-id="DialogoLaRedEducativa.bo@SD" tvg-name="Dialogo La Red Educativa (720p)" tvg-logo="https://dialogolarededucativa.com/wp-content/uploads/2024/02/cropped-cropped-314708081_105832265676231_8790041320160213071_n.jpg" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",Dialogo La Red Educativa (720p)
+https://twitch-m3u8.bastypro112.workers.dev/dialogolarededucativacbba/index.m3u8
+#EXTINF:-1 tvg-id="DmodaChannel.bo@SD" tvg-name="Dmoda Channel (1080p)" tvg-logo="https://dmoda.com.bo/wp-content/uploads/2025/07/09-LOGO-EN-BLANCO-LIGHT-380-X-180-pixeles.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",Dmoda Channel (1080p)
+https://master.tucableip.com/dmoda/index.m3u8
+#EXTINF:-1 tvg-id="ELDEBER.bo@SD" tvg-name="EL DEBER (1080p)" tvg-logo="https://www.trabajopolis.bo/attachment/images/cw600_ch315_sw585_sh300_clfff_q100_id618378_8e3aaf1db590f10.jpeg" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",EL DEBER (1080p)
+https://master.tucableip.com/eldebertv/index.m3u8
+#EXTINF:-1 tvg-id="F10HD.bo@SD" tvg-name="F10 HD (720p)" tvg-logo="https://i.imgur.com/OEsT0KN.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",F10 HD (720p)
+http://15.204.246.24:8080/F10HD/index.m3u8
+#EXTINF:-1 tvg-id="Gigavision.bo@SantaCruz" tvg-name="Gigavision (1080p)" tvg-logo="https://i.imgur.com/fE3BkcT.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",Gigavision (1080p)
+http://158.172.155.130:8000/play/a0e7/index.m3u8
+#EXTINF:-1 tvg-id="InteractivoTelevision.bo@SD" tvg-name="Interactivo Television (720p)" tvg-logo="https://i.imgur.com/sGOSDo2.jpeg" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",Interactivo Television (720p)
+https://mist01.homestream.fun/hls/interactivotv2/index.m3u8
+#EXTINF:-1 tvg-id="Megavision.bo@SD" tvg-name="Megavision (720p)" tvg-logo="https://i.imgur.com/IAQXCak.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",Megavision (720p)
+https://twitch-m3u8.bastypro112.workers.dev/megavisionbo/index.m3u8
+#EXTINF:-1 tvg-id="PAT.bo@SantaCruz" tvg-name="PAT (1080p)" tvg-logo="https://i.imgur.com/4A7R2Jt.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",PAT (1080p)
+http://158.172.155.130:8000/play/a0e6/index.m3u8
+#EXTINF:-1 tvg-id="PLUSTelevision.bo@SD" tvg-name="PLUS Television (720p)" tvg-logo="https://static-cdn.jtvnw.net/jtv_user_pictures/255c280c-fd59-466c-bf00-aeb973d78505-profile_banner-480.jpeg" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",PLUS Television (720p)
+https://twitch-m3u8.bastypro112.workers.dev/plustelevisionbolivia/index.m3u8
+#EXTINF:-1 tvg-id="PlusTLT.bo@SD" tvg-name="Plus TLT (720p)" group-title="General" tvg-country="Bolivia" tvg-language="English",Plus TLT (720p)
+http://15.204.246.24:8080/PlusTLTHD/index.m3u8
+#EXTINF:-1 tvg-id="PTV.bo@SD" tvg-name="PTV (Bolivia) (720p)" tvg-logo="https://i.imgur.com/vPvR7dX.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",PTV (Bolivia) (720p)
+https://giatv.bozztv.com/giatv/giatv-PTVonLINE/PTVonLINE/playlist.m3u8
+#EXTINF:-1 tvg-id="RadioCentro.bo@SD" tvg-name="Radio Centro (720p)" tvg-logo="https://static2.mytuner.mobi/media/tvos_radios/574/radio-centro-fm.e939fb1e.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",Radio Centro (720p)
+https://streamlov.alsolnet.com/grupocentrobo/live/playlist.m3u8
+#EXTINF:-1 tvg-id="RadioKollasuyo.bo@SD" tvg-name="Radio Kollasuyo (720p)" tvg-logo="https://kollasuyobucket.s3.amazonaws.com/wp_files/2022/08/01/rk-white-500.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",Radio Kollasuyo (720p)
+https://azura2.bitstreaming.net/hls/kollasuyo3/live.m3u8
+#EXTINF:-1 tvg-id="RadioSanGabriel.bo@SD" tvg-name="Radio San Gabriel (720p)" tvg-logo="https://static.mytuner.mobi/media/tvos_radios/bec3csmj7emx.jpg" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",Radio San Gabriel (720p)
+https://twitch-m3u8.bastypro112.workers.dev/radiosangabrielbolivia/index.m3u8
+#EXTINF:-1 tvg-id="RedCCTV.bo@SD" tvg-name="Red CCTV (480p)" tvg-logo="https://i.imgur.com/YC5FRmq.png" group-title="General" tvg-country="Bolivia" tvg-language="English",Red CCTV (480p)
+https://solo.disfrutaenlared.com:1936/redcctv/redcctv/playlist.m3u8
+#EXTINF:-1 tvg-id="RedDTV.bo@SD" tvg-name="Red DTV (1080p)" tvg-logo="https://i.imgur.com/fK0g2CK.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",Red DTV (1080p)
+http://15.204.246.24:8080/DTVHD/index.m3u8
+#EXTINF:-1 tvg-id="RedRubi.bo@SD" tvg-name="Red Rubi (720p)" tvg-logo="https://i.imgur.com/Y4KOypc.jpeg" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",Red Rubi (720p)
+https://59d39900ebfb8.streamlock.net/asiesmipueblo/asiesmipueblo/playlist.m3u8
+#EXTINF:-1 tvg-id="RedTVShop.bo@SD" tvg-name="Red TV Shop (720p)" tvg-logo="https://i.imgur.com/I7yB176.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",Red TV Shop (720p)
+https://master.tucableip.com/redtvshop/index.m3u8
+#EXTINF:-1 tvg-id="RedUno.bo@SantaCruz" tvg-name="Red Uno (1080p)" tvg-logo="https://i.imgur.com/wfNaEV9.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",Red Uno (1080p)
+http://190.181.61.93:8000/play/a002/index.m3u8
+#EXTINF:-1 tvg-id="RedUno.bo@SantaCruz" tvg-name="Red Uno (1080p) [Geo-blocked]" tvg-logo="https://i.imgur.com/wfNaEV9.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",Red Uno (1080p) [Geo-blocked]
+http://15.204.246.24:8080/RedUnoSCZHD/index.m3u8
+#EXTINF:-1 tvg-id="RedUno.bo@LaPaz" tvg-name="Red Uno La Paz (1080p)" tvg-logo="https://i.imgur.com/wfNaEV9.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",Red Uno La Paz (1080p)
+http://190.181.61.93:8000/play/a003/index.m3u8
+#EXTINF:-1 tvg-id="RedUno.bo@LaPaz" tvg-name="Red Uno La Paz (1080p) [Geo-blocked]" tvg-logo="https://i.imgur.com/wfNaEV9.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",Red Uno La Paz (1080p) [Geo-blocked]
+http://15.204.246.24:8080/RedUnoLPZHD/index.m3u8
+#EXTINF:-1 tvg-id="RTP.bo@SD" tvg-name="RTP (Bolivia) (1080p)" tvg-logo="https://i.imgur.com/cECNvvr.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",RTP (Bolivia) (1080p)
+http://190.181.61.93:8000/play/a00n/index.m3u8
+#EXTINF:-1 tvg-id="RTP.bo@SD" tvg-name="RTP (Bolivia) (576p)" tvg-logo="https://i.imgur.com/cECNvvr.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",RTP (Bolivia) (576p)
+https://rtp.noxun.net/hls720/stream3.m3u8
+#EXTINF:-1 tvg-id="SPCCanal15.bo@SD" tvg-name="SPC Canal 15 (720p)" tvg-logo="https://i.imgur.com/8GzjELt.jpeg" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",SPC Canal 15 (720p)
+https://tv.centaurychile.com/magicatv/streams/22AdscM3Y6Un17Zo4747081346569358.m3u8
+#EXTINF:-1 tvg-id="TDTMultimedia.bo@SD" tvg-name="TDT Multimedia (720p)" tvg-logo="https://i.imgur.com/JkCywl5.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",TDT Multimedia (720p)
+https://video01.brascast.com/juan6318/juan6318/playlist.m3u8
+#EXTINF:-1 tvg-id="TeleFeBolivia.bo@SD" tvg-name="Tele Fe Bolivia (720p)" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",Tele Fe Bolivia (720p)
+https://59d39900ebfb8.streamlock.net/telefehd/telefehd/playlist.m3u8
+#EXTINF:-1 tvg-id="TLEstrella.bo@SD" tvg-name="TL Estrella (720p)" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",TL Estrella (720p)
+https://59d39900ebfb8.streamlock.net/teleestrella/teleestrella/playlist.m3u8
+#EXTINF:-1 tvg-id="TransMedia.bo@SD" tvg-name="TransMedia (720p)" tvg-logo="https://i.imgur.com/tAdxar9.jpeg" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",TransMedia (720p)
+https://edge.enhdtv.com/8064/index.m3u8
+#EXTINF:-1 tvg-id="TVUSucre.bo@SD" tvg-name="TVU Sucre (720p)" tvg-logo="https://i.imgur.com/7c0b4Y4.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",TVU Sucre (720p)
+https://edge.enhdtv.com/8214/index.m3u8
+#EXTINF:-1 tvg-id="Unitel.bo@SantaCruz" tvg-name="Unitel (Bolivia) (1080p)" tvg-logo="https://i.imgur.com/B9wg1zj.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",Unitel (Bolivia) (1080p)
+http://190.181.61.93:8000/play/1909/index.m3u8
+#EXTINF:-1 tvg-id="UnivalleTelevision.bo@SD" tvg-name="Univalle Television (1080p)" tvg-logo="https://i.imgur.com/qgrWDIs.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",Univalle Television (1080p)
+https://master.tucableip.com/univalletv/playlist.m3u8
+#EXTINF:-1 tvg-id="XTOTV.bo@SD" tvg-name="XTOTV (720p)" tvg-logo="https://i.imgur.com/MLwLlWl.png" group-title="General" tvg-country="Bolivia" tvg-language="Spanish",XTOTV (720p)
+https://www.sccbolivia.com/dash/720p.mpd
+#EXTINF:-1 tvg-id="AlegriaTV.bo@SD" tvg-name="Alegria TV (720p)" tvg-logo="https://i.imgur.com/MIBZ2pZ.png" group-title="Music" tvg-country="Bolivia" tvg-language="Spanish",Alegria TV (720p)
+https://lbgo.bozztv.com/ssh101/ssh101/confirmatv/playlist.m3u8
+#EXTINF:-1 tvg-id="Audiokiss.bo@SD" tvg-name="Audiokiss (1080p)" tvg-logo="https://www.audiokiss.com/audiokiss/wp-content/uploads/sites/4/2021/02/Audio_kiss800-768x405.png" group-title="Music" tvg-country="Bolivia" tvg-language="Spanish",Audiokiss (1080p)
+https://master.tucableip.com/audiokisstv/index.m3u8
+#EXTINF:-1 tvg-id="RadioClasicaTV.bo@SD" tvg-name="Radio Clasica TV (720p)" tvg-logo="https://radioclasicapotosi.com/players/nexoplayer/assets/logo.png" group-title="Music" tvg-country="Bolivia" tvg-language="Spanish",Radio Clasica TV (720p)
+https://ares.disfrutaenlared.com:1936/clasica/clasica/playlist.m3u8
+#EXTINF:-1 tvg-id="CEACOMTV.bo@SD" tvg-name="CEACOM TV (1080p) [Not 24/7]" tvg-logo="https://i.imgur.com/hutdRfk.png" group-title="News" tvg-country="Bolivia" tvg-language="Spanish",CEACOM TV (1080p) [Not 24/7]
+https://eu1.servers10.com:8081/ceacom/index.m3u8
+#EXTINF:-1 tvg-id="Erbol.bo@SD" tvg-name="Erbol (720p)" tvg-logo="https://i.imgur.com/hn1KI7t.png" group-title="News" tvg-country="Bolivia" tvg-language="Spanish",Erbol (720p)
+https://twitch-m3u8.bastypro112.workers.dev/erboldigital/index.m3u8
+#EXTINF:-1 tvg-id="UMSATVULP.bo@SD" tvg-name="UMSA TVU LP (720p)" tvg-logo="https://tvu.umsa.bo/documents/780216/12171558/logo+tvu+icon.png/4367e79e-4541-d340-0e82-3943b73e7b18?t=1747686917412" group-title="News" tvg-country="Bolivia" tvg-language="Spanish",UMSA TVU LP (720p)
+https://edge.enhdtv.com/8190/index.m3u8
+#EXTINF:-1 tvg-id="ZuracaTV.bo@SD" tvg-name="Zuraca TV (720p)" tvg-logo="https://i.imgur.com/NsNytWD.jpeg" group-title="News" tvg-country="Bolivia" tvg-language="Spanish",Zuraca TV (720p)
+https://tv3.bitstreaming.net:3680/live/zuracatvlive.m3u8
+#EXTINF:-1 tvg-id="FTV.bo@SD" tvg-name="FTV (Bolivia) (720p)" tvg-logo="https://i.imgur.com/YOr1Oac.png" group-title="Sports" tvg-country="Bolivia" tvg-language="Spanish",FTV (Bolivia) (720p)
+https://master.tucableip.com/ftvhd/index.m3u8
+#EXTINF:-1 tvg-id="TigoSports.bo@SD" tvg-name="Tigo Sports (Bolivia) (720p) [Geo-blocked]" tvg-logo="https://i.imgur.com/6wkmgGM.png" group-title="Sports" tvg-country="Bolivia" tvg-language="Spanish",Tigo Sports (Bolivia) (720p) [Geo-blocked]
+https://dipdxjic51jcl.cloudfront.net/out/v1/81f769d780694be488d85811331c8a4f/index.m3u8

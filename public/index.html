@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Global IPTV Player</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#00d2ff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- HLS.js for M3U8 streaming -->
+  <script src="hls.min.js"></script>
+  <script>if (!window.Hls) { document.write('<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.7/dist/hls.min.js"><\/script>'); }</script>
+</head>
+<body>
+  <!-- Video Canvas -->
+  <div class="video-container" id="videoContainer">
+    <video id="videoPlayer" playsinline autoplay></video>
+    <div id="videoLoader" class="loader-overlay hidden">
+      <div class="spinner"></div>
+      <p id="loaderText">Loading Stream...</p>
+    </div>
+
+    <!-- Mobile Touch Controls on Video -->
+    <div class="mobile-video-controls">
+      <button id="mobileMuteBtn" class="mobile-ctrl-btn" title="Mute/Unmute" aria-label="Mute/Unmute">🔊</button>
+      <button id="mobileFullscreenBtn" class="mobile-ctrl-btn" title="Fullscreen" aria-label="Fullscreen">⛶</button>
+      <button id="mobileToggleDrawerBtn" class="mobile-ctrl-btn mobile-drawer-toggle" title="Toggle Channels" aria-label="Channels">📺</button>
+    </div>
+  </div>
+
+  <!-- TV Fullscreen Channel Zapper Overlay (Shows on CH+ / CH- without opening menu) -->
+  <div id="tvZapperBanner" class="tv-zapper-banner hidden">
+    <div class="zapper-content">
+      <div class="zapper-channel-badge" id="zapperChannelNum">CH 1</div>
+      <div class="zapper-details">
+        <div class="zapper-title-row">
+          <h2 id="zapperChannelTitle">Channel Name</h2>
+          <span id="zapperFavStar" class="channel-tag fav-badge hidden">★ Fav</span>
+        </div>
+        <span id="zapperChannelMeta" class="zapper-meta">Tamil • Entertainment</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Channel Navigation & Sidebar Overlay -->
+  <div id="osdContainer" class="osd-container visible">
+    <div class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-left">
+          <div class="logo-icon">📺</div>
+          <div class="brand-text">
+            <h1>Global IPTV</h1>
+            <span class="badge" id="totalBadge">11,900+ Channels</span>
+          </div>
+        </div>
+        <button id="closeDrawerBtn" class="drawer-close-btn" title="Close" aria-label="Close">✕</button>
+      </div>
+
+      <!-- Top Actions Bar -->
+      <div class="sidebar-actions top-actions">
+        <button id="toggleFavBtn" class="action-btn fav-btn" title="Toggle Favorite">⭐ Add Fav</button>
+        <button id="reloadPlaylistBtn" class="action-btn" title="Refresh Channels">🔄 Refresh</button>
+        <button id="addM3uBtn" class="action-btn" title="Add M3U Playlist">➕ Add M3U</button>
+      </div>
+
+      <!-- Active Channel Info Banner -->
+      <div id="infoBanner" class="info-banner">
+        <div class="current-channel-badge" id="channelNum">CH 1</div>
+        <div class="channel-details">
+          <h2 id="currentChannelTitle">Loading channels...</h2>
+          <span id="currentCategory" class="channel-cat">Select a channel to play</span>
+        </div>
+      </div>
+
+      <!-- Real-time Search Bar -->
+      <div class="search-container">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="channelSearch" placeholder="Search channels (e.g. Sun, Vijay, KTV, News)..." autocomplete="off" spellcheck="false">
+        <button id="clearSearchBtn" class="clear-search-btn hidden">&times;</button>
+      </div>
+
+      <!-- Quick Country / Region Filter Pills -->
+      <div class="lang-pills">
+        <button id="pillFav" class="lang-pill fav-pill" data-filter="fav">⭐ Fav (<span id="favBadge">0</span>)</button>
+        <button id="pillTamil" class="lang-pill tamil-pill active" data-lang="tamil">🔥 Tamil</button>
+        <button id="pillIN" class="lang-pill" data-country="India">🇮🇳 India</button>
+        <button id="pillAll" class="lang-pill" data-country="all">🌐 All</button>
+        <button id="pillUS" class="lang-pill" data-country="United States">🇺🇸 USA</button>
+        <button id="pillUK" class="lang-pill" data-country="United Kingdom">🇬🇧 UK</button>
+        <button id="pillCA" class="lang-pill" data-country="Canada">🇨🇦 Canada</button>
+      </div>
+
+      <!-- Side-by-Side Filter Dropdowns (Category First) -->
+      <div class="dropdowns-row">
+        <!-- Category Filter Dropdown -->
+        <div class="filter-dropdown-container">
+          <label for="categorySelect" class="dropdown-label">Category:</label>
+          <div class="select-wrapper">
+            <span class="dropdown-icon">📂</span>
+            <select id="categorySelect" class="tv-select">
+              <option value="Entertainment">🎬 Entertainment</option>
+              <option value="all">All Categories</option>
+            </select>
+            <span class="dropdown-arrow">▼</span>
+          </div>
+        </div>
+
+        <!-- Country Filter Dropdown -->
+        <div class="filter-dropdown-container">
+          <label for="countrySelect" class="dropdown-label">Country:</label>
+          <div class="select-wrapper">
+            <span class="dropdown-icon">🌍</span>
+            <select id="countrySelect" class="tv-select">
+              <option value="all">All Countries</option>
+            </select>
+            <span class="dropdown-arrow">▼</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Channel Counter & Status -->
+      <div class="list-status">
+        <span id="filterStatusText">Showing all channels</span>
+      </div>
+
+      <!-- Channel List -->
+      <div class="channel-list" id="channelList">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <!-- Remote Control Hints for TV (Hidden on mobile) -->
+      <div class="remote-hints">
+        <span><b>▲/▼</b> Move</span>
+        <span><b>[OK]</b> Play</span>
+        <span><b>[Back]</b> Fullscreen</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Playlist / Phone Sync Modal -->
+  <div id="modalOverlay" class="modal-overlay hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Load M3U Playlist</h2>
+        <button id="closeModalBtn" class="close-btn">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="phone-tip">
+          <span class="icon">💡</span>
+          <div>
+            <b>Tip:</b> Paste any M3U / M3U8 link or raw text to load external IPTV playlists.
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>M3U / M3U8 Playlist URL:</label>
+          <input type="text" id="m3uUrlInput" value="https://raw.githubusercontent.com/iptv-org/iptv/master/streams/in.m3u">
+        </div>
+
+        <div class="input-group">
+          <label>Or Paste Raw M3U Content:</label>
+          <textarea id="m3uRawInput" rows="4" placeholder="#EXTM3U&#10;#EXTINF:-1,Channel Name&#10;https://..."></textarea>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button id="savePlaylistBtn" class="btn btn-primary">Download & Save</button>
+        <button id="cancelModalBtn" class="btn btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

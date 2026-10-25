@@ -1,0 +1,14 @@
+#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
+
+#EXTINF:-1 tvg-id="IBNTV.tz@SD" tvg-name="IBN TV (480p)" tvg-logo="https://i.imgur.com/hkV51ij.png" group-title="Devotional" tvg-country="Tanzania" tvg-language="Swahili",IBN TV (480p)
+http://138.68.138.119:8080/live/5a8993709ea19/index.m3u8
+#EXTINF:-1 tvg-id="MahaasinTV.tz@SD" tvg-name="Mahaasin TV" tvg-logo="https://i.imgur.com/wdfdKvC.png" group-title="Devotional" tvg-country="Tanzania" tvg-language="Swahili",Mahaasin TV
+https://mahaasintv.livebox.co.in/mahaasintvhls/mahaasintv.m3u8
+#EXTINF:-1 tvg-id="TanzaniaSafariChannel.tz@SD" tvg-name="Tanzania Safari Channel (576p)" tvg-logo="https://i.imgur.com/fcLFYhn.png" group-title="Documentary" tvg-country="Tanzania" tvg-language="Swahili",Tanzania Safari Channel (576p)
+https://stream-134630.castr.net/5fe35eae8c53540cab83659a/live_31dabe40323511f08b8efff0016f3b67/index.m3u8
+#EXTINF:-1 tvg-id="DodomaTV.tz@SD" tvg-name="Dodoma TV (360p) [Not 24/7]" tvg-logo="https://i.imgur.com/bLq9eFa.png" group-title="Entertainment" tvg-country="Tanzania" tvg-language="Swahili",Dodoma TV (360p) [Not 24/7]
+https://goliveafrica.media:9998/live/625965017ed69/index.m3u8
+#EXTINF:-1 tvg-id="TBC2.tz@SD" tvg-name="TBC2 (1080p)" tvg-logo="https://i.imgur.com/VkUJt2q.png" group-title="Entertainment" tvg-country="Tanzania" tvg-language="Swahili",TBC2 (1080p)
+https://stream-134630.castr.net/5fe35eae8c53540cab83659a/live_44ed95e05b6d11f18d5d85805abbdd6f/index.m3u8
+#EXTINF:-1 tvg-id="TBC1.tz@SD" tvg-name="TBC1" tvg-logo="https://i.imgur.com/OmiVZ1u.png" group-title="General" tvg-country="Tanzania" tvg-language="Swahili",TBC1
+https://tbc.maintek.co/LiveApp/streams/YF43nTzH0duMyUA2130641323343587.m3u8
