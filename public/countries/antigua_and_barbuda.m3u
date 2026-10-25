@@ -1,4 +1,0 @@
-#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
-
-#EXTINF:-1 tvg-id="PointeTV.ag@SD" tvg-name="Pointe TV" tvg-logo="https://i.ibb.co/7tyD2kr/IMG-20240421-154850.jpg" group-title="Entertainment" tvg-country="Antigua and Barbuda" tvg-language="English",Pointe TV
-https://tv.pointville.ag/hls/mystream.m3u8

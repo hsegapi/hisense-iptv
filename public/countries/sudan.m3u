@@ -1,8 +1,0 @@
-#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
-
-#EXTINF:-1 tvg-id="AlAlamiya2.sd@SD" tvg-name="Al Alamiya 2" tvg-logo="https://i.imgur.com/5FrE3Nv.png" group-title="Documentary" tvg-country="Sudan" tvg-language="Arabic",Al Alamiya 2
-http://82.212.74.98:8000/live/7815.m3u8
-#EXTINF:-1 tvg-id="SudanTV.sd@SD" tvg-name="Sudan TV (360p)" tvg-logo="https://i.imgur.com/XUPAYAA.png" group-title="Entertainment" tvg-country="Sudan" tvg-language="Arabic",Sudan TV (360p)
-https://cdn-globecast.akamaized.net/live/eds/sudan_tv/hls_roku/index.m3u8
-#EXTINF:-1 tvg-id="DabangaTV.sd@SD" tvg-name="Dabanga TV (1080p)" tvg-logo="https://i.imgur.com/BH1N6TA.png" group-title="News" tvg-country="Sudan" tvg-language="Arabic",Dabanga TV (1080p)
-https://hls.dabangasudan.org/hls/stream.m3u8

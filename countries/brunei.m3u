@@ -1,6 +1,0 @@
-#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
-
-#EXTINF:-1 tvg-id="RTBGo.bn@SD" tvg-name="RTB Go (720p)" tvg-logo="https://i.imgur.com/CGlzsD5.png" group-title="General" tvg-country="Brunei" tvg-language="Malay",RTB Go (720p)
-https://d1211whpimeups.cloudfront.net/smil:rtbgo/playlist.m3u8
-#EXTINF:-1 tvg-id="RTBSukmaindera.bn@SD" tvg-name="RTB Sukmaindera (720p)" tvg-logo="https://i.imgur.com/WpMGnTr.png" group-title="General" tvg-country="Brunei" tvg-language="Malay",RTB Sukmaindera (720p)
-https://d1211whpimeups.cloudfront.net/smil:rtb1/playlist.m3u8

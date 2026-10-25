@@ -1,4 +1,0 @@
-#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
-
-#EXTINF:-1 tvg-id="BBCOne.uk@ChannelIslands" tvg-name="BBC One Channel Islands (720p) [Geo-blocked]" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/BBC_One_logo_2021.svg/960px-BBC_One_logo_2021.svg.png" group-title="News" tvg-country="Guernsey" tvg-language="English",BBC One Channel Islands (720p) [Geo-blocked]
-https://vs-cmaf-pushb-uk-live.akamaized.net/x=4/i=urn:bbc:pips:service:bbc_one_channel_islands/pc_hd_abr_v2.mpd

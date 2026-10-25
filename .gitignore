@@ -4,3 +4,11 @@ android/.gradle/
 *.apk
 server.log
 .DS_Store
+*.m3u
+categories/
+countries/
+languages/
+public/*.m3u
+public/categories/
+public/countries/
+

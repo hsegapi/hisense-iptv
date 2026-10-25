@@ -1,4 +1,0 @@
-#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
-
-#EXTINF:-1 tvg-id="TNTV.pf@SD" tvg-name="TNTV (1080p)" tvg-logo="https://i.imgur.com/e5eVHam.png" group-title="General" tvg-country="French Polynesia" tvg-language="Tahitian",TNTV (1080p)
-https://tntv-samsung-fr.amagi.tv/playlist.m3u8

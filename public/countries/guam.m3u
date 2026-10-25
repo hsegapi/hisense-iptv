@@ -1,4 +1,0 @@
-#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
-
-#EXTINF:-1 tvg-id="Star101FM.gu@SD" tvg-name="Star 101 FM [Not 24/7]" tvg-logo="https://star101.gu/images/fb_icon.jpg" group-title="Music" tvg-country="Guam" tvg-language="English",Star 101 FM [Not 24/7]
-https://live2.tensila.com/knut-v-1.choice/hls/master.m3u8

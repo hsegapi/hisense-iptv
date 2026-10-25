@@ -1,4 +1,0 @@
-#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
-
-#EXTINF:-1 tvg-id="TVCidade.cv@SD" tvg-name="TV Cidade" tvg-logo="https://i.imgur.com/gmSu21X.jpg" group-title="Music" tvg-country="Cape Verde" tvg-language="Portuguese",TV Cidade
-https://stmv1.srvif.com/tvcidade/tvcidade/playlist.m3u8
