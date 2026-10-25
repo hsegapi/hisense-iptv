@@ -1,0 +1,4 @@
+#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
+
+#EXTINF:-1 tvg-id="RASDTV.eh@SD" tvg-name="RASD TV (1080i)" tvg-logo="https://i.imgur.com/9Pb8806.png" group-title="Entertainment" tvg-country="Western Sahara" tvg-language="Spanish",RASD TV (1080i)
+https://cloud.streamingconnect.tv/hls/rasdtv2/rasdtv.m3u8

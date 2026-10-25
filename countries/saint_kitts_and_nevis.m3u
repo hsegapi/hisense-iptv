@@ -1,0 +1,8 @@
+#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
+
+#EXTINF:-1 tvg-id="ZIZTV.kn@SD" tvg-name="ZIZ TV (720p)" tvg-logo="https://i.imgur.com/fB09i6X.png" group-title="Entertainment" tvg-country="Saint Kitts and Nevis" tvg-language="English",ZIZ TV (720p)
+https://media.slactech.com:1936/ZIZDirect/ZIZDirect/playlist.m3u8
+#EXTINF:-1 tvg-id="NevisTelevision.kn@SD" tvg-name="Nevis Television" tvg-logo="https://i.imgur.com/u76GqAi.png" group-title="General" tvg-country="Saint Kitts and Nevis" tvg-language="English",Nevis Television
+https://media.slactech.com:1936/NTvDirect/ngrp:NTvDirect_all/playlist.m3u8
+#EXTINF:-1 tvg-id="TelevisionCaribbean.kn@SD" tvg-name="Television Caribbean (1080p)" tvg-logo="https://i.imgur.com/Ogw0COv.png" group-title="General" tvg-country="Saint Kitts and Nevis" tvg-language="English",Television Caribbean (1080p)
+https://live.kingdom-tv.com:3545/stream/play.m3u8

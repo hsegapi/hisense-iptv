@@ -1,0 +1,4 @@
+#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
+
+#EXTINF:-1 tvg-id="TeleTchad.td@SD" tvg-name="Tele Tchad (1080p)" tvg-logo="https://i.imgur.com/udSzfHD.png" group-title="General" tvg-country="Chad" tvg-language="French",Tele Tchad (1080p)
+https://strhlslb01.streamakaci.tv/str_tchad_tchad/str_tchad_multi/playlist.m3u8

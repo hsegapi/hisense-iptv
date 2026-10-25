@@ -1,0 +1,14 @@
+#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
+
+#EXTINF:-1 tvg-id="TVFamille.mq@SD" tvg-name="TV Famille (720p)" tvg-logo="https://i.imgur.com/Kbfihk5.png" group-title="Devotional" tvg-country="Martinique" tvg-language="French",TV Famille (720p)
+https://streamer1.streamhost.org/salive/GMItvfh/playlist.m3u8
+#EXTINF:-1 tvg-id="ZitataTV.mq@SD" tvg-name="Zitata TV" tvg-logo="https://i.imgur.com/KJmefse.png" group-title="Entertainment" tvg-country="Martinique" tvg-language="French",Zitata TV
+https://live.zitata.tv/direct-hls/playlist.m3u8
+#EXTINF:-1 tvg-id="ViaATV.mq@SD" tvg-name="ViaATV (1080p) [Geo-blocked]" tvg-logo="https://i.imgur.com/Ua6rOXo.png" group-title="General" tvg-country="Martinique" tvg-language="French",ViaATV (1080p) [Geo-blocked]
+https://streamer01.myvideoplace.tv/streamer02/hls/ATV_DIRECT_EV_111018.m3u8
+#EXTINF:-1 tvg-id="FUSIONTV.mq@SD" tvg-name="FUSION TV (1080p)" tvg-logo="https://i.imgur.com/WMrYEgH.png" group-title="Music" tvg-country="Martinique" tvg-language="French",FUSION TV (1080p)
+https://edge20.vedge.infomaniak.com/livecast/ik:fusiontv/manifest.m3u8
+#EXTINF:-1 tvg-id="IdentiteTeleCaraibes.mq@SD" tvg-name="Identite Tele Caraibes (548p)" tvg-logo="https://i.imgur.com/Atsf6Cd.png" group-title="Music" tvg-country="Martinique" tvg-language="French",Identite Tele Caraibes (548p)
+https://vdo2.pro-fhi.net:3769/stream/play.m3u8
+#EXTINF:-1 tvg-id="TeleZoukla.mq@SD" tvg-name="Tele Zoukla" tvg-logo="https://i.imgur.com/lWYKgPC.png" group-title="Music" tvg-country="Martinique" tvg-language="French",Tele Zoukla
+https://vdo.pro-fhi.net:3228/stream/play.m3u8

@@ -1,0 +1,24 @@
+#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
+
+#EXTINF:-1 tvg-id="DudelangeTV.lu@SD" tvg-name="Dudelange TV (720p)" tvg-logo="https://i.imgur.com/2dLYZsc.png" group-title="Entertainment" tvg-country="Luxembourg" tvg-language="Letzeburgesch",Dudelange TV (720p)
+https://streamer20.multimedia.blue/Eltrona/DudelangeTV/playlist.m3u8
+#EXTINF:-1 tvg-id="eldoTV.lu@SD" tvg-name="eldo.TV (1080p)" tvg-logo="https://i.imgur.com/vCMQLlt.png" group-title="Entertainment" tvg-country="Luxembourg" tvg-language="Letzeburgesch",eldo.TV (1080p)
+https://stream.eldo.lu/data/live/tele/eldotv/1080p.m3u8
+#EXTINF:-1 tvg-id="RTLWebRadioTV.lu@SD" tvg-name="RTL Web Radio TV (1080p)" tvg-logo="https://i.imgur.com/qyc8LsE.png" group-title="Entertainment" tvg-country="Luxembourg" tvg-language="Letzeburgesch",RTL Web Radio TV (1080p)
+https://rtlradio-streaming.rtl.lu/rtlradiowebtv/smil:rtlradiowebtv/playlist.m3u8
+#EXTINF:-1 tvg-id="MierschTV.lu@SD" tvg-name="MierschTV" tvg-logo="https://i.imgur.com/Vdc1GYP.jpg" group-title="General" tvg-country="Luxembourg" tvg-language="Letzeburgesch",MierschTV
+https://streamer20.multimedia.blue/Post/MerschTV_IPTV/playlist.m3u8
+#EXTINF:-1 tvg-id="RTLTeleLetzebuerg.lu@SD" tvg-name="RTL Tele Letzebuerg (1080p)" tvg-logo="https://i.imgur.com/fkW5Gbl.png" group-title="General" tvg-country="Luxembourg" tvg-language="Letzeburgesch",RTL Tele Letzebuerg (1080p)
+https://live-edge.rtl.lu/channel1/smil:channel1/playlist.m3u8
+#EXTINF:-1 tvg-id="RTLZwee.lu@SD" tvg-name="RTL Zwee (1080p)" tvg-logo="https://i.imgur.com/7SmCtyy.png" group-title="General" tvg-country="Luxembourg" tvg-language="Letzeburgesch",RTL Zwee (1080p)
+https://live-edge.rtl.lu/channel2/smil:channel2/playlist.m3u8
+#EXTINF:-1 tvg-id="apartTV.lu@SD" tvg-name="apart TV (1080p)" tvg-logo="https://i.imgur.com/IBcMIcZ.png" group-title="Lifestyle" tvg-country="Luxembourg" tvg-language="Letzeburgesch",apart TV (1080p)
+https://2-fss-2.streamhoster.com/pl_124/206820-4338160-1/playlist.m3u8
+#EXTINF:-1 tvg-id="LuxeTV.lu@SD" tvg-name="Luxe TV (1080p)" tvg-logo="https://i.imgur.com/24ehonx.png" group-title="Lifestyle" tvg-country="Luxembourg" tvg-language="Russian",Luxe TV (1080p)
+http://103.154.3.101:5001/live/1736.m3u8
+#EXTINF:-1 tvg-id="LuxembourgGlobalRadioTV.lu@HD" tvg-name="Luxembourg Global Radio TV (1080p)" tvg-logo="https://globalradio.lu/wp-content/uploads/2025/03/Mask-Group-1.jpg#10" group-title="Lifestyle" tvg-country="Luxembourg" tvg-language="English",Luxembourg Global Radio TV (1080p)
+https://stream.globalradio.lu/lgr/index.m3u8
+#EXTINF:-1 tvg-id="RTLGold.lu@SD" tvg-name="RTL Gold (Luxembourg) (1080p)" tvg-logo="https://i.imgur.com/LzHQoUv.png" group-title="Music" tvg-country="Luxembourg" tvg-language="Letzeburgesch",RTL Gold (Luxembourg) (1080p)
+https://stream.rtl.lu/data/live/tele/rtlgold/playlist.m3u8
+#EXTINF:-1 tvg-id="TodayRadio.lu@SD" tvg-name="Today Radio (720p)" tvg-logo="https://i.imgur.com/O1c6wpt.png" group-title="Music" tvg-country="Luxembourg" tvg-language="English",Today Radio (720p)
+https://stream.rtl.lu/data/live/tele/rtltodayradio/playlist.m3u8

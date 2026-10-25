@@ -1,0 +1,11 @@
+#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
+
+#EXTINF:-1 tvg-id="TanasuhTV.ly@HD" tvg-name="Tanasuh TV (1080p)" tvg-logo="https://i.imgur.com/iBAhM2v.png" group-title="Entertainment" tvg-country="Libya" tvg-language="Arabic",Tanasuh TV (1080p)
+https://kilolink.pulsarstarsolutions.com/live/smil:tanasuhtv.smil/manifest.m3u8
+#EXTINF:-1 tvg-id="WasatTV.ly@SD" tvg-name="Wasat TV (1080p)" tvg-logo="https://i.imgur.com/f9pL2NE.png" group-title="Entertainment" tvg-country="Libya" tvg-language="Arabic",Wasat TV (1080p)
+#EXTVLCOPT:http-referrer=https://alwasat.ly/
+https://alwasattv.hibridcdn.net/alwasattv/alwasat_abr/playlist.m3u8
+#EXTINF:-1 tvg-id="LibyaAlWataniya.ly@SD" tvg-name="Libya Al Wataniya (360p)" tvg-logo="https://i.imgur.com/KSUny9D.jpeg" group-title="General" tvg-country="Libya" tvg-language="Arabic",Libya Al Wataniya (360p)
+https://cdn-globecast.akamaized.net/live/eds/libya_al_watanya/hls_roku/index.m3u8
+#EXTINF:-1 tvg-id="AlMasarTV.ly@SD" tvg-name="Al Masar TV (576p)" tvg-logo="https://play-lh.googleusercontent.com/FHPrsr391mPFqKfTq6ZdvWPZNVfsZeTAVQ8rjQF-NosnRdNipUy5xa43RWkiF4tGcQU" group-title="News" tvg-country="Libya" tvg-language="Arabic",Al Masar TV (576p)
+https://starmenajo.com/hls/almasar/index.m3u8

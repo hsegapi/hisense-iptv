@@ -1,0 +1,34 @@
+#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
+
+#EXTINF:-1 tvg-id="MiddleEastTV.cy@SD" tvg-name="Middle East TV (1080p)" tvg-logo="https://i.imgur.com/oKU5KeW.png" group-title="Devotional" tvg-country="Cyprus" tvg-language="English",Middle East TV (1080p)
+https://content.uplynk.com/channel/9d35b73c264946d5945db6cdff26336e.m3u8
+#EXTINF:-1 tvg-id="Sat7Kids.cy@SD" tvg-name="Sat 7 Kids (1080p)" tvg-logo="https://i.imgur.com/M0ik0i2.png" group-title="Devotional" tvg-country="Cyprus" tvg-language="Arabic",Sat 7 Kids (1080p)
+https://svs.itworkscdn.net/sat7kidslive/sat7kids.smil/playlist_dvr.m3u8
+#EXTINF:-1 tvg-id="Sat7Pars.cy@SD" tvg-name="Sat 7 Pars" tvg-logo="https://i.imgur.com/VTLQeul.png" group-title="Devotional" tvg-country="Cyprus" tvg-language="Persian",Sat 7 Pars
+https://sat7phls.wns.live/hls/stream.m3u8
+#EXTINF:-1 tvg-id="AdaTV.cy@SD" tvg-name="Ada TV" tvg-logo="https://i.imgur.com/YWmkUWU.png" group-title="Entertainment" tvg-country="Cyprus" tvg-language="Turkish",Ada TV
+https://yayin1.canlitv.fun/live/kibrisadatv.stream/playlist.m3u8
+#EXTINF:-1 tvg-id="ANT1Cyprus.cy@SD" tvg-name="ANT1 Cyprus (1080p)" tvg-logo="https://i.imgur.com/2KAObBt.png" group-title="Entertainment" tvg-country="Cyprus" tvg-language="Greek",ANT1 Cyprus (1080p)
+http://l2.cloudskep.com/ant1cm2/abr/playlist.m3u8
+#EXTINF:-1 tvg-id="SigmaTV.cy@SD" tvg-name="Sigma TV (576p) [Not 24/7]" tvg-logo="https://i.imgur.com/DXKx102.png" group-title="Entertainment" tvg-country="Cyprus" tvg-language="Greek",Sigma TV (576p) [Not 24/7]
+https://sl2.sigmatv.com/hls/live.m3u8
+#EXTINF:-1 tvg-id="CityChannel.cy@SD" tvg-name="City Channel (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/oo2fxta.png" group-title="General" tvg-country="Cyprus" tvg-language="Greek",City Channel (720p) [Not 24/7]
+https://dev.aftermind.xyz/edge-hls/unitrust/citychannel/index.m3u8?token=8TXWzhY3h6jrzqEqx
+#EXTINF:-1 tvg-id="ERTCosmosCyprus.cy@HD" tvg-name="ERT Cosmos Cyprus (1080p)" tvg-logo="https://www.ert.gr/wp-content/uploads/2026/05/ert-cosmos-cyprus.svg" group-title="General" tvg-country="Cyprus" tvg-language="Greek",ERT Cosmos Cyprus (1080p)
+https://ert-live.ascdn.broadpeak.io/bpk-tv/ERTCosmos_Cyprus/default/index.m3u8
+#EXTINF:-1 tvg-id="OmegaChannel.cy@SD" tvg-name="Omega Channel (576i)" tvg-logo="https://i.ibb.co/QrSzNn6/31087.png" group-title="General" tvg-country="Cyprus" tvg-language="Greek",Omega Channel (576i)
+https://l1.cloudskep.com/omegatv/omcy/playlist.m3u8
+#EXTINF:-1 tvg-id="RIK1.cy@SD" tvg-name="RIK 1" tvg-logo="https://i.imgur.com/31eq4lS.png" group-title="General" tvg-country="Cyprus" tvg-language="Greek",RIK 1
+http://213.7.216.229:8888/udp/239.23.0.1:1234
+#EXTINF:-1 tvg-id="RIK2.cy@SD" tvg-name="RIK 2" tvg-logo="https://i.imgur.com/EZUDmtI.png" group-title="General" tvg-country="Cyprus" tvg-language="Greek",RIK 2
+http://213.7.216.229:8888/udp/239.23.0.2:1234
+#EXTINF:-1 tvg-id="RIKHD.cy@SD" tvg-name="RIK HD" tvg-logo="https://i.imgur.com/xQnHaPy.png" group-title="General" tvg-country="Cyprus" tvg-language="Greek",RIK HD
+http://213.7.216.229:8888/udp/239.23.0.5:1234
+#EXTINF:-1 tvg-id="RIKSat.cy@SD" tvg-name="RIK Sat (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/BIKwFhD.png" group-title="General" tvg-country="Cyprus" tvg-language="Greek",RIK Sat (720p) [Not 24/7]
+https://l3.cloudskep.com/cybcsat/abr/playlist.m3u8
+#EXTINF:-1 tvg-id="Sat7Arabic.cy@SD" tvg-name="Sat 7 Arabic (240p)" tvg-logo="https://i.imgur.com/BzDjQeQ.png" group-title="General" tvg-country="Cyprus" tvg-language="Arabic",Sat 7 Arabic (240p)
+https://svs.itworkscdn.net/sat7arabiclive/sat7arabic.smil/playlist_dvr.m3u8
+#EXTINF:-1 tvg-id="VouliTV.cy@SD" tvg-name="Vouli TV (1080p) [Not 24/7]" tvg-logo="https://i.ibb.co/tzQ3jCR/cropped-VOULI-TV-LOGO-HIGH-RESOLUTION-BLUE.png" group-title="News" tvg-country="Cyprus" tvg-language="Greek",Vouli TV (1080p) [Not 24/7]
+https://dev.aftermind.xyz/edge-hls/unitrust/voulitv/index.m3u8?token=8TXWzhY3h6jrzqEqx
+#EXTINF:-1 tvg-id="AlfaSport.cy@SD" tvg-name="Alfa Sport (1080p) [Not 24/7]" tvg-logo="https://i.imgur.com/vhMPYIW.png" group-title="Sports" tvg-country="Cyprus" tvg-language="Greek",Alfa Sport (1080p) [Not 24/7]
+https://dev.aftermind.xyz/edge-hls/unitrust/alfasports/index.m3u8?token=8TXWzhY3h6jrzqEqx

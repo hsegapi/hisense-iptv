@@ -1,0 +1,4 @@
+#EXTM3U x-tvg-url="https://worker-9dd4.onrender.com/guide.xml.gz" tvg-shift=0
+
+#EXTINF:-1 tvg-id="TV3.ws@SD" tvg-name="TV3 (Samoa) (720p) [Not 24/7]" tvg-logo="https://i.imgur.com/VT2Tqmr.png" group-title="General" tvg-country="Samoa" tvg-language="Samoan",TV3 (Samoa) (720p) [Not 24/7]
+https://customer-ezarl905qqr949qs.cloudflarestream.com/856e914abd09e036ce9ce4fa649278b2/manifest/video.m3u8
