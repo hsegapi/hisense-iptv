@@ -102,11 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     saveFavorites();
 
-    if (languageFilter === 'favorites') {
-      renderChannels();
-    } else {
-      renderChannels(true);
-    }
+    invalidateChannelFilter();
+    renderChannels();
   }
 
   function updateFavUI() {
@@ -197,13 +194,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3500);
   }
 
+  let lastPlayingIndex = -1;
+
   // Play specified channel
   function playChannel(filteredIndex, resetTimer = true) {
     const list = getFilteredChannels();
     const channel = list[filteredIndex];
     if (!channel) return;
 
+    // Highlight playing item efficiently without querying the whole DOM
+    const children = channelListEl.children;
+    if (lastPlayingIndex >= 0 && lastPlayingIndex < children.length) {
+      children[lastPlayingIndex].classList.remove('playing');
+    }
     activeChannelIndex = filteredIndex;
+    if (filteredIndex >= 0 && filteredIndex < children.length) {
+      children[filteredIndex].classList.add('playing');
+      lastPlayingIndex = filteredIndex;
+    }
+
     showLoader(`Opening ${channel.name}...`);
     if (resetTimer && osdContainer.classList.contains('visible')) {
       resetOsdTimer();
@@ -212,14 +221,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update banner
     channelNumEl.textContent = `CH ${filteredIndex + 1}`;
     channelTitleEl.textContent = channel.name;
-    const isTam = isTamilChannel(channel);
+    const isTam = channel._isTamil !== undefined ? channel._isTamil : isTamilChannel(channel);
     const ctry = channel.country ? `${channel.country} • ` : '';
     channelCatEl.textContent = `${ctry}${isTam ? 'Tamil • ' : ''}${channel.category || 'Live'}`;
-
-    // Highlight playing item
-    document.querySelectorAll('.channel-item').forEach((item, idx) => {
-      item.classList.toggle('playing', idx === filteredIndex);
-    });
 
     updateFavUI();
 
@@ -232,6 +236,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  let zapDebounceTimeout = null;
+
   function playNextChannel() {
     const list = getFilteredChannels();
     if (!list.length) return;
@@ -243,11 +249,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     focusedIndex = nextIndex;
     const isMenuOpen = osdContainer.classList.contains('visible');
-    playChannel(nextIndex, isMenuOpen);
 
     if (!isMenuOpen) {
+      activeChannelIndex = nextIndex;
       showBriefChannelBanner(list[nextIndex], nextIndex);
+      if (zapDebounceTimeout) clearTimeout(zapDebounceTimeout);
+      zapDebounceTimeout = setTimeout(() => {
+        playChannel(nextIndex, false);
+      }, 250);
     } else {
+      playChannel(nextIndex, true);
       updateFocus();
     }
   }
@@ -263,11 +274,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     focusedIndex = prevIndex;
     const isMenuOpen = osdContainer.classList.contains('visible');
-    playChannel(prevIndex, isMenuOpen);
 
     if (!isMenuOpen) {
+      activeChannelIndex = prevIndex;
       showBriefChannelBanner(list[prevIndex], prevIndex);
+      if (zapDebounceTimeout) clearTimeout(zapDebounceTimeout);
+      zapDebounceTimeout = setTimeout(() => {
+        playChannel(prevIndex, false);
+      }, 250);
     } else {
+      playChannel(prevIndex, true);
       updateFocus();
     }
   }
@@ -289,41 +305,58 @@ document.addEventListener('DOMContentLoaded', () => {
     return tamilKeywords.test(ch.name) || (ch.id && /tamil|\.ta@/i.test(ch.id)) || (ch.category && /tamil/i.test(ch.category));
   }
 
+  let cachedFilteredChannels = null;
+
+  function invalidateChannelFilter() {
+    cachedFilteredChannels = null;
+  }
+
   // Filter channels by Country, Category, Language & Search
   function getFilteredChannels() {
-    return channels.filter(c => {
+    if (cachedFilteredChannels) {
+      return cachedFilteredChannels;
+    }
+
+    const q = searchQuery ? searchQuery.toLowerCase() : '';
+    const isFavFilter = languageFilter === 'favorites';
+    const isTamFilter = languageFilter === 'tamil';
+    const hasCountryFilter = currentCountry !== 'all';
+    const ctryLower = hasCountryFilter ? currentCountry.toLowerCase() : '';
+    const hasCategoryFilter = currentCategory !== 'all';
+
+    cachedFilteredChannels = channels.filter(c => {
       // Favorites filter
-      if (languageFilter === 'favorites') {
+      if (isFavFilter) {
         return isChannelFavorite(c);
       }
 
-      const isTam = isTamilChannel(c);
-
       // Language check
-      if (languageFilter === 'tamil' && !isTam) return false;
+      const isTam = c._isTamil !== undefined ? c._isTamil : isTamilChannel(c);
+      if (isTamFilter && !isTam) return false;
 
       // Country check
-      if (currentCountry !== 'all') {
-        const ctry = c.country || 'International';
-        if (ctry.toLowerCase() !== currentCountry.toLowerCase()) return false;
+      if (hasCountryFilter) {
+        const ctry = c._lowerCountry || (c.country || 'International').toLowerCase();
+        if (ctry !== ctryLower) return false;
       }
 
       // Category check
-      if (currentCategory !== 'all') {
+      if (hasCategoryFilter) {
         if (c.category !== currentCategory) return false;
       }
 
       // Search query check (matches name, country, or category)
-      if (searchQuery) {
-        const q = searchQuery.toLowerCase();
-        const matchName = c.name && c.name.toLowerCase().includes(q);
-        const matchCountry = c.country && c.country.toLowerCase().includes(q);
-        const matchCategory = c.category && c.category.toLowerCase().includes(q);
+      if (q) {
+        const matchName = c._lowerName && c._lowerName.includes(q);
+        const matchCountry = c._lowerCountry && c._lowerCountry.includes(q);
+        const matchCategory = c._lowerCategory && c._lowerCategory.includes(q);
         if (!matchName && !matchCountry && !matchCategory) return false;
       }
 
       return true;
     });
+
+    return cachedFilteredChannels;
   }
 
   // Populate Country Dropdown
@@ -534,13 +567,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  let lastFocusedIndex = -1;
+
   // Render Channel List
   function renderChannels(isAppend = false) {
+    if (!isAppend) {
+      invalidateChannelFilter();
+    }
     const list = getFilteredChannels();
 
     if (!isAppend) {
       channelListEl.innerHTML = '';
       renderedCount = Math.min(120, list.length);
+      lastFocusedIndex = -1;
+      lastPlayingIndex = -1;
     }
 
     const ctryLabel = currentCountry === 'all' ? 'All Countries' : currentCountry;
@@ -576,6 +616,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const startIndex = isAppend ? channelListEl.children.length : 0;
     const displayList = list.slice(startIndex, renderedCount);
+    const fragment = document.createDocumentFragment();
 
     displayList.forEach((ch, idxOffset) => {
       const idx = startIndex + idxOffset;
@@ -586,7 +627,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const displayName = ch.name || `Channel ${idx + 1}`;
       const categoryTag = ch.category || 'Live';
       const countryTag = ch.country || 'Global';
-      const isTam = isTamilChannel(ch);
+      const isTam = ch._isTamil !== undefined ? ch._isTamil : isTamilChannel(ch);
       const isFav = isChannelFavorite(ch);
 
       item.innerHTML = `
@@ -608,10 +649,14 @@ document.addEventListener('DOMContentLoaded', () => {
         playChannel(idx);
       });
 
-      channelListEl.appendChild(item);
+      fragment.appendChild(item);
     });
 
+    channelListEl.appendChild(fragment);
+
     if (!isAppend) {
+      lastFocusedIndex = focusedIndex;
+      lastPlayingIndex = activeChannelIndex;
       scrollFocusedIntoView();
     }
   }
@@ -628,23 +673,31 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
+    if (!text) return '';
+    return String(text)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
   }
 
   function updateFocus() {
-    const items = channelListEl.querySelectorAll('.channel-item');
-    items.forEach((item, idx) => {
-      item.classList.toggle('focused', idx === focusedIndex);
-    });
+    const children = channelListEl.children;
+    if (lastFocusedIndex >= 0 && lastFocusedIndex < children.length) {
+      children[lastFocusedIndex].classList.remove('focused');
+    }
+    if (focusedIndex >= 0 && focusedIndex < children.length) {
+      children[focusedIndex].classList.add('focused');
+      lastFocusedIndex = focusedIndex;
+    }
     scrollFocusedIntoView();
   }
 
   function scrollFocusedIntoView() {
     const focusedEl = channelListEl.children[focusedIndex];
     if (focusedEl) {
-      focusedEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      focusedEl.scrollIntoView({ block: 'nearest', behavior: 'auto' });
     }
   }
 
@@ -1009,6 +1062,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (res.ok) {
         channels = await res.json();
+        // One-time precomputation for instant O(1) D-pad navigation and filtering
+        channels.forEach(c => {
+          c._isTamil = isTamilChannel(c);
+          c._lowerName = (c.name || '').toLowerCase();
+          c._lowerCountry = (c.country || 'International').toLowerCase();
+          c._lowerCategory = (c.category || 'Live').toLowerCase();
+        });
       }
     } catch (e) {
       console.warn('Could not fetch playlist:', e);
