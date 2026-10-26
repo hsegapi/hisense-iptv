@@ -788,7 +788,7 @@
           const tile = document.createElement('div');
           tile.className = `channel-tile ${idx === focusedIndex ? 'focused' : ''} ${idx === activeChannelIndex ? 'playing' : ''}`;
           tile.dataset.index = idx;
-          tile.tabIndex = -1;
+          tile.tabIndex = 0;
 
           const isFav = isChannelFavorite(ch);
           const fallbackText = (ch.name || 'CH').substring(0, 2).toUpperCase();
@@ -830,6 +830,11 @@
           const target = children[focusedIndex];
           target.classList.add('focused');
           lastFocusedIndex = focusedIndex;
+          try {
+            target.focus({ preventScroll: true });
+          } catch (e) {
+            target.focus();
+          }
         }
         scrollFocusedTileIntoView();
         updateFavUI();

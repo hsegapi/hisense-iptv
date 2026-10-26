@@ -624,7 +624,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const item = document.createElement('div');
       item.className = `channel-item ${idx === focusedIndex ? 'focused' : ''} ${idx === activeChannelIndex ? 'playing' : ''}`;
       item.dataset.index = idx;
-      item.tabIndex = -1;
+      item.tabIndex = 0;
 
       const displayName = ch.name || `Channel ${idx + 1}`;
       const categoryTag = ch.category || 'Live';
