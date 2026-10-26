@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
   <title>Global IPTV - 10-per-Row Channel Grid</title>
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#00d2ff">
@@ -260,6 +261,7 @@
     .grid-scroll-area {
       flex: 1;
       overflow-y: auto;
+      overflow-x: auto;
       padding: 16px 20px 40px 20px;
       scrollbar-width: thin;
       scrollbar-color: rgba(0, 210, 255, 0.3) transparent;
@@ -267,9 +269,10 @@
 
     .tiles-grid {
       display: grid;
-      grid-template-columns: repeat(10, minmax(0, 1fr));
+      grid-template-columns: repeat(10, minmax(110px, 1fr));
       gap: 10px;
       width: 100%;
+      min-width: 1190px;
     }
 
     /* Individual Channel Tile Card */
@@ -285,7 +288,8 @@
       cursor: pointer;
       transition: transform 0.08s ease, background 0.08s ease, border-color 0.08s ease;
       position: relative;
-      height: 125px;
+      height: 140px;
+      min-width: 110px;
       overflow: hidden;
       outline: none;
     }
@@ -325,9 +329,11 @@
     }
 
     .tile-logo-container {
-      width: 48px;
-      height: 48px;
-      margin-top: 6px;
+      width: 100%;
+      max-width: 86px;
+      min-width: 50px;
+      height: 54px;
+      margin-top: 4px;
       margin-bottom: 6px;
       display: flex;
       align-items: center;
@@ -335,17 +341,21 @@
       background: rgba(0, 0, 0, 0.45);
       border-radius: 8px;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 4px;
+      flex-shrink: 0;
     }
 
     .tile-logo {
-      max-width: 44px;
-      max-height: 44px;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
       object-fit: contain;
     }
 
     .tile-logo-fallback {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 800;
       color: var(--primary);
     }
@@ -797,7 +807,7 @@
             <span class="tile-badge-top">#${idx + 1}</span>
             ${isFav ? '<span class="tile-fav-star">★</span>' : ''}
             <div class="tile-logo-container">
-              ${ch.logo ? `<img class="tile-logo" src="${escapeHtml(ch.logo)}" alt="" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">` : ''}
+              ${ch.logo ? `<img class="tile-logo" src="${escapeHtml(ch.logo)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">` : ''}
               <span class="tile-logo-fallback" style="${ch.logo ? 'display:none;' : ''}">${escapeHtml(fallbackText)}</span>
             </div>
             <div class="tile-name" title="${escapeHtml(ch.name)}">${escapeHtml(ch.name || `Channel ${idx + 1}`)}</div>
@@ -853,6 +863,17 @@
           gridScrollArea.scrollTop = tileTop - 12;
         } else if (tileBottom > scrollTop + clientHeight) {
           gridScrollArea.scrollTop = tileBottom - clientHeight + 12;
+        }
+
+        const tileLeft = tile.offsetLeft;
+        const tileRight = tileLeft + tile.offsetWidth;
+        const scrollLeft = gridScrollArea.scrollLeft;
+        const clientWidth = gridScrollArea.clientWidth;
+
+        if (tileLeft < scrollLeft) {
+          gridScrollArea.scrollLeft = tileLeft - 12;
+        } else if (tileRight > scrollLeft + clientWidth) {
+          gridScrollArea.scrollLeft = tileRight - clientWidth + 12;
         }
       }
 
