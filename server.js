@@ -232,13 +232,24 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // Static File Serving
-  let filePath = path.join(PUBLIC_DIR, pathname === '/' ? 'index.html' : pathname);
+  // Static File Serving - serve root directory first, then fallback to public
+  let filePath = path.join(__dirname, pathname === '/' ? 'index.html' : pathname);
+  try {
+    if (!fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) {
+      filePath = path.join(PUBLIC_DIR, pathname === '/' ? 'index.html' : pathname);
+    }
+  } catch (e) {
+    filePath = path.join(PUBLIC_DIR, pathname === '/' ? 'index.html' : pathname);
+  }
+
   const ext = path.extname(filePath).toLowerCase();
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
-      filePath = path.join(PUBLIC_DIR, 'index.html');
+      filePath = path.join(__dirname, 'index.html');
+      if (!fs.existsSync(filePath)) {
+        filePath = path.join(PUBLIC_DIR, 'index.html');
+      }
     }
 
     const contentType = MIME_TYPES[ext] || 'application/octet-stream';

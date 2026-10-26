@@ -908,7 +908,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (isDown) {
         e.preventDefault();
-        channelSearch.focus();
+        activeEl.blur();
+        focusedIndex = 0;
+        updateFocus();
         return;
       }
       if (isEnter) {
@@ -926,8 +928,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (isDown) {
         e.preventDefault();
-        const activePill = getActivePill();
-        if (activePill) activePill.focus();
+        channelSearch.blur();
+        focusedIndex = 0;
+        updateFocus();
         return;
       }
       if (isEnter) {
@@ -963,12 +966,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (isDown) {
         e.preventDefault();
-        if (categorySelect) categorySelect.focus();
-        else if (countrySelect) countrySelect.focus();
-        else {
-          focusedIndex = 0;
-          updateFocus();
-        }
+        activeEl.blur();
+        focusedIndex = 0;
+        updateFocus();
         return;
       }
       if (isEnter) {
@@ -1139,6 +1139,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const filtered = getFilteredChannels();
     if (filtered.length > 0) {
       playChannel(0);
+      focusedIndex = 0;
+      updateFocus();
     }
   }
 

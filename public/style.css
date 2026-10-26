@@ -461,7 +461,7 @@ body, html {
   border: 2px solid transparent;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.15s ease-in-out;
+  transition: transform 0.08s ease, background 0.08s ease, border-color 0.08s ease;
   min-height: 48px;
 }
 
@@ -474,11 +474,11 @@ body, html {
 }
 
 .channel-item:hover, .channel-item:focus, .channel-item.focused {
-  background: var(--bg-card-hover);
-  border-color: var(--primary);
-  transform: translateX(3px);
-  box-shadow: 0 0 12px var(--primary-glow);
-  outline: none;
+  background: rgba(0, 210, 255, 0.28) !important;
+  border-color: var(--primary) !important;
+  transform: translateX(5px);
+  box-shadow: 0 0 14px var(--primary-glow);
+  outline: 2px solid var(--primary);
 }
 
 .channel-item.playing {
