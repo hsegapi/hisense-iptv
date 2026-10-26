@@ -623,6 +623,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const item = document.createElement('div');
       item.className = `channel-item ${idx === focusedIndex ? 'focused' : ''} ${idx === activeChannelIndex ? 'playing' : ''}`;
       item.dataset.index = idx;
+      item.tabIndex = -1;
 
       const displayName = ch.name || `Channel ${idx + 1}`;
       const categoryTag = ch.category || 'Live';
@@ -688,16 +689,32 @@ document.addEventListener('DOMContentLoaded', () => {
       children[lastFocusedIndex].classList.remove('focused');
     }
     if (focusedIndex >= 0 && focusedIndex < children.length) {
-      children[focusedIndex].classList.add('focused');
+      const el = children[focusedIndex];
+      el.classList.add('focused');
       lastFocusedIndex = focusedIndex;
+      try {
+        el.focus({ preventScroll: true });
+      } catch (err) {
+        el.focus();
+      }
     }
     scrollFocusedIntoView();
   }
 
   function scrollFocusedIntoView() {
     const focusedEl = channelListEl.children[focusedIndex];
-    if (focusedEl) {
-      focusedEl.scrollIntoView({ block: 'nearest', behavior: 'auto' });
+    if (!focusedEl) return;
+
+    // Direct scrollTop calculation works reliably across all TV browsers (VIDAA, Tizen, WebOS)
+    const itemTop = focusedEl.offsetTop;
+    const itemHeight = focusedEl.offsetHeight;
+    const listScrollTop = channelListEl.scrollTop;
+    const listHeight = channelListEl.clientHeight;
+
+    if (itemTop < listScrollTop) {
+      channelListEl.scrollTop = itemTop;
+    } else if (itemTop + itemHeight > listScrollTop + listHeight) {
+      channelListEl.scrollTop = itemTop + itemHeight - listHeight;
     }
   }
 
@@ -794,8 +811,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Remote Control Navigation
   window.addEventListener('keydown', (e) => {
+    const code = e.keyCode || e.which;
+    const k = e.key || '';
+
+    // Universal key normalization for VIDAA, Tizen, WebOS, Android, and Desktop
+    const isDown = k === 'ArrowDown' || k === 'Down' || code === 40;
+    const isUp = k === 'ArrowUp' || k === 'Up' || code === 38;
+    const isLeft = k === 'ArrowLeft' || k === 'Left' || code === 37;
+    const isRight = k === 'ArrowRight' || k === 'Right' || code === 39;
+    const isEnter = k === 'Enter' || k === 'Select' || k === 'Ok' || code === 13;
+    const isBack = k === 'Escape' || k === 'Back' || k === 'GoBack' || k === 'Backspace' || code === 27 || code === 10009 || code === 461 || code === 8;
+    const isChUp = k === 'ChannelUp' || k === 'PageUp' || k === '+' || k === '=' || code === 427 || code === 33;
+    const isChDown = k === 'ChannelDown' || k === 'PageDown' || k === '-' || k === '_' || code === 428 || code === 34;
+    const isFavKey = k === 'f' || k === 'F' || k === '*' || code === 403;
+
     if (!modalOverlay.classList.contains('hidden')) {
-      if (e.key === 'Escape' || e.keyCode === 27 || e.keyCode === 10009) {
+      if (isBack) {
         closeModal();
       }
       return;
@@ -805,12 +836,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const isMenuOpen = osdContainer.classList.contains('visible');
 
     // 1. Channel Up / Down (ALWAYS switch channel directly, NEVER open the menu!)
-    if (e.key === 'ChannelUp' || e.key === 'PageUp' || e.keyCode === 427 || e.keyCode === 33 || e.key === '+' || e.key === '=') {
+    if (isChUp) {
       e.preventDefault();
       playNextChannel();
       return;
     }
-    if (e.key === 'ChannelDown' || e.key === 'PageDown' || e.keyCode === 428 || e.keyCode === 34 || e.key === '-' || e.key === '_') {
+    if (isChDown) {
       e.preventDefault();
       playPrevChannel();
       return;
@@ -818,24 +849,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. When in FULLSCREEN mode (sidebar menu is NOT visible)
     if (!isMenuOpen) {
-      if (e.key === 'ArrowDown') {
+      if (isDown) {
         e.preventDefault();
         playNextChannel();
         return;
       }
-      if (e.key === 'ArrowUp') {
+      if (isUp) {
         e.preventDefault();
         playPrevChannel();
         return;
       }
-      if (e.key === 'Enter' || e.key === 'Back' || e.key === 'Escape' || e.key === 'GoBack' || e.key === 'Backspace') {
+      if (isEnter || isBack) {
         e.preventDefault();
         osdContainer.classList.add('visible');
         resetOsdTimer();
         updateFocus();
         return;
       }
-      if (e.key === 'f' || e.key === 'F' || e.key === '*') {
+      if (isFavKey) {
         e.preventDefault();
         const curCh = list[activeChannelIndex];
         if (curCh) {
@@ -853,45 +884,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Top Actions: Fav, Refresh & Add M3U
     if (activeEl === toggleFavBtn || activeEl === reloadPlaylistBtn || activeEl === addM3uBtn) {
-      if (e.key === 'ArrowRight') {
+      if (isRight) {
         e.preventDefault();
         if (activeEl === toggleFavBtn) reloadPlaylistBtn.focus();
         else if (activeEl === reloadPlaylistBtn) addM3uBtn.focus();
         return;
       }
-      if (e.key === 'ArrowLeft') {
+      if (isLeft) {
         e.preventDefault();
         if (activeEl === addM3uBtn) reloadPlaylistBtn.focus();
         else if (activeEl === reloadPlaylistBtn) toggleFavBtn.focus();
         return;
       }
-      if (e.key === 'ArrowDown') {
+      if (isDown) {
         e.preventDefault();
         channelSearch.focus();
         return;
       }
-      if (e.key === 'Enter') {
+      if (isEnter) {
         return; // default click handler executes
       }
     }
 
     // 2. Search Box
     if (activeEl === channelSearch) {
-      if (e.key === 'ArrowUp') {
+      if (isUp) {
         e.preventDefault();
         if (toggleFavBtn) toggleFavBtn.focus();
         else reloadPlaylistBtn.focus();
         return;
       }
-      if (e.key === 'ArrowDown') {
+      if (isDown) {
         e.preventDefault();
         const activePill = getActivePill();
         if (activePill) activePill.focus();
         return;
       }
-      if (e.key === 'Enter') {
+      if (isEnter) {
         e.preventDefault();
         channelSearch.blur();
+        focusedIndex = 0;
         updateFocus();
         return;
       }
@@ -902,31 +934,34 @@ document.addEventListener('DOMContentLoaded', () => {
     if (filterPills.includes(activeEl)) {
       const curIndex = filterPills.indexOf(activeEl);
 
-      if (e.key === 'ArrowLeft') {
+      if (isLeft) {
         e.preventDefault();
         const prev = filterPills[Math.max(0, curIndex - 1)];
         if (prev) prev.focus();
         return;
       }
-      if (e.key === 'ArrowRight') {
+      if (isRight) {
         e.preventDefault();
         const next = filterPills[Math.min(filterPills.length - 1, curIndex + 1)];
         if (next) next.focus();
         return;
       }
-      if (e.key === 'ArrowUp') {
+      if (isUp) {
         e.preventDefault();
         channelSearch.focus();
         return;
       }
-      if (e.key === 'ArrowDown') {
+      if (isDown) {
         e.preventDefault();
         if (categorySelect) categorySelect.focus();
         else if (countrySelect) countrySelect.focus();
-        else updateFocus();
+        else {
+          focusedIndex = 0;
+          updateFocus();
+        }
         return;
       }
-      if (e.key === 'Enter') {
+      if (isEnter) {
         e.preventDefault();
         activeEl.click();
         return;
@@ -935,20 +970,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 4. Category Dropdown (Category first)
     if (activeEl === categorySelect) {
-      if (e.key === 'ArrowUp') {
+      if (isUp) {
         e.preventDefault();
         const activePill = getActivePill();
         if (activePill) activePill.focus();
         return;
       }
-      if (e.key === 'ArrowRight') {
+      if (isRight) {
         e.preventDefault();
         if (countrySelect) countrySelect.focus();
         return;
       }
-      if (e.key === 'ArrowDown') {
+      if (isDown) {
         e.preventDefault();
         categorySelect.blur();
+        focusedIndex = 0;
         updateFocus();
         return;
       }
@@ -957,96 +993,98 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 5. Country Dropdown
     if (activeEl === countrySelect) {
-      if (e.key === 'ArrowUp') {
+      if (isUp) {
         e.preventDefault();
         const activePill = getActivePill();
         if (activePill) activePill.focus();
         return;
       }
-      if (e.key === 'ArrowLeft') {
+      if (isLeft) {
         e.preventDefault();
         if (categorySelect) categorySelect.focus();
         return;
       }
-      if (e.key === 'ArrowDown') {
+      if (isDown) {
         e.preventDefault();
         countrySelect.blur();
+        focusedIndex = 0;
         updateFocus();
         return;
       }
       return;
     }
 
-    switch (e.key) {
-      case 'ArrowDown':
-        e.preventDefault();
-        if (focusedIndex < list.length - 1) {
-          focusedIndex++;
-          if (focusedIndex >= renderedCount - 10 && renderedCount < list.length) {
-            renderedCount = Math.min(renderedCount + 80, list.length);
-            renderChannels(true);
-          }
-          updateFocus();
+    // 6. Channel List Navigation
+    if (isDown) {
+      e.preventDefault();
+      if (focusedIndex < list.length - 1) {
+        focusedIndex++;
+        if (focusedIndex >= renderedCount - 10 && renderedCount < list.length) {
+          renderedCount = Math.min(renderedCount + 80, list.length);
+          renderChannels(true);
         }
-        break;
+        updateFocus();
+      }
+      return;
+    }
 
-      case 'ArrowUp':
-        e.preventDefault();
-        if (focusedIndex > 0) {
-          focusedIndex--;
-          updateFocus();
-        } else {
-          if (categorySelect) categorySelect.focus();
-          else if (countrySelect) countrySelect.focus();
-        }
-        break;
+    if (isUp) {
+      e.preventDefault();
+      if (focusedIndex > 0) {
+        focusedIndex--;
+        updateFocus();
+      } else {
+        if (categorySelect) categorySelect.focus();
+        else if (countrySelect) countrySelect.focus();
+      }
+      return;
+    }
 
-      case 'f':
-      case 'F':
-      case '*':
-        e.preventDefault();
-        const curCh = list[focusedIndex] || list[activeChannelIndex];
-        if (curCh) {
-          toggleFavorite(curCh);
-        }
-        break;
+    if (isFavKey) {
+      e.preventDefault();
+      const curCh = list[focusedIndex] || list[activeChannelIndex];
+      if (curCh) {
+        toggleFavorite(curCh);
+      }
+      return;
+    }
 
-      case 'Enter':
-        e.preventDefault();
-        playChannel(focusedIndex);
-        break;
+    if (isEnter) {
+      e.preventDefault();
+      playChannel(focusedIndex);
+      return;
+    }
 
-      case 'ArrowRight':
-      case 'ArrowLeft':
-        e.preventDefault();
-        // Cycle pre-filter pills directly
-        const curActive = getActivePill();
-        let pIdx = filterPills.indexOf(curActive);
-        if (e.key === 'ArrowRight') {
-          pIdx = (pIdx + 1) % filterPills.length;
-        } else {
-          pIdx = (pIdx - 1 + filterPills.length) % filterPills.length;
-        }
-        if (filterPills[pIdx]) {
-          filterPills[pIdx].click();
-        }
-        break;
+    if (isRight || isLeft) {
+      e.preventDefault();
+      const curActive = getActivePill();
+      let pIdx = filterPills.indexOf(curActive);
+      if (isRight) {
+        pIdx = (pIdx + 1) % filterPills.length;
+      } else {
+        pIdx = (pIdx - 1 + filterPills.length) % filterPills.length;
+      }
+      if (filterPills[pIdx]) {
+        filterPills[pIdx].click();
+      }
+      return;
+    }
 
-      case 'Escape':
-      case 'Backspace':
-      case 'GoBack':
-      case 'Back':
-        if (searchQuery) {
-          channelSearch.value = '';
-          searchQuery = '';
-          clearSearchBtn.classList.add('hidden');
-          renderChannels();
-        } else if (osdContainer.classList.contains('visible')) {
-          osdContainer.classList.remove('visible');
-        } else {
-          osdContainer.classList.add('visible');
-        }
-        break;
+    if (isBack) {
+      e.preventDefault();
+      if (searchQuery) {
+        channelSearch.value = '';
+        searchQuery = '';
+        clearSearchBtn.classList.add('hidden');
+        renderChannels();
+      } else if (osdContainer.classList.contains('visible')) {
+        osdContainer.classList.remove('visible');
+      } else {
+        osdContainer.classList.add('visible');
+        resetOsdTimer();
+        updateFocus();
+      }
+      return;
     }
   });
 
