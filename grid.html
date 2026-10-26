@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Global IPTV - 10-per-Row Channel Grid</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#00d2ff">
+  <!-- HLS.js for Streaming -->
+  <script src="hls.min.js"></script>
+  <script>if (!window.Hls) { document.write('<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.7/dist/hls.min.js"><\/script>'); }</script>
+  <style>
+    :root {
+      --primary: #00d2ff;
+      --primary-glow: rgba(0, 210, 255, 0.45);
+      --bg-dark: #070b14;
+      --bg-surface: #0e1424;
+      --bg-card: rgba(255, 255, 255, 0.05);
+      --bg-card-hover: rgba(0, 210, 255, 0.22);
+      --text-main: #ffffff;
+      --text-muted: #8892b0;
+      --border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    /* Main Grid Layout Container */
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Sticky Top Filter Header */
+    .top-header {
+      background: #0b1120;
+      border-bottom: 2px solid var(--border-color);
+      padding: 12px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 20;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+      flex-shrink: 0;
+    }
+
+    .header-main-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      font-size: 26px;
+    }
+
+    .brand-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .grid-badge {
+      background: rgba(0, 210, 255, 0.15);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .search-box-wrapper {
+      flex: 1;
+      max-width: 480px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-box-wrapper input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      padding: 8px 36px 8px 38px;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .search-box-wrapper input:focus {
+      border-color: var(--primary);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      color: #8892b0;
+      pointer-events: none;
+    }
+
+    .search-clear-btn {
+      position: absolute;
+      right: 10px;
+      background: none;
+      border: none;
+      color: #8892b0;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px solid var(--border-color);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .nav-btn:focus, .nav-btn:hover {
+      border-color: var(--primary);
+      background: rgba(0, 210, 255, 0.15);
+      outline: none;
+    }
+
+    /* Filter Controls Row (Pills & Dropdowns) */
+    .filter-controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .lang-pills {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .lang-pills::-webkit-scrollbar {
+      display: none;
+    }
+
+    .pill-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 2px solid var(--border-color);
+      color: #cbd5e1;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.1s, border-color 0.1s, color 0.1s;
+    }
+
+    .pill-btn:hover, .pill-btn:focus {
+      border-color: var(--primary);
+      background: rgba(0, 210, 255, 0.15);
+      color: #fff;
+      outline: none;
+    }
+
+    .pill-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #070b14;
+      font-weight: 700;
+    }
+
+    .dropdowns-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .select-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .select-item label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .tv-dropdown {
+      background: rgba(14, 20, 36, 0.95);
+      border: 2px solid var(--border-color);
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .tv-dropdown:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 10px var(--primary-glow);
+    }
+
+    .status-text {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* 10-per-Row Grid Container */
+    .grid-scroll-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 20px 40px 20px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0, 210, 255, 0.3) transparent;
+    }
+
+    .tiles-grid {
+      display: grid;
+      grid-template-columns: repeat(10, minmax(0, 1fr));
+      gap: 10px;
+      width: 100%;
+    }
+
+    /* Individual Channel Tile Card */
+    .channel-tile {
+      background: var(--bg-card);
+      border: 2px solid transparent;
+      border-radius: 10px;
+      padding: 10px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.08s ease, background 0.08s ease, border-color 0.08s ease;
+      position: relative;
+      height: 125px;
+      overflow: hidden;
+      outline: none;
+    }
+
+    .channel-tile:hover, .channel-tile:focus, .channel-tile.focused {
+      background: var(--bg-card-hover) !important;
+      border-color: var(--primary) !important;
+      transform: scale(1.07);
+      box-shadow: 0 0 16px var(--primary-glow);
+      z-index: 10;
+      outline: 2px solid var(--primary);
+    }
+
+    .channel-tile.playing {
+      border-color: #ffd700 !important;
+      background: rgba(255, 215, 0, 0.18) !important;
+    }
+
+    .tile-badge-top {
+      position: absolute;
+      top: 5px;
+      left: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--primary);
+      background: rgba(0, 0, 0, 0.65);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    .tile-fav-star {
+      position: absolute;
+      top: 5px;
+      right: 6px;
+      font-size: 11px;
+      color: #ffd700;
+    }
+
+    .tile-logo-container {
+      width: 48px;
+      height: 48px;
+      margin-top: 6px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.45);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .tile-logo {
+      max-width: 44px;
+      max-height: 44px;
+      object-fit: contain;
+    }
+
+    .tile-logo-fallback {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .tile-name {
+      font-size: 11px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.25;
+      max-height: 28px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      word-break: break-word;
+      width: 100%;
+    }
+
+    .tile-tag {
+      font-size: 9px;
+      color: var(--text-muted);
+      margin-top: auto;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    /* Video Player Overlay Modal */
+    .player-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .player-modal.hidden {
+      display: none !important;
+    }
+
+    .video-viewport {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #gridVideoPlayer {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Fullscreen Zapper Banner */
+    .player-overlay-bar {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(8, 12, 22, 0.94);
+      border-left: 5px solid var(--primary);
+      border-radius: 12px;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-left: 5px solid var(--primary);
+      z-index: 110;
+      min-width: 480px;
+      pointer-events: none;
+    }
+
+    .overlay-ch-num {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--primary);
+      background: rgba(0, 210, 255, 0.12);
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+
+    .overlay-details h2 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .overlay-details span {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .overlay-hints {
+      margin-left: auto;
+      font-size: 11px;
+      color: #cbd5e1;
+      display: flex;
+      gap: 12px;
+    }
+
+    .overlay-hints b {
+      color: var(--primary);
+    }
+
+    .player-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 18px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 120;
+    }
+
+    .player-close-btn:hover {
+      background: #e11d48;
+      border-color: #e11d48;
+    }
+
+    /* Video Loader overlay */
+    .video-loader {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-size: 14px;
+      z-index: 105;
+    }
+
+    .video-loader.hidden {
+      display: none;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 255, 255, 0.2);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s infinite linear;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Filter & Navigation Header -->
+    <header class="top-header" id="topHeader">
+      <div class="header-main-row">
+        <div class="brand-block">
+          <span class="brand-icon">📺</span>
+          <div class="brand-title">
+            Global IPTV
+            <span class="grid-badge">10 / ROW GRID</span>
+          </div>
+        </div>
+
+        <div class="search-box-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="tileSearch" placeholder="Search channels (Sun, Vijay, News, KTV...)" autocomplete="off" spellcheck="false">
+          <button id="clearSearchBtn" class="search-clear-btn" style="display: none;">&times;</button>
+        </div>
+
+        <div class="nav-actions">
+          <button id="gridFavToggleBtn" class="nav-btn">⭐ Add Fav</button>
+          <a href="index.html" class="nav-btn" id="livePlayerLink">📺 Live Player</a>
+        </div>
+      </div>
+
+      <!-- Quick Filter Pills & Dropdowns -->
+      <div class="filter-controls-row">
+        <div class="lang-pills" id="pillsContainer">
+          <button class="pill-btn" data-filter="fav" id="pillFav">⭐ Fav (<span id="favCountBadge">0</span>)</button>
+          <button class="pill-btn active" data-lang="tamil" id="pillTamil">🔥 Tamil</button>
+          <button class="pill-btn" data-country="India" id="pillIN">🇮🇳 India</button>
+          <button class="pill-btn" data-country="all" id="pillAll">🌐 All</button>
+          <button class="pill-btn" data-country="United States" id="pillUS">🇺🇸 USA</button>
+          <button class="pill-btn" data-country="United Kingdom" id="pillUK">🇬🇧 UK</button>
+          <button class="pill-btn" data-country="Canada" id="pillCA">🇨🇦 Canada</button>
+        </div>
+
+        <div class="dropdowns-group">
+          <div class="select-item">
+            <label for="catDropdown">Category:</label>
+            <select id="catDropdown" class="tv-dropdown">
+              <option value="Entertainment">🎬 Entertainment</option>
+              <option value="all">All Categories</option>
+            </select>
+          </div>
+
+          <div class="select-item">
+            <label for="countryDropdown">Country:</label>
+            <select id="countryDropdown" class="tv-dropdown">
+              <option value="all">All Countries</option>
+            </select>
+          </div>
+
+          <span class="status-text" id="statusCounter">Loading channels...</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- 10-per-Row Grid Scroll Container -->
+    <main class="grid-scroll-area" id="gridScrollArea">
+      <div class="tiles-grid" id="tilesGrid">
+        <!-- Rendered via JS -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Fullscreen Video Player Modal -->
+  <div class="player-modal hidden" id="playerModal">
+    <button class="player-close-btn" id="closePlayerModalBtn" title="Close Video">&times;</button>
+    <div class="video-viewport">
+      <video id="gridVideoPlayer" playsinline autoplay></video>
+      <div class="video-loader hidden" id="videoLoader">
+        <div class="spinner"></div>
+        <p id="loaderMessage">Opening channel...</p>
+      </div>
+
+      <div class="player-overlay-bar" id="playerOverlayBar">
+        <div class="overlay-ch-num" id="overlayChNum">CH 1</div>
+        <div class="overlay-details">
+          <h2 id="overlayChTitle">Channel Name</h2>
+          <span id="overlayChMeta">Tamil • Entertainment</span>
+        </div>
+        <div class="overlay-hints">
+          <span><b>▲/▼</b> Prev/Next</span>
+          <span><b>[OK]</b> Play/Pause</span>
+          <span><b>[Back]</b> Grid</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const COLS_PER_ROW = 10;
+      const tilesGrid = document.getElementById('tilesGrid');
+      const gridScrollArea = document.getElementById('gridScrollArea');
+      const tileSearch = document.getElementById('tileSearch');
+      const clearSearchBtn = document.getElementById('clearSearchBtn');
+      const statusCounter = document.getElementById('statusCounter');
+      const catDropdown = document.getElementById('catDropdown');
+      const countryDropdown = document.getElementById('countryDropdown');
+      const gridFavToggleBtn = document.getElementById('gridFavToggleBtn');
+      const favCountBadge = document.getElementById('favCountBadge');
+
+      const pillFav = document.getElementById('pillFav');
+      const pillTamil = document.getElementById('pillTamil');
+      const pillAll = document.getElementById('pillAll');
+      const pillIN = document.getElementById('pillIN');
+      const pillUS = document.getElementById('pillUS');
+      const pillUK = document.getElementById('pillUK');
+      const pillCA = document.getElementById('pillCA');
+      const filterPills = [pillFav, pillTamil, pillIN, pillAll, pillUS, pillUK, pillCA].filter(Boolean);
+
+      // Video Modal Elements
+      const playerModal = document.getElementById('playerModal');
+      const closePlayerModalBtn = document.getElementById('closePlayerModalBtn');
+      const gridVideo = document.getElementById('gridVideoPlayer');
+      const videoLoader = document.getElementById('videoLoader');
+      const loaderMessage = document.getElementById('loaderMessage');
+      const overlayChNum = document.getElementById('overlayChNum');
+      const overlayChTitle = document.getElementById('overlayChTitle');
+      const overlayChMeta = document.getElementById('overlayChMeta');
+
+      let channels = [];
+      let favorites = [];
+      try {
+        const saved = localStorage.getItem('iptv_favorites');
+        if (saved) favorites = JSON.parse(saved);
+        if (!Array.isArray(favorites)) favorites = [];
+      } catch (e) {
+        favorites = [];
+      }
+
+      let currentCountry = 'all';
+      let currentCategory = 'Entertainment';
+      let languageFilter = 'tamil';
+      let searchQuery = '';
+      let focusedIndex = 0;
+      let lastFocusedIndex = -1;
+      let activeChannelIndex = -1;
+      let renderedCount = 100; // 10 rows of 10
+      let cachedFiltered = null;
+      let hls = null;
+
+      // Smart Tamil Detector
+      const tamilKeywords = /\b(tamil|sun\s*tv|sun\s*music|sun\s*news|ktv|vijay|jaya|thanthi|polimer|puthiya\s*thalaimurai|kalaignar|raj\s*tv|raj\s*musix|captain|mega\s*tv|vasanth|lotus|malaimurasu|sathiyam|velicham|peppers|madha|isai|chithiram|sirippoli|murasu|seithigal|vendhar|makkal|moon\s*tv|tamilan|vanavil|imayam|mk\s*tv|cauvery|valicham|dheeran|news18\s*tamil|tamil\s*janam|arputhar|aaryaa|aaseervatham|aathavan)\b/i;
+
+      function isTamilChannel(ch) {
+        if (ch.language && ch.language.toLowerCase() === 'tamil') return true;
+        if (ch.language && ['spanish', 'portuguese', 'russian', 'french', 'german', 'italian', 'arabic'].includes(ch.language.toLowerCase())) return false;
+        if (ch.country && ['bolivia', 'brazil', 'peru', 'mexico', 'colombia', 'argentina', 'chile', 'spain', 'russia', 'italy', 'france'].includes(ch.country.toLowerCase())) return false;
+        return tamilKeywords.test(ch.name) || (ch.id && /tamil|\.ta@/i.test(ch.id)) || (ch.category && /tamil/i.test(ch.category));
+      }
+
+      function getChannelKey(ch) {
+        return ch ? (ch.url || ch.id || ch.name) : '';
+      }
+
+      function isChannelFavorite(ch) {
+        const key = getChannelKey(ch);
+        return Boolean(key && favorites.includes(key));
+      }
+
+      function saveFavorites() {
+        try {
+          localStorage.setItem('iptv_favorites', JSON.stringify(favorites));
+        } catch (e) {}
+        updateFavUI();
+      }
+
+      function toggleFavorite(ch) {
+        if (!ch) return;
+        const key = getChannelKey(ch);
+        if (!key) return;
+        const idx = favorites.indexOf(key);
+        if (idx >= 0) favorites.splice(idx, 1);
+        else favorites.push(key);
+        saveFavorites();
+        invalidateFilter();
+        renderTiles();
+      }
+
+      function updateFavUI() {
+        if (favCountBadge) favCountBadge.textContent = favorites.length;
+        const list = getFilteredChannels();
+        const curChannel = list[focusedIndex] || list[activeChannelIndex];
+        if (gridFavToggleBtn && curChannel) {
+          const isFav = isChannelFavorite(curChannel);
+          gridFavToggleBtn.innerHTML = isFav ? '★ Favorited' : '⭐ Add Fav';
+        }
+      }
+
+      function invalidateFilter() {
+        cachedFiltered = null;
+      }
+
+      function getFilteredChannels() {
+        if (cachedFiltered) return cachedFiltered;
+
+        const q = searchQuery ? searchQuery.toLowerCase() : '';
+        const isFav = languageFilter === 'favorites';
+        const isTam = languageFilter === 'tamil';
+        const hasCtry = currentCountry !== 'all';
+        const ctryLower = hasCtry ? currentCountry.toLowerCase() : '';
+        const hasCat = currentCategory !== 'all';
+
+        cachedFiltered = channels.filter(c => {
+          if (isFav) return isChannelFavorite(c);
+          const tam = c._isTamil !== undefined ? c._isTamil : isTamilChannel(c);
+          if (isTam && !tam) return false;
+          if (hasCtry) {
+            const ctry = c._lowerCountry || (c.country || 'International').toLowerCase();
+            if (ctry !== ctryLower) return false;
+          }
+          if (hasCat && c.category !== currentCategory) return false;
+          if (q) {
+            const mName = c._lowerName && c._lowerName.includes(q);
+            const mCtry = c._lowerCountry && c._lowerCountry.includes(q);
+            const mCat = c._lowerCategory && c._lowerCategory.includes(q);
+            if (!mName && !mCtry && !mCat) return false;
+          }
+          return true;
+        });
+
+        return cachedFiltered;
+      }
+
+      function escapeHtml(text) {
+        if (!text) return '';
+        return String(text)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      // Render 10-per-Row Tiles
+      function renderTiles(isAppend = false) {
+        if (!isAppend) {
+          invalidateFilter();
+          tilesGrid.innerHTML = '';
+          renderedCount = 100;
+          lastFocusedIndex = -1;
+        }
+
+        const list = getFilteredChannels();
+        const count = list.length;
+        const ctryLabel = currentCountry === 'all' ? 'All Countries' : currentCountry;
+        const catLabel = currentCategory === 'all' ? 'All Categories' : currentCategory;
+        const langLabel = languageFilter === 'tamil' ? ' (Tamil Only)' : (languageFilter === 'favorites' ? ' (Favorites)' : '');
+
+        statusCounter.textContent = `Showing ${Math.min(renderedCount, count)} of ${count} channels • ${catLabel} / ${ctryLabel}${langLabel}`;
+
+        if (count === 0) {
+          tilesGrid.innerHTML = `
+            <div style="grid-column: 1 / -1; padding: 60px 20px; text-align: center; color: #8892b0;">
+              <div style="font-size: 38px; margin-bottom: 12px;">🔍</div>
+              <div style="font-size: 18px; font-weight: 700; color: #fff;">No Channels Found</div>
+              <p style="font-size: 13px; margin-top: 6px;">Try switching category, country, or keyword.</p>
+            </div>
+          `;
+          return;
+        }
+
+        const startIndex = isAppend ? tilesGrid.children.length : 0;
+        const displayList = list.slice(startIndex, renderedCount);
+        const fragment = document.createDocumentFragment();
+
+        displayList.forEach((ch, idxOffset) => {
+          const idx = startIndex + idxOffset;
+          const tile = document.createElement('div');
+          tile.className = `channel-tile ${idx === focusedIndex ? 'focused' : ''} ${idx === activeChannelIndex ? 'playing' : ''}`;
+          tile.dataset.index = idx;
+          tile.tabIndex = -1;
+
+          const isFav = isChannelFavorite(ch);
+          const fallbackText = (ch.name || 'CH').substring(0, 2).toUpperCase();
+
+          tile.innerHTML = `
+            <span class="tile-badge-top">#${idx + 1}</span>
+            ${isFav ? '<span class="tile-fav-star">★</span>' : ''}
+            <div class="tile-logo-container">
+              ${ch.logo ? `<img class="tile-logo" src="${escapeHtml(ch.logo)}" alt="" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">` : ''}
+              <span class="tile-logo-fallback" style="${ch.logo ? 'display:none;' : ''}">${escapeHtml(fallbackText)}</span>
+            </div>
+            <div class="tile-name" title="${escapeHtml(ch.name)}">${escapeHtml(ch.name || `Channel ${idx + 1}`)}</div>
+            <div class="tile-tag">${escapeHtml(ch.category || 'Live')}</div>
+          `;
+
+          tile.addEventListener('click', () => {
+            focusedIndex = idx;
+            updateTileFocus();
+            openPlayerModal(idx);
+          });
+
+          fragment.appendChild(tile);
+        });
+
+        tilesGrid.appendChild(fragment);
+
+        if (!isAppend) {
+          lastFocusedIndex = focusedIndex;
+          scrollFocusedTileIntoView();
+        }
+      }
+
+      function updateTileFocus() {
+        const children = tilesGrid.children;
+        if (lastFocusedIndex >= 0 && lastFocusedIndex < children.length) {
+          children[lastFocusedIndex].classList.remove('focused');
+        }
+        if (focusedIndex >= 0 && focusedIndex < children.length) {
+          const target = children[focusedIndex];
+          target.classList.add('focused');
+          lastFocusedIndex = focusedIndex;
+        }
+        scrollFocusedTileIntoView();
+        updateFavUI();
+      }
+
+      function scrollFocusedTileIntoView() {
+        const tile = tilesGrid.children[focusedIndex];
+        if (!tile) return;
+
+        const tileTop = tile.offsetTop;
+        const tileBottom = tileTop + tile.offsetHeight;
+        const scrollTop = gridScrollArea.scrollTop;
+        const clientHeight = gridScrollArea.clientHeight;
+
+        if (tileTop < scrollTop) {
+          gridScrollArea.scrollTop = tileTop - 12;
+        } else if (tileBottom > scrollTop + clientHeight) {
+          gridScrollArea.scrollTop = tileBottom - clientHeight + 12;
+        }
+      }
+
+      // Infinite scroll listener
+      gridScrollArea.addEventListener('scroll', () => {
+        if (gridScrollArea.scrollTop + gridScrollArea.clientHeight >= gridScrollArea.scrollHeight - 300) {
+          const list = getFilteredChannels();
+          if (renderedCount < list.length) {
+            renderedCount = Math.min(renderedCount + 80, list.length);
+            renderTiles(true);
+          }
+        }
+      });
+
+      // Video Player Modal
+      function openPlayerModal(index) {
+        const list = getFilteredChannels();
+        const ch = list[index];
+        if (!ch) return;
+
+        activeChannelIndex = index;
+        playerModal.classList.remove('hidden');
+
+        // Update modal banner
+        overlayChNum.textContent = `CH ${index + 1}`;
+        overlayChTitle.textContent = ch.name || `Channel ${index + 1}`;
+        const isTam = ch._isTamil !== undefined ? ch._isTamil : isTamilChannel(ch);
+        const ctry = ch.country ? `${ch.country} • ` : '';
+        overlayChMeta.textContent = `${ctry}${isTam ? 'Tamil • ' : ''}${ch.category || 'Live'}`;
+
+        videoLoader.classList.remove('hidden');
+        loaderMessage.textContent = `Opening ${ch.name}...`;
+
+        if (!hls && Hls.isSupported()) {
+          hls = new Hls({ enableWorker: true, lowLatencyMode: true });
+          hls.attachMedia(gridVideo);
+          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            videoLoader.classList.add('hidden');
+            gridVideo.play().catch(e => console.log('Play error:', e));
+          });
+          hls.on(Hls.Events.ERROR, () => {
+            loaderMessage.textContent = 'Stream error. Try next channel.';
+          });
+        }
+
+        if (Hls.isSupported() && hls) {
+          hls.loadSource(ch.url);
+        } else if (gridVideo.canPlayType('application/vnd.apple.mpegurl')) {
+          gridVideo.src = ch.url;
+          gridVideo.play().catch(e => console.log(e));
+        }
+      }
+
+      function closePlayerModal() {
+        playerModal.classList.add('hidden');
+        if (gridVideo) {
+          gridVideo.pause();
+          gridVideo.src = '';
+        }
+        if (hls) {
+          hls.stopLoad();
+        }
+        updateTileFocus();
+      }
+
+      closePlayerModalBtn.addEventListener('click', closePlayerModal);
+
+      // Populate Categories & Countries
+      function populateCategories() {
+        const counts = {};
+        channels.forEach(c => {
+          const cat = c.category || 'General';
+          counts[cat] = (counts[cat] || 0) + 1;
+        });
+
+        catDropdown.innerHTML = '';
+        const entOpt = document.createElement('option');
+        entOpt.value = 'Entertainment';
+        entOpt.textContent = `🎬 Entertainment (${counts['Entertainment'] || 0})`;
+        if (currentCategory === 'Entertainment') entOpt.selected = true;
+        catDropdown.appendChild(entOpt);
+
+        const allOpt = document.createElement('option');
+        allOpt.value = 'all';
+        allOpt.textContent = `All Categories (${channels.length})`;
+        if (currentCategory === 'all') allOpt.selected = true;
+        catDropdown.appendChild(allOpt);
+
+        Object.keys(counts)
+          .filter(k => k !== 'all' && k.toLowerCase() !== 'entertainment' && counts[k] > 0)
+          .sort((a, b) => a.localeCompare(b))
+          .forEach(cat => {
+            const opt = document.createElement('option');
+            opt.value = cat;
+            opt.textContent = `${cat} (${counts[cat]})`;
+            if (cat === currentCategory) opt.selected = true;
+            catDropdown.appendChild(opt);
+          });
+      }
+
+      function populateCountries() {
+        const counts = {};
+        channels.forEach(c => {
+          const ctry = c.country || 'International';
+          counts[ctry] = (counts[ctry] || 0) + 1;
+        });
+
+        countryDropdown.innerHTML = '<option value="all">All Countries</option>';
+        Object.keys(counts)
+          .sort((a, b) => counts[b] - counts[a])
+          .forEach(ctry => {
+            const opt = document.createElement('option');
+            opt.value = ctry;
+            opt.textContent = `${ctry} (${counts[ctry]})`;
+            if (ctry.toLowerCase() === currentCountry.toLowerCase()) opt.selected = true;
+            countryDropdown.appendChild(opt);
+          });
+      }
+
+      // Filter Pill Clicks
+      function setPillActive(btn) {
+        document.querySelectorAll('.pill-btn').forEach(p => p.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+      }
+
+      pillFav.addEventListener('click', () => {
+        languageFilter = 'favorites';
+        currentCountry = 'all';
+        currentCategory = 'all';
+        setPillActive(pillFav);
+        if (countryDropdown) countryDropdown.value = 'all';
+        if (catDropdown) catDropdown.value = 'all';
+        focusedIndex = 0;
+        renderTiles();
+      });
+
+      pillTamil.addEventListener('click', () => {
+        languageFilter = 'tamil';
+        currentCountry = 'all';
+        setPillActive(pillTamil);
+        if (countryDropdown) countryDropdown.value = 'all';
+        focusedIndex = 0;
+        renderTiles();
+      });
+
+      pillAll.addEventListener('click', () => {
+        languageFilter = 'all';
+        currentCountry = 'all';
+        setPillActive(pillAll);
+        if (countryDropdown) countryDropdown.value = 'all';
+        focusedIndex = 0;
+        renderTiles();
+      });
+
+      pillIN.addEventListener('click', () => {
+        languageFilter = 'all';
+        currentCountry = 'India';
+        setPillActive(pillIN);
+        if (countryDropdown) countryDropdown.value = 'India';
+        focusedIndex = 0;
+        renderTiles();
+      });
+
+      pillUS.addEventListener('click', () => {
+        languageFilter = 'all';
+        currentCountry = 'United States';
+        setPillActive(pillUS);
+        if (countryDropdown) countryDropdown.value = 'United States';
+        focusedIndex = 0;
+        renderTiles();
+      });
+
+      pillUK.addEventListener('click', () => {
+        languageFilter = 'all';
+        currentCountry = 'United Kingdom';
+        setPillActive(pillUK);
+        if (countryDropdown) countryDropdown.value = 'United Kingdom';
+        focusedIndex = 0;
+        renderTiles();
+      });
+
+      pillCA.addEventListener('click', () => {
+        languageFilter = 'all';
+        currentCountry = 'Canada';
+        setPillActive(pillCA);
+        if (countryDropdown) countryDropdown.value = 'Canada';
+        focusedIndex = 0;
+        renderTiles();
+      });
+
+      catDropdown.addEventListener('change', (e) => {
+        currentCategory = e.target.value;
+        focusedIndex = 0;
+        renderTiles();
+      });
+
+      countryDropdown.addEventListener('change', (e) => {
+        currentCountry = e.target.value;
+        languageFilter = 'all';
+        document.querySelectorAll('.pill-btn').forEach(p => {
+          p.classList.toggle('active', p.dataset.country === currentCountry);
+        });
+        focusedIndex = 0;
+        renderTiles();
+      });
+
+      tileSearch.addEventListener('input', (e) => {
+        searchQuery = e.target.value.trim();
+        clearSearchBtn.style.display = searchQuery ? 'block' : 'none';
+        focusedIndex = 0;
+        renderTiles();
+      });
+
+      clearSearchBtn.addEventListener('click', () => {
+        tileSearch.value = '';
+        searchQuery = '';
+        clearSearchBtn.style.display = 'none';
+        focusedIndex = 0;
+        renderTiles();
+        tileSearch.focus();
+      });
+
+      gridFavToggleBtn.addEventListener('click', () => {
+        const list = getFilteredChannels();
+        const cur = list[focusedIndex] || list[activeChannelIndex];
+        if (cur) toggleFavorite(cur);
+      });
+
+      // ========================================================
+      // REMOTE CONTROL D-PAD NAVIGATION (VIDAA TV OPTIMIZED)
+      // ========================================================
+      window.addEventListener('keydown', (e) => {
+        const code = e.keyCode || e.which;
+        const k = e.key || '';
+
+        const isDown = k === 'ArrowDown' || k === 'Down' || code === 40;
+        const isUp = k === 'ArrowUp' || k === 'Up' || code === 38;
+        const isLeft = k === 'ArrowLeft' || k === 'Left' || code === 37;
+        const isRight = k === 'ArrowRight' || k === 'Right' || code === 39;
+        const isEnter = k === 'Enter' || k === 'Select' || k === 'Ok' || code === 13;
+        const isBack = k === 'Escape' || k === 'Back' || k === 'GoBack' || k === 'Backspace' || code === 27 || code === 10009 || code === 461 || code === 8;
+        const isChUp = k === 'ChannelUp' || k === 'PageUp' || k === '+' || k === '=' || code === 427 || code === 33;
+        const isChDown = k === 'ChannelDown' || k === 'PageDown' || k === '-' || k === '_' || code === 428 || code === 34;
+
+        // If Video Player Modal is Open:
+        if (!playerModal.classList.contains('hidden')) {
+          if (isBack) {
+            e.preventDefault();
+            closePlayerModal();
+            return;
+          }
+          if (isDown || isChDown) {
+            e.preventDefault();
+            const list = getFilteredChannels();
+            const nextIdx = (activeChannelIndex + 1) % list.length;
+            openPlayerModal(nextIdx);
+            return;
+          }
+          if (isUp || isChUp) {
+            e.preventDefault();
+            const list = getFilteredChannels();
+            const prevIdx = (activeChannelIndex - 1 + list.length) % list.length;
+            openPlayerModal(prevIdx);
+            return;
+          }
+          if (isEnter) {
+            e.preventDefault();
+            if (gridVideo.paused) gridVideo.play();
+            else gridVideo.pause();
+            return;
+          }
+          return;
+        }
+
+        const activeEl = document.activeElement;
+        const isInputFocused = (activeEl === tileSearch);
+        const list = getFilteredChannels();
+        const total = list.length;
+
+        // Header controls handling:
+        if (activeEl === tileSearch) {
+          if (isDown) {
+            e.preventDefault();
+            tileSearch.blur();
+            focusedIndex = 0;
+            updateTileFocus();
+            return;
+          }
+          return;
+        }
+
+        if (filterPills.includes(activeEl) || activeEl === catDropdown || activeEl === countryDropdown || activeEl === gridFavToggleBtn) {
+          if (isDown) {
+            e.preventDefault();
+            activeEl.blur();
+            focusedIndex = 0;
+            updateTileFocus();
+            return;
+          }
+        }
+
+        // On the 10-per-Row Grid:
+        if (isRight) {
+          e.preventDefault();
+          if (focusedIndex < total - 1) {
+            focusedIndex++;
+            if (focusedIndex >= renderedCount - 10 && renderedCount < total) {
+              renderedCount = Math.min(renderedCount + 80, total);
+              renderTiles(true);
+            }
+            updateTileFocus();
+          }
+          return;
+        }
+
+        if (isLeft) {
+          e.preventDefault();
+          if (focusedIndex > 0) {
+            focusedIndex--;
+            updateTileFocus();
+          }
+          return;
+        }
+
+        // DOWN: Move down exactly 1 ROW (10 tiles!)
+        if (isDown) {
+          e.preventDefault();
+          if (focusedIndex + COLS_PER_ROW < total) {
+            focusedIndex += COLS_PER_ROW;
+            if (focusedIndex >= renderedCount - 10 && renderedCount < total) {
+              renderedCount = Math.min(renderedCount + 80, total);
+              renderTiles(true);
+            }
+            updateTileFocus();
+          } else if (focusedIndex < total - 1) {
+            focusedIndex = total - 1;
+            updateTileFocus();
+          }
+          return;
+        }
+
+        // UP: Move up exactly 1 ROW (10 tiles!)
+        if (isUp) {
+          e.preventDefault();
+          if (focusedIndex - COLS_PER_ROW >= 0) {
+            focusedIndex -= COLS_PER_ROW;
+            updateTileFocus();
+          } else {
+            // Reached top row: move focus to filter controls
+            if (catDropdown) catDropdown.focus();
+            else if (tileSearch) tileSearch.focus();
+          }
+          return;
+        }
+
+        // Channel Up/Down: Skip 50 channels (5 rows)
+        if (isChDown) {
+          e.preventDefault();
+          focusedIndex = Math.min(total - 1, focusedIndex + 50);
+          if (focusedIndex >= renderedCount - 10 && renderedCount < total) {
+            renderedCount = Math.min(renderedCount + 80, total);
+            renderTiles(true);
+          }
+          updateTileFocus();
+          return;
+        }
+
+        if (isChUp) {
+          e.preventDefault();
+          focusedIndex = Math.max(0, focusedIndex - 50);
+          updateTileFocus();
+          return;
+        }
+
+        if (isEnter) {
+          e.preventDefault();
+          openPlayerModal(focusedIndex);
+          return;
+        }
+
+        if (isBack) {
+          if (searchQuery) {
+            e.preventDefault();
+            tileSearch.value = '';
+            searchQuery = '';
+            clearSearchBtn.style.display = 'none';
+            renderTiles();
+          } else {
+            // Return to live player
+            window.location.href = 'index.html';
+          }
+          return;
+        }
+      });
+
+      // Load Playlist
+      async function loadPlaylist() {
+        try {
+          let res = await fetch('/api/playlist');
+          if (!res.ok) res = await fetch('./playlist.json');
+          if (res.ok) {
+            channels = await res.json();
+            channels.forEach(c => {
+              c._isTamil = isTamilChannel(c);
+              c._lowerName = (c.name || '').toLowerCase();
+              c._lowerCountry = (c.country || 'International').toLowerCase();
+              c._lowerCategory = (c.category || 'Live').toLowerCase();
+            });
+          }
+        } catch (e) {
+          console.warn('Could not fetch playlist:', e);
+        }
+
+        languageFilter = 'tamil';
+        currentCountry = 'all';
+        currentCategory = 'Entertainment';
+
+        populateCategories();
+        populateCountries();
+        renderTiles();
+        focusedIndex = 0;
+        updateTileFocus();
+      }
+
+      loadPlaylist();
+    });
+  </script>
+</body>
+</html>

@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggleFavBtn = document.getElementById('toggleFavBtn');
   const addM3uBtn = document.getElementById('addM3uBtn');
   const reloadPlaylistBtn = document.getElementById('reloadPlaylistBtn');
+  const gridViewBtn = document.getElementById('gridViewBtn');
   const closeModalBtn = document.getElementById('closeModalBtn');
   const cancelModalBtn = document.getElementById('cancelModalBtn');
   const savePlaylistBtn = document.getElementById('savePlaylistBtn');
@@ -892,17 +893,21 @@ document.addEventListener('DOMContentLoaded', () => {
     resetOsdTimer();
     const activeEl = document.activeElement;
 
-    // 1. Top Actions: Fav, Refresh & Add M3U
-    if (activeEl === toggleFavBtn || activeEl === reloadPlaylistBtn || activeEl === addM3uBtn) {
+    // 1. Top Actions: Fav, Refresh, Grid & Add M3U
+    if (activeEl === toggleFavBtn || activeEl === reloadPlaylistBtn || activeEl === gridViewBtn || activeEl === addM3uBtn) {
       if (isRight) {
         e.preventDefault();
         if (activeEl === toggleFavBtn) reloadPlaylistBtn.focus();
+        else if (activeEl === reloadPlaylistBtn && gridViewBtn) gridViewBtn.focus();
+        else if (activeEl === gridViewBtn) addM3uBtn.focus();
         else if (activeEl === reloadPlaylistBtn) addM3uBtn.focus();
         return;
       }
       if (isLeft) {
         e.preventDefault();
-        if (activeEl === addM3uBtn) reloadPlaylistBtn.focus();
+        if (activeEl === addM3uBtn && gridViewBtn) gridViewBtn.focus();
+        else if (activeEl === gridViewBtn) reloadPlaylistBtn.focus();
+        else if (activeEl === addM3uBtn) reloadPlaylistBtn.focus();
         else if (activeEl === reloadPlaylistBtn) toggleFavBtn.focus();
         return;
       }
