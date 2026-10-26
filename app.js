@@ -823,7 +823,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const isBack = k === 'Escape' || k === 'Back' || k === 'GoBack' || k === 'Backspace' || code === 27 || code === 10009 || code === 461 || code === 8;
     const isChUp = k === 'ChannelUp' || k === 'PageUp' || k === '+' || k === '=' || code === 427 || code === 33;
     const isChDown = k === 'ChannelDown' || k === 'PageDown' || k === '-' || k === '_' || code === 428 || code === 34;
-    const isFavKey = k === 'f' || k === 'F' || k === '*' || code === 403;
+    const isFavKey = k === 'f' || k === 'F' || k === '*' || code === 403 || code === 405; // VK_RED (403) or VK_YELLOW (405)
+    const isPlayPause = k === 'MediaPlayPause' || k === 'PlayPause' || code === 179 || code === 10252 || code === 415 || code === 19;
+
+    if (isPlayPause) {
+      e.preventDefault();
+      if (video) {
+        if (video.paused) video.play().catch(e => console.log(e));
+        else video.pause();
+      }
+      return;
+    }
 
     if (!modalOverlay.classList.contains('hidden')) {
       if (isBack) {
