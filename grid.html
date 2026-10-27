@@ -421,77 +421,130 @@
     /* Fullscreen Zapper Banner */
     .player-overlay-bar {
       position: absolute;
-      bottom: 30px;
+      bottom: 24px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(8, 12, 22, 0.94);
-      border-left: 5px solid var(--primary);
+      background: rgba(8, 12, 22, 0.4);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-radius: 12px;
-      padding: 14px 24px;
+      padding: 12px 22px;
       display: flex;
       align-items: center;
       gap: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-left: 5px solid var(--primary);
       z-index: 110;
-      min-width: 480px;
-      pointer-events: none;
+      min-width: 460px;
+      max-width: calc(100vw - 110px);
+      pointer-events: auto;
     }
 
     .overlay-ch-num {
       font-size: 16px;
       font-weight: 800;
       color: var(--primary);
-      background: rgba(0, 210, 255, 0.12);
+      background: rgba(0, 210, 255, 0.2);
       padding: 6px 12px;
       border-radius: 6px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
     }
 
     .overlay-details h2 {
       font-size: 16px;
       font-weight: 700;
       color: #fff;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
     }
 
     .overlay-details span {
       font-size: 12px;
-      color: var(--text-muted);
+      color: rgba(255, 255, 255, 0.75);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
     }
 
     .overlay-hints {
       margin-left: auto;
       font-size: 11px;
-      color: #cbd5e1;
+      color: #e2e8f0;
       display: flex;
+      align-items: center;
       gap: 12px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
     }
 
     .overlay-hints b {
       color: var(--primary);
     }
 
+    .overlay-back-hint {
+      cursor: pointer;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+    }
+
+    .overlay-back-hint:hover {
+      background: rgba(225, 29, 72, 0.35);
+      border-color: #e11d48;
+      color: #fff;
+      transform: scale(1.04);
+    }
+
     .player-close-btn {
       position: absolute;
-      top: 20px;
+      bottom: 24px;
       right: 24px;
-      background: rgba(0, 0, 0, 0.6);
-      border: 2px solid rgba(255, 255, 255, 0.2);
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.25);
       color: #fff;
-      font-size: 18px;
-      width: 40px;
-      height: 40px;
+      font-size: 20px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 120;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
     }
 
-    .player-close-btn:hover {
+    .player-close-btn:hover, .player-close-btn:focus {
       background: #e11d48;
       border-color: #e11d48;
+      transform: scale(1.08);
+      outline: none;
+    }
+
+    @media (max-width: 768px) {
+      .player-overlay-bar {
+        bottom: 16px;
+        left: 12px;
+        transform: none;
+        min-width: 0;
+        max-width: calc(100vw - 72px);
+        padding: 8px 12px;
+        gap: 8px;
+      }
+
+      .player-close-btn {
+        bottom: 16px;
+        right: 12px;
+        width: 38px;
+        height: 38px;
+        font-size: 18px;
+      }
+
+      .overlay-hints {
+        display: none;
+      }
     }
 
     /* Video Loader overlay */
@@ -609,7 +662,7 @@
         <div class="overlay-hints">
           <span><b>▲/▼</b> Prev/Next</span>
           <span><b>[OK]</b> Play/Pause</span>
-          <span><b>[Back]</b> Grid</span>
+          <span class="overlay-back-hint" id="overlayBackHint" title="Back to Grid (Close Video)"><b>[Back]</b> Grid ✕</span>
         </div>
       </div>
     </div>
@@ -940,6 +993,10 @@
       }
 
       closePlayerModalBtn.addEventListener('click', closePlayerModal);
+      const overlayBackHint = document.getElementById('overlayBackHint');
+      if (overlayBackHint) {
+        overlayBackHint.addEventListener('click', closePlayerModal);
+      }
 
       // Populate Categories & Countries
       function populateCategories() {
