@@ -328,6 +328,24 @@
       color: #ffd700;
     }
 
+    .tile-blocked-badge {
+      position: absolute;
+      top: 5px;
+      right: 6px;
+      font-size: 9px;
+      font-weight: 700;
+      color: #fff;
+      background: #e11d48;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    .pill-btn.blocked-pill.active {
+      background: #e11d48 !important;
+      border-color: #e11d48 !important;
+      color: #fff !important;
+    }
+
     .tile-logo-container {
       width: 100%;
       max-width: 86px;
@@ -596,6 +614,7 @@
           <button class="pill-btn" data-country="United States" id="pillUS">🇺🇸 USA</button>
           <button class="pill-btn" data-country="United Kingdom" id="pillUK">🇬🇧 UK</button>
           <button class="pill-btn" data-country="Canada" id="pillCA">🇨🇦 Canada</button>
+          <button class="pill-btn blocked-pill" data-filter="blocked" id="pillBlocked" title="View Auto-Blocked Channels">🚫 Blocked (<span id="blockedCountBadge">0</span>)</button>
         </div>
 
         <div class="dropdowns-group">
@@ -677,7 +696,8 @@
       const pillUS = document.getElementById('pillUS');
       const pillUK = document.getElementById('pillUK');
       const pillCA = document.getElementById('pillCA');
-      const filterPills = [pillFav, pillTamil, pillIN, pillAll, pillUS, pillUK, pillCA].filter(Boolean);
+      const pillBlocked = document.getElementById('pillBlocked');
+      const filterPills = [pillFav, pillTamil, pillIN, pillAll, pillUS, pillUK, pillCA, pillBlocked].filter(Boolean);
 
       // Video Modal Elements
       const playerModal = document.getElementById('playerModal');
@@ -697,6 +717,15 @@
         if (!Array.isArray(favorites)) favorites = [];
       } catch (e) {
         favorites = [];
+      }
+
+      let blockedChannels = [];
+      try {
+        const savedBlocked = localStorage.getItem('iptv_blocked_channels');
+        if (savedBlocked) blockedChannels = JSON.parse(savedBlocked);
+        if (!Array.isArray(blockedChannels)) blockedChannels = [];
+      } catch (e) {
+        blockedChannels = [];
       }
 
       let currentCountry = 'all';
@@ -758,6 +787,45 @@
         }
       }
 
+      function isChannelBlocked(ch) {
+        const key = getChannelKey(ch);
+        return Boolean(key && blockedChannels.includes(key));
+      }
+
+      function blockChannel(ch) {
+        if (!ch) return;
+        const key = getChannelKey(ch);
+        if (!key) return;
+        if (!blockedChannels.includes(key)) {
+          blockedChannels.push(key);
+          try {
+            localStorage.setItem('iptv_blocked_channels', JSON.stringify(blockedChannels));
+          } catch (e) {}
+        }
+        invalidateFilter();
+        updateBlockedUI();
+      }
+
+      function unblockChannel(ch) {
+        if (!ch) return;
+        const key = getChannelKey(ch);
+        const idx = blockedChannels.indexOf(key);
+        if (idx >= 0) {
+          blockedChannels.splice(idx, 1);
+          try {
+            localStorage.setItem('iptv_blocked_channels', JSON.stringify(blockedChannels));
+          } catch (e) {}
+        }
+        invalidateFilter();
+        updateBlockedUI();
+        renderTiles();
+      }
+
+      function updateBlockedUI() {
+        const badge = document.getElementById('blockedCountBadge');
+        if (badge) badge.textContent = blockedChannels.length;
+      }
+
       function invalidateFilter() {
         cachedFiltered = null;
       }
@@ -766,6 +834,7 @@
         if (cachedFiltered) return cachedFiltered;
 
         const q = searchQuery ? searchQuery.toLowerCase() : '';
+        const isBlockedView = languageFilter === 'blocked';
         const isFav = languageFilter === 'favorites';
         const isTam = languageFilter === 'tamil';
         const hasCtry = currentCountry !== 'all';
@@ -773,6 +842,10 @@
         const hasCat = currentCategory !== 'all';
 
         cachedFiltered = channels.filter(c => {
+          const isBlocked = isChannelBlocked(c);
+          if (isBlockedView) return isBlocked;
+          if (isBlocked) return false; // Filter out blocked channels from normal listings
+
           if (isFav) return isChannelFavorite(c);
           const tam = c._isTamil !== undefined ? c._isTamil : isTamilChannel(c);
           if (isTam && !tam) return false;
@@ -816,16 +889,18 @@
         const count = list.length;
         const ctryLabel = currentCountry === 'all' ? 'All Countries' : currentCountry;
         const catLabel = currentCategory === 'all' ? 'All Categories' : currentCategory;
-        const langLabel = languageFilter === 'tamil' ? ' (Tamil Only)' : (languageFilter === 'favorites' ? ' (Favorites)' : '');
+        const isBlockedView = languageFilter === 'blocked';
+        const langLabel = languageFilter === 'tamil' ? ' (Tamil Only)' : (languageFilter === 'favorites' ? ' (Favorites)' : (isBlockedView ? ' (🚫 Blocked Channels - Tap to Unblock)' : ''));
 
         statusCounter.textContent = `Showing ${Math.min(renderedCount, count)} of ${count} channels • ${catLabel} / ${ctryLabel}${langLabel}`;
 
         if (count === 0) {
+          const emptyMsg = isBlockedView ? 'No Blocked Channels. Channels that fail to stream will automatically be moved here.' : 'No Channels Found. Try switching category, country, or keyword.';
           tilesGrid.innerHTML = `
             <div style="grid-column: 1 / -1; padding: 60px 20px; text-align: center; color: #8892b0;">
-              <div style="font-size: 38px; margin-bottom: 12px;">🔍</div>
-              <div style="font-size: 18px; font-weight: 700; color: #fff;">No Channels Found</div>
-              <p style="font-size: 13px; margin-top: 6px;">Try switching category, country, or keyword.</p>
+              <div style="font-size: 38px; margin-bottom: 12px;">${isBlockedView ? '🛡️' : '🔍'}</div>
+              <div style="font-size: 18px; font-weight: 700; color: #fff;">${isBlockedView ? 'No Blocked Channels' : 'No Channels Found'}</div>
+              <p style="font-size: 13px; margin-top: 6px;">${emptyMsg}</p>
             </div>
           `;
           return;
@@ -843,22 +918,28 @@
           tile.tabIndex = 0;
 
           const isFav = isChannelFavorite(ch);
+          const isBlocked = isChannelBlocked(ch);
           const fallbackText = (ch.name || 'CH').substring(0, 2).toUpperCase();
 
           tile.innerHTML = `
             <span class="tile-badge-top">#${idx + 1}</span>
             ${isFav ? '<span class="tile-fav-star">★</span>' : ''}
+            ${isBlocked ? '<span class="tile-blocked-badge" title="Channel is in blocked list">🚫 Blocked</span>' : ''}
             <div class="tile-logo-container">
               ${ch.logo ? `<img class="tile-logo" src="${escapeHtml(ch.logo)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">` : ''}
               <span class="tile-logo-fallback" style="${ch.logo ? 'display:none;' : ''}">${escapeHtml(fallbackText)}</span>
             </div>
             <div class="tile-name" title="${escapeHtml(ch.name)}">${escapeHtml(ch.name || `Channel ${idx + 1}`)}</div>
-            <div class="tile-tag">${escapeHtml(ch.category || 'Live')}</div>
+            <div class="tile-tag">${isBlocked ? 'Click to Unblock' : escapeHtml(ch.category || 'Live')}</div>
           `;
 
           tile.addEventListener('click', () => {
             focusedIndex = idx;
             updateTileFocus();
+            if (isBlockedView) {
+              unblockChannel(ch);
+              return;
+            }
             openPlayerModal(idx);
           });
 
@@ -930,18 +1011,72 @@
         }
       });
 
+      let streamTimeout = null;
+      let autoSkipTimer = null;
+      let consecutiveErrors = 0;
+      const MAX_AUTO_SKIPS = 15;
+
+      function handleStreamError(reason) {
+        if (streamTimeout) {
+          clearTimeout(streamTimeout);
+          streamTimeout = null;
+        }
+        if (autoSkipTimer) {
+          clearTimeout(autoSkipTimer);
+          autoSkipTimer = null;
+        }
+
+        const list = getFilteredChannels();
+        const failedChannel = list[activeChannelIndex];
+        if (!failedChannel) return;
+
+        consecutiveErrors++;
+        console.warn(`[Auto-Skip] Channel "${failedChannel.name}" failed: ${reason}. Moving to blocked list.`);
+
+        // Move failed channel to blocked list
+        blockChannel(failedChannel);
+
+        videoLoader.classList.remove('hidden');
+
+        if (consecutiveErrors >= MAX_AUTO_SKIPS || list.length <= 1) {
+          loaderMessage.innerHTML = `⚠️ <b>Multiple channels offline.</b><br><span style="font-size:12px;color:#cbd5e1;">Auto-skip stopped. Try another category or press Close.</span>`;
+          return;
+        }
+
+        loaderMessage.innerHTML = `⚠️ <b>${escapeHtml(failedChannel.name)}</b> failed (${escapeHtml(reason)}).<br><span style="font-size:12px;color:#f87171;">🚫 Added to blocked list. Skipping to next channel...</span>`;
+
+        autoSkipTimer = setTimeout(() => {
+          if (playerModal.classList.contains('hidden')) return;
+          playNextModalChannel(true);
+        }, 800);
+      }
+
       // Video Player Modal
       function openPlayerModal(index) {
+        if (streamTimeout) {
+          clearTimeout(streamTimeout);
+          streamTimeout = null;
+        }
+        if (autoSkipTimer) {
+          clearTimeout(autoSkipTimer);
+          autoSkipTimer = null;
+        }
+
         const list = getFilteredChannels();
-        const ch = list[index];
+        if (!list || !list.length) {
+          closePlayerModal();
+          return;
+        }
+
+        activeChannelIndex = (index + list.length) % list.length;
+        const ch = list[activeChannelIndex];
         if (!ch) return;
 
-        activeChannelIndex = index;
         playerModal.classList.remove('hidden');
 
         // Update modal banner
-        overlayChNum.textContent = `CH ${index + 1}`;
-        overlayChTitle.textContent = ch.name || `Channel ${index + 1}`;
+        overlayChNum.textContent = `CH ${activeChannelIndex + 1}`;
+        overlayChTitle.textContent = ch.name || `Channel ${activeChannelIndex + 1}`;
         const isTam = ch._isTamil !== undefined ? ch._isTamil : isTamilChannel(ch);
         const ctry = ch.country ? `${ch.country} • ` : '';
         overlayChMeta.textContent = `${ctry}${isTam ? 'Tamil • ' : ''}${ch.category || 'Live'}`;
@@ -949,15 +1084,41 @@
         videoLoader.classList.remove('hidden');
         loaderMessage.textContent = `Opening ${ch.name}...`;
 
+        // 8-second stream timeout: if not playing within 8s, trigger error & auto-skip
+        streamTimeout = setTimeout(() => {
+          handleStreamError('Stream connection timeout (8s)');
+        }, 8000);
+
         if (!hls && Hls.isSupported()) {
           hls = new Hls({ enableWorker: true, lowLatencyMode: true });
           hls.attachMedia(gridVideo);
+
           hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            if (streamTimeout) {
+              clearTimeout(streamTimeout);
+              streamTimeout = null;
+            }
+            consecutiveErrors = 0;
             videoLoader.classList.add('hidden');
             gridVideo.play().catch(e => console.log('Play error:', e));
           });
-          hls.on(Hls.Events.ERROR, () => {
-            loaderMessage.textContent = 'Stream error. Try next channel.';
+
+          hls.on(Hls.Events.ERROR, (event, data) => {
+            console.warn('HLS stream error:', data);
+            if (data.fatal) {
+              switch (data.type) {
+                case Hls.ErrorTypes.NETWORK_ERROR:
+                  handleStreamError('Network error / dead stream');
+                  break;
+                case Hls.ErrorTypes.MEDIA_ERROR:
+                  console.warn('Media error, attempting recovery...');
+                  hls.recoverMediaError();
+                  break;
+                default:
+                  handleStreamError('Fatal decoding error');
+                  break;
+              }
+            }
           });
         }
 
@@ -969,7 +1130,29 @@
         }
       }
 
+      gridVideo.addEventListener('playing', () => {
+        if (streamTimeout) {
+          clearTimeout(streamTimeout);
+          streamTimeout = null;
+        }
+        consecutiveErrors = 0;
+        videoLoader.classList.add('hidden');
+      });
+
+      gridVideo.addEventListener('error', () => {
+        handleStreamError('HTML5 video error');
+      });
+
       function closePlayerModal() {
+        if (streamTimeout) {
+          clearTimeout(streamTimeout);
+          streamTimeout = null;
+        }
+        if (autoSkipTimer) {
+          clearTimeout(autoSkipTimer);
+          autoSkipTimer = null;
+        }
+        consecutiveErrors = 0;
         playerModal.classList.add('hidden');
         if (gridVideo) {
           gridVideo.pause();
@@ -981,10 +1164,10 @@
         updateTileFocus();
       }
 
-      function playNextModalChannel() {
+      function playNextModalChannel(isSkipDueToBlock = false) {
         const list = getFilteredChannels();
         if (!list.length) return;
-        const nextIdx = (activeChannelIndex + 1) % list.length;
+        const nextIdx = isSkipDueToBlock ? (activeChannelIndex % list.length) : ((activeChannelIndex + 1) % list.length);
         openPlayerModal(nextIdx);
       }
 
@@ -997,8 +1180,8 @@
 
       const modalPrevChBtn = document.getElementById('modalPrevChBtn');
       const modalNextChBtn = document.getElementById('modalNextChBtn');
-      if (modalPrevChBtn) modalPrevChBtn.addEventListener('click', playPrevModalChannel);
-      if (modalNextChBtn) modalNextChBtn.addEventListener('click', playNextModalChannel);
+      if (modalPrevChBtn) modalPrevChBtn.addEventListener('click', () => playPrevModalChannel());
+      if (modalNextChBtn) modalNextChBtn.addEventListener('click', () => playNextModalChannel(false));
       if (closePlayerModalBtn) closePlayerModalBtn.addEventListener('click', closePlayerModal);
 
       // Populate Categories & Countries
@@ -1123,6 +1306,19 @@
         focusedIndex = 0;
         renderTiles();
       });
+
+      if (pillBlocked) {
+        pillBlocked.addEventListener('click', () => {
+          languageFilter = 'blocked';
+          currentCountry = 'all';
+          currentCategory = 'all';
+          setPillActive(pillBlocked);
+          if (countryDropdown) countryDropdown.value = 'all';
+          if (catDropdown) catDropdown.value = 'all';
+          focusedIndex = 0;
+          renderTiles();
+        });
+      }
 
       catDropdown.addEventListener('change', (e) => {
         currentCategory = e.target.value;
@@ -1306,6 +1502,12 @@
 
         if (isEnter) {
           e.preventDefault();
+          if (languageFilter === 'blocked') {
+            const list = getFilteredChannels();
+            const ch = list[focusedIndex];
+            if (ch) unblockChannel(ch);
+            return;
+          }
           openPlayerModal(focusedIndex);
           return;
         }
@@ -1349,6 +1551,8 @@
 
         populateCategories();
         populateCountries();
+        updateFavUI();
+        updateBlockedUI();
         renderTiles();
         focusedIndex = 0;
         updateTileFocus();
