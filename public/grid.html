@@ -495,9 +495,10 @@
     }
 
     .player-close-btn {
-      position: absolute;
-      bottom: 24px;
-      right: 24px;
+      position: absolute !important;
+      top: auto !important;
+      bottom: 24px !important;
+      right: 24px !important;
       background: rgba(0, 0, 0, 0.65);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
@@ -511,7 +512,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 120;
+      z-index: 120 !important;
       transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
     }
@@ -645,7 +646,6 @@
 
   <!-- Fullscreen Video Player Modal -->
   <div class="player-modal hidden" id="playerModal">
-    <button class="player-close-btn" id="closePlayerModalBtn" title="Close Video">&times;</button>
     <div class="video-viewport">
       <video id="gridVideoPlayer" playsinline autoplay></video>
       <div class="video-loader hidden" id="videoLoader">
@@ -653,7 +653,7 @@
         <p id="loaderMessage">Opening channel...</p>
       </div>
 
-      <div class="player-overlay-bar" id="playerOverlayBar">
+      <div class="player-overlay-bar" id="playerOverlayBar" style="background: rgba(8, 12, 22, 0.4) !important; backdrop-filter: blur(14px) !important; -webkit-backdrop-filter: blur(14px) !important;">
         <div class="overlay-ch-num" id="overlayChNum">CH 1</div>
         <div class="overlay-details">
           <h2 id="overlayChTitle">Channel Name</h2>
@@ -665,6 +665,8 @@
           <span class="overlay-back-hint" id="overlayBackHint" title="Back to Grid (Close Video)"><b>[Back]</b> Grid ✕</span>
         </div>
       </div>
+
+      <button class="player-close-btn" id="closePlayerModalBtn" title="Close Video" style="position: absolute !important; top: auto !important; bottom: 24px !important; right: 24px !important; z-index: 120 !important;">&times;</button>
     </div>
   </div>
 
