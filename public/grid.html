@@ -464,86 +464,69 @@
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
     }
 
-    .overlay-hints {
+    .overlay-actions {
       margin-left: auto;
-      font-size: 11px;
-      color: #e2e8f0;
       display: flex;
       align-items: center;
-      gap: 12px;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+      gap: 8px;
     }
 
-    .overlay-hints b {
-      color: var(--primary);
-    }
-
-    .overlay-back-hint {
-      cursor: pointer;
-      padding: 4px 10px;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
-    }
-
-    .overlay-back-hint:hover {
-      background: rgba(225, 29, 72, 0.35);
-      border-color: #e11d48;
+    .overlay-btn {
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.24);
       color: #fff;
-      transform: scale(1.04);
-    }
-
-    .player-close-btn {
-      position: absolute !important;
-      top: auto !important;
-      bottom: 24px !important;
-      right: 24px !important;
-      background: rgba(0, 0, 0, 0.65);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 2px solid rgba(255, 255, 255, 0.25);
-      color: #fff;
-      font-size: 20px;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 8px;
       cursor: pointer;
       display: flex;
       align-items: center;
-      justify-content: center;
-      z-index: 120 !important;
-      transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
-    }
-
-    .player-close-btn:hover, .player-close-btn:focus {
-      background: #e11d48;
-      border-color: #e11d48;
-      transform: scale(1.08);
+      gap: 6px;
+      transition: background 0.12s ease, border-color 0.12s ease, transform 0.1s ease;
+      white-space: nowrap;
       outline: none;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    }
+
+    .overlay-btn:hover, .overlay-btn:focus {
+      background: rgba(0, 210, 255, 0.28);
+      border-color: var(--primary);
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(0, 210, 255, 0.45);
+    }
+
+    .overlay-close-btn {
+      background: rgba(225, 29, 72, 0.35);
+      border-color: rgba(225, 29, 72, 0.5);
+      margin-left: 4px;
+    }
+
+    .overlay-close-btn:hover, .overlay-close-btn:focus {
+      background: #e11d48 !important;
+      border-color: #e11d48 !important;
+      box-shadow: 0 0 14px rgba(225, 29, 72, 0.7) !important;
+      transform: scale(1.06);
     }
 
     @media (max-width: 768px) {
       .player-overlay-bar {
         bottom: 16px;
-        left: 12px;
-        transform: none;
+        left: 50%;
+        transform: translateX(-50%);
         min-width: 0;
-        max-width: calc(100vw - 72px);
+        width: calc(100vw - 20px);
+        max-width: calc(100vw - 20px);
         padding: 8px 12px;
         gap: 8px;
       }
 
-      .player-close-btn {
-        bottom: 16px;
-        right: 12px;
-        width: 38px;
-        height: 38px;
-        font-size: 18px;
+      .overlay-btn {
+        padding: 6px 10px;
+        font-size: 12px;
       }
 
-      .overlay-hints {
+      .overlay-btn span {
         display: none;
       }
     }
@@ -653,20 +636,24 @@
         <p id="loaderMessage">Opening channel...</p>
       </div>
 
-      <div class="player-overlay-bar" id="playerOverlayBar" style="background: rgba(8, 12, 22, 0.4) !important; backdrop-filter: blur(14px) !important; -webkit-backdrop-filter: blur(14px) !important;">
+      <div class="player-overlay-bar" id="playerOverlayBar" style="background: rgba(8, 12, 22, 0.45) !important; backdrop-filter: blur(14px) !important; -webkit-backdrop-filter: blur(14px) !important;">
         <div class="overlay-ch-num" id="overlayChNum">CH 1</div>
         <div class="overlay-details">
           <h2 id="overlayChTitle">Channel Name</h2>
           <span id="overlayChMeta">Tamil • Entertainment</span>
         </div>
-        <div class="overlay-hints">
-          <span><b>▲/▼</b> Prev/Next</span>
-          <span><b>[OK]</b> Play/Pause</span>
-          <span class="overlay-back-hint" id="overlayBackHint" title="Back to Grid (Close Video)"><b>[Back]</b> Grid ✕</span>
+        <div class="overlay-actions">
+          <button class="overlay-btn" id="modalPrevChBtn" title="Previous Channel (▲ / CH-)" aria-label="Previous Channel">
+            ⏮ <span>Prev</span>
+          </button>
+          <button class="overlay-btn" id="modalNextChBtn" title="Next Channel (▼ / CH+)" aria-label="Next Channel">
+            <span>Next</span> ⏭
+          </button>
+          <button class="overlay-btn overlay-close-btn" id="closePlayerModalBtn" title="Close Video (Back to Grid)" aria-label="Close Video">
+            ✕ <span>Close</span>
+          </button>
         </div>
       </div>
-
-      <button class="player-close-btn" id="closePlayerModalBtn" title="Close Video" style="position: absolute !important; top: auto !important; bottom: 24px !important; right: 24px !important; z-index: 120 !important;">&times;</button>
     </div>
   </div>
 
@@ -994,11 +981,25 @@
         updateTileFocus();
       }
 
-      closePlayerModalBtn.addEventListener('click', closePlayerModal);
-      const overlayBackHint = document.getElementById('overlayBackHint');
-      if (overlayBackHint) {
-        overlayBackHint.addEventListener('click', closePlayerModal);
+      function playNextModalChannel() {
+        const list = getFilteredChannels();
+        if (!list.length) return;
+        const nextIdx = (activeChannelIndex + 1) % list.length;
+        openPlayerModal(nextIdx);
       }
+
+      function playPrevModalChannel() {
+        const list = getFilteredChannels();
+        if (!list.length) return;
+        const prevIdx = (activeChannelIndex - 1 + list.length) % list.length;
+        openPlayerModal(prevIdx);
+      }
+
+      const modalPrevChBtn = document.getElementById('modalPrevChBtn');
+      const modalNextChBtn = document.getElementById('modalNextChBtn');
+      if (modalPrevChBtn) modalPrevChBtn.addEventListener('click', playPrevModalChannel);
+      if (modalNextChBtn) modalNextChBtn.addEventListener('click', playNextModalChannel);
+      if (closePlayerModalBtn) closePlayerModalBtn.addEventListener('click', closePlayerModal);
 
       // Populate Categories & Countries
       function populateCategories() {
@@ -1186,16 +1187,12 @@
           }
           if (isDown || isChDown) {
             e.preventDefault();
-            const list = getFilteredChannels();
-            const nextIdx = (activeChannelIndex + 1) % list.length;
-            openPlayerModal(nextIdx);
+            playNextModalChannel();
             return;
           }
           if (isUp || isChUp) {
             e.preventDefault();
-            const list = getFilteredChannels();
-            const prevIdx = (activeChannelIndex - 1 + list.length) % list.length;
-            openPlayerModal(prevIdx);
+            playPrevModalChannel();
             return;
           }
           if (isEnter) {
