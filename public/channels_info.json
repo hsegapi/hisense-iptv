@@ -1,7 +1,7 @@
 {
   "source": "https://iptv-org.github.io/",
   "last_updated": "2026-10-27T15:35:06.828727",
-  "total_channels": 12858,
+  "total_channels": 12883,
   "countries": {
     "India": 1581,
     "United States": 1385,
@@ -196,6 +196,7 @@
     "Sports": 642,
     "Kids": 527,
     "Lifestyle": 184,
-    "Interactive": 2
+    "Interactive": 2,
+    "Sony LIV": 25
   }
 }

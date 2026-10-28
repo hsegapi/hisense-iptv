@@ -1,5 +1,255 @@
 [
   {
+    "name": "SET HD",
+    "id": "set-hd.sonyliv",
+    "category": "Entertainment",
+    "country": "India",
+    "language": "Hindi",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Sony_Entertainment_Television_logo.svg/330px-Sony_Entertainment_Television_logo.svg.png",
+    "url": "https://dishmt.slivcdn.com/hls/live/2011671/SETHD/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "Sony SAB HD",
+    "id": "sab-hd.sonyliv",
+    "category": "Entertainment",
+    "country": "India",
+    "language": "Hindi",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d7/Sony_SAB_logo_2022.svg/330px-Sony_SAB_logo_2022.svg.png",
+    "url": "https://dishmt.slivcdn.com/hls/live/2011749/SABHD/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "Sony Marathi",
+    "id": "marathi.sonyliv",
+    "category": "Entertainment",
+    "country": "India",
+    "language": "Marathi",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Sony_Marathi_logo.png/330px-Sony_Marathi_logo.png",
+    "url": "https://dishmt.slivcdn.com/hls/live/2011740/SonyMarathi/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "Sony Pal",
+    "id": "pal.sonyliv",
+    "category": "Entertainment",
+    "country": "India",
+    "language": "Hindi",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/3/36/Sony_Pal_logo_2022.png/330px-Sony_Pal_logo_2022.png",
+    "url": "https://dishmt.slivcdn.com/hls/live/2011741/SonyPalSD/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "Sony Aath",
+    "id": "aath.sonyliv",
+    "category": "Entertainment",
+    "country": "India",
+    "language": "Bengali",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/3/3d/Sony_Aath_logo.png/330px-Sony_Aath_logo.png",
+    "url": "https://dishmt.slivcdn.com/hls/live/2011641/SonyAathSD/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "Sony Yay",
+    "id": "yay.sonyliv",
+    "category": "Kids",
+    "country": "India",
+    "language": "Hindi",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/2/22/Sony_YAY%21_logo.png/330px-Sony_YAY%21_logo.png",
+    "url": "https://dishmt.slivcdn.com/hls/live/2011746/SonyYaySD/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "Sony MAX HD",
+    "id": "max-hd.sonyliv",
+    "category": "Movies",
+    "country": "India",
+    "language": "Hindi",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Sony_Max_logo_2022.svg/330px-Sony_Max_logo_2022.svg.png",
+    "url": "https://dishmt.slivcdn.com/hls/live/2011670/SonyMaxhd/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "Sony MAX",
+    "id": "max.sonyliv",
+    "category": "Movies",
+    "country": "India",
+    "language": "Hindi",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Sony_Max_logo_2022.svg/330px-Sony_Max_logo_2022.svg.png",
+    "url": "https://dishmt.slivcdn.com/hls/live/2011745/SonyMaxSD/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "Sony MAX 2",
+    "id": "max2.sonyliv",
+    "category": "Movies",
+    "country": "India",
+    "language": "Hindi",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/Sony_Max_2_logo.png/330px-Sony_Max_2_logo.png",
+    "url": "https://dishmt.slivcdn.com/hls/live/2011908/MAX2/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "Sony WAH",
+    "id": "wah.sonyliv",
+    "category": "Movies",
+    "country": "India",
+    "language": "Hindi",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/1a/Sony_Wah_logo.png/330px-Sony_Wah_logo.png",
+    "url": "https://dishmt.slivcdn.com/hls/live/2011906/SonyWah/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "Sony PIX HD",
+    "id": "pix-hd.sonyliv",
+    "category": "Movies",
+    "country": "India",
+    "language": "English",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/1d/Sony_Pix_logo.png/330px-Sony_Pix_logo.png",
+    "url": "https://dishmt.slivcdn.com/hls/live/2011748/PIXHD/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "Sony Ten 1 HD",
+    "id": "ten1-hd.sonyliv",
+    "category": "Sports",
+    "country": "India",
+    "language": "English",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/7/7b/Sony_Sports_Ten_1_logo.svg/330px-Sony_Sports_Ten_1_logo.svg.png",
+    "url": "https://dishmt.slivcdn.com/hls/live/2011747/TEN1HD/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "Sony Ten 1",
+    "id": "ten1.sonyliv",
+    "category": "Sports",
+    "country": "India",
+    "language": "English",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/7/7b/Sony_Sports_Ten_1_logo.svg/330px-Sony_Sports_Ten_1_logo.svg.png",
+    "url": "https://dishmt.slivcdn.com/hls/live/2011739/TEN1SD/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "Sony Ten 2 HD",
+    "id": "ten2-hd.sonyliv",
+    "category": "Sports",
+    "country": "India",
+    "language": "English",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/0/00/Sony_Sports_Ten_2_logo.svg/330px-Sony_Sports_Ten_2_logo.svg.png",
+    "url": "https://dishmt.slivcdn.com/hls/live/2020434/TEN2HD/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "Sony Ten 2",
+    "id": "ten2.sonyliv",
+    "category": "Sports",
+    "country": "India",
+    "language": "English",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/0/00/Sony_Sports_Ten_2_logo.svg/330px-Sony_Sports_Ten_2_logo.svg.png",
+    "url": "https://dishmt.slivcdn.com/hls/live/2020590/TEN2SD/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "Sony Ten 3 HD",
+    "id": "ten3-hd.sonyliv",
+    "category": "Sports",
+    "country": "India",
+    "language": "Hindi",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/c/c5/Sony_Sports_Ten_3_logo.svg/330px-Sony_Sports_Ten_3_logo.svg.png",
+    "url": "https://dishmt.slivcdn.com/hls/live/2020591/TEN3HD/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "Sony Ten 3",
+    "id": "ten3.sonyliv",
+    "category": "Sports",
+    "country": "India",
+    "language": "Hindi",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/c/c5/Sony_Sports_Ten_3_logo.svg/330px-Sony_Sports_Ten_3_logo.svg.png",
+    "url": "https://dishmt.slivcdn.com/hls/live/2020592/TEN3SD/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "Sony Ten 4 HD",
+    "id": "ten4-hd.sonyliv",
+    "category": "Sports",
+    "country": "India",
+    "language": "Hindi",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/3/3d/Sony_Sports_Ten_4_logo.svg/330px-Sony_Sports_Ten_4_logo.svg.png",
+    "url": "https://dishmt.slivcdn.com/hls/live/2020589/ten4hd/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "Sony Ten 4",
+    "id": "ten4.sonyliv",
+    "category": "Sports",
+    "country": "India",
+    "language": "Hindi",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/3/3d/Sony_Sports_Ten_4_logo.svg/330px-Sony_Sports_Ten_4_logo.svg.png",
+    "url": "https://dishmt.slivcdn.com/hls/live/2020437/ten4sd/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "Sony Ten 4 Kannada",
+    "id": "ten4-kan.sonyliv",
+    "category": "Sports",
+    "country": "India",
+    "language": "Kannada",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1tRFuWjkv6MwDRneqUVbe6kAvhuwukT86HcBLDbZA7Q&amp;s=10",
+    "url": "https://dishmt.slivcdn.com/hls/live/2020589/ten4kannada/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "Sony Ten 5 HD",
+    "id": "ten5-hd.sonyliv",
+    "category": "Sports",
+    "country": "India",
+    "language": "Hindi",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/Sony_Sports_Ten_5_logo.svg/330px-Sony_Sports_Ten_5_logo.svg.png",
+    "url": "https://dishmt.slivcdn.com/hls/live/2020593/SONYSIXHD/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "Sony Ten 5",
+    "id": "ten5.sonyliv",
+    "category": "Sports",
+    "country": "India",
+    "language": "Hindi",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/Sony_Sports_Ten_5_logo.svg/330px-Sony_Sports_Ten_5_logo.svg.png",
+    "url": "https://dishmt.slivcdn.com/hls/live/2020594/SONYSIXSD/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "BBC Earth HD",
+    "id": "bbc-earth.sonyliv",
+    "category": "Documentary",
+    "country": "India",
+    "language": "English",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/6/64/Sony_BBC_Earth.png/330px-Sony_BBC_Earth.png",
+    "url": "https://dishmt.slivcdn.com/hls/live/2011907/SonyBBCEarthHD/master.m3u8?hdnea=exp=1793207182~acl=/*~id=00272406344018952664253856613806~hmac=0d09f995c500c2c739275ee670ecbe541682a1d18506444195481dd7e2207c45",
+    "is_sonyliv": true
+  },
+  {
+    "name": "Gujarat Royals vs UP Dhurandhar - Semi Final 2 - 28 Oct 2026 [HIN] - Salute Tiranga Cricket League (STCL) 2026",
+    "id": "gujarat-royals-vs-up-dhurandhar-semi-final-2-28-oct-2026-hin-salute-tiranga-cricket-league-stcl-2026.sonyliv",
+    "category": "Sports",
+    "country": "India",
+    "language": "Hindi",
+    "logo": "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027580/1793171987464723_STCL26_SF_Gujarat_Royals_vs_UP_landscape_thumb.jpg",
+    "url": "https://sonydaime.akamaized.net/hls/live/2120300/criclive2810/HIN/std_lrh-800300010.m3u8?hdnea=exp=1793219651~acl=/*~id=78634094544543603772940263288785~hmac=a2445d688caedbca65bbfda01d1457bea5486b125de28f1875d77f571afd7973",
+    "is_sonyliv": true
+  },
+  {
+    "name": "HIN | Gujarat Royals vs Punjab Falcons - Semi Final 2 - 28 Oct 2026",
+    "id": "1090550845",
+    "category": "Sports",
+    "country": "India",
+    "language": "Hindi",
+    "logo": "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027437/1793076736608450_STCL26_SF_Gujarat_Royals_vs_Punjab_Falcons_landscape_thumb.jpg",
+    "url": "https://sonymtmnew.akamaized.net/hls/live/2120300/criclive2810/HIN/std_lrh-800300010.m3u8?hdnea=exp=1793193024~acl=/*~id=6225b371c32d6c5df71dff24a37a84dd-1793149803835~hmac=680667a8e2e7eb012b47f3cbb4642412dc3ae37d4883701364d148f73be28a62",
+    "is_sonyliv": true
+  },
+  {
     "name": "Eslah TV (720p)",
     "category": "Devotional",
     "country": "Afghanistan",

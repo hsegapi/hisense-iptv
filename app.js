@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const pillCA = document.getElementById('pillCA');
   const pillIN = document.getElementById('pillIN');
   const pillTamil = document.getElementById('pillTamil');
+  const pillSonyLiv = document.getElementById('pillSonyLiv');
 
   // Mobile Controls
   const mobileMuteBtn = document.getElementById('mobileMuteBtn');
@@ -66,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let hls = null;
   let osdTimeout = null;
 
-  const filterPills = [pillFav, pillTamil, pillIN, pillAll, pillUS, pillUK, pillCA].filter(Boolean);
+  const filterPills = [pillFav, pillTamil, pillSonyLiv, pillIN, pillAll, pillUS, pillUK, pillCA].filter(Boolean);
 
   function getActivePill() {
     return document.querySelector('.lang-pills .lang-pill.active') || pillTamil || filterPills[0];
@@ -129,10 +130,22 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       hls.attachMedia(video);
 
-      hls.on(Hls.Events.ERROR, (event, data) => {
+      hls.on(Hls.Events.ERROR, async (event, data) => {
         if (data.fatal) {
           switch (data.type) {
             case Hls.ErrorTypes.NETWORK_ERROR:
+              const list = getFilteredChannels();
+              const curChannel = list[activeChannelIndex];
+              if (curChannel && isSonyLivChannel(curChannel)) {
+                console.log('Sony LIV stream network issue, checking fresh token from GitHub...');
+                await refreshSonyLivLiveUrls(true);
+                const updatedCh = getFilteredChannels()[activeChannelIndex];
+                if (updatedCh && updatedCh.url) {
+                  hls.loadSource(updatedCh.url);
+                  hls.startLoad();
+                  return;
+                }
+              }
               console.warn('Network error encountered, trying to recover...');
               hls.startLoad();
               break;
@@ -306,6 +319,201 @@ document.addEventListener('DOMContentLoaded', () => {
     return tamilKeywords.test(ch.name) || (ch.id && /tamil|\.ta@/i.test(ch.id)) || (ch.category && /tamil/i.test(ch.category));
   }
 
+  // Sony LIV Official Channels & Logos Mapping
+  const SONY_LOGOS = {
+    'set hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Sony_Entertainment_Television_logo.svg/330px-Sony_Entertainment_Television_logo.svg.png',
+    'sony sab hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d7/Sony_SAB_logo_2022.svg/330px-Sony_SAB_logo_2022.svg.png',
+    'sony marathi': 'https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Sony_Marathi_logo.png/330px-Sony_Marathi_logo.png',
+    'sony pal': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/36/Sony_Pal_logo_2022.png/330px-Sony_Pal_logo_2022.png',
+    'sony aath': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/3d/Sony_Aath_logo.png/330px-Sony_Aath_logo.png',
+    'sony yay': 'https://upload.wikimedia.org/wikipedia/en/thumb/2/22/Sony_YAY%21_logo.png/330px-Sony_YAY%21_logo.png',
+    'sony max hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Sony_Max_logo_2022.svg/330px-Sony_Max_logo_2022.svg.png',
+    'sony max': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Sony_Max_logo_2022.svg/330px-Sony_Max_logo_2022.svg.png',
+    'sony max 2': 'https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/Sony_Max_2_logo.png/330px-Sony_Max_2_logo.png',
+    'sony wah': 'https://upload.wikimedia.org/wikipedia/en/thumb/1/1a/Sony_Wah_logo.png/330px-Sony_Wah_logo.png',
+    'sony pix hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/1/1d/Sony_Pix_logo.png/330px-Sony_Pix_logo.png',
+    'sony ten 1 hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/7/7b/Sony_Sports_Ten_1_logo.svg/330px-Sony_Sports_Ten_1_logo.svg.png',
+    'sony ten 1': 'https://upload.wikimedia.org/wikipedia/en/thumb/7/7b/Sony_Sports_Ten_1_logo.svg/330px-Sony_Sports_Ten_1_logo.svg.png',
+    'sony ten 2 hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/0/00/Sony_Sports_Ten_2_logo.svg/330px-Sony_Sports_Ten_2_logo.svg.png',
+    'sony ten 2': 'https://upload.wikimedia.org/wikipedia/en/thumb/0/00/Sony_Sports_Ten_2_logo.svg/330px-Sony_Sports_Ten_2_logo.svg.png',
+    'sony ten 3 hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/c/c5/Sony_Sports_Ten_3_logo.svg/330px-Sony_Sports_Ten_3_logo.svg.png',
+    'sony ten 3': 'https://upload.wikimedia.org/wikipedia/en/thumb/c/c5/Sony_Sports_Ten_3_logo.svg/330px-Sony_Sports_Ten_3_logo.svg.png',
+    'sony ten 4 hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/3d/Sony_Sports_Ten_4_logo.svg/330px-Sony_Sports_Ten_4_logo.svg.png',
+    'sony ten 4': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/3d/Sony_Sports_Ten_4_logo.svg/330px-Sony_Sports_Ten_4_logo.svg.png',
+    'sony ten 4 kannada': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1tRFuWjkv6MwDRneqUVbe6kAvhuwukT86HcBLDbZA7Q&s=10',
+    'sony ten 5 hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/Sony_Sports_Ten_5_logo.svg/330px-Sony_Sports_Ten_5_logo.svg.png',
+    'sony ten 5': 'https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/Sony_Sports_Ten_5_logo.svg/330px-Sony_Sports_Ten_5_logo.svg.png',
+    'bbc earth hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/6/64/Sony_BBC_Earth.png/330px-Sony_BBC_Earth.png'
+  };
+
+  function isSonyLivChannel(ch) {
+    if (!ch) return false;
+    if (ch.is_sonyliv || ch._isSonyLiv) return true;
+    if (ch.id && (ch.id.endsWith('.sonyliv') || ch.id.includes('sonyliv'))) return true;
+    if (ch.url && (ch.url.includes('slivcdn.com') || ch.url.includes('sonyliv') || ch.url.includes('criclive') || ch.url.includes('sonydaime') || ch.url.includes('sonymtmnew'))) return true;
+    if (ch.original_category && /sonyliv/i.test(ch.original_category)) return true;
+    if (ch.group_title && /sonyliv/i.test(ch.group_title)) return true;
+    const lowerName = (ch.name || '').toLowerCase();
+    if (/\b(sony|ten\s*[1-5]|set\s*hd|sab\s*hd|bbc\s*earth)\b/i.test(lowerName)) return true;
+    return false;
+  }
+
+  let lastSonyLivFetchTime = 0;
+  let isFetchingSonyLiv = false;
+
+  async function refreshSonyLivLiveUrls(force = false) {
+    const now = Date.now();
+    if (!force && lastSonyLivFetchTime && (now - lastSonyLivFetchTime < 10 * 60 * 1000)) {
+      return;
+    }
+    if (isFetchingSonyLiv) return;
+    isFetchingSonyLiv = true;
+
+    try {
+      const endpoints = [
+        'https://raw.githubusercontent.com/sportlive18/Sonyliv-Playlist-Autoupdate/main/sony.m3u',
+        'https://raw.githubusercontent.com/sportlive18/Sonyliv-Playlist-Autoupdate/main/sonyliv.m3u',
+        'https://raw.githubusercontent.com/sportlive18/Sonyliv-Playlist-Autoupdate/main/sonyliv2.m3u'
+      ];
+
+      const fetchPromises = endpoints.map(u =>
+        fetch(`${u}?t=${Date.now()}`)
+          .then(r => r.ok ? r.text() : '')
+          .catch(() => '')
+      );
+
+      const [sonyM3u, sonylivM3u, sonyliv2M3u] = await Promise.all(fetchPromises);
+
+      const parsedItems = [
+        ...parseSonyM3uText(sonyM3u, 'SonyLIV Channels'),
+        ...parseSonyM3uText(sonylivM3u, 'SonyLIV Live'),
+        ...parseSonyM3uText(sonyliv2M3u, 'SonyLIV Live')
+      ];
+
+      if (parsedItems.length > 0) {
+        lastSonyLivFetchTime = Date.now();
+
+        const parsedMap = new Map();
+        parsedItems.forEach(item => {
+          if (item.id) parsedMap.set(item.id, item);
+          parsedMap.set(item.name.toLowerCase(), item);
+        });
+
+        // 1. Update any existing Sony LIV channels with newest token URLs
+        channels.forEach(c => {
+          const matched = (c.id && parsedMap.get(c.id)) || parsedMap.get((c.name || '').toLowerCase());
+          if (matched) {
+            c.url = matched.url;
+            c.is_sonyliv = true;
+            c._isSonyLiv = true;
+            if (matched.logo && (!c.logo || c.logo.includes('default'))) c.logo = matched.logo;
+          }
+        });
+
+        // 2. Prepend any new channels not currently in list
+        const existingUrls = new Set(channels.map(c => c.url));
+        const existingIds = new Set(channels.map(c => c.id).filter(Boolean));
+
+        const toAdd = [];
+        parsedItems.forEach(item => {
+          if (!existingIds.has(item.id) && !existingUrls.has(item.url)) {
+            item._isSonyLiv = true;
+            item._isTamil = false;
+            item._lowerName = item.name.toLowerCase();
+            item._lowerCountry = 'india';
+            item._lowerCategory = item.category.toLowerCase();
+            toAdd.push(item);
+            existingUrls.add(item.url);
+            existingIds.add(item.id);
+          }
+        });
+
+        if (toAdd.length > 0) {
+          channels.unshift(...toAdd);
+        }
+
+        invalidateChannelFilter();
+      }
+    } catch (e) {
+      console.warn('Failed to auto-update Sony LIV URLs:', e);
+    } finally {
+      isFetchingSonyLiv = false;
+    }
+  }
+
+  function parseSonyM3uText(m3uText, defaultCategory = 'Sony LIV') {
+    if (!m3uText) return [];
+    const items = [];
+    const lines = m3uText.split(/\r?\n/);
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (line.startsWith('#EXTINF:')) {
+        const nameMatch = line.match(/,\s*(.*)$/);
+        const name = nameMatch ? nameMatch[1].trim() : 'Sony LIV Channel';
+        const logoMatch = line.match(/tvg-logo="([^"]*)"/i);
+        const idMatch = line.match(/tvg-id="([^"]*)"/i);
+        const groupMatch = line.match(/group-title="([^"]*)"/i);
+
+        const id = idMatch ? idMatch[1].trim() : '';
+        let logo = logoMatch ? logoMatch[1].trim() : '';
+        const group = groupMatch ? groupMatch[1].trim() : defaultCategory;
+
+        let url = '';
+        i++;
+        while (i < lines.length) {
+          const cur = lines[i].trim();
+          if (!cur || cur.startsWith('#')) {
+            i++;
+            continue;
+          }
+          url = cur;
+          break;
+        }
+
+        if (url) {
+          const cleanUrl = url.split('|')[0].trim();
+          const lowerName = name.toLowerCase();
+
+          if (!logo && SONY_LOGOS[lowerName]) {
+            logo = SONY_LOGOS[lowerName];
+          } else if (!logo) {
+            for (const [k, v] of Object.entries(SONY_LOGOS)) {
+              if (lowerName.includes(k) || k.includes(lowerName)) {
+                logo = v;
+                break;
+              }
+            }
+          }
+
+          let category = 'Entertainment';
+          if (/sport|cricket|ten|football/i.test(group) || /sport|cricket|ten|match|league|semi final/i.test(name)) {
+            category = 'Sports';
+          } else if (/movie|max|pix|wah/i.test(group) || /movie|max|pix|wah/i.test(name)) {
+            category = 'Movies';
+          } else if (/kid|yay/i.test(group) || /yay/i.test(name)) {
+            category = 'Kids';
+          } else if (/earth|doc/i.test(group) || /earth/i.test(name)) {
+            category = 'Documentary';
+          }
+
+          items.push({
+            name: name,
+            id: id || `${lowerName.replace(/[^a-z0-9]+/g, '-')}.sonyliv`,
+            logo: logo || 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Sony_Channel_Logo.png/960px-Sony_Channel_Logo.png',
+            category: category,
+            original_category: group,
+            country: 'India',
+            language: /kannada/i.test(name) ? 'Kannada' : (/marathi/i.test(name) ? 'Marathi' : (/aath/i.test(name) ? 'Bengali' : (/cricket|ten\s*[1-2]|pix|earth/i.test(name) ? 'English' : 'Hindi'))),
+            url: cleanUrl,
+            is_sonyliv: true,
+            _isSonyLiv: true
+          });
+        }
+      }
+    }
+    return items;
+  }
+
   let cachedFilteredChannels = null;
 
   function invalidateChannelFilter() {
@@ -329,6 +537,12 @@ document.addEventListener('DOMContentLoaded', () => {
       // Favorites filter
       if (isFavFilter) {
         return isChannelFavorite(c);
+      }
+
+      // Sony LIV filter
+      if (languageFilter === 'sonyliv') {
+        const isSony = c._isSonyLiv !== undefined ? c._isSonyLiv : isSonyLivChannel(c);
+        if (!isSony) return false;
       }
 
       // Language check
@@ -540,6 +754,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  if (pillSonyLiv) {
+    pillSonyLiv.addEventListener('click', async () => {
+      languageFilter = 'sonyliv';
+      currentCountry = 'all';
+      currentCategory = 'all';
+      updatePillActive(pillSonyLiv);
+      if (countrySelect) countrySelect.value = 'all';
+      if (categorySelect) categorySelect.value = 'all';
+      focusedIndex = 0;
+      renderedCount = 120;
+
+      showLoader('Loading latest Sony LIV channels & live streams...');
+      await refreshSonyLivLiveUrls();
+      renderCategories();
+      renderChannels();
+      const filtered = getFilteredChannels();
+      if (filtered.length > 0) {
+        playChannel(0);
+        updateFocus();
+      } else {
+        hideLoader();
+      }
+    });
+  }
+
   // Country Dropdown Handler
   if (countrySelect) {
     countrySelect.addEventListener('change', (e) => {
@@ -586,7 +825,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const ctryLabel = currentCountry === 'all' ? 'All Countries' : currentCountry;
     const catLabel = currentCategory === 'all' ? 'All Categories' : currentCategory;
-    const langLabel = languageFilter === 'tamil' ? ' (Tamil Only)' : (languageFilter === 'favorites' ? ' (Favorites)' : '');
+    const langLabel = languageFilter === 'tamil' ? ' (Tamil Only)' : (languageFilter === 'sonyliv' ? ' (⚡ Sony LIV Channels & Live)' : (languageFilter === 'favorites' ? ' (Favorites)' : ''));
 
     filterStatusText.textContent = searchQuery
       ? `Found ${list.length} channels for "${searchQuery}"`
@@ -1118,6 +1357,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // One-time precomputation for instant O(1) D-pad navigation and filtering
         channels.forEach(c => {
           c._isTamil = isTamilChannel(c);
+          c._isSonyLiv = isSonyLivChannel(c);
           c._lowerName = (c.name || '').toLowerCase();
           c._lowerCountry = (c.country || 'International').toLowerCase();
           c._lowerCategory = (c.category || 'Live').toLowerCase();

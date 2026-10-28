@@ -37,6 +37,38 @@ MASTER_SOURCES = {
     "index": "https://iptv-org.github.io/iptv/index.m3u"
 }
 
+SONYLIV_SOURCES = [
+    "https://raw.githubusercontent.com/sportlive18/Sonyliv-Playlist-Autoupdate/main/sony.m3u",
+    "https://raw.githubusercontent.com/sportlive18/Sonyliv-Playlist-Autoupdate/main/sonyliv.m3u",
+    "https://raw.githubusercontent.com/sportlive18/Sonyliv-Playlist-Autoupdate/main/sonyliv2.m3u"
+]
+
+SONY_LOGOS = {
+    "set hd": "https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Sony_Entertainment_Television_logo.svg/330px-Sony_Entertainment_Television_logo.svg.png",
+    "sony sab hd": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d7/Sony_SAB_logo_2022.svg/330px-Sony_SAB_logo_2022.svg.png",
+    "sony marathi": "https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Sony_Marathi_logo.png/330px-Sony_Marathi_logo.png",
+    "sony pal": "https://upload.wikimedia.org/wikipedia/en/thumb/3/36/Sony_Pal_logo_2022.png/330px-Sony_Pal_logo_2022.png",
+    "sony aath": "https://upload.wikimedia.org/wikipedia/en/thumb/3/3d/Sony_Aath_logo.png/330px-Sony_Aath_logo.png",
+    "sony yay": "https://upload.wikimedia.org/wikipedia/en/thumb/2/22/Sony_YAY%21_logo.png/330px-Sony_YAY%21_logo.png",
+    "sony max hd": "https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Sony_Max_logo_2022.svg/330px-Sony_Max_logo_2022.svg.png",
+    "sony max": "https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Sony_Max_logo_2022.svg/330px-Sony_Max_logo_2022.svg.png",
+    "sony max 2": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/Sony_Max_2_logo.png/330px-Sony_Max_2_logo.png",
+    "sony wah": "https://upload.wikimedia.org/wikipedia/en/thumb/1/1a/Sony_Wah_logo.png/330px-Sony_Wah_logo.png",
+    "sony pix hd": "https://upload.wikimedia.org/wikipedia/en/thumb/1/1d/Sony_Pix_logo.png/330px-Sony_Pix_logo.png",
+    "sony ten 1 hd": "https://upload.wikimedia.org/wikipedia/en/thumb/7/7b/Sony_Sports_Ten_1_logo.svg/330px-Sony_Sports_Ten_1_logo.svg.png",
+    "sony ten 1": "https://upload.wikimedia.org/wikipedia/en/thumb/7/7b/Sony_Sports_Ten_1_logo.svg/330px-Sony_Sports_Ten_1_logo.svg.png",
+    "sony ten 2 hd": "https://upload.wikimedia.org/wikipedia/en/thumb/0/00/Sony_Sports_Ten_2_logo.svg/330px-Sony_Sports_Ten_2_logo.svg.png",
+    "sony ten 2": "https://upload.wikimedia.org/wikipedia/en/thumb/0/00/Sony_Sports_Ten_2_logo.svg/330px-Sony_Sports_Ten_2_logo.svg.png",
+    "sony ten 3 hd": "https://upload.wikimedia.org/wikipedia/en/thumb/c/c5/Sony_Sports_Ten_3_logo.svg/330px-Sony_Sports_Ten_3_logo.svg.png",
+    "sony ten 3": "https://upload.wikimedia.org/wikipedia/en/thumb/c/c5/Sony_Sports_Ten_3_logo.svg/330px-Sony_Sports_Ten_3_logo.svg.png",
+    "sony ten 4 hd": "https://upload.wikimedia.org/wikipedia/en/thumb/3/3d/Sony_Sports_Ten_4_logo.svg/330px-Sony_Sports_Ten_4_logo.svg.png",
+    "sony ten 4": "https://upload.wikimedia.org/wikipedia/en/thumb/3/3d/Sony_Sports_Ten_4_logo.svg/330px-Sony_Sports_Ten_4_logo.svg.png",
+    "sony ten 4 kannada": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1tRFuWjkv6MwDRneqUVbe6kAvhuwukT86HcBLDbZA7Q&s=10",
+    "sony ten 5 hd": "https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/Sony_Sports_Ten_5_logo.svg/330px-Sony_Sports_Ten_5_logo.svg.png",
+    "sony ten 5": "https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/Sony_Sports_Ten_5_logo.svg/330px-Sony_Sports_Ten_5_logo.svg.png",
+    "bbc earth hd": "https://upload.wikimedia.org/wikipedia/en/thumb/6/64/Sony_BBC_Earth.png/330px-Sony_BBC_Earth.png"
+}
+
 TAMIL_KEYWORDS = re.compile(
     r"\b(tamil|sun\s*tv|sun\s*music|sun\s*news|ktv|vijay|jaya|thanthi|polimer|"
     r"puthiya\s*thalaimurai|kalaignar|raj\s*tv|raj\s*musix|captain|mega\s*tv|"
@@ -351,6 +383,46 @@ def run():
         except Exception as e:
             print(f"  [WARN] Could not parse existing playlist.json: {e}")
 
+    # Fetch Sony LIV auto-updated channels from GitHub
+    print("\n  Fetching Sony LIV auto-updated channels from GitHub...")
+    sonyliv_added = 0
+    for s_url in SONYLIV_SOURCES:
+        s_content = fetch_url_content(s_url)
+        if not s_content:
+            continue
+        s_entries = parse_m3u_text(s_content)
+        for entry in s_entries:
+            s_stream_url = entry["url"].split("|")[0].strip()
+            if not s_stream_url:
+                continue
+            name = entry["name"]
+            group = entry["group_title"] or "SonyLIV"
+            norm_cat = normalize_category(group, name)
+            ln = name.lower()
+            logo = entry["tvg_logo"] or SONY_LOGOS.get(ln, "")
+            if not logo:
+                for k, v in SONY_LOGOS.items():
+                    if k in ln or ln in k:
+                        logo = v
+                        break
+
+            clean_id = entry["tvg_id"] if entry["tvg_id"] else (re.sub(r'[^a-z0-9]+', '-', ln).strip('-') + ".sonyliv")
+            channels_by_url[s_stream_url] = {
+                "name": name,
+                "tvg_id": clean_id,
+                "tvg_name": name,
+                "tvg_logo": logo or "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Sony_Channel_Logo.png/960px-Sony_Channel_Logo.png",
+                "category": norm_cat,
+                "original_category": group,
+                "country": "India",
+                "language": "Hindi" if "kannada" not in ln else "Kannada",
+                "url": s_stream_url,
+                "extra_lines": entry["extra_lines"],
+                "is_sonyliv": True
+            }
+            sonyliv_added += 1
+    print(f"  ✓ Added/Updated {sonyliv_added} Sony LIV channels from sportlive18 repository")
+
     channel_list = list(channels_by_url.values())
 
     for ch in channel_list:
@@ -479,6 +551,15 @@ def run():
         with open(os.path.join(PUBLIC_DIR, "categories", f"{slug}.m3u"), "w", encoding="utf-8") as f:
             f.write(m3u_text)
 
+    # Dedicated Sony LIV Category playlist
+    sonyliv_items = [ch for ch in channel_list if ch.get("is_sonyliv")]
+    if sonyliv_items:
+        sonyliv_m3u = generate_m3u(sonyliv_items, group_mode="both")
+        with open(os.path.join(CATEGORIES_DIR, "sonyliv.m3u"), "w", encoding="utf-8") as f:
+            f.write(sonyliv_m3u)
+        with open(os.path.join(PUBLIC_DIR, "categories", "sonyliv.m3u"), "w", encoding="utf-8") as f:
+            f.write(sonyliv_m3u)
+
     # 5. Write playlist.json & channels_info.json
     print("\n[5/5] Generating playlist.json with all country metadata...")
     json_entries = []
@@ -490,7 +571,8 @@ def run():
             "language": ch["language"],
             "logo": ch["tvg_logo"],
             "url": ch["url"],
-            "id": ch["tvg_id"]
+            "id": ch["tvg_id"],
+            "is_sonyliv": ch.get("is_sonyliv", False)
         })
 
     json_data = json.dumps(json_entries, ensure_ascii=False, indent=2)

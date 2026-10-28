@@ -353,6 +353,34 @@ body, html {
   transform: scale(1.05);
 }
 
+.lang-pill.sonyliv-pill {
+  background: rgba(139, 92, 246, 0.18);
+  border-color: rgba(167, 139, 250, 0.45);
+  color: #c4b5fd;
+}
+
+.lang-pill.sonyliv-pill:hover {
+  background: rgba(139, 92, 246, 0.3);
+  border-color: #a78bfa;
+  color: #fff;
+}
+
+.lang-pill.sonyliv-pill.active {
+  background: linear-gradient(135deg, #7c3aed, #a855f7) !important;
+  color: #ffffff !important;
+  border-color: #c084fc !important;
+  box-shadow: 0 0 14px rgba(168, 85, 247, 0.65) !important;
+}
+
+.lang-pill.sonyliv-pill:focus {
+  background: linear-gradient(135deg, #7c3aed, #a855f7) !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+  outline: 3px solid #c084fc !important;
+  box-shadow: 0 0 18px rgba(168, 85, 247, 0.9) !important;
+  transform: scale(1.05);
+}
+
 /* Side-by-side dropdowns wrapper */
 .dropdowns-row {
   display: flex;

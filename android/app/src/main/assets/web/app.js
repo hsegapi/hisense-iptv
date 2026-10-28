@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const pillCA = document.getElementById('pillCA');
   const pillIN = document.getElementById('pillIN');
   const pillTamil = document.getElementById('pillTamil');
+  const pillSonyLiv = document.getElementById('pillSonyLiv');
 
   // Mobile Controls
   const mobileMuteBtn = document.getElementById('mobileMuteBtn');
@@ -36,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggleFavBtn = document.getElementById('toggleFavBtn');
   const addM3uBtn = document.getElementById('addM3uBtn');
   const reloadPlaylistBtn = document.getElementById('reloadPlaylistBtn');
+  const gridViewBtn = document.getElementById('gridViewBtn');
   const closeModalBtn = document.getElementById('closeModalBtn');
   const cancelModalBtn = document.getElementById('cancelModalBtn');
   const savePlaylistBtn = document.getElementById('savePlaylistBtn');
@@ -65,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let hls = null;
   let osdTimeout = null;
 
-  const filterPills = [pillFav, pillTamil, pillIN, pillAll, pillUS, pillUK, pillCA].filter(Boolean);
+  const filterPills = [pillFav, pillTamil, pillSonyLiv, pillIN, pillAll, pillUS, pillUK, pillCA].filter(Boolean);
 
   function getActivePill() {
     return document.querySelector('.lang-pills .lang-pill.active') || pillTamil || filterPills[0];
@@ -102,11 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     saveFavorites();
 
-    if (languageFilter === 'favorites') {
-      renderChannels();
-    } else {
-      renderChannels(true);
-    }
+    invalidateChannelFilter();
+    renderChannels();
   }
 
   function updateFavUI() {
@@ -131,10 +130,22 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       hls.attachMedia(video);
 
-      hls.on(Hls.Events.ERROR, (event, data) => {
+      hls.on(Hls.Events.ERROR, async (event, data) => {
         if (data.fatal) {
           switch (data.type) {
             case Hls.ErrorTypes.NETWORK_ERROR:
+              const list = getFilteredChannels();
+              const curChannel = list[activeChannelIndex];
+              if (curChannel && isSonyLivChannel(curChannel)) {
+                console.log('Sony LIV stream network issue, checking fresh token from GitHub...');
+                await refreshSonyLivLiveUrls(true);
+                const updatedCh = getFilteredChannels()[activeChannelIndex];
+                if (updatedCh && updatedCh.url) {
+                  hls.loadSource(updatedCh.url);
+                  hls.startLoad();
+                  return;
+                }
+              }
               console.warn('Network error encountered, trying to recover...');
               hls.startLoad();
               break;
@@ -197,13 +208,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3500);
   }
 
+  let lastPlayingIndex = -1;
+
   // Play specified channel
   function playChannel(filteredIndex, resetTimer = true) {
     const list = getFilteredChannels();
     const channel = list[filteredIndex];
     if (!channel) return;
 
+    // Highlight playing item efficiently without querying the whole DOM
+    const children = channelListEl.children;
+    if (lastPlayingIndex >= 0 && lastPlayingIndex < children.length) {
+      children[lastPlayingIndex].classList.remove('playing');
+    }
     activeChannelIndex = filteredIndex;
+    if (filteredIndex >= 0 && filteredIndex < children.length) {
+      children[filteredIndex].classList.add('playing');
+      lastPlayingIndex = filteredIndex;
+    }
+
     showLoader(`Opening ${channel.name}...`);
     if (resetTimer && osdContainer.classList.contains('visible')) {
       resetOsdTimer();
@@ -212,14 +235,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update banner
     channelNumEl.textContent = `CH ${filteredIndex + 1}`;
     channelTitleEl.textContent = channel.name;
-    const isTam = isTamilChannel(channel);
+    const isTam = channel._isTamil !== undefined ? channel._isTamil : isTamilChannel(channel);
     const ctry = channel.country ? `${channel.country} • ` : '';
     channelCatEl.textContent = `${ctry}${isTam ? 'Tamil • ' : ''}${channel.category || 'Live'}`;
-
-    // Highlight playing item
-    document.querySelectorAll('.channel-item').forEach((item, idx) => {
-      item.classList.toggle('playing', idx === filteredIndex);
-    });
 
     updateFavUI();
 
@@ -232,6 +250,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  let zapDebounceTimeout = null;
+
   function playNextChannel() {
     const list = getFilteredChannels();
     if (!list.length) return;
@@ -243,11 +263,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     focusedIndex = nextIndex;
     const isMenuOpen = osdContainer.classList.contains('visible');
-    playChannel(nextIndex, isMenuOpen);
 
     if (!isMenuOpen) {
+      activeChannelIndex = nextIndex;
       showBriefChannelBanner(list[nextIndex], nextIndex);
+      if (zapDebounceTimeout) clearTimeout(zapDebounceTimeout);
+      zapDebounceTimeout = setTimeout(() => {
+        playChannel(nextIndex, false);
+      }, 250);
     } else {
+      playChannel(nextIndex, true);
       updateFocus();
     }
   }
@@ -263,11 +288,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     focusedIndex = prevIndex;
     const isMenuOpen = osdContainer.classList.contains('visible');
-    playChannel(prevIndex, isMenuOpen);
 
     if (!isMenuOpen) {
+      activeChannelIndex = prevIndex;
       showBriefChannelBanner(list[prevIndex], prevIndex);
+      if (zapDebounceTimeout) clearTimeout(zapDebounceTimeout);
+      zapDebounceTimeout = setTimeout(() => {
+        playChannel(prevIndex, false);
+      }, 250);
     } else {
+      playChannel(prevIndex, true);
       updateFocus();
     }
   }
@@ -289,41 +319,259 @@ document.addEventListener('DOMContentLoaded', () => {
     return tamilKeywords.test(ch.name) || (ch.id && /tamil|\.ta@/i.test(ch.id)) || (ch.category && /tamil/i.test(ch.category));
   }
 
+  // Sony LIV Official Channels & Logos Mapping
+  const SONY_LOGOS = {
+    'set hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Sony_Entertainment_Television_logo.svg/330px-Sony_Entertainment_Television_logo.svg.png',
+    'sony sab hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d7/Sony_SAB_logo_2022.svg/330px-Sony_SAB_logo_2022.svg.png',
+    'sony marathi': 'https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Sony_Marathi_logo.png/330px-Sony_Marathi_logo.png',
+    'sony pal': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/36/Sony_Pal_logo_2022.png/330px-Sony_Pal_logo_2022.png',
+    'sony aath': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/3d/Sony_Aath_logo.png/330px-Sony_Aath_logo.png',
+    'sony yay': 'https://upload.wikimedia.org/wikipedia/en/thumb/2/22/Sony_YAY%21_logo.png/330px-Sony_YAY%21_logo.png',
+    'sony max hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Sony_Max_logo_2022.svg/330px-Sony_Max_logo_2022.svg.png',
+    'sony max': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Sony_Max_logo_2022.svg/330px-Sony_Max_logo_2022.svg.png',
+    'sony max 2': 'https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/Sony_Max_2_logo.png/330px-Sony_Max_2_logo.png',
+    'sony wah': 'https://upload.wikimedia.org/wikipedia/en/thumb/1/1a/Sony_Wah_logo.png/330px-Sony_Wah_logo.png',
+    'sony pix hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/1/1d/Sony_Pix_logo.png/330px-Sony_Pix_logo.png',
+    'sony ten 1 hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/7/7b/Sony_Sports_Ten_1_logo.svg/330px-Sony_Sports_Ten_1_logo.svg.png',
+    'sony ten 1': 'https://upload.wikimedia.org/wikipedia/en/thumb/7/7b/Sony_Sports_Ten_1_logo.svg/330px-Sony_Sports_Ten_1_logo.svg.png',
+    'sony ten 2 hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/0/00/Sony_Sports_Ten_2_logo.svg/330px-Sony_Sports_Ten_2_logo.svg.png',
+    'sony ten 2': 'https://upload.wikimedia.org/wikipedia/en/thumb/0/00/Sony_Sports_Ten_2_logo.svg/330px-Sony_Sports_Ten_2_logo.svg.png',
+    'sony ten 3 hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/c/c5/Sony_Sports_Ten_3_logo.svg/330px-Sony_Sports_Ten_3_logo.svg.png',
+    'sony ten 3': 'https://upload.wikimedia.org/wikipedia/en/thumb/c/c5/Sony_Sports_Ten_3_logo.svg/330px-Sony_Sports_Ten_3_logo.svg.png',
+    'sony ten 4 hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/3d/Sony_Sports_Ten_4_logo.svg/330px-Sony_Sports_Ten_4_logo.svg.png',
+    'sony ten 4': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/3d/Sony_Sports_Ten_4_logo.svg/330px-Sony_Sports_Ten_4_logo.svg.png',
+    'sony ten 4 kannada': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1tRFuWjkv6MwDRneqUVbe6kAvhuwukT86HcBLDbZA7Q&s=10',
+    'sony ten 5 hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/Sony_Sports_Ten_5_logo.svg/330px-Sony_Sports_Ten_5_logo.svg.png',
+    'sony ten 5': 'https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/Sony_Sports_Ten_5_logo.svg/330px-Sony_Sports_Ten_5_logo.svg.png',
+    'bbc earth hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/6/64/Sony_BBC_Earth.png/330px-Sony_BBC_Earth.png'
+  };
+
+  function isSonyLivChannel(ch) {
+    if (!ch) return false;
+    if (ch.is_sonyliv || ch._isSonyLiv) return true;
+    if (ch.id && (ch.id.endsWith('.sonyliv') || ch.id.includes('sonyliv'))) return true;
+    if (ch.url && (ch.url.includes('slivcdn.com') || ch.url.includes('sonyliv') || ch.url.includes('criclive') || ch.url.includes('sonydaime') || ch.url.includes('sonymtmnew'))) return true;
+    if (ch.original_category && /sonyliv/i.test(ch.original_category)) return true;
+    if (ch.group_title && /sonyliv/i.test(ch.group_title)) return true;
+    const lowerName = (ch.name || '').toLowerCase();
+    if (/\b(sony|ten\s*[1-5]|set\s*hd|sab\s*hd|bbc\s*earth)\b/i.test(lowerName)) return true;
+    return false;
+  }
+
+  let lastSonyLivFetchTime = 0;
+  let isFetchingSonyLiv = false;
+
+  async function refreshSonyLivLiveUrls(force = false) {
+    const now = Date.now();
+    if (!force && lastSonyLivFetchTime && (now - lastSonyLivFetchTime < 10 * 60 * 1000)) {
+      return;
+    }
+    if (isFetchingSonyLiv) return;
+    isFetchingSonyLiv = true;
+
+    try {
+      const endpoints = [
+        'https://raw.githubusercontent.com/sportlive18/Sonyliv-Playlist-Autoupdate/main/sony.m3u',
+        'https://raw.githubusercontent.com/sportlive18/Sonyliv-Playlist-Autoupdate/main/sonyliv.m3u',
+        'https://raw.githubusercontent.com/sportlive18/Sonyliv-Playlist-Autoupdate/main/sonyliv2.m3u'
+      ];
+
+      const fetchPromises = endpoints.map(u =>
+        fetch(`${u}?t=${Date.now()}`)
+          .then(r => r.ok ? r.text() : '')
+          .catch(() => '')
+      );
+
+      const [sonyM3u, sonylivM3u, sonyliv2M3u] = await Promise.all(fetchPromises);
+
+      const parsedItems = [
+        ...parseSonyM3uText(sonyM3u, 'SonyLIV Channels'),
+        ...parseSonyM3uText(sonylivM3u, 'SonyLIV Live'),
+        ...parseSonyM3uText(sonyliv2M3u, 'SonyLIV Live')
+      ];
+
+      if (parsedItems.length > 0) {
+        lastSonyLivFetchTime = Date.now();
+
+        const parsedMap = new Map();
+        parsedItems.forEach(item => {
+          if (item.id) parsedMap.set(item.id, item);
+          parsedMap.set(item.name.toLowerCase(), item);
+        });
+
+        // 1. Update any existing Sony LIV channels with newest token URLs
+        channels.forEach(c => {
+          const matched = (c.id && parsedMap.get(c.id)) || parsedMap.get((c.name || '').toLowerCase());
+          if (matched) {
+            c.url = matched.url;
+            c.is_sonyliv = true;
+            c._isSonyLiv = true;
+            if (matched.logo && (!c.logo || c.logo.includes('default'))) c.logo = matched.logo;
+          }
+        });
+
+        // 2. Prepend any new channels not currently in list
+        const existingUrls = new Set(channels.map(c => c.url));
+        const existingIds = new Set(channels.map(c => c.id).filter(Boolean));
+
+        const toAdd = [];
+        parsedItems.forEach(item => {
+          if (!existingIds.has(item.id) && !existingUrls.has(item.url)) {
+            item._isSonyLiv = true;
+            item._isTamil = false;
+            item._lowerName = item.name.toLowerCase();
+            item._lowerCountry = 'india';
+            item._lowerCategory = item.category.toLowerCase();
+            toAdd.push(item);
+            existingUrls.add(item.url);
+            existingIds.add(item.id);
+          }
+        });
+
+        if (toAdd.length > 0) {
+          channels.unshift(...toAdd);
+        }
+
+        invalidateChannelFilter();
+      }
+    } catch (e) {
+      console.warn('Failed to auto-update Sony LIV URLs:', e);
+    } finally {
+      isFetchingSonyLiv = false;
+    }
+  }
+
+  function parseSonyM3uText(m3uText, defaultCategory = 'Sony LIV') {
+    if (!m3uText) return [];
+    const items = [];
+    const lines = m3uText.split(/\r?\n/);
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (line.startsWith('#EXTINF:')) {
+        const nameMatch = line.match(/,\s*(.*)$/);
+        const name = nameMatch ? nameMatch[1].trim() : 'Sony LIV Channel';
+        const logoMatch = line.match(/tvg-logo="([^"]*)"/i);
+        const idMatch = line.match(/tvg-id="([^"]*)"/i);
+        const groupMatch = line.match(/group-title="([^"]*)"/i);
+
+        const id = idMatch ? idMatch[1].trim() : '';
+        let logo = logoMatch ? logoMatch[1].trim() : '';
+        const group = groupMatch ? groupMatch[1].trim() : defaultCategory;
+
+        let url = '';
+        i++;
+        while (i < lines.length) {
+          const cur = lines[i].trim();
+          if (!cur || cur.startsWith('#')) {
+            i++;
+            continue;
+          }
+          url = cur;
+          break;
+        }
+
+        if (url) {
+          const cleanUrl = url.split('|')[0].trim();
+          const lowerName = name.toLowerCase();
+
+          if (!logo && SONY_LOGOS[lowerName]) {
+            logo = SONY_LOGOS[lowerName];
+          } else if (!logo) {
+            for (const [k, v] of Object.entries(SONY_LOGOS)) {
+              if (lowerName.includes(k) || k.includes(lowerName)) {
+                logo = v;
+                break;
+              }
+            }
+          }
+
+          let category = 'Entertainment';
+          if (/sport|cricket|ten|football/i.test(group) || /sport|cricket|ten|match|league|semi final/i.test(name)) {
+            category = 'Sports';
+          } else if (/movie|max|pix|wah/i.test(group) || /movie|max|pix|wah/i.test(name)) {
+            category = 'Movies';
+          } else if (/kid|yay/i.test(group) || /yay/i.test(name)) {
+            category = 'Kids';
+          } else if (/earth|doc/i.test(group) || /earth/i.test(name)) {
+            category = 'Documentary';
+          }
+
+          items.push({
+            name: name,
+            id: id || `${lowerName.replace(/[^a-z0-9]+/g, '-')}.sonyliv`,
+            logo: logo || 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Sony_Channel_Logo.png/960px-Sony_Channel_Logo.png',
+            category: category,
+            original_category: group,
+            country: 'India',
+            language: /kannada/i.test(name) ? 'Kannada' : (/marathi/i.test(name) ? 'Marathi' : (/aath/i.test(name) ? 'Bengali' : (/cricket|ten\s*[1-2]|pix|earth/i.test(name) ? 'English' : 'Hindi'))),
+            url: cleanUrl,
+            is_sonyliv: true,
+            _isSonyLiv: true
+          });
+        }
+      }
+    }
+    return items;
+  }
+
+  let cachedFilteredChannels = null;
+
+  function invalidateChannelFilter() {
+    cachedFilteredChannels = null;
+  }
+
   // Filter channels by Country, Category, Language & Search
   function getFilteredChannels() {
-    return channels.filter(c => {
+    if (cachedFilteredChannels) {
+      return cachedFilteredChannels;
+    }
+
+    const q = searchQuery ? searchQuery.toLowerCase() : '';
+    const isFavFilter = languageFilter === 'favorites';
+    const isTamFilter = languageFilter === 'tamil';
+    const hasCountryFilter = currentCountry !== 'all';
+    const ctryLower = hasCountryFilter ? currentCountry.toLowerCase() : '';
+    const hasCategoryFilter = currentCategory !== 'all';
+
+    cachedFilteredChannels = channels.filter(c => {
       // Favorites filter
-      if (languageFilter === 'favorites') {
+      if (isFavFilter) {
         return isChannelFavorite(c);
       }
 
-      const isTam = isTamilChannel(c);
+      // Sony LIV filter
+      if (languageFilter === 'sonyliv') {
+        const isSony = c._isSonyLiv !== undefined ? c._isSonyLiv : isSonyLivChannel(c);
+        if (!isSony) return false;
+      }
 
       // Language check
-      if (languageFilter === 'tamil' && !isTam) return false;
+      const isTam = c._isTamil !== undefined ? c._isTamil : isTamilChannel(c);
+      if (isTamFilter && !isTam) return false;
 
       // Country check
-      if (currentCountry !== 'all') {
-        const ctry = c.country || 'International';
-        if (ctry.toLowerCase() !== currentCountry.toLowerCase()) return false;
+      if (hasCountryFilter) {
+        const ctry = c._lowerCountry || (c.country || 'International').toLowerCase();
+        if (ctry !== ctryLower) return false;
       }
 
       // Category check
-      if (currentCategory !== 'all') {
+      if (hasCategoryFilter) {
         if (c.category !== currentCategory) return false;
       }
 
       // Search query check (matches name, country, or category)
-      if (searchQuery) {
-        const q = searchQuery.toLowerCase();
-        const matchName = c.name && c.name.toLowerCase().includes(q);
-        const matchCountry = c.country && c.country.toLowerCase().includes(q);
-        const matchCategory = c.category && c.category.toLowerCase().includes(q);
+      if (q) {
+        const matchName = c._lowerName && c._lowerName.includes(q);
+        const matchCountry = c._lowerCountry && c._lowerCountry.includes(q);
+        const matchCategory = c._lowerCategory && c._lowerCategory.includes(q);
         if (!matchName && !matchCountry && !matchCategory) return false;
       }
 
       return true;
     });
+
+    return cachedFilteredChannels;
   }
 
   // Populate Country Dropdown
@@ -506,6 +754,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  if (pillSonyLiv) {
+    pillSonyLiv.addEventListener('click', async () => {
+      languageFilter = 'sonyliv';
+      currentCountry = 'all';
+      currentCategory = 'all';
+      updatePillActive(pillSonyLiv);
+      if (countrySelect) countrySelect.value = 'all';
+      if (categorySelect) categorySelect.value = 'all';
+      focusedIndex = 0;
+      renderedCount = 120;
+
+      showLoader('Loading latest Sony LIV channels & live streams...');
+      await refreshSonyLivLiveUrls();
+      renderCategories();
+      renderChannels();
+      const filtered = getFilteredChannels();
+      if (filtered.length > 0) {
+        playChannel(0);
+        updateFocus();
+      } else {
+        hideLoader();
+      }
+    });
+  }
+
   // Country Dropdown Handler
   if (countrySelect) {
     countrySelect.addEventListener('change', (e) => {
@@ -534,18 +807,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  let lastFocusedIndex = -1;
+
   // Render Channel List
   function renderChannels(isAppend = false) {
+    if (!isAppend) {
+      invalidateChannelFilter();
+    }
     const list = getFilteredChannels();
 
     if (!isAppend) {
       channelListEl.innerHTML = '';
       renderedCount = Math.min(120, list.length);
+      lastFocusedIndex = -1;
+      lastPlayingIndex = -1;
     }
 
     const ctryLabel = currentCountry === 'all' ? 'All Countries' : currentCountry;
     const catLabel = currentCategory === 'all' ? 'All Categories' : currentCategory;
-    const langLabel = languageFilter === 'tamil' ? ' (Tamil Only)' : (languageFilter === 'favorites' ? ' (Favorites)' : '');
+    const langLabel = languageFilter === 'tamil' ? ' (Tamil Only)' : (languageFilter === 'sonyliv' ? ' (⚡ Sony LIV Channels & Live)' : (languageFilter === 'favorites' ? ' (Favorites)' : ''));
 
     filterStatusText.textContent = searchQuery
       ? `Found ${list.length} channels for "${searchQuery}"`
@@ -576,17 +856,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const startIndex = isAppend ? channelListEl.children.length : 0;
     const displayList = list.slice(startIndex, renderedCount);
+    const fragment = document.createDocumentFragment();
 
     displayList.forEach((ch, idxOffset) => {
       const idx = startIndex + idxOffset;
       const item = document.createElement('div');
       item.className = `channel-item ${idx === focusedIndex ? 'focused' : ''} ${idx === activeChannelIndex ? 'playing' : ''}`;
       item.dataset.index = idx;
+      item.tabIndex = 0;
 
       const displayName = ch.name || `Channel ${idx + 1}`;
       const categoryTag = ch.category || 'Live';
       const countryTag = ch.country || 'Global';
-      const isTam = isTamilChannel(ch);
+      const isTam = ch._isTamil !== undefined ? ch._isTamil : isTamilChannel(ch);
       const isFav = isChannelFavorite(ch);
 
       item.innerHTML = `
@@ -608,10 +890,14 @@ document.addEventListener('DOMContentLoaded', () => {
         playChannel(idx);
       });
 
-      channelListEl.appendChild(item);
+      fragment.appendChild(item);
     });
 
+    channelListEl.appendChild(fragment);
+
     if (!isAppend) {
+      lastFocusedIndex = focusedIndex;
+      lastPlayingIndex = activeChannelIndex;
       scrollFocusedIntoView();
     }
   }
@@ -628,23 +914,47 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
+    if (!text) return '';
+    return String(text)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
   }
 
   function updateFocus() {
-    const items = channelListEl.querySelectorAll('.channel-item');
-    items.forEach((item, idx) => {
-      item.classList.toggle('focused', idx === focusedIndex);
-    });
+    const children = channelListEl.children;
+    if (lastFocusedIndex >= 0 && lastFocusedIndex < children.length) {
+      children[lastFocusedIndex].classList.remove('focused');
+    }
+    if (focusedIndex >= 0 && focusedIndex < children.length) {
+      const el = children[focusedIndex];
+      el.classList.add('focused');
+      lastFocusedIndex = focusedIndex;
+      try {
+        el.focus({ preventScroll: true });
+      } catch (err) {
+        el.focus();
+      }
+    }
     scrollFocusedIntoView();
   }
 
   function scrollFocusedIntoView() {
     const focusedEl = channelListEl.children[focusedIndex];
-    if (focusedEl) {
-      focusedEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    if (!focusedEl) return;
+
+    // Direct scrollTop calculation works reliably across all TV browsers (VIDAA, Tizen, WebOS)
+    const itemTop = focusedEl.offsetTop;
+    const itemHeight = focusedEl.offsetHeight;
+    const listScrollTop = channelListEl.scrollTop;
+    const listHeight = channelListEl.clientHeight;
+
+    if (itemTop < listScrollTop) {
+      channelListEl.scrollTop = itemTop;
+    } else if (itemTop + itemHeight > listScrollTop + listHeight) {
+      channelListEl.scrollTop = itemTop + itemHeight - listHeight;
     }
   }
 
@@ -741,8 +1051,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Remote Control Navigation
   window.addEventListener('keydown', (e) => {
+    const code = e.keyCode || e.which;
+    const k = e.key || '';
+
+    // Universal key normalization for VIDAA, Tizen, WebOS, Android, and Desktop
+    const isDown = k === 'ArrowDown' || k === 'Down' || code === 40;
+    const isUp = k === 'ArrowUp' || k === 'Up' || code === 38;
+    const isLeft = k === 'ArrowLeft' || k === 'Left' || code === 37;
+    const isRight = k === 'ArrowRight' || k === 'Right' || code === 39;
+    const isEnter = k === 'Enter' || k === 'Select' || k === 'Ok' || code === 13;
+    const isBack = k === 'Escape' || k === 'Back' || k === 'GoBack' || k === 'Backspace' || code === 27 || code === 10009 || code === 461 || code === 8;
+    const isChUp = k === 'ChannelUp' || k === 'PageUp' || k === '+' || k === '=' || code === 427 || code === 33;
+    const isChDown = k === 'ChannelDown' || k === 'PageDown' || k === '-' || k === '_' || code === 428 || code === 34;
+    const isFavKey = k === 'f' || k === 'F' || k === '*' || code === 403 || code === 405; // VK_RED (403) or VK_YELLOW (405)
+    const isPlayPause = k === 'MediaPlayPause' || k === 'PlayPause' || code === 179 || code === 10252 || code === 415 || code === 19;
+
+    if (isPlayPause) {
+      e.preventDefault();
+      if (video) {
+        if (video.paused) video.play().catch(e => console.log(e));
+        else video.pause();
+      }
+      return;
+    }
+
     if (!modalOverlay.classList.contains('hidden')) {
-      if (e.key === 'Escape' || e.keyCode === 27 || e.keyCode === 10009) {
+      if (isBack) {
         closeModal();
       }
       return;
@@ -752,12 +1086,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const isMenuOpen = osdContainer.classList.contains('visible');
 
     // 1. Channel Up / Down (ALWAYS switch channel directly, NEVER open the menu!)
-    if (e.key === 'ChannelUp' || e.key === 'PageUp' || e.keyCode === 427 || e.keyCode === 33 || e.key === '+' || e.key === '=') {
+    if (isChUp) {
       e.preventDefault();
       playNextChannel();
       return;
     }
-    if (e.key === 'ChannelDown' || e.key === 'PageDown' || e.keyCode === 428 || e.keyCode === 34 || e.key === '-' || e.key === '_') {
+    if (isChDown) {
       e.preventDefault();
       playPrevChannel();
       return;
@@ -765,24 +1099,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. When in FULLSCREEN mode (sidebar menu is NOT visible)
     if (!isMenuOpen) {
-      if (e.key === 'ArrowDown') {
+      if (isDown) {
         e.preventDefault();
         playNextChannel();
         return;
       }
-      if (e.key === 'ArrowUp') {
+      if (isUp) {
         e.preventDefault();
         playPrevChannel();
         return;
       }
-      if (e.key === 'Enter' || e.key === 'Back' || e.key === 'Escape' || e.key === 'GoBack' || e.key === 'Backspace') {
+      if (isEnter || isBack) {
         e.preventDefault();
         osdContainer.classList.add('visible');
         resetOsdTimer();
         updateFocus();
         return;
       }
-      if (e.key === 'f' || e.key === 'F' || e.key === '*') {
+      if (isFavKey) {
         e.preventDefault();
         const curCh = list[activeChannelIndex];
         if (curCh) {
@@ -798,47 +1132,55 @@ document.addEventListener('DOMContentLoaded', () => {
     resetOsdTimer();
     const activeEl = document.activeElement;
 
-    // 1. Top Actions: Fav, Refresh & Add M3U
-    if (activeEl === toggleFavBtn || activeEl === reloadPlaylistBtn || activeEl === addM3uBtn) {
-      if (e.key === 'ArrowRight') {
+    // 1. Top Actions: Fav, Refresh, Grid & Add M3U
+    if (activeEl === toggleFavBtn || activeEl === reloadPlaylistBtn || activeEl === gridViewBtn || activeEl === addM3uBtn) {
+      if (isRight) {
         e.preventDefault();
         if (activeEl === toggleFavBtn) reloadPlaylistBtn.focus();
+        else if (activeEl === reloadPlaylistBtn && gridViewBtn) gridViewBtn.focus();
+        else if (activeEl === gridViewBtn) addM3uBtn.focus();
         else if (activeEl === reloadPlaylistBtn) addM3uBtn.focus();
         return;
       }
-      if (e.key === 'ArrowLeft') {
+      if (isLeft) {
         e.preventDefault();
-        if (activeEl === addM3uBtn) reloadPlaylistBtn.focus();
+        if (activeEl === addM3uBtn && gridViewBtn) gridViewBtn.focus();
+        else if (activeEl === gridViewBtn) reloadPlaylistBtn.focus();
+        else if (activeEl === addM3uBtn) reloadPlaylistBtn.focus();
         else if (activeEl === reloadPlaylistBtn) toggleFavBtn.focus();
         return;
       }
-      if (e.key === 'ArrowDown') {
+      if (isDown) {
         e.preventDefault();
-        channelSearch.focus();
+        activeEl.blur();
+        focusedIndex = 0;
+        updateFocus();
         return;
       }
-      if (e.key === 'Enter') {
+      if (isEnter) {
         return; // default click handler executes
       }
     }
 
     // 2. Search Box
     if (activeEl === channelSearch) {
-      if (e.key === 'ArrowUp') {
+      if (isUp) {
         e.preventDefault();
         if (toggleFavBtn) toggleFavBtn.focus();
         else reloadPlaylistBtn.focus();
         return;
       }
-      if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        const activePill = getActivePill();
-        if (activePill) activePill.focus();
-        return;
-      }
-      if (e.key === 'Enter') {
+      if (isDown) {
         e.preventDefault();
         channelSearch.blur();
+        focusedIndex = 0;
+        updateFocus();
+        return;
+      }
+      if (isEnter) {
+        e.preventDefault();
+        channelSearch.blur();
+        focusedIndex = 0;
         updateFocus();
         return;
       }
@@ -849,31 +1191,31 @@ document.addEventListener('DOMContentLoaded', () => {
     if (filterPills.includes(activeEl)) {
       const curIndex = filterPills.indexOf(activeEl);
 
-      if (e.key === 'ArrowLeft') {
+      if (isLeft) {
         e.preventDefault();
         const prev = filterPills[Math.max(0, curIndex - 1)];
         if (prev) prev.focus();
         return;
       }
-      if (e.key === 'ArrowRight') {
+      if (isRight) {
         e.preventDefault();
         const next = filterPills[Math.min(filterPills.length - 1, curIndex + 1)];
         if (next) next.focus();
         return;
       }
-      if (e.key === 'ArrowUp') {
+      if (isUp) {
         e.preventDefault();
         channelSearch.focus();
         return;
       }
-      if (e.key === 'ArrowDown') {
+      if (isDown) {
         e.preventDefault();
-        if (categorySelect) categorySelect.focus();
-        else if (countrySelect) countrySelect.focus();
-        else updateFocus();
+        activeEl.blur();
+        focusedIndex = 0;
+        updateFocus();
         return;
       }
-      if (e.key === 'Enter') {
+      if (isEnter) {
         e.preventDefault();
         activeEl.click();
         return;
@@ -882,20 +1224,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 4. Category Dropdown (Category first)
     if (activeEl === categorySelect) {
-      if (e.key === 'ArrowUp') {
+      if (isUp) {
         e.preventDefault();
         const activePill = getActivePill();
         if (activePill) activePill.focus();
         return;
       }
-      if (e.key === 'ArrowRight') {
+      if (isRight) {
         e.preventDefault();
         if (countrySelect) countrySelect.focus();
         return;
       }
-      if (e.key === 'ArrowDown') {
+      if (isDown) {
         e.preventDefault();
         categorySelect.blur();
+        focusedIndex = 0;
         updateFocus();
         return;
       }
@@ -904,96 +1247,98 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 5. Country Dropdown
     if (activeEl === countrySelect) {
-      if (e.key === 'ArrowUp') {
+      if (isUp) {
         e.preventDefault();
         const activePill = getActivePill();
         if (activePill) activePill.focus();
         return;
       }
-      if (e.key === 'ArrowLeft') {
+      if (isLeft) {
         e.preventDefault();
         if (categorySelect) categorySelect.focus();
         return;
       }
-      if (e.key === 'ArrowDown') {
+      if (isDown) {
         e.preventDefault();
         countrySelect.blur();
+        focusedIndex = 0;
         updateFocus();
         return;
       }
       return;
     }
 
-    switch (e.key) {
-      case 'ArrowDown':
-        e.preventDefault();
-        if (focusedIndex < list.length - 1) {
-          focusedIndex++;
-          if (focusedIndex >= renderedCount - 10 && renderedCount < list.length) {
-            renderedCount = Math.min(renderedCount + 80, list.length);
-            renderChannels(true);
-          }
-          updateFocus();
+    // 6. Channel List Navigation
+    if (isDown) {
+      e.preventDefault();
+      if (focusedIndex < list.length - 1) {
+        focusedIndex++;
+        if (focusedIndex >= renderedCount - 10 && renderedCount < list.length) {
+          renderedCount = Math.min(renderedCount + 80, list.length);
+          renderChannels(true);
         }
-        break;
+        updateFocus();
+      }
+      return;
+    }
 
-      case 'ArrowUp':
-        e.preventDefault();
-        if (focusedIndex > 0) {
-          focusedIndex--;
-          updateFocus();
-        } else {
-          if (categorySelect) categorySelect.focus();
-          else if (countrySelect) countrySelect.focus();
-        }
-        break;
+    if (isUp) {
+      e.preventDefault();
+      if (focusedIndex > 0) {
+        focusedIndex--;
+        updateFocus();
+      } else {
+        if (categorySelect) categorySelect.focus();
+        else if (countrySelect) countrySelect.focus();
+      }
+      return;
+    }
 
-      case 'f':
-      case 'F':
-      case '*':
-        e.preventDefault();
-        const curCh = list[focusedIndex] || list[activeChannelIndex];
-        if (curCh) {
-          toggleFavorite(curCh);
-        }
-        break;
+    if (isFavKey) {
+      e.preventDefault();
+      const curCh = list[focusedIndex] || list[activeChannelIndex];
+      if (curCh) {
+        toggleFavorite(curCh);
+      }
+      return;
+    }
 
-      case 'Enter':
-        e.preventDefault();
-        playChannel(focusedIndex);
-        break;
+    if (isEnter) {
+      e.preventDefault();
+      playChannel(focusedIndex);
+      return;
+    }
 
-      case 'ArrowRight':
-      case 'ArrowLeft':
-        e.preventDefault();
-        // Cycle pre-filter pills directly
-        const curActive = getActivePill();
-        let pIdx = filterPills.indexOf(curActive);
-        if (e.key === 'ArrowRight') {
-          pIdx = (pIdx + 1) % filterPills.length;
-        } else {
-          pIdx = (pIdx - 1 + filterPills.length) % filterPills.length;
-        }
-        if (filterPills[pIdx]) {
-          filterPills[pIdx].click();
-        }
-        break;
+    if (isRight || isLeft) {
+      e.preventDefault();
+      const curActive = getActivePill();
+      let pIdx = filterPills.indexOf(curActive);
+      if (isRight) {
+        pIdx = (pIdx + 1) % filterPills.length;
+      } else {
+        pIdx = (pIdx - 1 + filterPills.length) % filterPills.length;
+      }
+      if (filterPills[pIdx]) {
+        filterPills[pIdx].click();
+      }
+      return;
+    }
 
-      case 'Escape':
-      case 'Backspace':
-      case 'GoBack':
-      case 'Back':
-        if (searchQuery) {
-          channelSearch.value = '';
-          searchQuery = '';
-          clearSearchBtn.classList.add('hidden');
-          renderChannels();
-        } else if (osdContainer.classList.contains('visible')) {
-          osdContainer.classList.remove('visible');
-        } else {
-          osdContainer.classList.add('visible');
-        }
-        break;
+    if (isBack) {
+      e.preventDefault();
+      if (searchQuery) {
+        channelSearch.value = '';
+        searchQuery = '';
+        clearSearchBtn.classList.add('hidden');
+        renderChannels();
+      } else if (osdContainer.classList.contains('visible')) {
+        osdContainer.classList.remove('visible');
+      } else {
+        osdContainer.classList.add('visible');
+        resetOsdTimer();
+        updateFocus();
+      }
+      return;
     }
   });
 
@@ -1009,6 +1354,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (res.ok) {
         channels = await res.json();
+        // One-time precomputation for instant O(1) D-pad navigation and filtering
+        channels.forEach(c => {
+          c._isTamil = isTamilChannel(c);
+          c._isSonyLiv = isSonyLivChannel(c);
+          c._lowerName = (c.name || '').toLowerCase();
+          c._lowerCountry = (c.country || 'International').toLowerCase();
+          c._lowerCategory = (c.category || 'Live').toLowerCase();
+        });
       }
     } catch (e) {
       console.warn('Could not fetch playlist:', e);
@@ -1031,6 +1384,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const filtered = getFilteredChannels();
     if (filtered.length > 0) {
       playChannel(0);
+      focusedIndex = 0;
+      updateFocus();
     }
   }
 

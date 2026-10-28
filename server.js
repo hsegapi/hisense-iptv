@@ -148,6 +148,18 @@ const server = http.createServer((req, res) => {
   }
 
   // API: Direct M3U Stream endpoints for Smart TV / Hisense IPTV apps
+  if (pathname === '/sonyliv.m3u' || pathname === '/categories/sonyliv.m3u') {
+    const m3uFile = path.join(PUBLIC_DIR, 'categories', 'sonyliv.m3u');
+    if (fs.existsSync(m3uFile)) {
+      res.writeHead(200, {
+        'Content-Type': 'audio/x-mpegurl; charset=utf-8',
+        'Content-Disposition': 'inline; filename="sonyliv.m3u"'
+      });
+      fs.createReadStream(m3uFile).pipe(res);
+      return;
+    }
+  }
+
   if (pathname === '/playlist.m3u' || pathname === '/hisense_iptv.m3u' || pathname === '/all_channels.m3u') {
     const m3uFile = path.join(PUBLIC_DIR, 'hisense_iptv.m3u');
     if (fs.existsSync(m3uFile)) {

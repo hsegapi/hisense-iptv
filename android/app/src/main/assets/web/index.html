@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Global IPTV Player</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2.2">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#00d2ff">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -62,6 +62,7 @@
       <div class="sidebar-actions top-actions">
         <button id="toggleFavBtn" class="action-btn fav-btn" title="Toggle Favorite">⭐ Add Fav</button>
         <button id="reloadPlaylistBtn" class="action-btn" title="Refresh Channels">🔄 Refresh</button>
+        <a href="grid.html" class="action-btn" id="gridViewBtn" title="10-per-row Grid View">🔲 Grid (10/row)</a>
         <button id="addM3uBtn" class="action-btn" title="Add M3U Playlist">➕ Add M3U</button>
       </div>
 
@@ -85,6 +86,7 @@
       <div class="lang-pills">
         <button id="pillFav" class="lang-pill fav-pill" data-filter="fav">⭐ Fav (<span id="favBadge">0</span>)</button>
         <button id="pillTamil" class="lang-pill tamil-pill active" data-lang="tamil">🔥 Tamil</button>
+        <button id="pillSonyLiv" class="lang-pill sonyliv-pill" data-filter="sonyliv" title="Sony LIV Live & Channels">⚡ Sony LIV</button>
         <button id="pillIN" class="lang-pill" data-country="India">🇮🇳 India</button>
         <button id="pillAll" class="lang-pill" data-country="all">🌐 All</button>
         <button id="pillUS" class="lang-pill" data-country="United States">🇺🇸 USA</button>
@@ -173,6 +175,6 @@
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=2.2"></script>
 </body>
 </html>

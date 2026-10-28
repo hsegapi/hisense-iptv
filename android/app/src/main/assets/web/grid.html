@@ -1,0 +1,1822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <title>Global IPTV - 10-per-Row Channel Grid</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#00d2ff">
+  <!-- HLS.js for Streaming -->
+  <script src="hls.min.js"></script>
+  <script>if (!window.Hls) { document.write('<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.7/dist/hls.min.js"><\/script>'); }</script>
+  <style>
+    :root {
+      --primary: #00d2ff;
+      --primary-glow: rgba(0, 210, 255, 0.45);
+      --bg-dark: #070b14;
+      --bg-surface: #0e1424;
+      --bg-card: rgba(255, 255, 255, 0.05);
+      --bg-card-hover: rgba(0, 210, 255, 0.22);
+      --text-main: #ffffff;
+      --text-muted: #8892b0;
+      --border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    /* Main Grid Layout Container */
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Sticky Top Filter Header */
+    .top-header {
+      background: #0b1120;
+      border-bottom: 2px solid var(--border-color);
+      padding: 12px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 20;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+      flex-shrink: 0;
+    }
+
+    .header-main-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      font-size: 26px;
+    }
+
+    .brand-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .grid-badge {
+      background: rgba(0, 210, 255, 0.15);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .search-box-wrapper {
+      flex: 1;
+      max-width: 480px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-box-wrapper input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      padding: 8px 36px 8px 38px;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .search-box-wrapper input:focus {
+      border-color: var(--primary);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      color: #8892b0;
+      pointer-events: none;
+    }
+
+    .search-clear-btn {
+      position: absolute;
+      right: 10px;
+      background: none;
+      border: none;
+      color: #8892b0;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px solid var(--border-color);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .nav-btn:focus, .nav-btn:hover {
+      border-color: var(--primary);
+      background: rgba(0, 210, 255, 0.15);
+      outline: none;
+    }
+
+    /* Filter Controls Row (Pills & Dropdowns) */
+    .filter-controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .lang-pills {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .lang-pills::-webkit-scrollbar {
+      display: none;
+    }
+
+    .pill-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 2px solid var(--border-color);
+      color: #cbd5e1;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.1s, border-color 0.1s, color 0.1s;
+    }
+
+    .pill-btn:hover, .pill-btn:focus {
+      border-color: var(--primary);
+      background: rgba(0, 210, 255, 0.15);
+      color: #fff;
+      outline: none;
+    }
+
+    .pill-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #070b14;
+      font-weight: 700;
+    }
+
+    .dropdowns-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .select-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .select-item label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .tv-dropdown {
+      background: rgba(14, 20, 36, 0.95);
+      border: 2px solid var(--border-color);
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .tv-dropdown:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 10px var(--primary-glow);
+    }
+
+    .status-text {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* 10-per-Row Grid Container */
+    .grid-scroll-area {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: auto;
+      padding: 16px 20px 40px 20px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0, 210, 255, 0.3) transparent;
+    }
+
+    .tiles-grid {
+      display: grid;
+      grid-template-columns: repeat(10, minmax(110px, 1fr));
+      gap: 10px;
+      width: 100%;
+      min-width: 1190px;
+    }
+
+    /* Individual Channel Tile Card */
+    .channel-tile {
+      background: var(--bg-card);
+      border: 2px solid transparent;
+      border-radius: 10px;
+      padding: 10px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.08s ease, background 0.08s ease, border-color 0.08s ease;
+      position: relative;
+      height: 140px;
+      min-width: 110px;
+      overflow: hidden;
+      outline: none;
+    }
+
+    .channel-tile:hover, .channel-tile:focus, .channel-tile.focused {
+      background: var(--bg-card-hover) !important;
+      border-color: var(--primary) !important;
+      transform: scale(1.07);
+      box-shadow: 0 0 16px var(--primary-glow);
+      z-index: 10;
+      outline: 2px solid var(--primary);
+    }
+
+    .channel-tile.playing {
+      border-color: #ffd700 !important;
+      background: rgba(255, 215, 0, 0.18) !important;
+    }
+
+    .tile-badge-top {
+      position: absolute;
+      top: 5px;
+      left: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--primary);
+      background: rgba(0, 0, 0, 0.65);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    .tile-fav-star {
+      position: absolute;
+      top: 5px;
+      right: 6px;
+      font-size: 11px;
+      color: #ffd700;
+    }
+
+    .tile-blocked-badge {
+      position: absolute;
+      top: 5px;
+      right: 6px;
+      font-size: 9px;
+      font-weight: 700;
+      color: #fff;
+      background: #e11d48;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    .pill-btn.blocked-pill.active {
+      background: #e11d48 !important;
+      border-color: #e11d48 !important;
+      color: #fff !important;
+    }
+
+    .pill-btn.sonyliv-pill {
+      background: rgba(139, 92, 246, 0.18);
+      border-color: rgba(167, 139, 250, 0.45);
+      color: #c4b5fd;
+    }
+
+    .pill-btn.sonyliv-pill:hover {
+      background: rgba(139, 92, 246, 0.3);
+      border-color: #a78bfa;
+      color: #fff;
+    }
+
+    .pill-btn.sonyliv-pill.active {
+      background: linear-gradient(135deg, #7c3aed, #a855f7) !important;
+      border-color: #c084fc !important;
+      color: #ffffff !important;
+      box-shadow: 0 0 14px rgba(168, 85, 247, 0.65);
+    }
+
+    .pill-btn.sonyliv-pill:focus {
+      background: linear-gradient(135deg, #7c3aed, #a855f7) !important;
+      border-color: #ffffff !important;
+      color: #ffffff !important;
+      outline: 2px solid #c084fc;
+      box-shadow: 0 0 18px rgba(168, 85, 247, 0.9);
+      transform: scale(1.05);
+    }
+
+    .tile-logo-container {
+      width: 100%;
+      max-width: 86px;
+      min-width: 50px;
+      height: 54px;
+      margin-top: 4px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.45);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 4px;
+      flex-shrink: 0;
+    }
+
+    .tile-logo {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .tile-logo-fallback {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .tile-name {
+      font-size: 11px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.25;
+      max-height: 28px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      word-break: break-word;
+      width: 100%;
+    }
+
+    .tile-tag {
+      font-size: 9px;
+      color: var(--text-muted);
+      margin-top: auto;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    /* Video Player Overlay Modal */
+    .player-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .player-modal.hidden {
+      display: none !important;
+    }
+
+    .video-viewport {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #gridVideoPlayer {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Fullscreen Zapper Banner */
+    .player-overlay-bar {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(8, 12, 22, 0.4);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 12px;
+      padding: 12px 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-left: 5px solid var(--primary);
+      z-index: 110;
+      min-width: 460px;
+      max-width: calc(100vw - 110px);
+      pointer-events: auto;
+    }
+
+    .overlay-ch-num {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--primary);
+      background: rgba(0, 210, 255, 0.2);
+      padding: 6px 12px;
+      border-radius: 6px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    }
+
+    .overlay-details h2 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+    }
+
+    .overlay-details span {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.75);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+    }
+
+    .overlay-actions {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .overlay-btn {
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.12s ease, border-color 0.12s ease, transform 0.1s ease;
+      white-space: nowrap;
+      outline: none;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    }
+
+    .overlay-btn:hover, .overlay-btn:focus {
+      background: rgba(0, 210, 255, 0.28);
+      border-color: var(--primary);
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(0, 210, 255, 0.45);
+    }
+
+    .overlay-close-btn {
+      background: rgba(225, 29, 72, 0.35);
+      border-color: rgba(225, 29, 72, 0.5);
+      margin-left: 4px;
+    }
+
+    .overlay-close-btn:hover, .overlay-close-btn:focus {
+      background: #e11d48 !important;
+      border-color: #e11d48 !important;
+      box-shadow: 0 0 14px rgba(225, 29, 72, 0.7) !important;
+      transform: scale(1.06);
+    }
+
+    @media (max-width: 768px) {
+      .player-overlay-bar {
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        min-width: 0;
+        width: calc(100vw - 20px);
+        max-width: calc(100vw - 20px);
+        padding: 8px 12px;
+        gap: 8px;
+      }
+
+      .overlay-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+
+      .overlay-btn span {
+        display: none;
+      }
+    }
+
+    /* Video Loader overlay */
+    .video-loader {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-size: 14px;
+      z-index: 105;
+    }
+
+    .video-loader.hidden {
+      display: none;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 255, 255, 0.2);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s infinite linear;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Filter & Navigation Header -->
+    <header class="top-header" id="topHeader">
+      <div class="header-main-row">
+        <div class="brand-block">
+          <span class="brand-icon">📺</span>
+          <div class="brand-title">
+            Global IPTV
+            <span class="grid-badge">10 / ROW GRID</span>
+          </div>
+        </div>
+
+        <div class="search-box-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="tileSearch" placeholder="Search channels (Sun, Vijay, News, KTV...)" autocomplete="off" spellcheck="false">
+          <button id="clearSearchBtn" class="search-clear-btn" style="display: none;">&times;</button>
+        </div>
+
+        <div class="nav-actions">
+          <button id="gridFavToggleBtn" class="nav-btn">⭐ Add Fav</button>
+          <a href="index.html" class="nav-btn" id="livePlayerLink">📺 Live Player</a>
+        </div>
+      </div>
+
+      <!-- Quick Filter Pills & Dropdowns -->
+      <div class="filter-controls-row">
+        <div class="lang-pills" id="pillsContainer">
+          <button class="pill-btn" data-filter="fav" id="pillFav">⭐ Fav (<span id="favCountBadge">0</span>)</button>
+          <button class="pill-btn active" data-lang="tamil" id="pillTamil">🔥 Tamil</button>
+          <button class="pill-btn sonyliv-pill" data-filter="sonyliv" id="pillSonyLiv" title="Sony LIV Live & Channels">⚡ Sony LIV</button>
+          <button class="pill-btn" data-country="India" id="pillIN">🇮🇳 India</button>
+          <button class="pill-btn" data-country="all" id="pillAll">🌐 All</button>
+          <button class="pill-btn" data-country="United States" id="pillUS">🇺🇸 USA</button>
+          <button class="pill-btn" data-country="United Kingdom" id="pillUK">🇬🇧 UK</button>
+          <button class="pill-btn" data-country="Canada" id="pillCA">🇨🇦 Canada</button>
+          <button class="pill-btn blocked-pill" data-filter="blocked" id="pillBlocked" title="View Auto-Blocked Channels">🚫 Blocked (<span id="blockedCountBadge">0</span>)</button>
+        </div>
+
+        <div class="dropdowns-group">
+          <div class="select-item">
+            <label for="catDropdown">Category:</label>
+            <select id="catDropdown" class="tv-dropdown">
+              <option value="Entertainment">🎬 Entertainment</option>
+              <option value="all">All Categories</option>
+            </select>
+          </div>
+
+          <div class="select-item">
+            <label for="countryDropdown">Country:</label>
+            <select id="countryDropdown" class="tv-dropdown">
+              <option value="all">All Countries</option>
+            </select>
+          </div>
+
+          <span class="status-text" id="statusCounter">Loading channels...</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- 10-per-Row Grid Scroll Container -->
+    <main class="grid-scroll-area" id="gridScrollArea">
+      <div class="tiles-grid" id="tilesGrid">
+        <!-- Rendered via JS -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Fullscreen Video Player Modal -->
+  <div class="player-modal hidden" id="playerModal">
+    <div class="video-viewport">
+      <video id="gridVideoPlayer" playsinline autoplay></video>
+      <div class="video-loader hidden" id="videoLoader">
+        <div class="spinner"></div>
+        <p id="loaderMessage">Opening channel...</p>
+      </div>
+
+      <div class="player-overlay-bar" id="playerOverlayBar" style="background: rgba(8, 12, 22, 0.45) !important; backdrop-filter: blur(14px) !important; -webkit-backdrop-filter: blur(14px) !important;">
+        <div class="overlay-ch-num" id="overlayChNum">CH 1</div>
+        <div class="overlay-details">
+          <h2 id="overlayChTitle">Channel Name</h2>
+          <span id="overlayChMeta">Tamil • Entertainment</span>
+        </div>
+        <div class="overlay-actions">
+          <button class="overlay-btn" id="modalPrevChBtn" title="Previous Channel (▲ / CH-)" aria-label="Previous Channel">
+            ⏮ <span>Prev</span>
+          </button>
+          <button class="overlay-btn" id="modalNextChBtn" title="Next Channel (▼ / CH+)" aria-label="Next Channel">
+            <span>Next</span> ⏭
+          </button>
+          <button class="overlay-btn overlay-close-btn" id="closePlayerModalBtn" title="Close Video (Back to Grid)" aria-label="Close Video">
+            ✕ <span>Close</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const COLS_PER_ROW = 10;
+      const tilesGrid = document.getElementById('tilesGrid');
+      const gridScrollArea = document.getElementById('gridScrollArea');
+      const tileSearch = document.getElementById('tileSearch');
+      const clearSearchBtn = document.getElementById('clearSearchBtn');
+      const statusCounter = document.getElementById('statusCounter');
+      const catDropdown = document.getElementById('catDropdown');
+      const countryDropdown = document.getElementById('countryDropdown');
+      const gridFavToggleBtn = document.getElementById('gridFavToggleBtn');
+      const favCountBadge = document.getElementById('favCountBadge');
+
+      const pillFav = document.getElementById('pillFav');
+      const pillTamil = document.getElementById('pillTamil');
+      const pillSonyLiv = document.getElementById('pillSonyLiv');
+      const pillAll = document.getElementById('pillAll');
+      const pillIN = document.getElementById('pillIN');
+      const pillUS = document.getElementById('pillUS');
+      const pillUK = document.getElementById('pillUK');
+      const pillCA = document.getElementById('pillCA');
+      const pillBlocked = document.getElementById('pillBlocked');
+      const filterPills = [pillFav, pillTamil, pillSonyLiv, pillIN, pillAll, pillUS, pillUK, pillCA, pillBlocked].filter(Boolean);
+
+      // Video Modal Elements
+      const playerModal = document.getElementById('playerModal');
+      const closePlayerModalBtn = document.getElementById('closePlayerModalBtn');
+      const gridVideo = document.getElementById('gridVideoPlayer');
+      const videoLoader = document.getElementById('videoLoader');
+      const loaderMessage = document.getElementById('loaderMessage');
+      const overlayChNum = document.getElementById('overlayChNum');
+      const overlayChTitle = document.getElementById('overlayChTitle');
+      const overlayChMeta = document.getElementById('overlayChMeta');
+
+      let channels = [];
+      let favorites = [];
+      try {
+        const saved = localStorage.getItem('iptv_favorites');
+        if (saved) favorites = JSON.parse(saved);
+        if (!Array.isArray(favorites)) favorites = [];
+      } catch (e) {
+        favorites = [];
+      }
+
+      let blockedChannels = [];
+      try {
+        const savedBlocked = localStorage.getItem('iptv_blocked_channels');
+        if (savedBlocked) blockedChannels = JSON.parse(savedBlocked);
+        if (!Array.isArray(blockedChannels)) blockedChannels = [];
+      } catch (e) {
+        blockedChannels = [];
+      }
+
+      let currentCountry = 'all';
+      let currentCategory = 'Entertainment';
+      let languageFilter = 'tamil';
+      let searchQuery = '';
+      let focusedIndex = 0;
+      let lastFocusedIndex = -1;
+      let activeChannelIndex = -1;
+      let renderedCount = 100; // 10 rows of 10
+      let cachedFiltered = null;
+      let hls = null;
+
+      // Smart Tamil Detector
+      const tamilKeywords = /\b(tamil|sun\s*tv|sun\s*music|sun\s*news|ktv|vijay|jaya|thanthi|polimer|puthiya\s*thalaimurai|kalaignar|raj\s*tv|raj\s*musix|captain|mega\s*tv|vasanth|lotus|malaimurasu|sathiyam|velicham|peppers|madha|isai|chithiram|sirippoli|murasu|seithigal|vendhar|makkal|moon\s*tv|tamilan|vanavil|imayam|mk\s*tv|cauvery|valicham|dheeran|news18\s*tamil|tamil\s*janam|arputhar|aaryaa|aaseervatham|aathavan)\b/i;
+
+      function isTamilChannel(ch) {
+        if (ch.language && ch.language.toLowerCase() === 'tamil') return true;
+        if (ch.language && ['spanish', 'portuguese', 'russian', 'french', 'german', 'italian', 'arabic'].includes(ch.language.toLowerCase())) return false;
+        if (ch.country && ['bolivia', 'brazil', 'peru', 'mexico', 'colombia', 'argentina', 'chile', 'spain', 'russia', 'italy', 'france'].includes(ch.country.toLowerCase())) return false;
+        return tamilKeywords.test(ch.name) || (ch.id && /tamil|\.ta@/i.test(ch.id)) || (ch.category && /tamil/i.test(ch.category));
+      }
+
+      // Sony LIV Official Channels & Logos Mapping
+      const SONY_LOGOS = {
+        'set hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Sony_Entertainment_Television_logo.svg/330px-Sony_Entertainment_Television_logo.svg.png',
+        'sony sab hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/d/d7/Sony_SAB_logo_2022.svg/330px-Sony_SAB_logo_2022.svg.png',
+        'sony marathi': 'https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Sony_Marathi_logo.png/330px-Sony_Marathi_logo.png',
+        'sony pal': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/36/Sony_Pal_logo_2022.png/330px-Sony_Pal_logo_2022.png',
+        'sony aath': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/3d/Sony_Aath_logo.png/330px-Sony_Aath_logo.png',
+        'sony yay': 'https://upload.wikimedia.org/wikipedia/en/thumb/2/22/Sony_YAY%21_logo.png/330px-Sony_YAY%21_logo.png',
+        'sony max hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Sony_Max_logo_2022.svg/330px-Sony_Max_logo_2022.svg.png',
+        'sony max': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Sony_Max_logo_2022.svg/330px-Sony_Max_logo_2022.svg.png',
+        'sony max 2': 'https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/Sony_Max_2_logo.png/330px-Sony_Max_2_logo.png',
+        'sony wah': 'https://upload.wikimedia.org/wikipedia/en/thumb/1/1a/Sony_Wah_logo.png/330px-Sony_Wah_logo.png',
+        'sony pix hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/1/1d/Sony_Pix_logo.png/330px-Sony_Pix_logo.png',
+        'sony ten 1 hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/7/7b/Sony_Sports_Ten_1_logo.svg/330px-Sony_Sports_Ten_1_logo.svg.png',
+        'sony ten 1': 'https://upload.wikimedia.org/wikipedia/en/thumb/7/7b/Sony_Sports_Ten_1_logo.svg/330px-Sony_Sports_Ten_1_logo.svg.png',
+        'sony ten 2 hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/0/00/Sony_Sports_Ten_2_logo.svg/330px-Sony_Sports_Ten_2_logo.svg.png',
+        'sony ten 2': 'https://upload.wikimedia.org/wikipedia/en/thumb/0/00/Sony_Sports_Ten_2_logo.svg/330px-Sony_Sports_Ten_2_logo.svg.png',
+        'sony ten 3 hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/c/c5/Sony_Sports_Ten_3_logo.svg/330px-Sony_Sports_Ten_3_logo.svg.png',
+        'sony ten 3': 'https://upload.wikimedia.org/wikipedia/en/thumb/c/c5/Sony_Sports_Ten_3_logo.svg/330px-Sony_Sports_Ten_3_logo.svg.png',
+        'sony ten 4 hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/3d/Sony_Sports_Ten_4_logo.svg/330px-Sony_Sports_Ten_4_logo.svg.png',
+        'sony ten 4': 'https://upload.wikimedia.org/wikipedia/en/thumb/3/3d/Sony_Sports_Ten_4_logo.svg/330px-Sony_Sports_Ten_4_logo.svg.png',
+        'sony ten 4 kannada': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1tRFuWjkv6MwDRneqUVbe6kAvhuwukT86HcBLDbZA7Q&s=10',
+        'sony ten 5 hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/Sony_Sports_Ten_5_logo.svg/330px-Sony_Sports_Ten_5_logo.svg.png',
+        'sony ten 5': 'https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/Sony_Sports_Ten_5_logo.svg/330px-Sony_Sports_Ten_5_logo.svg.png',
+        'bbc earth hd': 'https://upload.wikimedia.org/wikipedia/en/thumb/6/64/Sony_BBC_Earth.png/330px-Sony_BBC_Earth.png'
+      };
+
+      function isSonyLivChannel(ch) {
+        if (!ch) return false;
+        if (ch.is_sonyliv || ch._isSonyLiv) return true;
+        if (ch.id && (ch.id.endsWith('.sonyliv') || ch.id.includes('sonyliv'))) return true;
+        if (ch.url && (ch.url.includes('slivcdn.com') || ch.url.includes('sonyliv') || ch.url.includes('criclive') || ch.url.includes('sonydaime') || ch.url.includes('sonymtmnew'))) return true;
+        if (ch.original_category && /sonyliv/i.test(ch.original_category)) return true;
+        if (ch.group_title && /sonyliv/i.test(ch.group_title)) return true;
+        const lowerName = (ch.name || '').toLowerCase();
+        if (/\b(sony|ten\s*[1-5]|set\s*hd|sab\s*hd|bbc\s*earth)\b/i.test(lowerName)) return true;
+        return false;
+      }
+
+      let lastSonyLivFetchTime = 0;
+      let isFetchingSonyLiv = false;
+
+      async function refreshSonyLivLiveUrls(force = false) {
+        const now = Date.now();
+        if (!force && lastSonyLivFetchTime && (now - lastSonyLivFetchTime < 10 * 60 * 1000)) {
+          return;
+        }
+        if (isFetchingSonyLiv) return;
+        isFetchingSonyLiv = true;
+
+        try {
+          const endpoints = [
+            'https://raw.githubusercontent.com/sportlive18/Sonyliv-Playlist-Autoupdate/main/sony.m3u',
+            'https://raw.githubusercontent.com/sportlive18/Sonyliv-Playlist-Autoupdate/main/sonyliv.m3u',
+            'https://raw.githubusercontent.com/sportlive18/Sonyliv-Playlist-Autoupdate/main/sonyliv2.m3u'
+          ];
+
+          const fetchPromises = endpoints.map(u =>
+            fetch(`${u}?t=${Date.now()}`)
+              .then(r => r.ok ? r.text() : '')
+              .catch(() => '')
+          );
+
+          const [sonyM3u, sonylivM3u, sonyliv2M3u] = await Promise.all(fetchPromises);
+
+          const parsedItems = [
+            ...parseSonyM3uText(sonyM3u, 'SonyLIV Channels'),
+            ...parseSonyM3uText(sonylivM3u, 'SonyLIV Live'),
+            ...parseSonyM3uText(sonyliv2M3u, 'SonyLIV Live')
+          ];
+
+          if (parsedItems.length > 0) {
+            lastSonyLivFetchTime = Date.now();
+
+            const parsedMap = new Map();
+            parsedItems.forEach(item => {
+              if (item.id) parsedMap.set(item.id, item);
+              parsedMap.set(item.name.toLowerCase(), item);
+            });
+
+            channels.forEach(c => {
+              const matched = (c.id && parsedMap.get(c.id)) || parsedMap.get((c.name || '').toLowerCase());
+              if (matched) {
+                c.url = matched.url;
+                c.is_sonyliv = true;
+                c._isSonyLiv = true;
+                if (matched.logo && (!c.logo || c.logo.includes('default'))) c.logo = matched.logo;
+              }
+            });
+
+            const existingUrls = new Set(channels.map(c => c.url));
+            const existingIds = new Set(channels.map(c => c.id).filter(Boolean));
+
+            const toAdd = [];
+            parsedItems.forEach(item => {
+              if (!existingIds.has(item.id) && !existingUrls.has(item.url)) {
+                item._isSonyLiv = true;
+                item._isTamil = false;
+                item._lowerName = item.name.toLowerCase();
+                item._lowerCountry = 'india';
+                item._lowerCategory = item.category.toLowerCase();
+                toAdd.push(item);
+                existingUrls.add(item.url);
+                existingIds.add(item.id);
+              }
+            });
+
+            if (toAdd.length > 0) {
+              channels.unshift(...toAdd);
+            }
+
+            invalidateFilter();
+          }
+        } catch (e) {
+          console.warn('Failed to auto-update Sony LIV URLs:', e);
+        } finally {
+          isFetchingSonyLiv = false;
+        }
+      }
+
+      function parseSonyM3uText(m3uText, defaultCategory = 'Sony LIV') {
+        if (!m3uText) return [];
+        const items = [];
+        const lines = m3uText.split(/\r?\n/);
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i].trim();
+          if (line.startsWith('#EXTINF:')) {
+            const nameMatch = line.match(/,\s*(.*)$/);
+            const name = nameMatch ? nameMatch[1].trim() : 'Sony LIV Channel';
+            const logoMatch = line.match(/tvg-logo="([^"]*)"/i);
+            const idMatch = line.match(/tvg-id="([^"]*)"/i);
+            const groupMatch = line.match(/group-title="([^"]*)"/i);
+
+            const id = idMatch ? idMatch[1].trim() : '';
+            let logo = logoMatch ? logoMatch[1].trim() : '';
+            const group = groupMatch ? groupMatch[1].trim() : defaultCategory;
+
+            let url = '';
+            i++;
+            while (i < lines.length) {
+              const cur = lines[i].trim();
+              if (!cur || cur.startsWith('#')) {
+                i++;
+                continue;
+              }
+              url = cur;
+              break;
+            }
+
+            if (url) {
+              const cleanUrl = url.split('|')[0].trim();
+              const lowerName = name.toLowerCase();
+
+              if (!logo && SONY_LOGOS[lowerName]) {
+                logo = SONY_LOGOS[lowerName];
+              } else if (!logo) {
+                for (const [k, v] of Object.entries(SONY_LOGOS)) {
+                  if (lowerName.includes(k) || k.includes(lowerName)) {
+                    logo = v;
+                    break;
+                  }
+                }
+              }
+
+              let category = 'Entertainment';
+              if (/sport|cricket|ten|football/i.test(group) || /sport|cricket|ten|match|league|semi final/i.test(name)) {
+                category = 'Sports';
+              } else if (/movie|max|pix|wah/i.test(group) || /movie|max|pix|wah/i.test(name)) {
+                category = 'Movies';
+              } else if (/kid|yay/i.test(group) || /yay/i.test(name)) {
+                category = 'Kids';
+              } else if (/earth|doc/i.test(group) || /earth/i.test(name)) {
+                category = 'Documentary';
+              }
+
+              items.push({
+                name: name,
+                id: id || `${lowerName.replace(/[^a-z0-9]+/g, '-')}.sonyliv`,
+                logo: logo || 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Sony_Channel_Logo.png/960px-Sony_Channel_Logo.png',
+                category: category,
+                original_category: group,
+                country: 'India',
+                language: /kannada/i.test(name) ? 'Kannada' : (/marathi/i.test(name) ? 'Marathi' : (/aath/i.test(name) ? 'Bengali' : (/cricket|ten\s*[1-2]|pix|earth/i.test(name) ? 'English' : 'Hindi'))),
+                url: cleanUrl,
+                is_sonyliv: true,
+                _isSonyLiv: true
+              });
+            }
+          }
+        }
+        return items;
+      }
+
+      function getChannelKey(ch) {
+        return ch ? (ch.url || ch.id || ch.name) : '';
+      }
+
+      function isChannelFavorite(ch) {
+        const key = getChannelKey(ch);
+        return Boolean(key && favorites.includes(key));
+      }
+
+      function saveFavorites() {
+        try {
+          localStorage.setItem('iptv_favorites', JSON.stringify(favorites));
+        } catch (e) {}
+        updateFavUI();
+      }
+
+      function toggleFavorite(ch) {
+        if (!ch) return;
+        const key = getChannelKey(ch);
+        if (!key) return;
+        const idx = favorites.indexOf(key);
+        if (idx >= 0) favorites.splice(idx, 1);
+        else favorites.push(key);
+        saveFavorites();
+        invalidateFilter();
+        renderTiles();
+      }
+
+      function updateFavUI() {
+        if (favCountBadge) favCountBadge.textContent = favorites.length;
+        const list = getFilteredChannels();
+        const curChannel = list[focusedIndex] || list[activeChannelIndex];
+        if (gridFavToggleBtn && curChannel) {
+          const isFav = isChannelFavorite(curChannel);
+          gridFavToggleBtn.innerHTML = isFav ? '★ Favorited' : '⭐ Add Fav';
+        }
+      }
+
+      function isChannelBlocked(ch) {
+        const key = getChannelKey(ch);
+        return Boolean(key && blockedChannels.includes(key));
+      }
+
+      function blockChannel(ch) {
+        if (!ch) return;
+        const key = getChannelKey(ch);
+        if (!key) return;
+        if (!blockedChannels.includes(key)) {
+          blockedChannels.push(key);
+          try {
+            localStorage.setItem('iptv_blocked_channels', JSON.stringify(blockedChannels));
+          } catch (e) {}
+        }
+        invalidateFilter();
+        updateBlockedUI();
+      }
+
+      function unblockChannel(ch) {
+        if (!ch) return;
+        const key = getChannelKey(ch);
+        const idx = blockedChannels.indexOf(key);
+        if (idx >= 0) {
+          blockedChannels.splice(idx, 1);
+          try {
+            localStorage.setItem('iptv_blocked_channels', JSON.stringify(blockedChannels));
+          } catch (e) {}
+        }
+        invalidateFilter();
+        updateBlockedUI();
+        renderTiles();
+      }
+
+      function updateBlockedUI() {
+        const badge = document.getElementById('blockedCountBadge');
+        if (badge) badge.textContent = blockedChannels.length;
+      }
+
+      function invalidateFilter() {
+        cachedFiltered = null;
+      }
+
+      function getFilteredChannels() {
+        if (cachedFiltered) return cachedFiltered;
+
+        const q = searchQuery ? searchQuery.toLowerCase() : '';
+        const isBlockedView = languageFilter === 'blocked';
+        const isFav = languageFilter === 'favorites';
+        const isTam = languageFilter === 'tamil';
+        const isSony = languageFilter === 'sonyliv';
+        const hasCtry = currentCountry !== 'all';
+        const ctryLower = hasCtry ? currentCountry.toLowerCase() : '';
+        const hasCat = currentCategory !== 'all';
+
+        cachedFiltered = channels.filter(c => {
+          const isBlocked = isChannelBlocked(c);
+          if (isBlockedView) return isBlocked;
+          if (isBlocked) return false; // Filter out blocked channels from normal listings
+
+          if (isFav) return isChannelFavorite(c);
+          if (isSony) {
+            const sonyCh = c._isSonyLiv !== undefined ? c._isSonyLiv : isSonyLivChannel(c);
+            if (!sonyCh) return false;
+          }
+          const tam = c._isTamil !== undefined ? c._isTamil : isTamilChannel(c);
+          if (isTam && !tam) return false;
+          if (hasCtry) {
+            const ctry = c._lowerCountry || (c.country || 'International').toLowerCase();
+            if (ctry !== ctryLower) return false;
+          }
+          if (hasCat && c.category !== currentCategory) return false;
+          if (q) {
+            const mName = c._lowerName && c._lowerName.includes(q);
+            const mCtry = c._lowerCountry && c._lowerCountry.includes(q);
+            const mCat = c._lowerCategory && c._lowerCategory.includes(q);
+            if (!mName && !mCtry && !mCat) return false;
+          }
+          return true;
+        });
+
+        return cachedFiltered;
+      }
+
+      function escapeHtml(text) {
+        if (!text) return '';
+        return String(text)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      // Render 10-per-Row Tiles
+      function renderTiles(isAppend = false) {
+        if (!isAppend) {
+          invalidateFilter();
+          tilesGrid.innerHTML = '';
+          renderedCount = 100;
+          lastFocusedIndex = -1;
+        }
+
+        const list = getFilteredChannels();
+        const count = list.length;
+        const ctryLabel = currentCountry === 'all' ? 'All Countries' : currentCountry;
+        const catLabel = currentCategory === 'all' ? 'All Categories' : currentCategory;
+        const isBlockedView = languageFilter === 'blocked';
+        const langLabel = languageFilter === 'tamil' ? ' (Tamil Only)' : (languageFilter === 'sonyliv' ? ' (⚡ Sony LIV Channels & Live)' : (languageFilter === 'favorites' ? ' (Favorites)' : (isBlockedView ? ' (🚫 Blocked Channels - Tap to Unblock)' : '')));
+
+        statusCounter.textContent = `Showing ${Math.min(renderedCount, count)} of ${count} channels • ${catLabel} / ${ctryLabel}${langLabel}`;
+
+        if (count === 0) {
+          const emptyMsg = isBlockedView ? 'No Blocked Channels. Channels that fail to stream will automatically be moved here.' : 'No Channels Found. Try switching category, country, or keyword.';
+          tilesGrid.innerHTML = `
+            <div style="grid-column: 1 / -1; padding: 60px 20px; text-align: center; color: #8892b0;">
+              <div style="font-size: 38px; margin-bottom: 12px;">${isBlockedView ? '🛡️' : '🔍'}</div>
+              <div style="font-size: 18px; font-weight: 700; color: #fff;">${isBlockedView ? 'No Blocked Channels' : 'No Channels Found'}</div>
+              <p style="font-size: 13px; margin-top: 6px;">${emptyMsg}</p>
+            </div>
+          `;
+          return;
+        }
+
+        const startIndex = isAppend ? tilesGrid.children.length : 0;
+        const displayList = list.slice(startIndex, renderedCount);
+        const fragment = document.createDocumentFragment();
+
+        displayList.forEach((ch, idxOffset) => {
+          const idx = startIndex + idxOffset;
+          const tile = document.createElement('div');
+          tile.className = `channel-tile ${idx === focusedIndex ? 'focused' : ''} ${idx === activeChannelIndex ? 'playing' : ''}`;
+          tile.dataset.index = idx;
+          tile.tabIndex = 0;
+
+          const isFav = isChannelFavorite(ch);
+          const isBlocked = isChannelBlocked(ch);
+          const fallbackText = (ch.name || 'CH').substring(0, 2).toUpperCase();
+
+          tile.innerHTML = `
+            <span class="tile-badge-top">#${idx + 1}</span>
+            ${isFav ? '<span class="tile-fav-star">★</span>' : ''}
+            ${isBlocked ? '<span class="tile-blocked-badge" title="Channel is in blocked list">🚫 Blocked</span>' : ''}
+            <div class="tile-logo-container">
+              ${ch.logo ? `<img class="tile-logo" src="${escapeHtml(ch.logo)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">` : ''}
+              <span class="tile-logo-fallback" style="${ch.logo ? 'display:none;' : ''}">${escapeHtml(fallbackText)}</span>
+            </div>
+            <div class="tile-name" title="${escapeHtml(ch.name)}">${escapeHtml(ch.name || `Channel ${idx + 1}`)}</div>
+            <div class="tile-tag">${isBlocked ? 'Click to Unblock' : escapeHtml(ch.category || 'Live')}</div>
+          `;
+
+          tile.addEventListener('click', () => {
+            focusedIndex = idx;
+            updateTileFocus();
+            if (isBlockedView) {
+              unblockChannel(ch);
+              return;
+            }
+            openPlayerModal(idx);
+          });
+
+          fragment.appendChild(tile);
+        });
+
+        tilesGrid.appendChild(fragment);
+
+        if (!isAppend) {
+          lastFocusedIndex = focusedIndex;
+          scrollFocusedTileIntoView();
+        }
+      }
+
+      function updateTileFocus() {
+        const children = tilesGrid.children;
+        if (lastFocusedIndex >= 0 && lastFocusedIndex < children.length) {
+          children[lastFocusedIndex].classList.remove('focused');
+        }
+        if (focusedIndex >= 0 && focusedIndex < children.length) {
+          const target = children[focusedIndex];
+          target.classList.add('focused');
+          lastFocusedIndex = focusedIndex;
+          try {
+            target.focus({ preventScroll: true });
+          } catch (e) {
+            target.focus();
+          }
+        }
+        scrollFocusedTileIntoView();
+        updateFavUI();
+      }
+
+      function scrollFocusedTileIntoView() {
+        const tile = tilesGrid.children[focusedIndex];
+        if (!tile) return;
+
+        const tileTop = tile.offsetTop;
+        const tileBottom = tileTop + tile.offsetHeight;
+        const scrollTop = gridScrollArea.scrollTop;
+        const clientHeight = gridScrollArea.clientHeight;
+
+        if (tileTop < scrollTop) {
+          gridScrollArea.scrollTop = tileTop - 12;
+        } else if (tileBottom > scrollTop + clientHeight) {
+          gridScrollArea.scrollTop = tileBottom - clientHeight + 12;
+        }
+
+        const tileLeft = tile.offsetLeft;
+        const tileRight = tileLeft + tile.offsetWidth;
+        const scrollLeft = gridScrollArea.scrollLeft;
+        const clientWidth = gridScrollArea.clientWidth;
+
+        if (tileLeft < scrollLeft) {
+          gridScrollArea.scrollLeft = tileLeft - 12;
+        } else if (tileRight > scrollLeft + clientWidth) {
+          gridScrollArea.scrollLeft = tileRight - clientWidth + 12;
+        }
+      }
+
+      // Infinite scroll listener
+      gridScrollArea.addEventListener('scroll', () => {
+        if (gridScrollArea.scrollTop + gridScrollArea.clientHeight >= gridScrollArea.scrollHeight - 300) {
+          const list = getFilteredChannels();
+          if (renderedCount < list.length) {
+            renderedCount = Math.min(renderedCount + 80, list.length);
+            renderTiles(true);
+          }
+        }
+      });
+
+      let streamTimeout = null;
+      let autoSkipTimer = null;
+      let consecutiveErrors = 0;
+      const MAX_AUTO_SKIPS = 15;
+
+      function handleStreamError(reason) {
+        if (streamTimeout) {
+          clearTimeout(streamTimeout);
+          streamTimeout = null;
+        }
+        if (autoSkipTimer) {
+          clearTimeout(autoSkipTimer);
+          autoSkipTimer = null;
+        }
+
+        const list = getFilteredChannels();
+        const failedChannel = list[activeChannelIndex];
+        if (!failedChannel) return;
+
+        consecutiveErrors++;
+        console.warn(`[Auto-Skip] Channel "${failedChannel.name}" failed: ${reason}. Moving to blocked list.`);
+
+        // Move failed channel to blocked list
+        blockChannel(failedChannel);
+
+        videoLoader.classList.remove('hidden');
+
+        if (consecutiveErrors >= MAX_AUTO_SKIPS || list.length <= 1) {
+          loaderMessage.innerHTML = `⚠️ <b>Multiple channels offline.</b><br><span style="font-size:12px;color:#cbd5e1;">Auto-skip stopped. Try another category or press Close.</span>`;
+          return;
+        }
+
+        loaderMessage.innerHTML = `⚠️ <b>${escapeHtml(failedChannel.name)}</b> failed (${escapeHtml(reason)}).<br><span style="font-size:12px;color:#f87171;">🚫 Added to blocked list. Skipping to next channel...</span>`;
+
+        autoSkipTimer = setTimeout(() => {
+          if (playerModal.classList.contains('hidden')) return;
+          playNextModalChannel(true);
+        }, 800);
+      }
+
+      // Video Player Modal
+      function openPlayerModal(index) {
+        if (streamTimeout) {
+          clearTimeout(streamTimeout);
+          streamTimeout = null;
+        }
+        if (autoSkipTimer) {
+          clearTimeout(autoSkipTimer);
+          autoSkipTimer = null;
+        }
+
+        const list = getFilteredChannels();
+        if (!list || !list.length) {
+          closePlayerModal();
+          return;
+        }
+
+        activeChannelIndex = (index + list.length) % list.length;
+        const ch = list[activeChannelIndex];
+        if (!ch) return;
+
+        playerModal.classList.remove('hidden');
+
+        // Update modal banner
+        overlayChNum.textContent = `CH ${activeChannelIndex + 1}`;
+        overlayChTitle.textContent = ch.name || `Channel ${activeChannelIndex + 1}`;
+        const isTam = ch._isTamil !== undefined ? ch._isTamil : isTamilChannel(ch);
+        const ctry = ch.country ? `${ch.country} • ` : '';
+        overlayChMeta.textContent = `${ctry}${isTam ? 'Tamil • ' : ''}${ch.category || 'Live'}`;
+
+        videoLoader.classList.remove('hidden');
+        loaderMessage.textContent = `Opening ${ch.name}...`;
+
+        // 8-second stream timeout: if not playing within 8s, trigger error & auto-skip
+        streamTimeout = setTimeout(() => {
+          handleStreamError('Stream connection timeout (8s)');
+        }, 8000);
+
+        if (!hls && Hls.isSupported()) {
+          hls = new Hls({ enableWorker: true, lowLatencyMode: true });
+          hls.attachMedia(gridVideo);
+
+          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            if (streamTimeout) {
+              clearTimeout(streamTimeout);
+              streamTimeout = null;
+            }
+            consecutiveErrors = 0;
+            videoLoader.classList.add('hidden');
+            gridVideo.play().catch(e => console.log('Play error:', e));
+          });
+
+          hls.on(Hls.Events.ERROR, (event, data) => {
+            console.warn('HLS stream error:', data);
+            if (data.fatal) {
+              switch (data.type) {
+                case Hls.ErrorTypes.NETWORK_ERROR:
+                  const curCh = getFilteredChannels()[activeChannelIndex];
+                  if (curCh && isSonyLivChannel(curCh)) {
+                    refreshSonyLivLiveUrls(true).then(() => {
+                      const updated = getFilteredChannels()[activeChannelIndex];
+                      if (updated && updated.url) {
+                        hls.loadSource(updated.url);
+                        hls.startLoad();
+                      } else {
+                        handleStreamError('Network error / dead stream');
+                      }
+                    });
+                    break;
+                  }
+                  handleStreamError('Network error / dead stream');
+                  break;
+                case Hls.ErrorTypes.MEDIA_ERROR:
+                  console.warn('Media error, attempting recovery...');
+                  hls.recoverMediaError();
+                  break;
+                default:
+                  handleStreamError('Fatal decoding error');
+                  break;
+              }
+            }
+          });
+        }
+
+        if (Hls.isSupported() && hls) {
+          hls.loadSource(ch.url);
+        } else if (gridVideo.canPlayType('application/vnd.apple.mpegurl')) {
+          gridVideo.src = ch.url;
+          gridVideo.play().catch(e => console.log(e));
+        }
+      }
+
+      gridVideo.addEventListener('playing', () => {
+        if (streamTimeout) {
+          clearTimeout(streamTimeout);
+          streamTimeout = null;
+        }
+        consecutiveErrors = 0;
+        videoLoader.classList.add('hidden');
+      });
+
+      gridVideo.addEventListener('error', () => {
+        handleStreamError('HTML5 video error');
+      });
+
+      function closePlayerModal() {
+        if (streamTimeout) {
+          clearTimeout(streamTimeout);
+          streamTimeout = null;
+        }
+        if (autoSkipTimer) {
+          clearTimeout(autoSkipTimer);
+          autoSkipTimer = null;
+        }
+        consecutiveErrors = 0;
+        playerModal.classList.add('hidden');
+        if (gridVideo) {
+          gridVideo.pause();
+          gridVideo.src = '';
+        }
+        if (hls) {
+          hls.stopLoad();
+        }
+        updateTileFocus();
+      }
+
+      function playNextModalChannel(isSkipDueToBlock = false) {
+        const list = getFilteredChannels();
+        if (!list.length) return;
+        const nextIdx = isSkipDueToBlock ? (activeChannelIndex % list.length) : ((activeChannelIndex + 1) % list.length);
+        openPlayerModal(nextIdx);
+      }
+
+      function playPrevModalChannel() {
+        const list = getFilteredChannels();
+        if (!list.length) return;
+        const prevIdx = (activeChannelIndex - 1 + list.length) % list.length;
+        openPlayerModal(prevIdx);
+      }
+
+      const modalPrevChBtn = document.getElementById('modalPrevChBtn');
+      const modalNextChBtn = document.getElementById('modalNextChBtn');
+      if (modalPrevChBtn) modalPrevChBtn.addEventListener('click', () => playPrevModalChannel());
+      if (modalNextChBtn) modalNextChBtn.addEventListener('click', () => playNextModalChannel(false));
+      if (closePlayerModalBtn) closePlayerModalBtn.addEventListener('click', closePlayerModal);
+
+      // Populate Categories & Countries
+      function populateCategories() {
+        const counts = {};
+        channels.forEach(c => {
+          const cat = c.category || 'General';
+          counts[cat] = (counts[cat] || 0) + 1;
+        });
+
+        catDropdown.innerHTML = '';
+        const entOpt = document.createElement('option');
+        entOpt.value = 'Entertainment';
+        entOpt.textContent = `🎬 Entertainment (${counts['Entertainment'] || 0})`;
+        if (currentCategory === 'Entertainment') entOpt.selected = true;
+        catDropdown.appendChild(entOpt);
+
+        const allOpt = document.createElement('option');
+        allOpt.value = 'all';
+        allOpt.textContent = `All Categories (${channels.length})`;
+        if (currentCategory === 'all') allOpt.selected = true;
+        catDropdown.appendChild(allOpt);
+
+        Object.keys(counts)
+          .filter(k => k !== 'all' && k.toLowerCase() !== 'entertainment' && counts[k] > 0)
+          .sort((a, b) => a.localeCompare(b))
+          .forEach(cat => {
+            const opt = document.createElement('option');
+            opt.value = cat;
+            opt.textContent = `${cat} (${counts[cat]})`;
+            if (cat === currentCategory) opt.selected = true;
+            catDropdown.appendChild(opt);
+          });
+      }
+
+      function populateCountries() {
+        const counts = {};
+        channels.forEach(c => {
+          const ctry = c.country || 'International';
+          counts[ctry] = (counts[ctry] || 0) + 1;
+        });
+
+        countryDropdown.innerHTML = '<option value="all">All Countries</option>';
+        Object.keys(counts)
+          .sort((a, b) => counts[b] - counts[a])
+          .forEach(ctry => {
+            const opt = document.createElement('option');
+            opt.value = ctry;
+            opt.textContent = `${ctry} (${counts[ctry]})`;
+            if (ctry.toLowerCase() === currentCountry.toLowerCase()) opt.selected = true;
+            countryDropdown.appendChild(opt);
+          });
+      }
+
+      // Filter Pill Clicks
+      function setPillActive(btn) {
+        document.querySelectorAll('.pill-btn').forEach(p => p.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+      }
+
+      pillFav.addEventListener('click', () => {
+        languageFilter = 'favorites';
+        currentCountry = 'all';
+        currentCategory = 'all';
+        setPillActive(pillFav);
+        if (countryDropdown) countryDropdown.value = 'all';
+        if (catDropdown) catDropdown.value = 'all';
+        focusedIndex = 0;
+        renderTiles();
+      });
+
+      pillTamil.addEventListener('click', () => {
+        languageFilter = 'tamil';
+        currentCountry = 'all';
+        setPillActive(pillTamil);
+        if (countryDropdown) countryDropdown.value = 'all';
+        focusedIndex = 0;
+        renderTiles();
+      });
+
+      if (pillSonyLiv) {
+        pillSonyLiv.addEventListener('click', async () => {
+          languageFilter = 'sonyliv';
+          currentCountry = 'all';
+          currentCategory = 'all';
+          setPillActive(pillSonyLiv);
+          if (countryDropdown) countryDropdown.value = 'all';
+          if (catDropdown) catDropdown.value = 'all';
+          focusedIndex = 0;
+          statusCounter.textContent = 'Loading fresh Sony LIV channels...';
+          await refreshSonyLivLiveUrls();
+          renderTiles();
+        });
+      }
+
+      pillAll.addEventListener('click', () => {
+        languageFilter = 'all';
+        currentCountry = 'all';
+        setPillActive(pillAll);
+        if (countryDropdown) countryDropdown.value = 'all';
+        focusedIndex = 0;
+        renderTiles();
+      });
+
+      pillIN.addEventListener('click', () => {
+        languageFilter = 'all';
+        currentCountry = 'India';
+        setPillActive(pillIN);
+        if (countryDropdown) countryDropdown.value = 'India';
+        focusedIndex = 0;
+        renderTiles();
+      });
+
+      pillUS.addEventListener('click', () => {
+        languageFilter = 'all';
+        currentCountry = 'United States';
+        setPillActive(pillUS);
+        if (countryDropdown) countryDropdown.value = 'United States';
+        focusedIndex = 0;
+        renderTiles();
+      });
+
+      pillUK.addEventListener('click', () => {
+        languageFilter = 'all';
+        currentCountry = 'United Kingdom';
+        setPillActive(pillUK);
+        if (countryDropdown) countryDropdown.value = 'United Kingdom';
+        focusedIndex = 0;
+        renderTiles();
+      });
+
+      pillCA.addEventListener('click', () => {
+        languageFilter = 'all';
+        currentCountry = 'Canada';
+        setPillActive(pillCA);
+        if (countryDropdown) countryDropdown.value = 'Canada';
+        focusedIndex = 0;
+        renderTiles();
+      });
+
+      if (pillBlocked) {
+        pillBlocked.addEventListener('click', () => {
+          languageFilter = 'blocked';
+          currentCountry = 'all';
+          currentCategory = 'all';
+          setPillActive(pillBlocked);
+          if (countryDropdown) countryDropdown.value = 'all';
+          if (catDropdown) catDropdown.value = 'all';
+          focusedIndex = 0;
+          renderTiles();
+        });
+      }
+
+      catDropdown.addEventListener('change', (e) => {
+        currentCategory = e.target.value;
+        focusedIndex = 0;
+        renderTiles();
+      });
+
+      countryDropdown.addEventListener('change', (e) => {
+        currentCountry = e.target.value;
+        languageFilter = 'all';
+        document.querySelectorAll('.pill-btn').forEach(p => {
+          p.classList.toggle('active', p.dataset.country === currentCountry);
+        });
+        focusedIndex = 0;
+        renderTiles();
+      });
+
+      tileSearch.addEventListener('input', (e) => {
+        searchQuery = e.target.value.trim();
+        clearSearchBtn.style.display = searchQuery ? 'block' : 'none';
+        focusedIndex = 0;
+        renderTiles();
+      });
+
+      clearSearchBtn.addEventListener('click', () => {
+        tileSearch.value = '';
+        searchQuery = '';
+        clearSearchBtn.style.display = 'none';
+        focusedIndex = 0;
+        renderTiles();
+        tileSearch.focus();
+      });
+
+      gridFavToggleBtn.addEventListener('click', () => {
+        const list = getFilteredChannels();
+        const cur = list[focusedIndex] || list[activeChannelIndex];
+        if (cur) toggleFavorite(cur);
+      });
+
+      // ========================================================
+      // REMOTE CONTROL D-PAD NAVIGATION (VIDAA TV OPTIMIZED)
+      // ========================================================
+      window.addEventListener('keydown', (e) => {
+        const code = e.keyCode || e.which;
+        const k = e.key || '';
+
+        const isDown = k === 'ArrowDown' || k === 'Down' || code === 40;
+        const isUp = k === 'ArrowUp' || k === 'Up' || code === 38;
+        const isLeft = k === 'ArrowLeft' || k === 'Left' || code === 37;
+        const isRight = k === 'ArrowRight' || k === 'Right' || code === 39;
+        const isEnter = k === 'Enter' || k === 'Select' || k === 'Ok' || code === 13;
+        const isBack = k === 'Escape' || k === 'Back' || k === 'GoBack' || k === 'Backspace' || code === 27 || code === 10009 || code === 461 || code === 8;
+        const isChUp = k === 'ChannelUp' || k === 'PageUp' || k === '+' || k === '=' || code === 427 || code === 33;
+        const isChDown = k === 'ChannelDown' || k === 'PageDown' || k === '-' || k === '_' || code === 428 || code === 34;
+
+        // If Video Player Modal is Open:
+        if (!playerModal.classList.contains('hidden')) {
+          if (isBack) {
+            e.preventDefault();
+            closePlayerModal();
+            return;
+          }
+          if (isDown || isChDown) {
+            e.preventDefault();
+            playNextModalChannel();
+            return;
+          }
+          if (isUp || isChUp) {
+            e.preventDefault();
+            playPrevModalChannel();
+            return;
+          }
+          if (isEnter) {
+            e.preventDefault();
+            if (gridVideo.paused) gridVideo.play();
+            else gridVideo.pause();
+            return;
+          }
+          return;
+        }
+
+        const activeEl = document.activeElement;
+        const isInputFocused = (activeEl === tileSearch);
+        const list = getFilteredChannels();
+        const total = list.length;
+
+        // Header controls handling:
+        if (activeEl === tileSearch) {
+          if (isDown) {
+            e.preventDefault();
+            tileSearch.blur();
+            focusedIndex = 0;
+            updateTileFocus();
+            return;
+          }
+          return;
+        }
+
+        if (filterPills.includes(activeEl) || activeEl === catDropdown || activeEl === countryDropdown || activeEl === gridFavToggleBtn) {
+          if (isDown) {
+            e.preventDefault();
+            activeEl.blur();
+            focusedIndex = 0;
+            updateTileFocus();
+            return;
+          }
+        }
+
+        // On the 10-per-Row Grid:
+        if (isRight) {
+          e.preventDefault();
+          if (focusedIndex < total - 1) {
+            focusedIndex++;
+            if (focusedIndex >= renderedCount - 10 && renderedCount < total) {
+              renderedCount = Math.min(renderedCount + 80, total);
+              renderTiles(true);
+            }
+            updateTileFocus();
+          }
+          return;
+        }
+
+        if (isLeft) {
+          e.preventDefault();
+          if (focusedIndex > 0) {
+            focusedIndex--;
+            updateTileFocus();
+          }
+          return;
+        }
+
+        // DOWN: Move down exactly 1 ROW (10 tiles!)
+        if (isDown) {
+          e.preventDefault();
+          if (focusedIndex + COLS_PER_ROW < total) {
+            focusedIndex += COLS_PER_ROW;
+            if (focusedIndex >= renderedCount - 10 && renderedCount < total) {
+              renderedCount = Math.min(renderedCount + 80, total);
+              renderTiles(true);
+            }
+            updateTileFocus();
+          } else if (focusedIndex < total - 1) {
+            focusedIndex = total - 1;
+            updateTileFocus();
+          }
+          return;
+        }
+
+        // UP: Move up exactly 1 ROW (10 tiles!)
+        if (isUp) {
+          e.preventDefault();
+          if (focusedIndex - COLS_PER_ROW >= 0) {
+            focusedIndex -= COLS_PER_ROW;
+            updateTileFocus();
+          } else {
+            // Reached top row: move focus to filter controls
+            if (catDropdown) catDropdown.focus();
+            else if (tileSearch) tileSearch.focus();
+          }
+          return;
+        }
+
+        // Channel Up/Down: Skip 50 channels (5 rows)
+        if (isChDown) {
+          e.preventDefault();
+          focusedIndex = Math.min(total - 1, focusedIndex + 50);
+          if (focusedIndex >= renderedCount - 10 && renderedCount < total) {
+            renderedCount = Math.min(renderedCount + 80, total);
+            renderTiles(true);
+          }
+          updateTileFocus();
+          return;
+        }
+
+        if (isChUp) {
+          e.preventDefault();
+          focusedIndex = Math.max(0, focusedIndex - 50);
+          updateTileFocus();
+          return;
+        }
+
+        if (isEnter) {
+          e.preventDefault();
+          if (languageFilter === 'blocked') {
+            const list = getFilteredChannels();
+            const ch = list[focusedIndex];
+            if (ch) unblockChannel(ch);
+            return;
+          }
+          openPlayerModal(focusedIndex);
+          return;
+        }
+
+        if (isBack) {
+          if (searchQuery) {
+            e.preventDefault();
+            tileSearch.value = '';
+            searchQuery = '';
+            clearSearchBtn.style.display = 'none';
+            renderTiles();
+          } else {
+            // Return to live player
+            window.location.href = 'index.html';
+          }
+          return;
+        }
+      });
+
+      // Load Playlist
+      async function loadPlaylist() {
+        try {
+          let res = await fetch('/api/playlist');
+          if (!res.ok) res = await fetch('./playlist.json');
+          if (res.ok) {
+            channels = await res.json();
+            channels.forEach(c => {
+              c._isTamil = isTamilChannel(c);
+              c._isSonyLiv = isSonyLivChannel(c);
+              c._lowerName = (c.name || '').toLowerCase();
+              c._lowerCountry = (c.country || 'International').toLowerCase();
+              c._lowerCategory = (c.category || 'Live').toLowerCase();
+            });
+          }
+        } catch (e) {
+          console.warn('Could not fetch playlist:', e);
+        }
+
+        languageFilter = 'tamil';
+        currentCountry = 'all';
+        currentCategory = 'Entertainment';
+
+        populateCategories();
+        populateCountries();
+        updateFavUI();
+        updateBlockedUI();
+        renderTiles();
+        focusedIndex = 0;
+        updateTileFocus();
+      }
+
+      loadPlaylist();
+    });
+  </script>
+</body>
+</html>
