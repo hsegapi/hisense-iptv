@@ -436,8 +436,12 @@
       position: fixed;
       top: 0;
       left: 0;
+      right: 0;
+      bottom: 0;
       width: 100vw;
+      width: 100%;
       height: 100vh;
+      height: 100dvh;
       background: #000;
       z-index: 100;
       display: flex;
@@ -555,9 +559,9 @@
       transform: scale(1.06);
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 899px) {
       .player-overlay-bar {
-        bottom: 16px;
+        bottom: calc(80px + env(safe-area-inset-bottom, 0px));
         left: 50%;
         transform: translateX(-50%);
         min-width: 0;
@@ -574,6 +578,12 @@
 
       .overlay-btn span {
         display: none;
+      }
+    }
+
+    @media (max-width: 899px) and (orientation: landscape) {
+      .player-overlay-bar {
+        bottom: calc(20px + env(safe-area-inset-bottom, 0px));
       }
     }
 
