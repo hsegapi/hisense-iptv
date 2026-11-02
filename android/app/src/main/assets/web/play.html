@@ -372,23 +372,45 @@
       border-color: var(--primary);
     }
 
+    /* Slide-out Playlist Drawer Backdrop Overlay */
+    .playlist-backdrop {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 28;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .playlist-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
     /* Slide-out Playlist Drawer (when multiple channels in M3U) */
     .playlist-drawer {
       position: absolute;
       top: 0;
       right: 0;
-      width: 340px;
+      width: 360px;
+      max-width: 90vw;
       height: 100%;
-      background: rgba(11, 17, 32, 0.95);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border-left: 2px solid var(--border-color);
+      background: rgba(11, 17, 32, 0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-left: 1px solid var(--border-color);
       display: flex;
       flex-direction: column;
       z-index: 30;
       transform: translateX(100%);
       transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1);
-      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.85);
     }
 
     .playlist-drawer.open {
@@ -396,7 +418,7 @@
     }
 
     .drawer-header {
-      padding: 14px 16px;
+      padding: 12px 16px;
       border-bottom: 1px solid var(--border-color);
       display: flex;
       align-items: center;
@@ -404,22 +426,57 @@
       gap: 10px;
     }
 
+    .drawer-title-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
     .drawer-title {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 800;
       color: #fff;
     }
 
-    .drawer-close {
-      background: none;
-      border: none;
-      color: #8892b0;
-      font-size: 20px;
+    .unhide-skipped-btn {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 4px;
       cursor: pointer;
-      padding: 4px;
+      transition: background 0.15s;
     }
 
-    .drawer-close:hover {
+    .unhide-skipped-btn:hover {
+      background: rgba(56, 189, 248, 0.3);
+    }
+
+    .drawer-close {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 6px 14px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      line-height: 1;
+      transition: all 0.15s ease;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .drawer-close:hover,
+    .drawer-close:active {
+      background: rgba(239, 68, 68, 0.35);
+      border-color: #ef4444;
       color: #fff;
     }
 
@@ -600,11 +657,17 @@
       ☰ Channels (<span id="playlistCount">0</span>)
     </button>
 
+    <!-- Slide-out Playlist Drawer Backdrop Overlay -->
+    <div class="playlist-backdrop" id="playlistBackdrop"></div>
+
     <!-- Slide-out Playlist Drawer -->
     <aside class="playlist-drawer" id="playlistDrawer">
       <div class="drawer-header">
-        <div class="drawer-title">Playlist Channels (<span id="drawerCount">0</span>)</div>
-        <button class="drawer-close" id="drawerCloseBtn">&times;</button>
+        <div class="drawer-title-group">
+          <div class="drawer-title">Playlist Channels (<span id="drawerCount">0</span>)</div>
+          <button id="unhideSkippedBtn" class="unhide-skipped-btn" style="display: none;" title="Restore hidden skipped channels">♻️ Unhide</button>
+        </div>
+        <button class="drawer-close" id="drawerCloseBtn" title="Close Playlist (Esc)" aria-label="Close">✕ Close</button>
       </div>
       <div class="drawer-search-box">
         <input type="text" id="drawerSearchInput" class="drawer-search-input" placeholder="Search playlist channels..." autocomplete="off">
@@ -647,7 +710,9 @@
       const playlistToggleBtn = document.getElementById('playlistToggleBtn');
       const playlistCount = document.getElementById('playlistCount');
       const playlistDrawer = document.getElementById('playlistDrawer');
+      const playlistBackdrop = document.getElementById('playlistBackdrop');
       const drawerCloseBtn = document.getElementById('drawerCloseBtn');
+      const unhideSkippedBtn = document.getElementById('unhideSkippedBtn');
       const drawerCount = document.getElementById('drawerCount');
       const drawerSearchInput = document.getElementById('drawerSearchInput');
       const drawerChannelsList = document.getElementById('drawerChannelsList');
@@ -794,6 +859,18 @@
       let consecutiveErrors = 0;
       const MAX_AUTO_SKIPS = 15;
 
+      function getNextUnskippedChannelIndex(fromIdx, direction = 1) {
+        const len = playlistChannels.length;
+        if (len === 0) return -1;
+        for (let step = 1; step <= len; step++) {
+          const candidateIdx = (fromIdx + step * direction + len * len) % len;
+          if (!playlistChannels[candidateIdx]._isSkipped) {
+            return candidateIdx;
+          }
+        }
+        return -1;
+      }
+
       function handlePlayStreamError(reason) {
         if (streamTimeout) {
           clearTimeout(streamTimeout);
@@ -809,17 +886,28 @@
           const failedCh = playlistChannels[activeChannelIdx];
           const name = failedCh ? failedCh.name : 'Channel';
 
-          if (consecutiveErrors >= Math.min(MAX_AUTO_SKIPS, playlistChannels.length)) {
+          // Mark failed channel as skipped/hidden
+          if (failedCh) {
+            failedCh._isSkipped = true;
+          }
+
+          // Instantly update counts and hide from playlist drawer
+          updatePlaylistUI();
+          refreshDrawerDisplay();
+
+          const nextIdx = getNextUnskippedChannelIndex(activeChannelIdx, 1);
+
+          if (consecutiveErrors >= Math.min(MAX_AUTO_SKIPS, playlistChannels.length) || nextIdx === -1) {
             showLoader(`⚠️ Multiple channels offline. Auto-skip stopped.`);
-            playbackStatus.textContent = `⚠️ Multiple channels offline. Auto-skip stopped. Click any channel to retry.`;
+            playbackStatus.textContent = `⚠️ Multiple channels offline. Auto-skip stopped.`;
             return;
           }
 
-          showLoader(`⚠️ "${name}" failed (${reason}). Auto-skipping to next channel...`);
-          playbackStatus.textContent = `⚠️ "${name}" failed. Skipping to next channel...`;
+          showLoader(`⚠️ "${name}" offline (${reason}). Skipped & hidden from playlist...`);
+          playbackStatus.textContent = `⚠️ "${name}" skipped & hidden. Skipping to next channel...`;
 
           autoSkipTimer = setTimeout(() => {
-            playChannelIndex(activeChannelIdx + 1, true);
+            playChannelIndex(nextIdx, true);
           }, 1200);
         } else {
           hideLoader();
@@ -985,42 +1073,115 @@
         playStreamUrl(url, customTitle || 'Direct Stream', url);
       }
 
+      // Drawer open/close/toggle functions
+      function closePlaylistDrawer() {
+        playlistDrawer.classList.remove('open');
+        if (playlistBackdrop) playlistBackdrop.classList.remove('open');
+      }
+
+      function openPlaylistDrawer() {
+        playlistDrawer.classList.add('open');
+        if (playlistBackdrop) playlistBackdrop.classList.add('open');
+      }
+
+      function togglePlaylistDrawer() {
+        if (playlistDrawer.classList.contains('open')) {
+          closePlaylistDrawer();
+        } else {
+          openPlaylistDrawer();
+        }
+      }
+
+      function unhideAllSkippedChannels() {
+        playlistChannels.forEach(c => c._isSkipped = false);
+        consecutiveErrors = 0;
+        updatePlaylistUI();
+        refreshDrawerDisplay();
+        showLoader('Restored all skipped channels');
+        setTimeout(hideLoader, 1400);
+      }
+
+      function refreshDrawerDisplay() {
+        const q = (drawerSearchInput.value || '').toLowerCase().trim();
+        if (q) {
+          const filtered = playlistChannels.filter(c => 
+            !c._isSkipped && (
+              (c.name || '').toLowerCase().includes(q) || 
+              (c.category || '').toLowerCase().includes(q) ||
+              (c.country || '').toLowerCase().includes(q) ||
+              (c.language || '').toLowerCase().includes(q)
+            )
+          );
+          renderDrawerChannels(filtered);
+        } else {
+          renderDrawerChannels(playlistChannels);
+        }
+      }
+
       // Set Multiple Channels Playlist
       function setPlaylist(channels) {
         playlistChannels = channels.map((ch, idx) => ({
           ...ch,
-          _origIndex: idx
+          _origIndex: idx,
+          _isSkipped: false
         }));
         activeChannelIdx = 0;
         if (drawerSearchInput) drawerSearchInput.value = '';
         updatePlaylistUI();
-        renderDrawerChannels(playlistChannels);
+        refreshDrawerDisplay();
       }
 
       function updatePlaylistUI() {
-        const count = playlistChannels.length;
-        if (count > 1) {
+        const activeCount = playlistChannels.filter(c => !c._isSkipped).length;
+        const skippedCount = playlistChannels.length - activeCount;
+
+        if (activeCount > 1 || (activeCount === 1 && playlistChannels.length > 1)) {
           playlistToggleBtn.style.display = 'flex';
-          playlistCount.textContent = count;
-          drawerCount.textContent = count;
+          playlistCount.textContent = activeCount;
+          drawerCount.textContent = activeCount;
           prevChBtn.style.display = 'inline-flex';
           nextChBtn.style.display = 'inline-flex';
-        } else {
-          playlistToggleBtn.style.display = 'none';
-          playlistDrawer.classList.remove('open');
+        } else if (activeCount === 1) {
+          playlistToggleBtn.style.display = 'flex';
+          playlistCount.textContent = 1;
+          drawerCount.textContent = 1;
           prevChBtn.style.display = 'none';
           nextChBtn.style.display = 'none';
+        } else {
+          playlistToggleBtn.style.display = 'none';
+          closePlaylistDrawer();
+          prevChBtn.style.display = 'none';
+          nextChBtn.style.display = 'none';
+        }
+
+        if (unhideSkippedBtn) {
+          unhideSkippedBtn.style.display = skippedCount > 0 ? 'inline-flex' : 'none';
+          unhideSkippedBtn.textContent = `♻️ Unhide (${skippedCount})`;
         }
       }
 
       function renderDrawerChannels(list) {
         drawerChannelsList.innerHTML = '';
-        if (!list || list.length === 0) {
-          drawerChannelsList.innerHTML = '<div style="padding: 24px; text-align: center; color: var(--text-dim); font-size: 13px;">No channels found</div>';
+        
+        // Filter out skipped channels
+        const visibleList = (list || []).filter(ch => !ch._isSkipped);
+
+        if (visibleList.length === 0) {
+          const hasSkipped = playlistChannels.some(c => c._isSkipped);
+          drawerChannelsList.innerHTML = `
+            <div style="padding: 32px 16px; text-align: center; color: var(--text-dim); font-size: 13px;">
+              ${hasSkipped ? 'All matching channels offline / skipped.' : 'No channels found.'}
+              ${hasSkipped ? '<br><button id="unhideDrawerBtn" class="btn" style="margin-top: 14px; font-size: 12px; padding: 6px 14px;">♻️ Restore Skipped Channels</button>' : ''}
+            </div>
+          `;
+          const unhideDrawerBtn = document.getElementById('unhideDrawerBtn');
+          if (unhideDrawerBtn) {
+            unhideDrawerBtn.addEventListener('click', unhideAllSkippedChannels);
+          }
           return;
         }
 
-        list.forEach((ch) => {
+        visibleList.forEach((ch) => {
           const origIdx = (ch._origIndex !== undefined) ? ch._origIndex : playlistChannels.indexOf(ch);
           const isActive = (origIdx === activeChannelIdx);
           const item = document.createElement('div');
@@ -1037,8 +1198,9 @@
             </div>
           `;
           item.addEventListener('click', () => {
+            ch._isSkipped = false;
             playChannelIndex(origIdx);
-            if (window.innerWidth <= 768) playlistDrawer.classList.remove('open');
+            closePlaylistDrawer();
           });
           drawerChannelsList.appendChild(item);
         });
@@ -1058,18 +1220,7 @@
           const metaStr = metaParts.length > 0 ? metaParts.join(' • ') : 'Live';
           playStreamUrl(ch.url, ch.name, `${metaStr} • Channel ${activeChannelIdx + 1} of ${playlistChannels.length}`, isAutoSkip);
           
-          const q = (drawerSearchInput.value || '').toLowerCase().trim();
-          if (q) {
-            const filtered = playlistChannels.filter(c => 
-              (c.name || '').toLowerCase().includes(q) || 
-              (c.category || '').toLowerCase().includes(q) ||
-              (c.country || '').toLowerCase().includes(q) ||
-              (c.language || '').toLowerCase().includes(q)
-            );
-            renderDrawerChannels(filtered);
-          } else {
-            renderDrawerChannels(playlistChannels);
-          }
+          refreshDrawerDisplay();
         }
       }
 
@@ -1128,42 +1279,72 @@
       }
 
       // Drawer Controls
-      playlistToggleBtn.addEventListener('click', () => playlistDrawer.classList.toggle('open'));
-      drawerCloseBtn.addEventListener('click', () => playlistDrawer.classList.remove('open'));
+      playlistToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        togglePlaylistDrawer();
+      });
 
-      drawerSearchInput.addEventListener('input', (e) => {
-        const q = e.target.value.toLowerCase().trim();
-        if (!q) {
-          renderDrawerChannels(playlistChannels);
-          return;
-        }
-        const filtered = playlistChannels.filter(c => 
-          (c.name || '').toLowerCase().includes(q) || 
-          (c.category || '').toLowerCase().includes(q) ||
-          (c.country || '').toLowerCase().includes(q) ||
-          (c.language || '').toLowerCase().includes(q)
-        );
-        renderDrawerChannels(filtered);
+      drawerCloseBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        closePlaylistDrawer();
+      });
+
+      if (playlistBackdrop) {
+        playlistBackdrop.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          closePlaylistDrawer();
+        });
+      }
+
+      if (unhideSkippedBtn) {
+        unhideSkippedBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          unhideAllSkippedChannels();
+        });
+      }
+
+      drawerSearchInput.addEventListener('input', () => {
+        refreshDrawerDisplay();
       });
 
       // Next / Prev Channel
-      if (prevChBtn) prevChBtn.addEventListener('click', () => playChannelIndex(activeChannelIdx - 1));
-      if (nextChBtn) nextChBtn.addEventListener('click', () => playChannelIndex(activeChannelIdx + 1));
+      if (prevChBtn) {
+        prevChBtn.addEventListener('click', () => {
+          const prevIdx = getNextUnskippedChannelIndex(activeChannelIdx, -1);
+          if (prevIdx !== -1) playChannelIndex(prevIdx);
+        });
+      }
+      if (nextChBtn) {
+        nextChBtn.addEventListener('click', () => {
+          const nextIdx = getNextUnskippedChannelIndex(activeChannelIdx, 1);
+          if (nextIdx !== -1) playChannelIndex(nextIdx);
+        });
+      }
 
-      // Remote / Keyboard navigation for channels
+      // Remote / Keyboard navigation for channels and Escape for drawer
       window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closePlaylistDrawer();
+          return;
+        }
+
         const tag = (document.activeElement && document.activeElement.tagName) || '';
         if (tag === 'INPUT' || tag === 'TEXTAREA') return;
 
         if (e.key === 'ArrowUp' || e.key === 'ChannelUp' || e.key === 'PageUp') {
           if (playlistChannels.length > 1) {
             e.preventDefault();
-            playChannelIndex(activeChannelIdx - 1);
+            const prevIdx = getNextUnskippedChannelIndex(activeChannelIdx, -1);
+            if (prevIdx !== -1) playChannelIndex(prevIdx);
           }
         } else if (e.key === 'ArrowDown' || e.key === 'ChannelDown' || e.key === 'PageDown') {
           if (playlistChannels.length > 1) {
             e.preventDefault();
-            playChannelIndex(activeChannelIdx + 1);
+            const nextIdx = getNextUnskippedChannelIndex(activeChannelIdx, 1);
+            if (nextIdx !== -1) playChannelIndex(nextIdx);
           }
         }
       });
