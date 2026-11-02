@@ -346,6 +346,19 @@
       color: #fff !important;
     }
 
+    .pill-btn.unblock-all-btn {
+      background: rgba(34, 197, 94, 0.18);
+      border-color: rgba(34, 197, 94, 0.45);
+      color: #86efac;
+    }
+
+    .pill-btn.unblock-all-btn:hover, .pill-btn.unblock-all-btn:focus {
+      background: #16a34a !important;
+      border-color: #16a34a !important;
+      color: #fff !important;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.6);
+    }
+
     .pill-btn.sonyliv-pill {
       background: rgba(139, 92, 246, 0.18);
       border-color: rgba(167, 139, 250, 0.45);
@@ -654,6 +667,7 @@
           <button class="pill-btn" data-country="United Kingdom" id="pillUK">🇬🇧 UK</button>
           <button class="pill-btn" data-country="Canada" id="pillCA">🇨🇦 Canada</button>
           <button class="pill-btn blocked-pill" data-filter="blocked" id="pillBlocked" title="View Auto-Blocked Channels">🚫 Blocked (<span id="blockedCountBadge">0</span>)</button>
+          <button class="pill-btn unblock-all-btn" id="pillUnblockAll" style="display: none;" title="Unblock All Channels and Restore to Grid">♻️ Unblock All</button>
         </div>
 
         <div class="dropdowns-group">
@@ -737,6 +751,7 @@
       const pillUK = document.getElementById('pillUK');
       const pillCA = document.getElementById('pillCA');
       const pillBlocked = document.getElementById('pillBlocked');
+      const pillUnblockAll = document.getElementById('pillUnblockAll');
       const filterPills = [pillFav, pillTamil, pillSonyLiv, pillIN, pillAll, pillUS, pillUK, pillCA, pillBlocked].filter(Boolean);
 
       // Video Modal Elements
@@ -749,6 +764,10 @@
       const overlayChTitle = document.getElementById('overlayChTitle');
       const overlayChMeta = document.getElementById('overlayChMeta');
 
+      let isClosingModal = false;
+      let isSwitchingChannel = false;
+      let currentLoadingChannel = null;
+
       let channels = [];
       let favorites = [];
       try {
@@ -760,13 +779,50 @@
       }
 
       let blockedChannels = [];
-      try {
-        const savedBlocked = localStorage.getItem('iptv_blocked_channels');
-        if (savedBlocked) blockedChannels = JSON.parse(savedBlocked);
-        if (!Array.isArray(blockedChannels)) blockedChannels = [];
-      } catch (e) {
-        blockedChannels = [];
+      function loadBlocked() {
+        try {
+          const savedBlocked = localStorage.getItem('iptv_blocked_channels');
+          if (savedBlocked) {
+            const parsed = JSON.parse(savedBlocked);
+            if (Array.isArray(parsed)) {
+              // Auto-expire blocks older than 6 hours so streams can recover automatically
+              const SIX_HOURS = 6 * 60 * 60 * 1000;
+              const now = Date.now();
+              blockedChannels = parsed.filter(item => {
+                if (typeof item === 'object' && item && item.time) {
+                  return (now - item.time) < SIX_HOURS;
+                }
+                return true;
+              }).map(item => (typeof item === 'string' ? item : (item ? item.key : ''))).filter(Boolean);
+            }
+          }
+        } catch (e) {
+          blockedChannels = [];
+        }
       }
+
+      function saveBlocked() {
+        try {
+          localStorage.setItem('iptv_blocked_channels', JSON.stringify(blockedChannels));
+        } catch (e) {}
+      }
+
+      loadBlocked();
+
+      window.addEventListener('storage', (e) => {
+        if (e.key === 'iptv_blocked_channels') {
+          loadBlocked();
+          invalidateFilter();
+          updateBlockedUI();
+          renderTiles();
+        }
+      });
+
+      window.addEventListener('beforeunload', () => {
+        isClosingModal = true;
+        if (streamTimeout) clearTimeout(streamTimeout);
+        if (autoSkipTimer) clearTimeout(autoSkipTimer);
+      });
 
       let currentCountry = 'all';
       let currentCategory = 'Entertainment';
@@ -1031,12 +1087,11 @@
         if (!key) return;
         if (!blockedChannels.includes(key)) {
           blockedChannels.push(key);
-          try {
-            localStorage.setItem('iptv_blocked_channels', JSON.stringify(blockedChannels));
-          } catch (e) {}
+          saveBlocked();
         }
         invalidateFilter();
         updateBlockedUI();
+        renderTiles();
       }
 
       function unblockChannel(ch) {
@@ -1045,10 +1100,17 @@
         const idx = blockedChannels.indexOf(key);
         if (idx >= 0) {
           blockedChannels.splice(idx, 1);
-          try {
-            localStorage.setItem('iptv_blocked_channels', JSON.stringify(blockedChannels));
-          } catch (e) {}
+          saveBlocked();
         }
+        invalidateFilter();
+        updateBlockedUI();
+        renderTiles();
+      }
+
+      function unblockAllChannels() {
+        if (!blockedChannels.length) return;
+        blockedChannels = [];
+        saveBlocked();
         invalidateFilter();
         updateBlockedUI();
         renderTiles();
@@ -1057,6 +1119,9 @@
       function updateBlockedUI() {
         const badge = document.getElementById('blockedCountBadge');
         if (badge) badge.textContent = blockedChannels.length;
+        if (pillUnblockAll) {
+          pillUnblockAll.style.display = (languageFilter === 'blocked' && blockedChannels.length > 0) ? 'inline-flex' : 'none';
+        }
       }
 
       function invalidateFilter() {
@@ -1255,6 +1320,13 @@
       const MAX_AUTO_SKIPS = 15;
 
       function handleStreamError(reason) {
+        if (isClosingModal || isSwitchingChannel || playerModal.classList.contains('hidden')) {
+          return;
+        }
+        if (!currentLoadingChannel) {
+          return;
+        }
+
         if (streamTimeout) {
           clearTimeout(streamTimeout);
           streamTimeout = null;
@@ -1264,10 +1336,7 @@
           autoSkipTimer = null;
         }
 
-        const list = getFilteredChannels();
-        const failedChannel = list[activeChannelIndex];
-        if (!failedChannel) return;
-
+        const failedChannel = currentLoadingChannel;
         consecutiveErrors++;
         console.warn(`[Auto-Skip] Channel "${failedChannel.name}" failed: ${reason}. Moving to blocked list.`);
 
@@ -1276,7 +1345,8 @@
 
         videoLoader.classList.remove('hidden');
 
-        if (consecutiveErrors >= MAX_AUTO_SKIPS || list.length <= 1) {
+        const list = getFilteredChannels();
+        if (consecutiveErrors >= MAX_AUTO_SKIPS || list.length === 0) {
           loaderMessage.innerHTML = `⚠️ <b>Multiple channels offline.</b><br><span style="font-size:12px;color:#cbd5e1;">Auto-skip stopped. Try another category or press Close.</span>`;
           return;
         }
@@ -1284,9 +1354,9 @@
         loaderMessage.innerHTML = `⚠️ <b>${escapeHtml(failedChannel.name)}</b> failed (${escapeHtml(reason)}).<br><span style="font-size:12px;color:#f87171;">🚫 Added to blocked list. Skipping to next channel...</span>`;
 
         autoSkipTimer = setTimeout(() => {
-          if (playerModal.classList.contains('hidden')) return;
+          if (isClosingModal || playerModal.classList.contains('hidden')) return;
           playNextModalChannel(true);
-        }, 800);
+        }, 900);
       }
 
       // Video Player Modal
@@ -1306,10 +1376,22 @@
           return;
         }
 
+        isSwitchingChannel = true;
+        if (hls) {
+          try { hls.stopLoad(); } catch (e) {}
+        }
+        if (gridVideo) {
+          try { gridVideo.pause(); } catch (e) {}
+        }
+
         activeChannelIndex = (index + list.length) % list.length;
         const ch = list[activeChannelIndex];
-        if (!ch) return;
+        if (!ch) {
+          isSwitchingChannel = false;
+          return;
+        }
 
+        currentLoadingChannel = ch;
         playerModal.classList.remove('hidden');
 
         // Update modal banner
@@ -1322,16 +1404,21 @@
         videoLoader.classList.remove('hidden');
         loaderMessage.textContent = `Opening ${ch.name}...`;
 
-        // 8-second stream timeout: if not playing within 8s, trigger error & auto-skip
+        // 12-second stream timeout: if not playing within 12s, trigger error & auto-skip
+        const expectedChannelKey = getChannelKey(ch);
         streamTimeout = setTimeout(() => {
-          handleStreamError('Stream connection timeout (8s)');
-        }, 8000);
+          if (isClosingModal || playerModal.classList.contains('hidden')) return;
+          if (currentLoadingChannel && getChannelKey(currentLoadingChannel) === expectedChannelKey) {
+            handleStreamError('Stream connection timeout (12s)');
+          }
+        }, 12000);
 
         if (!hls && Hls.isSupported()) {
           hls = new Hls({ enableWorker: true, lowLatencyMode: true });
           hls.attachMedia(gridVideo);
 
           hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            if (isClosingModal || playerModal.classList.contains('hidden')) return;
             if (streamTimeout) {
               clearTimeout(streamTimeout);
               streamTimeout = null;
@@ -1342,16 +1429,18 @@
           });
 
           hls.on(Hls.Events.ERROR, (event, data) => {
+            if (isClosingModal || isSwitchingChannel || playerModal.classList.contains('hidden')) {
+              return;
+            }
             console.warn('HLS stream error:', data);
             if (data.fatal) {
               switch (data.type) {
                 case Hls.ErrorTypes.NETWORK_ERROR:
-                  const curCh = getFilteredChannels()[activeChannelIndex];
+                  const curCh = currentLoadingChannel;
                   if (curCh && isSonyLivChannel(curCh)) {
                     refreshSonyLivLiveUrls(true).then(() => {
-                      const updated = getFilteredChannels()[activeChannelIndex];
-                      if (updated && updated.url) {
-                        hls.loadSource(updated.url);
+                      if (currentLoadingChannel && currentLoadingChannel.url) {
+                        hls.loadSource(currentLoadingChannel.url);
                         hls.startLoad();
                       } else {
                         handleStreamError('Network error / dead stream');
@@ -1373,6 +1462,10 @@
           });
         }
 
+        setTimeout(() => {
+          isSwitchingChannel = false;
+        }, 200);
+
         if (Hls.isSupported() && hls) {
           hls.loadSource(ch.url);
         } else if (gridVideo.canPlayType('application/vnd.apple.mpegurl')) {
@@ -1391,10 +1484,14 @@
       });
 
       gridVideo.addEventListener('error', () => {
+        if (isClosingModal || isSwitchingChannel || playerModal.classList.contains('hidden')) return;
+        if (!gridVideo.currentSrc && !gridVideo.getAttribute('src')) return;
+        if (hls) return;
         handleStreamError('HTML5 video error');
       });
 
       function closePlayerModal() {
+        isClosingModal = true;
         if (streamTimeout) {
           clearTimeout(streamTimeout);
           streamTimeout = null;
@@ -1404,15 +1501,26 @@
           autoSkipTimer = null;
         }
         consecutiveErrors = 0;
+        currentLoadingChannel = null;
         playerModal.classList.add('hidden');
-        if (gridVideo) {
-          gridVideo.pause();
-          gridVideo.src = '';
-        }
         if (hls) {
-          hls.stopLoad();
+          try {
+            hls.stopLoad();
+            hls.destroy();
+          } catch (e) {}
+          hls = null;
+        }
+        if (gridVideo) {
+          try {
+            gridVideo.pause();
+            gridVideo.removeAttribute('src');
+            gridVideo.load();
+          } catch (e) {}
         }
         updateTileFocus();
+        setTimeout(() => {
+          isClosingModal = false;
+        }, 300);
       }
 
       function playNextModalChannel(isSkipDueToBlock = false) {
@@ -1491,6 +1599,7 @@
       function setPillActive(btn) {
         document.querySelectorAll('.pill-btn').forEach(p => p.classList.remove('active'));
         if (btn) btn.classList.add('active');
+        updateBlockedUI();
       }
 
       pillFav.addEventListener('click', () => {
@@ -1583,6 +1692,13 @@
           if (catDropdown) catDropdown.value = 'all';
           focusedIndex = 0;
           renderTiles();
+          updateBlockedUI();
+        });
+      }
+
+      if (pillUnblockAll) {
+        pillUnblockAll.addEventListener('click', () => {
+          unblockAllChannels();
         });
       }
 
