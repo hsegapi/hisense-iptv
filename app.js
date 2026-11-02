@@ -1354,18 +1354,30 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (res.ok) {
         channels = await res.json();
-        // One-time precomputation for instant O(1) D-pad navigation and filtering
-        channels.forEach(c => {
-          c._isTamil = isTamilChannel(c);
-          c._isSonyLiv = isSonyLivChannel(c);
-          c._lowerName = (c.name || '').toLowerCase();
-          c._lowerCountry = (c.country || 'International').toLowerCase();
-          c._lowerCategory = (c.category || 'Live').toLowerCase();
-        });
       }
     } catch (e) {
       console.warn('Could not fetch playlist:', e);
     }
+
+    // Include any user-saved custom channels from localStorage
+    try {
+      const savedCustom = localStorage.getItem('iptv_custom_channels');
+      if (savedCustom) {
+        const customChannels = JSON.parse(savedCustom);
+        if (Array.isArray(customChannels) && customChannels.length > 0) {
+          channels = [...customChannels, ...channels];
+        }
+      }
+    } catch (e) {}
+
+    // One-time precomputation for instant O(1) D-pad navigation and filtering
+    channels.forEach(c => {
+      c._isTamil = isTamilChannel(c);
+      c._isSonyLiv = isSonyLivChannel(c);
+      c._lowerName = (c.name || '').toLowerCase();
+      c._lowerCountry = (c.country || 'International').toLowerCase();
+      c._lowerCategory = (c.category || 'Live').toLowerCase();
+    });
 
     if (totalBadge) {
       totalBadge.textContent = `${channels.length} Channels`;
@@ -1389,19 +1401,223 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Generic M3U Parser
+  function parseGenericM3U(m3uText, defaultCategory = 'Custom') {
+    if (!m3uText) return [];
+    const items = [];
+    const lines = m3uText.split(/\r?\n/);
+
+    const hasExtInf = lines.some(l => l.trim().startsWith('#EXTINF'));
+    if (!hasExtInf) {
+      lines.forEach((line) => {
+        const u = line.trim();
+        if (u && (u.startsWith('http://') || u.startsWith('https://'))) {
+          const cleanUrl = u.split('|')[0].trim();
+          items.push({
+            name: `Stream ${items.length + 1}`,
+            id: `custom-${items.length + 1}`,
+            logo: '',
+            category: defaultCategory,
+            country: 'Custom',
+            language: 'General',
+            url: cleanUrl,
+            is_custom: true
+          });
+        }
+      });
+      return items;
+    }
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+      if (line.startsWith('#EXTINF:')) {
+        const nameMatch = line.match(/,\s*(.*)$/);
+        const name = nameMatch ? nameMatch[1].trim() : `Channel ${items.length + 1}`;
+        const logoMatch = line.match(/tvg-logo="([^"]*)"/i);
+        const idMatch = line.match(/tvg-id="([^"]*)"/i);
+        const groupMatch = line.match(/group-title="([^"]*)"/i);
+        const countryMatch = line.match(/tvg-country="([^"]*)"/i);
+        const langMatch = line.match(/tvg-language="([^"]*)"/i);
+
+        const id = idMatch ? idMatch[1].trim() : `custom-${items.length + 1}`;
+        const logo = logoMatch ? logoMatch[1].trim() : '';
+        const group = groupMatch ? groupMatch[1].trim() : defaultCategory;
+        const country = countryMatch ? countryMatch[1].trim() : 'Custom';
+        const language = langMatch ? langMatch[1].trim() : 'General';
+
+        let url = '';
+        i++;
+        while (i < lines.length) {
+          const cur = lines[i].trim();
+          if (!cur || cur.startsWith('#')) {
+            i++;
+            continue;
+          }
+          url = cur;
+          break;
+        }
+
+        if (url && (url.startsWith('http://') || url.startsWith('https://'))) {
+          items.push({
+            name: name,
+            id: id,
+            logo: logo,
+            category: group,
+            country: country,
+            language: language,
+            url: url.split('|')[0].trim(),
+            is_custom: true
+          });
+        }
+      }
+    }
+    return items;
+  }
+
   // Modal Handlers
+  const modalStatus = document.getElementById('modalStatus');
+  function setModalStatus(msg, isError = false) {
+    if (!modalStatus) return;
+    modalStatus.style.display = 'block';
+    modalStatus.style.background = isError ? 'rgba(239, 68, 68, 0.2)' : 'rgba(34, 197, 94, 0.2)';
+    modalStatus.style.border = isError ? '1px solid rgba(239, 68, 68, 0.5)' : '1px solid rgba(34, 197, 94, 0.5)';
+    modalStatus.style.color = isError ? '#fca5a5' : '#86efac';
+    modalStatus.textContent = msg;
+  }
+
   function openModal() {
     modalOverlay.classList.remove('hidden');
-    m3uUrlInput.focus();
+    if (modalStatus) modalStatus.style.display = 'none';
+    if (m3uUrlInput) m3uUrlInput.focus();
   }
 
   function closeModal() {
     modalOverlay.classList.add('hidden');
+    if (modalStatus) modalStatus.style.display = 'none';
   }
 
   addM3uBtn.addEventListener('click', openModal);
   closeModalBtn.addEventListener('click', closeModal);
   cancelModalBtn.addEventListener('click', closeModal);
+
+  if (savePlaylistBtn) {
+    savePlaylistBtn.addEventListener('click', async () => {
+      const rawText = m3uRawInput ? m3uRawInput.value.trim() : '';
+      let url = m3uUrlInput ? m3uUrlInput.value.trim() : '';
+
+      if (!rawText && !url) {
+        setModalStatus('⚠️ Please enter an M3U / M3U8 URL or paste raw M3U content.', true);
+        return;
+      }
+
+      savePlaylistBtn.textContent = '⏳ Loading...';
+      savePlaylistBtn.disabled = true;
+      setModalStatus('⏳ Downloading and parsing playlist...');
+
+      try {
+        let parsed = [];
+        if (rawText) {
+          parsed = parseGenericM3U(rawText, 'My Playlist');
+        } else if (url) {
+          // Normalize GitHub web URLs to raw content
+          url = url.replace('github.com/', 'raw.githubusercontent.com/').replace('/blob/', '/');
+
+          let text = '';
+          try {
+            const res = await fetch(url);
+            if (res.ok) text = await res.text();
+          } catch (corsErr) {
+            console.warn('Direct fetch failed, trying proxy:', corsErr);
+            try {
+              const proxyRes = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
+              if (proxyRes.ok) text = await proxyRes.text();
+            } catch (proxyErr) {
+              console.warn('Proxy fetch failed:', proxyErr);
+            }
+          }
+
+          if (text) {
+            const lines = text.split(/\r?\n/);
+            if (text.includes('#EXT-X-TARGETDURATION') || (text.includes('#EXTINF:') && !text.includes('group-title') && lines.some(l => l.includes('.ts')))) {
+              parsed = [{
+                name: 'Custom Stream',
+                id: 'custom-single-stream',
+                logo: '',
+                category: 'Custom',
+                country: 'Custom',
+                language: 'General',
+                url: url,
+                is_custom: true
+              }];
+            } else {
+              parsed = parseGenericM3U(text, 'My Playlist');
+            }
+          } else {
+            // If fetch was blocked but URL looks like a direct stream
+            parsed = [{
+              name: 'Pasted Stream',
+              id: 'custom-stream',
+              logo: '',
+              category: 'Custom',
+              country: 'Custom',
+              language: 'General',
+              url: url,
+              is_custom: true
+            }];
+          }
+        }
+
+        if (!parsed || parsed.length === 0) {
+          setModalStatus('⚠️ Could not find any valid channels in this M3U.', true);
+          return;
+        }
+
+        parsed.forEach(c => {
+          c._isTamil = isTamilChannel(c);
+          c._isSonyLiv = false;
+          c._lowerName = (c.name || '').toLowerCase();
+          c._lowerCountry = (c.country || 'Custom').toLowerCase();
+          c._lowerCategory = (c.category || 'Custom').toLowerCase();
+        });
+
+        // Save to localStorage
+        try {
+          localStorage.setItem('iptv_custom_channels', JSON.stringify(parsed));
+        } catch (e) {}
+
+        // Add to channels
+        channels = [...parsed, ...channels];
+        if (totalBadge) totalBadge.textContent = `${channels.length} Channels`;
+
+        renderCategories();
+        renderCountries();
+
+        currentCategory = parsed[0].category || 'all';
+        currentCountry = 'all';
+        languageFilter = 'all';
+        if (categorySelect) categorySelect.value = currentCategory;
+        if (countrySelect) countrySelect.value = 'all';
+        document.querySelectorAll('.lang-pills .lang-pill').forEach(p => p.classList.remove('active'));
+
+        renderChannels();
+        setModalStatus(`✅ Loaded ${parsed.length} channels! Opening...`);
+
+        setTimeout(() => {
+          closeModal();
+          const firstIdx = channels.findIndex(c => c.url === parsed[0].url);
+          if (firstIdx >= 0) {
+            playChannel(firstIdx);
+          }
+        }, 700);
+      } catch (err) {
+        console.error('M3U Load Error:', err);
+        setModalStatus('⚠️ Error loading M3U: ' + (err.message || err), true);
+      } finally {
+        savePlaylistBtn.textContent = 'Download & Save';
+        savePlaylistBtn.disabled = false;
+      }
+    });
+  }
 
   reloadPlaylistBtn.addEventListener('click', async () => {
     showLoader('Refreshing & downloading latest channels from IPTV-ORG...');

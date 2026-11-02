@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <title>Global IPTV - Direct Stream Player</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#00d2ff">
+  <!-- HLS.js for Streaming -->
+  <script src="hls.min.js"></script>
+  <script>if (!window.Hls) { document.write('<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.7/dist/hls.min.js"><\/script>'); }</script>
+  <style>
+    :root {
+      --primary: #00d2ff;
+      --primary-glow: rgba(0, 210, 255, 0.45);
+      --bg-dark: #070b14;
+      --bg-surface: #0e1424;
+      --bg-card: rgba(255, 255, 255, 0.06);
+      --text-main: #ffffff;
+      --text-muted: #8892b0;
+      --border-color: rgba(255, 255, 255, 0.14);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-top: env(safe-area-inset-top, 0px);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Control Bar */
+    .top-bar {
+      background: #0b1120;
+      border-bottom: 2px solid var(--border-color);
+      padding: 10px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 50;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+      flex-shrink: 0;
+    }
+
+    .top-bar-main {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .brand-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .brand-title span.badge {
+      background: rgba(0, 210, 255, 0.15);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .paste-container {
+      flex: 1;
+      min-width: 260px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+    }
+
+    .paste-input {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      padding: 9px 12px;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .paste-input:focus {
+      border-color: var(--primary);
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 0 10px var(--primary-glow);
+    }
+
+    .btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--border-color);
+      color: #fff;
+      padding: 9px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s, transform 0.1s;
+    }
+
+    .btn:hover, .btn:focus {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: var(--primary);
+      outline: none;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #070b14;
+      font-weight: 800;
+      box-shadow: 0 0 12px var(--primary-glow);
+    }
+
+    .btn-primary:hover, .btn-primary:focus {
+      background: #38bdf8;
+      border-color: #38bdf8;
+      color: #070b14;
+      box-shadow: 0 0 16px var(--primary-glow);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+    }
+
+    /* Expandable Raw M3U Area */
+    .raw-m3u-panel {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      padding: 10px 0 2px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .raw-m3u-panel.open {
+      display: flex;
+    }
+
+    .raw-m3u-textarea {
+      width: 100%;
+      height: 110px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: #e2e8f0;
+      font-family: monospace;
+      font-size: 12px;
+      padding: 8px 12px;
+      outline: none;
+      resize: vertical;
+    }
+
+    .raw-m3u-textarea:focus {
+      border-color: var(--primary);
+    }
+
+    /* Recent Streams Chips */
+    .recents-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 2px;
+    }
+
+    .recents-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .recents-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 700;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .recent-chip {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-color);
+      color: #cbd5e1;
+      padding: 3px 10px;
+      border-radius: 14px;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      max-width: 220px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+
+    .recent-chip:hover, .recent-chip:focus {
+      background: rgba(0, 210, 255, 0.18);
+      border-color: var(--primary);
+      color: #fff;
+      outline: none;
+    }
+
+    .clear-history-btn {
+      background: none;
+      border: none;
+      color: #ef4444;
+      font-size: 11px;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    /* Main Video Area */
+    .main-player-view {
+      flex: 1;
+      position: relative;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #directVideoPlayer {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #000;
+    }
+
+    /* Floating Stream Info Bar */
+    .stream-info-overlay {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(8, 12, 22, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 10px;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-left: 4px solid var(--primary);
+      z-index: 20;
+      max-width: calc(100vw - 32px);
+      pointer-events: auto;
+      transition: opacity 0.3s;
+    }
+
+    .stream-info-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .stream-info-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 380px;
+    }
+
+    .stream-info-sub {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Status Spinner Overlay */
+    .player-loader {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      z-index: 25;
+      background: rgba(0, 0, 0, 0.75);
+      padding: 16px 28px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+    }
+
+    .player-loader.hidden {
+      display: none;
+    }
+
+    .spinner {
+      width: 38px;
+      height: 38px;
+      border: 3px solid rgba(255, 255, 255, 0.2);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s infinite linear;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Floating Toggle Drawer Button */
+    .playlist-toggle-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(8, 12, 22, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      z-index: 20;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .playlist-toggle-btn:hover {
+      background: rgba(0, 210, 255, 0.25);
+      border-color: var(--primary);
+    }
+
+    /* Slide-out Playlist Drawer (when multiple channels in M3U) */
+    .playlist-drawer {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 340px;
+      height: 100%;
+      background: rgba(11, 17, 32, 0.95);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-left: 2px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      z-index: 30;
+      transform: translateX(100%);
+      transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
+    }
+
+    .playlist-drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .drawer-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .drawer-close {
+      background: none;
+      border: none;
+      color: #8892b0;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .drawer-close:hover {
+      color: #fff;
+    }
+
+    .drawer-search-box {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .drawer-search-input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 7px 10px;
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .drawer-search-input:focus {
+      border-color: var(--primary);
+    }
+
+    .drawer-channels-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .drawer-channel-item {
+      padding: 8px 10px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background 0.1s, border-color 0.1s;
+    }
+
+    .drawer-channel-item:hover, .drawer-channel-item:focus {
+      background: rgba(0, 210, 255, 0.15);
+      border-color: var(--primary);
+      outline: none;
+    }
+
+    .drawer-channel-item.active {
+      background: rgba(0, 210, 255, 0.25);
+      border-color: var(--primary);
+    }
+
+    .drawer-ch-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      min-width: 24px;
+    }
+
+    .drawer-ch-details {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .drawer-ch-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .drawer-ch-meta {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    /* Bottom Quick Action Bar */
+    .bottom-bar {
+      background: #0b1120;
+      border-top: 1px solid var(--border-color);
+      padding: 8px 16px calc(8px + var(--safe-bottom)) 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      z-index: 20;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .player-actions-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .top-bar {
+        padding: 8px 12px;
+        gap: 6px;
+      }
+
+      .paste-input {
+        font-size: 13px;
+        padding: 7px 10px;
+      }
+
+      .btn {
+        padding: 7px 10px;
+        font-size: 12px;
+      }
+
+      .playlist-drawer {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar: Paste M3U URL, Play, and Controls -->
+  <header class="top-bar" id="topBar">
+    <div class="top-bar-main">
+      <div class="brand-title">
+        📺 <span>Direct Player</span>
+        <span class="badge">M3U / HLS</span>
+      </div>
+
+      <div class="paste-container">
+        <input type="text" id="streamUrlInput" class="paste-input" placeholder="Paste .m3u8 stream URL, M3U playlist link, or stream URL..." autocomplete="off" spellcheck="false">
+        <button id="playBtn" class="btn btn-primary" title="Play Stream (Enter)">▶ Play</button>
+        <button id="pasteBtn" class="btn" title="Paste from Clipboard">📋 Paste</button>
+        <button id="toggleRawBtn" class="btn" title="Paste Raw M3U Content">📑 Raw M3U</button>
+      </div>
+
+      <div class="nav-links">
+        <a href="index.html" class="btn" title="Live TV Player">📺 Live TV</a>
+        <a href="grid.html" class="btn" title="10-per-Row Channel Grid">🔲 Grid (10/row)</a>
+      </div>
+    </div>
+
+    <!-- Collapsible Raw M3U Panel -->
+    <div class="raw-m3u-panel" id="rawM3uPanel">
+      <textarea id="rawM3uText" class="raw-m3u-textarea" placeholder="#EXTM3U&#10;#EXTINF:-1 tvg-logo=&quot;...&quot; group-title=&quot;News&quot;,Channel Name&#10;https://example.com/stream.m3u8"></textarea>
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <button id="loadRawBtn" class="btn btn-primary" style="padding: 6px 14px; font-size: 12px;">▶ Load & Play Raw M3U</button>
+        <span style="font-size: 11px; color: var(--text-muted);">Paste full M3U text above with multiple channels.</span>
+      </div>
+    </div>
+
+    <!-- Recent Streams Horizontal Row -->
+    <div class="recents-row" id="recentsRow">
+      <span class="recents-label">🕒 Recent:</span>
+      <div id="recentChipsContainer" style="display: flex; gap: 6px; align-items: center;"></div>
+      <button id="clearRecentsBtn" class="clear-history-btn" title="Clear stream history">Clear</button>
+    </div>
+  </header>
+
+  <!-- Main Player Canvas -->
+  <main class="main-player-view">
+    <video id="directVideoPlayer" playsinline autoplay controls></video>
+
+    <!-- Floating Info Overlay on Stream -->
+    <div class="stream-info-overlay" id="streamInfoOverlay">
+      <div>
+        <div class="stream-info-title" id="streamTitle">Direct M3U Stream</div>
+        <div class="stream-info-sub" id="streamSub">Paste any M3U or stream link above to play</div>
+      </div>
+    </div>
+
+    <!-- Floating Playlist Toggle (shows when M3U has multiple channels) -->
+    <button class="playlist-toggle-btn" id="playlistToggleBtn" style="display: none;" title="Toggle Playlist Channels">
+      ☰ Channels (<span id="playlistCount">0</span>)
+    </button>
+
+    <!-- Slide-out Playlist Drawer -->
+    <aside class="playlist-drawer" id="playlistDrawer">
+      <div class="drawer-header">
+        <div class="drawer-title">Playlist Channels (<span id="drawerCount">0</span>)</div>
+        <button class="drawer-close" id="drawerCloseBtn">&times;</button>
+      </div>
+      <div class="drawer-search-box">
+        <input type="text" id="drawerSearchInput" class="drawer-search-input" placeholder="Search playlist channels..." autocomplete="off">
+      </div>
+      <div class="drawer-channels-list" id="drawerChannelsList"></div>
+    </aside>
+
+    <!-- Loader & Spinner -->
+    <div class="player-loader hidden" id="playerLoader">
+      <div class="spinner"></div>
+      <div id="loaderMessage">Connecting to stream...</div>
+    </div>
+  </main>
+
+  <!-- Bottom Quick Status Bar -->
+  <footer class="bottom-bar">
+    <div id="playbackStatus">Ready. Paste any M3U link or video stream URL to start.</div>
+    <div class="player-actions-group">
+      <button id="prevChBtn" class="btn" style="padding: 4px 10px; font-size: 11px; display: none;" title="Previous Channel">⏮ Prev</button>
+      <button id="nextChBtn" class="btn" style="padding: 4px 10px; font-size: 11px; display: none;" title="Next Channel">Next ⏭</button>
+      <button id="fitToggleBtn" class="btn" style="padding: 4px 10px; font-size: 11px;" title="Toggle Video Aspect Ratio">Fit: Contain</button>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const video = document.getElementById('directVideoPlayer');
+      const streamUrlInput = document.getElementById('streamUrlInput');
+      const playBtn = document.getElementById('playBtn');
+      const pasteBtn = document.getElementById('pasteBtn');
+      const toggleRawBtn = document.getElementById('toggleRawBtn');
+      const rawM3uPanel = document.getElementById('rawM3uPanel');
+      const rawM3uText = document.getElementById('rawM3uText');
+      const loadRawBtn = document.getElementById('loadRawBtn');
+      const recentChipsContainer = document.getElementById('recentChipsContainer');
+      const clearRecentsBtn = document.getElementById('clearRecentsBtn');
+      const streamInfoOverlay = document.getElementById('streamInfoOverlay');
+      const streamTitle = document.getElementById('streamTitle');
+      const streamSub = document.getElementById('streamSub');
+      const playlistToggleBtn = document.getElementById('playlistToggleBtn');
+      const playlistCount = document.getElementById('playlistCount');
+      const playlistDrawer = document.getElementById('playlistDrawer');
+      const drawerCloseBtn = document.getElementById('drawerCloseBtn');
+      const drawerCount = document.getElementById('drawerCount');
+      const drawerSearchInput = document.getElementById('drawerSearchInput');
+      const drawerChannelsList = document.getElementById('drawerChannelsList');
+      const playerLoader = document.getElementById('playerLoader');
+      const loaderMessage = document.getElementById('loaderMessage');
+      const playbackStatus = document.getElementById('playbackStatus');
+      const prevChBtn = document.getElementById('prevChBtn');
+      const nextChBtn = document.getElementById('nextChBtn');
+      const fitToggleBtn = document.getElementById('fitToggleBtn');
+
+      let hls = null;
+      let playlistChannels = [];
+      let activeChannelIdx = -1;
+      let recentStreams = [];
+
+      // Load Recent Streams from localStorage
+      function loadRecents() {
+        try {
+          const saved = localStorage.getItem('iptv_play_history');
+          if (saved) recentStreams = JSON.parse(saved);
+          if (!Array.isArray(recentStreams)) recentStreams = [];
+        } catch (e) {
+          recentStreams = [];
+        }
+        renderRecentChips();
+      }
+
+      function saveRecentStream(title, url) {
+        if (!url) return;
+        recentStreams = recentStreams.filter(item => item.url !== url);
+        recentStreams.unshift({ title: title || 'Stream', url: url, time: Date.now() });
+        if (recentStreams.length > 8) recentStreams.pop();
+        try {
+          localStorage.setItem('iptv_play_history', JSON.stringify(recentStreams));
+        } catch (e) {}
+        renderRecentChips();
+      }
+
+      function renderRecentChips() {
+        recentChipsContainer.innerHTML = '';
+        if (recentStreams.length === 0) {
+          recentChipsContainer.innerHTML = '<span style="font-size:11px;color:#64748b;">No recent streams</span>';
+          return;
+        }
+
+        recentStreams.forEach(item => {
+          const chip = document.createElement('button');
+          chip.className = 'recent-chip';
+          chip.title = item.url;
+          const display = item.title || item.url.split('/').pop().split('?')[0] || 'Stream';
+          chip.innerHTML = `<span>▶</span> <span>${escapeHtml(display)}</span>`;
+          chip.addEventListener('click', () => {
+            streamUrlInput.value = item.url;
+            loadAndPlaySource(item.url, item.title);
+          });
+          recentChipsContainer.appendChild(chip);
+        });
+      }
+
+      if (clearRecentsBtn) {
+        clearRecentsBtn.addEventListener('click', () => {
+          recentStreams = [];
+          localStorage.removeItem('iptv_play_history');
+          renderRecentChips();
+        });
+      }
+
+      // Show/Hide Loader
+      function showLoader(msg = 'Opening stream...') {
+        loaderMessage.textContent = msg;
+        playerLoader.classList.remove('hidden');
+        playbackStatus.textContent = msg;
+      }
+
+      function hideLoader() {
+        playerLoader.classList.add('hidden');
+      }
+
+      // Parse M3U Text
+      function parseM3U(m3uText) {
+        if (!m3uText) return [];
+        const items = [];
+        const lines = m3uText.split(/\r?\n/);
+        const hasExtInf = lines.some(l => l.trim().startsWith('#EXTINF'));
+
+        if (!hasExtInf) {
+          lines.forEach((line) => {
+            const u = line.trim();
+            if (u && (u.startsWith('http://') || u.startsWith('https://'))) {
+              items.push({
+                name: `Channel ${items.length + 1}`,
+                url: u.split('|')[0].trim(),
+                category: 'Live'
+              });
+            }
+          });
+          return items;
+        }
+
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i].trim();
+          if (line.startsWith('#EXTINF:')) {
+            const nameMatch = line.match(/,\s*(.*)$/);
+            const name = nameMatch ? nameMatch[1].trim() : `Channel ${items.length + 1}`;
+            const logoMatch = line.match(/tvg-logo="([^"]*)"/i);
+            const groupMatch = line.match(/group-title="([^"]*)"/i);
+
+            const logo = logoMatch ? logoMatch[1].trim() : '';
+            const group = groupMatch ? groupMatch[1].trim() : 'Live';
+
+            let url = '';
+            i++;
+            while (i < lines.length) {
+              const cur = lines[i].trim();
+              if (!cur || cur.startsWith('#')) {
+                i++;
+                continue;
+              }
+              url = cur;
+              break;
+            }
+
+            if (url && (url.startsWith('http://') || url.startsWith('https://'))) {
+              items.push({
+                name: name,
+                logo: logo,
+                category: group,
+                url: url.split('|')[0].trim()
+              });
+            }
+          }
+        }
+        return items;
+      }
+
+      // Play Video Stream URL
+      function playStreamUrl(url, title = 'Live Stream', meta = '') {
+        if (!url) return;
+        showLoader(`Connecting to ${title}...`);
+
+        streamTitle.textContent = title;
+        streamSub.textContent = meta || url;
+        streamInfoOverlay.classList.remove('hidden');
+
+        if (hls) {
+          try {
+            hls.stopLoad();
+            hls.destroy();
+          } catch (e) {}
+          hls = null;
+        }
+
+        if (Hls.isSupported()) {
+          hls = new Hls({ enableWorker: true, lowLatencyMode: true });
+          hls.attachMedia(video);
+
+          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            hideLoader();
+            playbackStatus.textContent = `▶ Playing: ${title}`;
+            video.play().catch(e => console.log('Autoplay deferred:', e));
+          });
+
+          hls.on(Hls.Events.ERROR, (event, data) => {
+            console.warn('HLS error:', data);
+            if (data.fatal) {
+              switch (data.type) {
+                case Hls.ErrorTypes.NETWORK_ERROR:
+                  playbackStatus.textContent = `⚠️ Network error loading ${title}.`;
+                  hideLoader();
+                  break;
+                case Hls.ErrorTypes.MEDIA_ERROR:
+                  hls.recoverMediaError();
+                  break;
+                default:
+                  playbackStatus.textContent = `⚠️ Fatal stream decoding error.`;
+                  hideLoader();
+                  break;
+              }
+            }
+          });
+
+          hls.loadSource(url);
+        } else if (video.canPlayType('application/vnd.apple.mpegurl') || url.includes('.mp4')) {
+          video.src = url;
+          video.play().catch(e => console.log('Autoplay error:', e));
+          hideLoader();
+        } else {
+          hideLoader();
+          alert('HLS stream playback is not supported on this browser.');
+        }
+
+        saveRecentStream(title, url);
+      }
+
+      // Load Source (determines if URL is an M3U playlist or direct stream)
+      async function loadAndPlaySource(rawUrl, customTitle = '') {
+        let url = rawUrl.trim();
+        if (!url) return;
+
+        // Normalize GitHub blob links
+        url = url.replace('github.com/', 'raw.githubusercontent.com/').replace('/blob/', '/');
+        showLoader('Inspecting stream / playlist...');
+
+        // If it's a direct stream link (ends in .m3u8, .mpd, or .mp4)
+        if (url.includes('.m3u8') || url.includes('.mpd') || url.includes('.mp4')) {
+          // Check if it's a multi-channel M3U playlist or direct HLS stream
+          try {
+            let resText = '';
+            try {
+              const res = await fetch(url);
+              if (res.ok) resText = await res.text();
+            } catch (e) {}
+
+            if (resText && (resText.includes('#EXTINF:') && resText.includes('http'))) {
+              const parsed = parseM3U(resText);
+              if (parsed.length > 1) {
+                setPlaylist(parsed);
+                playChannelIndex(0);
+                return;
+              }
+            }
+          } catch (e) {}
+
+          // Single stream
+          playlistChannels = [];
+          activeChannelIdx = -1;
+          updatePlaylistUI();
+          playStreamUrl(url, customTitle || 'Live Stream', url);
+          return;
+        }
+
+        // Try downloading as M3U playlist
+        try {
+          let text = '';
+          try {
+            const res = await fetch(url);
+            if (res.ok) text = await res.text();
+          } catch (corsErr) {
+            console.warn('Direct fetch blocked by CORS, trying proxy...');
+            const proxyRes = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
+            if (proxyRes.ok) text = await proxyRes.text();
+          }
+
+          if (text) {
+            const parsed = parseM3U(text);
+            if (parsed.length > 0) {
+              setPlaylist(parsed);
+              playChannelIndex(0);
+              return;
+            }
+          }
+        } catch (err) {
+          console.warn('Could not parse as playlist, attempting direct play:', err);
+        }
+
+        // Fallback: try playing directly
+        playlistChannels = [];
+        activeChannelIdx = -1;
+        updatePlaylistUI();
+        playStreamUrl(url, customTitle || 'Direct Stream', url);
+      }
+
+      // Set Multiple Channels Playlist
+      function setPlaylist(channels) {
+        playlistChannels = channels;
+        activeChannelIdx = 0;
+        updatePlaylistUI();
+        renderDrawerChannels(channels);
+      }
+
+      function updatePlaylistUI() {
+        const count = playlistChannels.length;
+        if (count > 1) {
+          playlistToggleBtn.style.display = 'flex';
+          playlistCount.textContent = count;
+          drawerCount.textContent = count;
+          prevChBtn.style.display = 'inline-flex';
+          nextChBtn.style.display = 'inline-flex';
+        } else {
+          playlistToggleBtn.style.display = 'none';
+          playlistDrawer.classList.remove('open');
+          prevChBtn.style.display = 'none';
+          nextChBtn.style.display = 'none';
+        }
+      }
+
+      function renderDrawerChannels(list) {
+        drawerChannelsList.innerHTML = '';
+        list.forEach((ch, idx) => {
+          const item = document.createElement('div');
+          item.className = `drawer-channel-item ${idx === activeChannelIdx ? 'active' : ''}`;
+          item.innerHTML = `
+            <div class="drawer-ch-num">#${idx + 1}</div>
+            <div class="drawer-ch-details">
+              <div class="drawer-ch-name">${escapeHtml(ch.name)}</div>
+              <div class="drawer-ch-meta">${escapeHtml(ch.category || 'Live')}</div>
+            </div>
+          `;
+          item.addEventListener('click', () => {
+            playChannelIndex(idx);
+            if (window.innerWidth <= 768) playlistDrawer.classList.remove('open');
+          });
+          drawerChannelsList.appendChild(item);
+        });
+      }
+
+      function playChannelIndex(idx) {
+        if (!playlistChannels.length) return;
+        activeChannelIdx = (idx + playlistChannels.length) % playlistChannels.length;
+        const ch = playlistChannels[activeChannelIdx];
+        if (ch) {
+          playStreamUrl(ch.url, ch.name, `${ch.category || 'Live'} • Channel ${activeChannelIdx + 1} of ${playlistChannels.length}`);
+          renderDrawerChannels(playlistChannels);
+        }
+      }
+
+      // Event Listeners
+      playBtn.addEventListener('click', () => {
+        const url = streamUrlInput.value.trim();
+        if (url) loadAndPlaySource(url);
+      });
+
+      streamUrlInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const url = streamUrlInput.value.trim();
+          if (url) loadAndPlaySource(url);
+        }
+      });
+
+      if (pasteBtn) {
+        pasteBtn.addEventListener('click', async () => {
+          try {
+            const clipText = await navigator.clipboard.readText();
+            if (clipText && clipText.trim()) {
+              streamUrlInput.value = clipText.trim();
+              loadAndPlaySource(clipText.trim());
+            }
+          } catch (e) {
+            streamUrlInput.focus();
+            streamUrlInput.select();
+            alert('Clipboard read blocked by browser. Please paste directly into the input bar.');
+          }
+        });
+      }
+
+      if (toggleRawBtn) {
+        toggleRawBtn.addEventListener('click', () => {
+          rawM3uPanel.classList.toggle('open');
+          if (rawM3uPanel.classList.contains('open')) rawM3uText.focus();
+        });
+      }
+
+      if (loadRawBtn) {
+        loadRawBtn.addEventListener('click', () => {
+          const text = rawM3uText.value.trim();
+          if (!text) {
+            alert('Please paste M3U content first.');
+            return;
+          }
+          const parsed = parseM3U(text);
+          if (parsed.length > 0) {
+            setPlaylist(parsed);
+            playChannelIndex(0);
+            rawM3uPanel.classList.remove('open');
+          } else {
+            alert('Could not find any stream URLs in the pasted text.');
+          }
+        });
+      }
+
+      // Drawer Controls
+      playlistToggleBtn.addEventListener('click', () => playlistDrawer.classList.toggle('open'));
+      drawerCloseBtn.addEventListener('click', () => playlistDrawer.classList.remove('open'));
+
+      drawerSearchInput.addEventListener('input', (e) => {
+        const q = e.target.value.toLowerCase().trim();
+        const filtered = playlistChannels.filter(c => (c.name || '').toLowerCase().includes(q) || (c.category || '').toLowerCase().includes(q));
+        renderDrawerChannels(filtered);
+      });
+
+      // Next / Prev Channel
+      if (prevChBtn) prevChBtn.addEventListener('click', () => playChannelIndex(activeChannelIdx - 1));
+      if (nextChBtn) nextChBtn.addEventListener('click', () => playChannelIndex(activeChannelIdx + 1));
+
+      // Video Aspect Ratio Toggle
+      let fitMode = 0; // 0: contain, 1: cover, 2: fill
+      fitToggleBtn.addEventListener('click', () => {
+        fitMode = (fitMode + 1) % 3;
+        if (fitMode === 0) {
+          video.style.objectFit = 'contain';
+          fitToggleBtn.textContent = 'Fit: Contain';
+        } else if (fitMode === 1) {
+          video.style.objectFit = 'cover';
+          fitToggleBtn.textContent = 'Fit: Zoom (Cover)';
+        } else {
+          video.style.objectFit = 'fill';
+          fitToggleBtn.textContent = 'Fit: Stretch (Fill)';
+        }
+      });
+
+      video.addEventListener('playing', hideLoader);
+      video.addEventListener('waiting', () => showLoader('Buffering stream...'));
+
+      function escapeHtml(t) {
+        if (!t) return '';
+        return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      }
+
+      // Check URL query parameters for auto-play: ?url=... or ?m3u=...
+      const urlParams = new URLSearchParams(window.location.search);
+      const paramUrl = urlParams.get('url') || urlParams.get('m3u') || urlParams.get('stream');
+
+      loadRecents();
+
+      if (paramUrl) {
+        streamUrlInput.value = paramUrl;
+        loadAndPlaySource(paramUrl);
+      } else if (recentStreams.length > 0) {
+        // Pre-fill last played stream
+        streamUrlInput.value = recentStreams[0].url;
+      }
+    });
+  </script>
+</body>
+</html>

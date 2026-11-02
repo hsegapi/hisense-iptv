@@ -63,6 +63,7 @@
         <button id="toggleFavBtn" class="action-btn fav-btn" title="Toggle Favorite">⭐ Add Fav</button>
         <button id="reloadPlaylistBtn" class="action-btn" title="Refresh Channels">🔄 Refresh</button>
         <a href="grid.html" class="action-btn" id="gridViewBtn" title="10-per-row Grid View">🔲 Grid (10/row)</a>
+        <a href="play.html" class="action-btn" id="playPageBtn" title="Direct M3U Stream Player">⚡ Direct Player</a>
         <button id="addM3uBtn" class="action-btn" title="Add M3U Playlist">➕ Add M3U</button>
       </div>
 
@@ -166,6 +167,8 @@
           <label>Or Paste Raw M3U Content:</label>
           <textarea id="m3uRawInput" rows="4" placeholder="#EXTM3U&#10;#EXTINF:-1,Channel Name&#10;https://..."></textarea>
         </div>
+
+        <div id="modalStatus" style="display:none; font-size:13px; margin-top:10px; padding:8px 12px; border-radius:6px; font-weight:600;"></div>
       </div>
 
       <div class="modal-footer">
